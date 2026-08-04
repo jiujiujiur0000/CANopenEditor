@@ -16,6 +16,7 @@
     <Border Grid.Row="1" BorderThickness="1" BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" CornerRadius="8" ClipToBounds="True">
       <DataGrid ItemsSource="{Binding .}"
                 x:Name="grid" Margin="-1"
+                ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                 GridLinesVisibility="Horizontal"
                 BorderThickness="0" CornerRadius="8"
                 Background="Transparent" RowBackground="Transparent"
