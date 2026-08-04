@@ -6,12 +6,6 @@ using System.Collections.Generic;
 
 namespace EDSEditorGUI2.ViewModels
 {
-    public static class AppSettings
-    {
-        public static ExporterFactory.Exporter CurrentExporter { get; set; } = ExporterFactory.Exporter.CANOPENNODE_V4;
-        public static string CurrentLanguage { get; set; } = "en-US";
-    }
-
     public partial class PreferencesViewModel : ObservableObject
     {
         [ObservableProperty]
@@ -49,8 +43,8 @@ namespace EDSEditorGUI2.ViewModels
             StringWarning = (mask & 0x08) == 0x08;
             StructWarning = (mask & 0x10) == 0x10;
 
-            SelectedExporter = AppSettings.CurrentExporter;
-            SelectedLanguage = AppSettings.CurrentLanguage;
+            SelectedExporter = ConfigurationManager.Settings.CurrentExporter;
+            SelectedLanguage = ConfigurationManager.Settings.CurrentLanguage;
         }
 
         [RelayCommand]
@@ -65,8 +59,11 @@ namespace EDSEditorGUI2.ViewModels
             if (StructWarning) mask |= 0x10;
 
             Warnings.warning_mask = mask;
-            AppSettings.CurrentExporter = SelectedExporter;
-            AppSettings.CurrentLanguage = SelectedLanguage;
+            ConfigurationManager.Settings.CurrentExporter = SelectedExporter;
+            ConfigurationManager.Settings.CurrentLanguage = SelectedLanguage;
+
+            // Save to JSON
+            ConfigurationManager.Save();
 
             // Apply language globally
             App.ChangeLanguage(SelectedLanguage);

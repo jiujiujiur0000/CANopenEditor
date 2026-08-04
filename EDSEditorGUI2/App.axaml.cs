@@ -16,6 +16,9 @@ public partial class App : Application
 
     public override void OnFrameworkInitializationCompleted()
     {
+        ConfigurationManager.Load();
+        ChangeLanguage(ConfigurationManager.Settings.CurrentLanguage);
+
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
             // Line below is needed to remove Avalonia data validation.
