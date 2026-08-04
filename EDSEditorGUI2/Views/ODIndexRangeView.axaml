@@ -15,8 +15,8 @@
                x:Name="HeadingText" FontWeight="SemiBold" FontSize="16" Foreground="{DynamicResource SystemAccentColor}" Margin="0,5,0,10"/>
     <DataGrid ItemsSource="{Binding .}"
               x:Name="grid"
-              GridLinesVisibility="All"
-              BorderThickness="1" BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" CornerRadius="0"
+              GridLinesVisibility="Horizontal"
+              BorderThickness="1" BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" CornerRadius="8"
               SelectionChanged="DataGrid_SelectionChanged">
       <DataGrid.Columns>
         <DataGridTextColumn Header="{DynamicResource str_pdo_col_index}" Width="*" Binding="{Binding Key}"/>
