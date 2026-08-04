@@ -10,8 +10,9 @@
              x:Class="EDSEditorGUI2.Views.ODIndexRangeView"
              x:DataType="vm:ObjectDictionary">
 
-  <StackPanel Grid.Row="0" >
-    <TextBlock Text="Heading" x:Name="HeadingText"/>
+  <StackPanel Grid.Row="0" Margin="0,5,0,5">
+    <TextBlock Text="{Binding Heading, RelativeSource={RelativeSource AncestorType=UserControl}}" 
+               x:Name="HeadingText" FontWeight="SemiBold" FontSize="16" Foreground="{DynamicResource SystemAccentColor}" Margin="0,5,0,10"/>
     <DataGrid Margin="2" ItemsSource="{Binding .}"
               x:Name="grid"
               GridLinesVisibility="All"

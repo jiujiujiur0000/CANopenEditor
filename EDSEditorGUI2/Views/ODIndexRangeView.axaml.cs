@@ -42,7 +42,7 @@ public partial class ODIndexRangeView : UserControl
     public string Heading
     {
         get { return GetValue(HeadingProperty); }
-        set { SetValue(HeadingProperty, value); HeadingText.Text = value; }
+        set { SetValue(HeadingProperty, value); }
     }
 
     public static readonly StyledProperty<string> MinIndexProperty =
