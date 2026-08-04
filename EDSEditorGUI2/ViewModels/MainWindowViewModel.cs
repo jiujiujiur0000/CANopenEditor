@@ -1,4 +1,4 @@
-﻿using Avalonia.Media;
+using Avalonia.Media;
 using CommunityToolkit.Mvvm.ComponentModel;
 using EDSEditorGUI2.Mapper;
 using System;
@@ -10,6 +10,19 @@ namespace EDSEditorGUI2.ViewModels;
 public partial class MainWindowViewModel : ViewModelBase
 {
     int Counter = 0;
+    public bool HasNoDevice => Network.Count == 0;
+
+    public MainWindowViewModel()
+    {
+        Network.CollectionChanged += (s, e) => 
+        {
+            OnPropertyChanged(nameof(HasNoDevice));
+            OnPropertyChanged(nameof(HasDevice));
+        };
+    }
+
+    public bool HasDevice => Network.Count > 0;
+
     public void AddNewDevice(object sender)
     {
         var device = new LibCanOpen.CanOpenDevice
