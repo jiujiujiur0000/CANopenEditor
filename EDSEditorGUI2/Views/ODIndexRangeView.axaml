@@ -14,8 +14,9 @@
     <TextBlock Grid.Row="0" Text="{Binding Heading, RelativeSource={RelativeSource AncestorType=view:ODIndexRangeView}}" 
                x:Name="HeadingText" FontWeight="SemiBold" FontSize="16" Foreground="{DynamicResource SystemAccentColor}" Margin="0,5,0,10"/>
     <Border Grid.Row="1" BorderThickness="1" BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" CornerRadius="8" ClipToBounds="True">
-      <DataGrid ItemsSource="{Binding .}"
-                x:Name="grid" Margin="-1"
+      <DataGrid x:Name="grid" Margin="-1"
+                ItemsSource="{Binding FilteredItems, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                x:CompileBindings="False"
                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                 GridLinesVisibility="Horizontal"
                 BorderThickness="0" CornerRadius="8"

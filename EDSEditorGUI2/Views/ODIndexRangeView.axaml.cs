@@ -17,23 +17,45 @@ public partial class ODIndexRangeView : UserControl
         var values = Enum.GetNames(typeof(OdObject.Types.ObjectType)).Skip(1).ToArray();
         type.ItemsSource = values;
 
-        grid.LoadingRow += GridLoadingRow;
+        // Grid loading row is no longer needed, using DataGridCollectionView instead
     }
 
-    /// <summary>
-    /// Hides rows with indexes that is not in min&max range
-    /// </summary>
-    /// <param name="sender">sender object</param>
-    /// <param name="e">event param</param>
-    private void GridLoadingRow(object? sender, DataGridRowEventArgs e)
+    private Avalonia.Collections.DataGridCollectionView? _collectionView;
+    
+    public static readonly StyledProperty<Avalonia.Collections.DataGridCollectionView?> FilteredItemsProperty =
+        AvaloniaProperty.Register<ODIndexRangeView, Avalonia.Collections.DataGridCollectionView?>(nameof(FilteredItems));
+
+    public Avalonia.Collections.DataGridCollectionView? FilteredItems
     {
-        if(e.Row.DataContext != null)
+        get { return GetValue(FilteredItemsProperty); }
+        set { SetValue(FilteredItemsProperty, value); }
+    }
+
+    protected override void OnDataContextChanged(EventArgs e)
+    {
+        base.OnDataContextChanged(e);
+
+        if (DataContext is System.Collections.IEnumerable collection)
         {
-            var dc = (System.Collections.Generic.KeyValuePair<string, ViewModels.OdObject>)e.Row.DataContext;
-            int index = int.Parse(dc.Key, System.Globalization.NumberStyles.HexNumber);
-            int min = Convert.ToInt32(MinIndex, 16);
-            int max = Convert.ToInt32(MaxIndex, 16);
-            e.Row.IsVisible = (min <= index && index <= max);
+            _collectionView = new Avalonia.Collections.DataGridCollectionView(collection);
+            _collectionView.Filter = item =>
+            {
+                if (item is System.Collections.Generic.KeyValuePair<string, ViewModels.OdObject> dc)
+                {
+                    if (int.TryParse(dc.Key, System.Globalization.NumberStyles.HexNumber, null, out int index))
+                    {
+                        int min = Convert.ToInt32(MinIndex, 16);
+                        int max = Convert.ToInt32(MaxIndex, 16);
+                        return min <= index && index <= max;
+                    }
+                }
+                return false;
+            };
+            FilteredItems = _collectionView;
+        }
+        else
+        {
+            FilteredItems = null;
         }
     }
 
