@@ -10,36 +10,41 @@
              x:Class="EDSEditorGUI2.Views.ODIndexRangeView"
              x:DataType="vm:ObjectDictionary">
 
-  <StackPanel Grid.Row="0" Margin="0,5,0,5">
-    <TextBlock Text="{Binding Heading, RelativeSource={RelativeSource AncestorType=view:ODIndexRangeView}}" 
-               x:Name="HeadingText" FontWeight="SemiBold" FontSize="16" Foreground="{DynamicResource SystemAccentColor}" Margin="0,5,0,10"/>
-    <DataGrid ItemsSource="{Binding .}"
-              x:Name="grid"
-              GridLinesVisibility="All"
-              BorderThickness="1" BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" CornerRadius="8" Margin="2"
-              SelectionChanged="DataGrid_SelectionChanged">
-      <DataGrid.Columns>
-        <DataGridTextColumn Header="{DynamicResource str_pdo_col_index}" Width="*" Binding="{Binding Key}"/>
-        <DataGridTextColumn Header="{DynamicResource str_od_col_name}" Width="*" Binding="{Binding Value.Name}" />
-      </DataGrid.Columns>
-      <DataGrid.ContextMenu>
-        <ContextMenu>
-          <MenuItem Header="{DynamicResource str_od_menu_clone}"/>
-          <MenuItem Header="{DynamicResource str_od_menu_add}" Click="AddIndex">
-            <MenuItem.Icon>
-              <PathIcon Data="{StaticResource add_regular}" />
-            </MenuItem.Icon>
-          </MenuItem>
-          <MenuItem Header="{DynamicResource str_od_menu_delete}" Click="RemoveIndex">
-            <MenuItem.Icon>
-              <PathIcon Data="{StaticResource remove_regular}" />
-            </MenuItem.Icon>
-          </MenuItem>
-          <MenuItem Header="{DynamicResource str_od_menu_toggle}"/>
-        </ContextMenu>
-      </DataGrid.ContextMenu>
-    </DataGrid>
-  </StackPanel>
+  <Border Background="{DynamicResource SystemControlBackgroundAltHighBrush}" 
+          BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" 
+          BorderThickness="1" CornerRadius="8" Padding="15" Margin="0,5,0,5"
+          BoxShadow="0 2 6 0 #1A000000">
+    <Grid RowDefinitions="Auto, *">
+      <TextBlock Grid.Row="0" Text="{Binding Heading, RelativeSource={RelativeSource AncestorType=view:ODIndexRangeView}}" 
+                 x:Name="HeadingText" FontWeight="SemiBold" FontSize="16" Foreground="{DynamicResource SystemAccentColor}" Margin="0,0,0,15"/>
+      <DataGrid Grid.Row="1" ItemsSource="{Binding .}"
+                x:Name="grid"
+                GridLinesVisibility="All"
+                BorderThickness="1" BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" CornerRadius="4"
+                SelectionChanged="DataGrid_SelectionChanged">
+        <DataGrid.Columns>
+          <DataGridTextColumn Header="{DynamicResource str_pdo_col_index}" Width="*" Binding="{Binding Key}"/>
+          <DataGridTextColumn Header="{DynamicResource str_od_col_name}" Width="*" Binding="{Binding Value.Name}" />
+        </DataGrid.Columns>
+        <DataGrid.ContextMenu>
+          <ContextMenu>
+            <MenuItem Header="{DynamicResource str_od_menu_clone}"/>
+            <MenuItem Header="{DynamicResource str_od_menu_add}" Click="AddIndex">
+              <MenuItem.Icon>
+                <PathIcon Data="{StaticResource add_regular}" />
+              </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem Header="{DynamicResource str_od_menu_delete}" Click="RemoveIndex">
+              <MenuItem.Icon>
+                <PathIcon Data="{StaticResource remove_regular}" />
+              </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem Header="{DynamicResource str_od_menu_toggle}"/>
+          </ContextMenu>
+        </DataGrid.ContextMenu>
+      </DataGrid>
+    </Grid>
+  </Border>
   <UserControl.Resources>
     <converter:NewIndexMultiConvert x:Key="NewIndexMultiConvert" />
     <!-- New index dialog -->
