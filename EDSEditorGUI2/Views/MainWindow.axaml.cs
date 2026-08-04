@@ -270,15 +270,22 @@ public partial class MainWindow : Window
     private void ToggleTheme_Click(object? sender, RoutedEventArgs e)
     {
         var app = Avalonia.Application.Current;
-        if (app is not null)
+        if (app is not null && sender is Button btn)
         {
-            if (app.ActualThemeVariant == Avalonia.Styling.ThemeVariant.Light)
+            if (app.RequestedThemeVariant == Avalonia.Styling.ThemeVariant.Default)
+            {
+                app.RequestedThemeVariant = Avalonia.Styling.ThemeVariant.Light;
+                btn.Content = "☀️ 浅色";
+            }
+            else if (app.RequestedThemeVariant == Avalonia.Styling.ThemeVariant.Light)
             {
                 app.RequestedThemeVariant = Avalonia.Styling.ThemeVariant.Dark;
+                btn.Content = "🌙 深色";
             }
             else
             {
-                app.RequestedThemeVariant = Avalonia.Styling.ThemeVariant.Light;
+                app.RequestedThemeVariant = Avalonia.Styling.ThemeVariant.Default;
+                btn.Content = "🖥️ 跟随系统";
             }
         }
     }
