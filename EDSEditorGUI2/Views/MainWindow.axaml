@@ -19,31 +19,38 @@
     </Design.DataContext>
     <dialogHost:DialogHost Identifier="RootDialogHost" >
     <DockPanel>
-        <Menu DockPanel.Dock="Top" x:Name="menu">
-            <MenuItem Header="_File" x:Name="fileMenu" >
-                <MenuItem Header="_New" Command="{Binding AddNewDevice}"/>
-                <MenuItem Header="_Open"/>
-                <MenuItem Header="_Save Project" IsEnabled="{Binding SelectedDevice, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
-                <MenuItem Header="_Save Project AS..." IsEnabled="{Binding SelectedDevice, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
-                <Separator/>
-                <MenuItem Header="Open _Network XML"/>
-                <MenuItem Header="Save Networ_k XML" IsEnabled="{Binding SelectedDevice, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
-                <Separator/>
-                <MenuItem Header="_Recent Files"/>
-                <Separator/>
-                <MenuItem Header="_Export" IsEnabled="{Binding SelectedDevice, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
-                <MenuItem Header="_Export CanOpenNode..." IsEnabled="{Binding SelectedDevice, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
-                <MenuItem Header="Save _All" IsEnabled="{Binding SelectedDevice, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
-                <Separator/>
-                <MenuItem Header="_Quit"/>
-            </MenuItem>
-            <MenuItem Header="_Insert Profile" x:Name="profileMenu" IsEnabled="{Binding SelectedDevice, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
-            <MenuItem Header="_Reports">
-            </MenuItem>
-            <MenuItem Header="Tools">
-                <MenuItem Header="_Preferences" Click="OpenPreferences"/>
-            </MenuItem>
-        </Menu>
+        <Grid DockPanel.Dock="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Menu Grid.Column="0" x:Name="menu">
+                <MenuItem Header="_File" x:Name="fileMenu" >
+                    <MenuItem Header="_New" Command="{Binding AddNewDevice}"/>
+                    <MenuItem Header="_Open"/>
+                    <MenuItem Header="_Save Project" IsEnabled="{Binding SelectedDevice, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+                    <MenuItem Header="_Save Project AS..." IsEnabled="{Binding SelectedDevice, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+                    <Separator/>
+                    <MenuItem Header="Open _Network XML"/>
+                    <MenuItem Header="Save Networ_k XML" IsEnabled="{Binding SelectedDevice, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+                    <Separator/>
+                    <MenuItem Header="_Recent Files"/>
+                    <Separator/>
+                    <MenuItem Header="_Export" IsEnabled="{Binding SelectedDevice, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+                    <MenuItem Header="_Export CanOpenNode..." IsEnabled="{Binding SelectedDevice, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+                    <MenuItem Header="Save _All" IsEnabled="{Binding SelectedDevice, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+                    <Separator/>
+                    <MenuItem Header="_Quit"/>
+                </MenuItem>
+                <MenuItem Header="_Insert Profile" x:Name="profileMenu" IsEnabled="{Binding SelectedDevice, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+                <MenuItem Header="_Reports">
+                </MenuItem>
+                <MenuItem Header="Tools">
+                    <MenuItem Header="_Preferences" Click="OpenPreferences"/>
+                </MenuItem>
+            </Menu>
+            <Button Grid.Column="1" Content="🌙/☀️ Theme" Click="ToggleTheme_Click" Margin="5,0,10,0" Padding="8,4" Background="Transparent" BorderThickness="1" CornerRadius="4" Cursor="Hand" VerticalAlignment="Center"/>
+        </Grid>
         <StackPanel DockPanel.Dock="Left" Margin="20" Width="300">
           <ListBox ItemsSource="{Binding Network}" SelectedItem="{Binding SelectedDevice}">
             <ListBox.ItemTemplate>

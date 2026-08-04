@@ -266,4 +266,21 @@ public partial class MainWindow : Window
     {
         await DialogHostAvalonia.DialogHost.Show(Resources["PreferencesDialog"]!, "RootDialogHost");
     }
-}
+
+    private void ToggleTheme_Click(object? sender, RoutedEventArgs e)
+    {
+        var app = Avalonia.Application.Current;
+        if (app is not null)
+        {
+            if (app.ActualThemeVariant == Avalonia.Styling.ThemeVariant.Light)
+            {
+                app.RequestedThemeVariant = Avalonia.Styling.ThemeVariant.Dark;
+            }
+            else
+            {
+                app.RequestedThemeVariant = Avalonia.Styling.ThemeVariant.Light;
+            }
+        }
+    }
+}
+
