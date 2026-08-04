@@ -4,70 +4,153 @@
              xmlns:view="using:EDSEditorGUI2.Views"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
+             mc:Ignorable="d" d:DesignWidth="1200" d:DesignHeight="800"
              x:Class="EDSEditorGUI2.Views.DeviceInfoView"
-             x:DataType="vm:DeviceInfo">
+             x:DataType="vm:Device">
   
   <ScrollViewer>
     <Grid ColumnDefinitions="*, *" Margin="20" HorizontalAlignment="Stretch" VerticalAlignment="Top">
       
-      <!-- Card 1: Device Info -->
-      <Border Grid.Column="0" Background="{DynamicResource SystemControlBackgroundAltHighBrush}" 
-              BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" 
-              BorderThickness="1" CornerRadius="8" Padding="25" Margin="10"
-              BoxShadow="0 4 10 0 #1A000000">
-        <StackPanel Spacing="25" HorizontalAlignment="Stretch">
-          
-          <StackPanel Spacing="5">
-            <TextBlock Text="{DynamicResource str_device_info_title}" FontWeight="Bold" FontSize="18"/>
-            <TextBlock Text="配置设备的基础信息和标识" FontSize="12" Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}"/>
-          </StackPanel>
-          
-          <Grid ColumnDefinitions="100, *" RowDefinitions="Auto, Auto">
-            <TextBlock Grid.Row="0" Grid.Column="0" Text="{DynamicResource str_device_info_prod_name}" VerticalAlignment="Center" FontWeight="SemiBold" Margin="0,0,0,15"/>
-            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding ProductName}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
+      <!-- Left Column -->
+      <StackPanel Grid.Column="0" Spacing="0">
+        <!-- Card 1: Device Info -->
+        <Border Background="{DynamicResource SystemControlBackgroundAltHighBrush}" 
+                BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" 
+                BorderThickness="1" CornerRadius="8" Padding="25" Margin="10"
+                BoxShadow="0 4 10 0 #1A000000">
+          <StackPanel Spacing="25" HorizontalAlignment="Stretch">
+            <StackPanel Spacing="5">
+              <TextBlock Text="Device Info" FontWeight="Bold" FontSize="18"/>
+              <TextBlock Text="Basic information about the device" FontSize="12" Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}"/>
+            </StackPanel>
             
-            <TextBlock Grid.Row="1" Grid.Column="0" Text="{DynamicResource str_device_info_vendor_name}" VerticalAlignment="Center" FontWeight="SemiBold"/>
-            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding VendorName}" HorizontalAlignment="Stretch" Classes="clearButton"/>
-          </Grid>
+            <Grid ColumnDefinitions="120, *" RowDefinitions="Auto, Auto, Auto, Auto, Auto">
+              <TextBlock Grid.Row="0" Grid.Column="0" Text="Product name" VerticalAlignment="Center" FontWeight="SemiBold" Margin="0,0,0,15"/>
+              <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding DeviceInfo.ProductName}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
+              
+              <TextBlock Grid.Row="1" Grid.Column="0" Text="Product ID" VerticalAlignment="Center" FontWeight="SemiBold" Margin="0,0,0,15"/>
+              <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding DeviceInfo.ProductNumber}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
+              
+              <TextBlock Grid.Row="2" Grid.Column="0" Text="Vendor name" VerticalAlignment="Center" FontWeight="SemiBold" Margin="0,0,0,15"/>
+              <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding DeviceInfo.VendorName}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
+              
+              <TextBlock Grid.Row="3" Grid.Column="0" Text="Vendor ID" VerticalAlignment="Center" FontWeight="SemiBold" Margin="0,0,0,15"/>
+              <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding DeviceInfo.VendorNumber}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
+              
+              <TextBlock Grid.Row="4" Grid.Column="0" Text="Revision" VerticalAlignment="Center" FontWeight="SemiBold"/>
+              <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding DeviceInfo.RevisionNumber}" HorizontalAlignment="Stretch" Classes="clearButton"/>
+            </Grid>
+          </StackPanel>
+        </Border>
 
-          <!-- Features Section (Moved into the same card for grouping) -->
-          <Border BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" BorderThickness="0,1,0,0" Margin="0,10,0,10"/>
-          
-          <StackPanel Spacing="15">
-            <TextBlock Text="{DynamicResource str_device_info_features}" FontWeight="Bold" FontSize="16"/>
-            <StackPanel Orientation="Horizontal" Spacing="40">
-              <CheckBox IsChecked="{Binding LssSlave}" Content="{DynamicResource str_device_info_lss_slave}" />
-              <CheckBox IsChecked="{Binding LssMaster}" Content="{DynamicResource str_device_info_lss_master}" />
+        <!-- Card 2: File Info -->
+        <Border Background="{DynamicResource SystemControlBackgroundAltHighBrush}" 
+                BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" 
+                BorderThickness="1" CornerRadius="8" Padding="25" Margin="10"
+                BoxShadow="0 4 10 0 #1A000000">
+          <StackPanel Spacing="25" HorizontalAlignment="Stretch">
+            <StackPanel Spacing="5">
+              <TextBlock Text="File Info" FontWeight="Bold" FontSize="18"/>
+              <TextBlock Text="File generation and modification history" FontSize="12" Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}"/>
+            </StackPanel>
+            
+            <Grid ColumnDefinitions="120, *" RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto">
+              <TextBlock Grid.Row="0" Grid.Column="0" Text="File version" VerticalAlignment="Center" FontWeight="SemiBold" Margin="0,0,0,15"/>
+              <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding FileInfo.FileVersion}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
+              
+              <TextBlock Grid.Row="1" Grid.Column="0" Text="Description" VerticalAlignment="Center" FontWeight="SemiBold" Margin="0,0,0,15"/>
+              <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding FileInfo.Description}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
+              
+              <TextBlock Grid.Row="2" Grid.Column="0" Text="Creation Time" VerticalAlignment="Center" FontWeight="SemiBold" Margin="0,0,0,15"/>
+              <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding FileInfo.CreationTime}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
+              
+              <TextBlock Grid.Row="3" Grid.Column="0" Text="Created By" VerticalAlignment="Center" FontWeight="SemiBold" Margin="0,0,0,15"/>
+              <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding FileInfo.CreatedBy}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
+              
+              <TextBlock Grid.Row="4" Grid.Column="0" Text="Mod. Time" VerticalAlignment="Center" FontWeight="SemiBold" Margin="0,0,0,15"/>
+              <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding FileInfo.ModificationTime}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
+              
+              <TextBlock Grid.Row="5" Grid.Column="0" Text="Modified By" VerticalAlignment="Center" FontWeight="SemiBold"/>
+              <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding FileInfo.ModifiedBy}" HorizontalAlignment="Stretch" Classes="clearButton"/>
+            </Grid>
+          </StackPanel>
+        </Border>
+      </StackPanel>
+
+      <!-- Right Column -->
+      <StackPanel Grid.Column="1" Spacing="0">
+        <!-- Card 3: Baudrates Section -->
+        <Border Background="{DynamicResource SystemControlBackgroundAltHighBrush}" 
+                BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" 
+                BorderThickness="1" CornerRadius="8" Padding="25" Margin="10"
+                BoxShadow="0 4 10 0 #1A000000">
+          <StackPanel Spacing="15" HorizontalAlignment="Stretch">
+            <StackPanel Spacing="5">
+              <TextBlock Text="Baudrates" FontWeight="Bold" FontSize="18"/>
+              <TextBlock Text="Supported communication speeds" FontSize="12" Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}"/>
+            </StackPanel>
+            
+            <UniformGrid Columns="3" Margin="10,15,0,0">
+              <CheckBox IsChecked="{Binding DeviceInfo.BaudRate10}" Content="10 kbit/s" Margin="0,0,0,15"/>
+              <CheckBox IsChecked="{Binding DeviceInfo.BaudRate20}" Content="20 kbit/s" Margin="0,0,0,15"/>
+              <CheckBox IsChecked="{Binding DeviceInfo.BaudRate50}" Content="50 kbit/s" Margin="0,0,0,15"/>
+              <CheckBox IsChecked="{Binding DeviceInfo.BaudRate125}" Content="125 kbit/s" Margin="0,0,0,15"/>
+              <CheckBox IsChecked="{Binding DeviceInfo.BaudRate250}" Content="250 kbit/s" Margin="0,0,0,15"/>
+              <CheckBox IsChecked="{Binding DeviceInfo.BaudRate500}" Content="500 kbit/s" Margin="0,0,0,15"/>
+              <CheckBox IsChecked="{Binding DeviceInfo.BaudRate800}" Content="800 kbit/s" Margin="0,0,0,15"/>
+              <CheckBox IsChecked="{Binding DeviceInfo.BaudRate1000}" Content="1000 kbit/s" Margin="0,0,0,15"/>
+              <CheckBox IsChecked="{Binding DeviceInfo.BaudRateAuto}" Content="Auto" Margin="0,0,0,15"/>
+            </UniformGrid>
+          </StackPanel>
+        </Border>
+
+        <!-- Card 4: Features Section -->
+        <Border Background="{DynamicResource SystemControlBackgroundAltHighBrush}" 
+                BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" 
+                BorderThickness="1" CornerRadius="8" Padding="25" Margin="10"
+                BoxShadow="0 4 10 0 #1A000000">
+          <StackPanel Spacing="15" HorizontalAlignment="Stretch">
+            <StackPanel Spacing="5">
+              <TextBlock Text="General and Master Features" FontWeight="Bold" FontSize="18"/>
+              <TextBlock Text="Configure node properties and capabilities" FontSize="12" Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}"/>
+            </StackPanel>
+            
+            <Grid ColumnDefinitions="120, *" RowDefinitions="Auto, Auto">
+              <TextBlock Grid.Row="0" Grid.Column="0" Text="Granularity" VerticalAlignment="Center" FontWeight="SemiBold" Margin="0,0,0,15"/>
+              <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding DeviceInfo.Granularity}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
+            </Grid>
+
+            <StackPanel Orientation="Horizontal" Spacing="40" Margin="10,0,0,0">
+              <CheckBox IsChecked="{Binding DeviceInfo.LssSlave}" Content="LSS Slave" />
+              <CheckBox IsChecked="{Binding DeviceInfo.LssMaster}" Content="LSS Master" />
             </StackPanel>
           </StackPanel>
-        </StackPanel>
-      </Border>
+        </Border>
 
-      <!-- Card 2: Baudrates Section -->
-      <Border Grid.Column="1" Background="{DynamicResource SystemControlBackgroundAltHighBrush}" 
-              BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" 
-              BorderThickness="1" CornerRadius="8" Padding="25" Margin="10"
-              BoxShadow="0 4 10 0 #1A000000">
-        <StackPanel Spacing="15" HorizontalAlignment="Stretch">
-          <StackPanel Spacing="5">
-            <TextBlock Text="{DynamicResource str_device_info_baudrates}" FontWeight="Bold" FontSize="18"/>
-            <TextBlock Text="选择设备支持的通信速率" FontSize="12" Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}"/>
+        <!-- Card 5: Device Commissioning -->
+        <Border Background="{DynamicResource SystemControlBackgroundAltHighBrush}" 
+                BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" 
+                BorderThickness="1" CornerRadius="8" Padding="25" Margin="10"
+                BoxShadow="0 4 10 0 #1A000000">
+          <StackPanel Spacing="15" HorizontalAlignment="Stretch">
+            <StackPanel Spacing="5">
+              <TextBlock Text="Device Commissioning" FontWeight="Bold" FontSize="18"/>
+              <TextBlock Text="Runtime configuration" FontSize="12" Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}"/>
+            </StackPanel>
+            
+            <Grid ColumnDefinitions="120, *" RowDefinitions="Auto, Auto, Auto">
+              <TextBlock Grid.Row="0" Grid.Column="0" Text="Node ID" VerticalAlignment="Center" FontWeight="SemiBold" Margin="0,0,0,15"/>
+              <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding DeviceCommissioning.NodeId}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
+              
+              <TextBlock Grid.Row="1" Grid.Column="0" Text="Node name" VerticalAlignment="Center" FontWeight="SemiBold" Margin="0,0,0,15"/>
+              <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding DeviceCommissioning.NodeName}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
+              
+              <TextBlock Grid.Row="2" Grid.Column="0" Text="Baudrate" VerticalAlignment="Center" FontWeight="SemiBold"/>
+              <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding DeviceCommissioning.Baudrate}" HorizontalAlignment="Stretch" Classes="clearButton"/>
+            </Grid>
           </StackPanel>
-          
-          <UniformGrid Columns="2" Margin="10,15,0,0">
-            <CheckBox IsChecked="{Binding BaudRate10}" Content="10 kbit/s" Margin="0,0,0,15"/>
-            <CheckBox IsChecked="{Binding BaudRate20}" Content="20 kbit/s" Margin="0,0,0,15"/>
-            <CheckBox IsChecked="{Binding BaudRate50}" Content="50 kbit/s" Margin="0,0,0,15"/>
-            <CheckBox IsChecked="{Binding BaudRate125}" Content="125 kbit/s" Margin="0,0,0,15"/>
-            <CheckBox IsChecked="{Binding BaudRate250}" Content="250 kbit/s" Margin="0,0,0,15"/>
-            <CheckBox IsChecked="{Binding BaudRate500}" Content="500 kbit/s" Margin="0,0,0,15"/>
-            <CheckBox IsChecked="{Binding BaudRate800}" Content="800 kbit/s" Margin="0,0,0,15"/>
-            <CheckBox IsChecked="{Binding BaudRate1000}" Content="1000 kbit/s" Margin="0,0,0,15"/>
-            <CheckBox IsChecked="{Binding BaudRateAuto}" Content="{DynamicResource str_device_info_auto}" Margin="0,0,0,15"/>
-          </UniformGrid>
-        </StackPanel>
-      </Border>
+        </Border>
+      </StackPanel>
 
     </Grid>
   </ScrollViewer>

@@ -1,4 +1,4 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace EDSEditorGUI2.ViewModels;
 
@@ -8,7 +8,19 @@ public partial class DeviceInfo : ObservableObject
     string _vendorName = string.Empty;
 
     [ObservableProperty]
+    string _vendorNumber = string.Empty;
+
+    [ObservableProperty]
     string _productName = string.Empty;
+
+    [ObservableProperty]
+    string _productNumber = string.Empty;
+
+    [ObservableProperty]
+    uint _revisionNumber;
+
+    [ObservableProperty]
+    uint _granularity = 8;
 
     [ObservableProperty]
     bool _baudRate10;

@@ -11,7 +11,7 @@
   <TabControl Margin="5" Padding="0,10,0,0">
     <TabControl.Styles>
       <Style Selector="TabItem">
-        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontSize" Value="16" />
         <Setter Property="MinHeight" Value="36" />
         <Setter Property="Padding" Value="16,8" />
         <Setter Property="Margin" Value="0,0,4,0" />
@@ -23,7 +23,7 @@
       </Style>
     </TabControl.Styles>
     <TabItem Header="{DynamicResource str_tab_device_info}">
-      <view:DeviceInfoView DataContext="{Binding DeviceInfo}" />
+      <view:DeviceInfoView DataContext="{Binding}" />
     </TabItem>
     <TabItem Header="{DynamicResource str_tab_object_dict}">
       <view:DeviceODView DataContext="{Binding Objects}" />
