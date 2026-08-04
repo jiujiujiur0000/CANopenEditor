@@ -11,7 +11,7 @@
              x:DataType="vm:ObjectDictionary">
 
   <StackPanel Grid.Row="0" Margin="0,5,0,5">
-    <TextBlock Text="{Binding Heading, RelativeSource={RelativeSource AncestorType=UserControl}}" 
+    <TextBlock Text="{Binding Heading, RelativeSource={RelativeSource AncestorType=view:ODIndexRangeView}}" 
                x:Name="HeadingText" FontWeight="SemiBold" FontSize="16" Foreground="{DynamicResource SystemAccentColor}" Margin="0,5,0,10"/>
     <DataGrid Margin="2" ItemsSource="{Binding .}"
               x:Name="grid"
