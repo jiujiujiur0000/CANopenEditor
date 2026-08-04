@@ -20,24 +20,24 @@
                 BoxShadow="0 4 10 0 #1A000000">
           <StackPanel Spacing="25" HorizontalAlignment="Stretch">
             <StackPanel Spacing="5">
-              <TextBlock Text="Device Info" FontWeight="Bold" FontSize="18"/>
-              <TextBlock Text="Basic information about the device" FontSize="12" Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}"/>
+              <TextBlock Text="设备信息" FontWeight="Bold" FontSize="18"/>
+              <TextBlock Text="配置设备的基础信息和标识" FontSize="12" Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}"/>
             </StackPanel>
             
             <Grid ColumnDefinitions="120, *" RowDefinitions="Auto, Auto, Auto, Auto, Auto">
-              <TextBlock Grid.Row="0" Grid.Column="0" Text="Product name" VerticalAlignment="Center" FontWeight="SemiBold" Margin="0,0,0,15"/>
+              <TextBlock Grid.Row="0" Grid.Column="0" Text="产品名称" VerticalAlignment="Center" FontWeight="SemiBold" Margin="0,0,0,15"/>
               <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding DeviceInfo.ProductName}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
               
-              <TextBlock Grid.Row="1" Grid.Column="0" Text="Product ID" VerticalAlignment="Center" FontWeight="SemiBold" Margin="0,0,0,15"/>
+              <TextBlock Grid.Row="1" Grid.Column="0" Text="产品 ID" VerticalAlignment="Center" FontWeight="SemiBold" Margin="0,0,0,15"/>
               <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding DeviceInfo.ProductNumber}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
               
-              <TextBlock Grid.Row="2" Grid.Column="0" Text="Vendor name" VerticalAlignment="Center" FontWeight="SemiBold" Margin="0,0,0,15"/>
+              <TextBlock Grid.Row="2" Grid.Column="0" Text="厂商名称" VerticalAlignment="Center" FontWeight="SemiBold" Margin="0,0,0,15"/>
               <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding DeviceInfo.VendorName}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
               
-              <TextBlock Grid.Row="3" Grid.Column="0" Text="Vendor ID" VerticalAlignment="Center" FontWeight="SemiBold" Margin="0,0,0,15"/>
+              <TextBlock Grid.Row="3" Grid.Column="0" Text="厂商 ID" VerticalAlignment="Center" FontWeight="SemiBold" Margin="0,0,0,15"/>
               <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding DeviceInfo.VendorNumber}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
               
-              <TextBlock Grid.Row="4" Grid.Column="0" Text="Revision" VerticalAlignment="Center" FontWeight="SemiBold"/>
+              <TextBlock Grid.Row="4" Grid.Column="0" Text="修订版本" VerticalAlignment="Center" FontWeight="SemiBold"/>
               <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding DeviceInfo.RevisionNumber}" HorizontalAlignment="Stretch" Classes="clearButton"/>
             </Grid>
           </StackPanel>
@@ -50,27 +50,27 @@
                 BoxShadow="0 4 10 0 #1A000000">
           <StackPanel Spacing="25" HorizontalAlignment="Stretch">
             <StackPanel Spacing="5">
-              <TextBlock Text="File Info" FontWeight="Bold" FontSize="18"/>
-              <TextBlock Text="File generation and modification history" FontSize="12" Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}"/>
+              <TextBlock Text="文件信息" FontWeight="Bold" FontSize="18"/>
+              <TextBlock Text="记录文件的生成与修改历史" FontSize="12" Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}"/>
             </StackPanel>
             
             <Grid ColumnDefinitions="120, *" RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto">
-              <TextBlock Grid.Row="0" Grid.Column="0" Text="File version" VerticalAlignment="Center" FontWeight="SemiBold" Margin="0,0,0,15"/>
+              <TextBlock Grid.Row="0" Grid.Column="0" Text="文件版本" VerticalAlignment="Center" FontWeight="SemiBold" Margin="0,0,0,15"/>
               <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding FileInfo.FileVersion}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
               
-              <TextBlock Grid.Row="1" Grid.Column="0" Text="Description" VerticalAlignment="Center" FontWeight="SemiBold" Margin="0,0,0,15"/>
+              <TextBlock Grid.Row="1" Grid.Column="0" Text="文件描述" VerticalAlignment="Center" FontWeight="SemiBold" Margin="0,0,0,15"/>
               <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding FileInfo.Description}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
               
-              <TextBlock Grid.Row="2" Grid.Column="0" Text="Creation Time" VerticalAlignment="Center" FontWeight="SemiBold" Margin="0,0,0,15"/>
+              <TextBlock Grid.Row="2" Grid.Column="0" Text="创建时间" VerticalAlignment="Center" FontWeight="SemiBold" Margin="0,0,0,15"/>
               <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding FileInfo.CreationTime}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
               
-              <TextBlock Grid.Row="3" Grid.Column="0" Text="Created By" VerticalAlignment="Center" FontWeight="SemiBold" Margin="0,0,0,15"/>
+              <TextBlock Grid.Row="3" Grid.Column="0" Text="创建者" VerticalAlignment="Center" FontWeight="SemiBold" Margin="0,0,0,15"/>
               <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding FileInfo.CreatedBy}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
               
-              <TextBlock Grid.Row="4" Grid.Column="0" Text="Mod. Time" VerticalAlignment="Center" FontWeight="SemiBold" Margin="0,0,0,15"/>
+              <TextBlock Grid.Row="4" Grid.Column="0" Text="修改时间" VerticalAlignment="Center" FontWeight="SemiBold" Margin="0,0,0,15"/>
               <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding FileInfo.ModificationTime}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
               
-              <TextBlock Grid.Row="5" Grid.Column="0" Text="Modified By" VerticalAlignment="Center" FontWeight="SemiBold"/>
+              <TextBlock Grid.Row="5" Grid.Column="0" Text="修改者" VerticalAlignment="Center" FontWeight="SemiBold"/>
               <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding FileInfo.ModifiedBy}" HorizontalAlignment="Stretch" Classes="clearButton"/>
             </Grid>
           </StackPanel>
@@ -86,8 +86,8 @@
                 BoxShadow="0 4 10 0 #1A000000">
           <StackPanel Spacing="15" HorizontalAlignment="Stretch">
             <StackPanel Spacing="5">
-              <TextBlock Text="Baudrates" FontWeight="Bold" FontSize="18"/>
-              <TextBlock Text="Supported communication speeds" FontSize="12" Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}"/>
+              <TextBlock Text="支持的波特率" FontWeight="Bold" FontSize="18"/>
+              <TextBlock Text="选择设备支持的通信速率" FontSize="12" Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}"/>
             </StackPanel>
             
             <UniformGrid Columns="3" Margin="10,15,0,0">
@@ -99,7 +99,7 @@
               <CheckBox IsChecked="{Binding DeviceInfo.BaudRate500}" Content="500 kbit/s" Margin="0,0,0,15"/>
               <CheckBox IsChecked="{Binding DeviceInfo.BaudRate800}" Content="800 kbit/s" Margin="0,0,0,15"/>
               <CheckBox IsChecked="{Binding DeviceInfo.BaudRate1000}" Content="1000 kbit/s" Margin="0,0,0,15"/>
-              <CheckBox IsChecked="{Binding DeviceInfo.BaudRateAuto}" Content="Auto" Margin="0,0,0,15"/>
+              <CheckBox IsChecked="{Binding DeviceInfo.BaudRateAuto}" Content="自动检测" Margin="0,0,0,15"/>
             </UniformGrid>
           </StackPanel>
         </Border>
@@ -111,18 +111,18 @@
                 BoxShadow="0 4 10 0 #1A000000">
           <StackPanel Spacing="15" HorizontalAlignment="Stretch">
             <StackPanel Spacing="5">
-              <TextBlock Text="General and Master Features" FontWeight="Bold" FontSize="18"/>
-              <TextBlock Text="Configure node properties and capabilities" FontSize="12" Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}"/>
+              <TextBlock Text="通用及主站特性" FontWeight="Bold" FontSize="18"/>
+              <TextBlock Text="配置节点的属性和功能能力" FontSize="12" Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}"/>
             </StackPanel>
             
             <Grid ColumnDefinitions="120, *" RowDefinitions="Auto, Auto">
-              <TextBlock Grid.Row="0" Grid.Column="0" Text="Granularity" VerticalAlignment="Center" FontWeight="SemiBold" Margin="0,0,0,15"/>
+              <TextBlock Grid.Row="0" Grid.Column="0" Text="映射粒度" VerticalAlignment="Center" FontWeight="SemiBold" Margin="0,0,0,15"/>
               <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding DeviceInfo.Granularity}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
             </Grid>
 
             <StackPanel Orientation="Horizontal" Spacing="40" Margin="10,0,0,0">
-              <CheckBox IsChecked="{Binding DeviceInfo.LssSlave}" Content="LSS Slave" />
-              <CheckBox IsChecked="{Binding DeviceInfo.LssMaster}" Content="LSS Master" />
+              <CheckBox IsChecked="{Binding DeviceInfo.LssSlave}" Content="LSS 从站" />
+              <CheckBox IsChecked="{Binding DeviceInfo.LssMaster}" Content="LSS 主站" />
             </StackPanel>
           </StackPanel>
         </Border>
@@ -134,18 +134,18 @@
                 BoxShadow="0 4 10 0 #1A000000">
           <StackPanel Spacing="15" HorizontalAlignment="Stretch">
             <StackPanel Spacing="5">
-              <TextBlock Text="Device Commissioning" FontWeight="Bold" FontSize="18"/>
-              <TextBlock Text="Runtime configuration" FontSize="12" Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}"/>
+              <TextBlock Text="设备部署信息" FontWeight="Bold" FontSize="18"/>
+              <TextBlock Text="运行时的部署配置" FontSize="12" Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}"/>
             </StackPanel>
             
             <Grid ColumnDefinitions="120, *" RowDefinitions="Auto, Auto, Auto">
-              <TextBlock Grid.Row="0" Grid.Column="0" Text="Node ID" VerticalAlignment="Center" FontWeight="SemiBold" Margin="0,0,0,15"/>
+              <TextBlock Grid.Row="0" Grid.Column="0" Text="节点 ID" VerticalAlignment="Center" FontWeight="SemiBold" Margin="0,0,0,15"/>
               <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding DeviceCommissioning.NodeId}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
               
-              <TextBlock Grid.Row="1" Grid.Column="0" Text="Node name" VerticalAlignment="Center" FontWeight="SemiBold" Margin="0,0,0,15"/>
+              <TextBlock Grid.Row="1" Grid.Column="0" Text="节点名称" VerticalAlignment="Center" FontWeight="SemiBold" Margin="0,0,0,15"/>
               <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding DeviceCommissioning.NodeName}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
               
-              <TextBlock Grid.Row="2" Grid.Column="0" Text="Baudrate" VerticalAlignment="Center" FontWeight="SemiBold"/>
+              <TextBlock Grid.Row="2" Grid.Column="0" Text="通信波特率" VerticalAlignment="Center" FontWeight="SemiBold"/>
               <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding DeviceCommissioning.Baudrate}" HorizontalAlignment="Stretch" Classes="clearButton"/>
             </Grid>
           </StackPanel>
