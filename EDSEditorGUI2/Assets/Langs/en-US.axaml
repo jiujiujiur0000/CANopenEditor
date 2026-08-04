@@ -1,0 +1,35 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <!-- MainWindow Menu -->
+    <sys:String x:Key="str_menu_file">_File</sys:String>
+    <sys:String x:Key="str_menu_new">_New</sys:String>
+    <sys:String x:Key="str_menu_open">_Open</sys:String>
+    <sys:String x:Key="str_menu_save">_Save Project</sys:String>
+    <sys:String x:Key="str_menu_save_as">_Save Project AS...</sys:String>
+    <sys:String x:Key="str_menu_open_network">Open _Network XML</sys:String>
+    <sys:String x:Key="str_menu_save_network">Save Networ_k XML</sys:String>
+    <sys:String x:Key="str_menu_recent">_Recent Files</sys:String>
+    <sys:String x:Key="str_menu_export">_Export</sys:String>
+    <sys:String x:Key="str_menu_export_canopennode">_Export CanOpenNode...</sys:String>
+    <sys:String x:Key="str_menu_save_all">Save _All</sys:String>
+    <sys:String x:Key="str_menu_quit">_Quit</sys:String>
+
+    <sys:String x:Key="str_menu_insert_profile">_Insert Profile</sys:String>
+    <sys:String x:Key="str_menu_reports">_Reports</sys:String>
+    <sys:String x:Key="str_menu_tools">Tools</sys:String>
+    <sys:String x:Key="str_menu_preferences">_Preferences</sys:String>
+
+    <!-- Preferences View -->
+    <sys:String x:Key="str_pref_title">Preferences</sys:String>
+    <sys:String x:Key="str_pref_language">Language</sys:String>
+    <sys:String x:Key="str_pref_exporter">Default Exporter Type</sys:String>
+    <sys:String x:Key="str_pref_warnings">Warnings</sys:String>
+    <sys:String x:Key="str_pref_warn_generic">Generic warnings</sys:String>
+    <sys:String x:Key="str_pref_warn_rename">Variable rename warnings</sys:String>
+    <sys:String x:Key="str_pref_warn_build">Builder warnings</sys:String>
+    <sys:String x:Key="str_pref_warn_string">String length warnings</sys:String>
+    <sys:String x:Key="str_pref_warn_struct">Struct member warnings</sys:String>
+    <sys:String x:Key="str_btn_save">Save</sys:String>
+    <sys:String x:Key="str_btn_cancel">Cancel</sys:String>
+</ResourceDictionary>

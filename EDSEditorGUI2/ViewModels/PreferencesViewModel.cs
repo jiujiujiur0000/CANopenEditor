@@ -9,6 +9,7 @@ namespace EDSEditorGUI2.ViewModels
     public static class AppSettings
     {
         public static ExporterFactory.Exporter CurrentExporter { get; set; } = ExporterFactory.Exporter.CANOPENNODE_V4;
+        public static string CurrentLanguage { get; set; } = "en-US";
     }
 
     public partial class PreferencesViewModel : ObservableObject
@@ -31,8 +32,13 @@ namespace EDSEditorGUI2.ViewModels
         [ObservableProperty]
         private ExporterFactory.Exporter _selectedExporter;
 
+        [ObservableProperty]
+        private string _selectedLanguage;
+
         public IEnumerable<ExporterFactory.Exporter> AvailableExporters =>
             (IEnumerable<ExporterFactory.Exporter>)Enum.GetValues(typeof(ExporterFactory.Exporter));
+
+        public List<string> AvailableLanguages => new() { "en-US", "zh-CN" };
 
         public PreferencesViewModel()
         {
@@ -44,6 +50,7 @@ namespace EDSEditorGUI2.ViewModels
             StructWarning = (mask & 0x10) == 0x10;
 
             SelectedExporter = AppSettings.CurrentExporter;
+            SelectedLanguage = AppSettings.CurrentLanguage;
         }
 
         [RelayCommand]
@@ -59,6 +66,10 @@ namespace EDSEditorGUI2.ViewModels
 
             Warnings.warning_mask = mask;
             AppSettings.CurrentExporter = SelectedExporter;
+            AppSettings.CurrentLanguage = SelectedLanguage;
+
+            // Apply language globally
+            App.ChangeLanguage(SelectedLanguage);
         }
     }
 }

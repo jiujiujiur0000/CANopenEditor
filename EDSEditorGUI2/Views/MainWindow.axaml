@@ -25,28 +25,28 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <Menu Grid.Column="0" x:Name="menu">
-                <MenuItem Header="_File" x:Name="fileMenu" >
-                    <MenuItem Header="_New" Command="{Binding AddNewDevice}"/>
-                    <MenuItem Header="_Open"/>
-                    <MenuItem Header="_Save Project" IsEnabled="{Binding SelectedDevice, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
-                    <MenuItem Header="_Save Project AS..." IsEnabled="{Binding SelectedDevice, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+                <MenuItem Header="{DynamicResource str_menu_file}" x:Name="fileMenu" >
+                    <MenuItem Header="{DynamicResource str_menu_new}" Command="{Binding AddNewDevice}"/>
+                    <MenuItem Header="{DynamicResource str_menu_open}"/>
+                    <MenuItem Header="{DynamicResource str_menu_save}" IsEnabled="{Binding SelectedDevice, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+                    <MenuItem Header="{DynamicResource str_menu_save_as}" IsEnabled="{Binding SelectedDevice, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
                     <Separator/>
-                    <MenuItem Header="Open _Network XML"/>
-                    <MenuItem Header="Save Networ_k XML" IsEnabled="{Binding SelectedDevice, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+                    <MenuItem Header="{DynamicResource str_menu_open_network}"/>
+                    <MenuItem Header="{DynamicResource str_menu_save_network}" IsEnabled="{Binding SelectedDevice, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
                     <Separator/>
-                    <MenuItem Header="_Recent Files"/>
+                    <MenuItem Header="{DynamicResource str_menu_recent}"/>
                     <Separator/>
-                    <MenuItem Header="_Export" IsEnabled="{Binding SelectedDevice, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
-                    <MenuItem Header="_Export CanOpenNode..." IsEnabled="{Binding SelectedDevice, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
-                    <MenuItem Header="Save _All" IsEnabled="{Binding SelectedDevice, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+                    <MenuItem Header="{DynamicResource str_menu_export}" IsEnabled="{Binding SelectedDevice, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+                    <MenuItem Header="{DynamicResource str_menu_export_canopennode}" IsEnabled="{Binding SelectedDevice, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+                    <MenuItem Header="{DynamicResource str_menu_save_all}" IsEnabled="{Binding SelectedDevice, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
                     <Separator/>
-                    <MenuItem Header="_Quit"/>
+                    <MenuItem Header="{DynamicResource str_menu_quit}"/>
                 </MenuItem>
-                <MenuItem Header="_Insert Profile" x:Name="profileMenu" IsEnabled="{Binding SelectedDevice, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
-                <MenuItem Header="_Reports">
+                <MenuItem Header="{DynamicResource str_menu_insert_profile}" x:Name="profileMenu" IsEnabled="{Binding SelectedDevice, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+                <MenuItem Header="{DynamicResource str_menu_reports}">
                 </MenuItem>
-                <MenuItem Header="Tools">
-                    <MenuItem Header="_Preferences" Click="OpenPreferences"/>
+                <MenuItem Header="{DynamicResource str_menu_tools}">
+                    <MenuItem Header="{DynamicResource str_menu_preferences}" Click="OpenPreferences"/>
                 </MenuItem>
             </Menu>
             <Button Grid.Column="1" Content="🖥️ 跟随系统" Click="ToggleTheme_Click" Margin="5,0,10,0" Padding="8,4" Background="Transparent" BorderThickness="1" CornerRadius="4" Cursor="Hand" VerticalAlignment="Center"/>

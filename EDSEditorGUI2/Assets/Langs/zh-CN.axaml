@@ -1,0 +1,35 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <!-- MainWindow Menu -->
+    <sys:String x:Key="str_menu_file">文件(_F)</sys:String>
+    <sys:String x:Key="str_menu_new">新建(_N)</sys:String>
+    <sys:String x:Key="str_menu_open">打开(_O)</sys:String>
+    <sys:String x:Key="str_menu_save">保存工程(_S)</sys:String>
+    <sys:String x:Key="str_menu_save_as">另存为(_A)...</sys:String>
+    <sys:String x:Key="str_menu_open_network">打开网络配置(_N)</sys:String>
+    <sys:String x:Key="str_menu_save_network">保存网络配置(_K)</sys:String>
+    <sys:String x:Key="str_menu_recent">最近文件(_R)</sys:String>
+    <sys:String x:Key="str_menu_export">导出(_E)</sys:String>
+    <sys:String x:Key="str_menu_export_canopennode">导出CanOpenNode代码(_C)...</sys:String>
+    <sys:String x:Key="str_menu_save_all">全部保存(_A)</sys:String>
+    <sys:String x:Key="str_menu_quit">退出(_Q)</sys:String>
+
+    <sys:String x:Key="str_menu_insert_profile">插入对象配置(_I)</sys:String>
+    <sys:String x:Key="str_menu_reports">报告(_R)</sys:String>
+    <sys:String x:Key="str_menu_tools">工具</sys:String>
+    <sys:String x:Key="str_menu_preferences">偏好设置(_P)</sys:String>
+
+    <!-- Preferences View -->
+    <sys:String x:Key="str_pref_title">偏好设置</sys:String>
+    <sys:String x:Key="str_pref_language">语言 (Language)</sys:String>
+    <sys:String x:Key="str_pref_exporter">默认导出代码版本</sys:String>
+    <sys:String x:Key="str_pref_warnings">警报配置</sys:String>
+    <sys:String x:Key="str_pref_warn_generic">常规警告</sys:String>
+    <sys:String x:Key="str_pref_warn_rename">变量重命名警告</sys:String>
+    <sys:String x:Key="str_pref_warn_build">代码构建警告</sys:String>
+    <sys:String x:Key="str_pref_warn_string">字符串长度警告</sys:String>
+    <sys:String x:Key="str_pref_warn_struct">结构体成员对齐警告</sys:String>
+    <sys:String x:Key="str_btn_save">保存</sys:String>
+    <sys:String x:Key="str_btn_cancel">取消</sys:String>
+</ResourceDictionary>

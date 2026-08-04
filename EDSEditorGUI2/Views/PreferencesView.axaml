@@ -9,10 +9,18 @@
              x:DataType="vm:PreferencesViewModel">
 
     <StackPanel Margin="20" Spacing="15" MinWidth="350">
-        <TextBlock Text="Preferences" FontSize="20" FontWeight="Bold" Margin="0,0,0,10"/>
+        <TextBlock Text="{DynamicResource str_pref_title}" FontSize="20" FontWeight="Bold" Margin="0,0,0,10"/>
+
+        <!-- Language Settings -->
+        <TextBlock Text="{DynamicResource str_pref_language}" FontWeight="SemiBold"/>
+        <ComboBox ItemsSource="{Binding AvailableLanguages}" 
+                  SelectedItem="{Binding SelectedLanguage}" 
+                  HorizontalAlignment="Stretch"/>
+
+        <Separator Margin="0,5"/>
 
         <!-- Exporter Settings -->
-        <TextBlock Text="Default Exporter Type" FontWeight="SemiBold"/>
+        <TextBlock Text="{DynamicResource str_pref_exporter}" FontWeight="SemiBold"/>
         <ComboBox ItemsSource="{Binding AvailableExporters}" 
                   SelectedItem="{Binding SelectedExporter}" 
                   HorizontalAlignment="Stretch"/>
@@ -20,21 +28,21 @@
         <Separator Margin="0,5"/>
 
         <!-- Warnings -->
-        <TextBlock Text="Warnings" FontWeight="SemiBold"/>
+        <TextBlock Text="{DynamicResource str_pref_warnings}" FontWeight="SemiBold"/>
         <StackPanel Spacing="5">
-            <CheckBox Content="Generic warnings" IsChecked="{Binding GenericWarning}"/>
-            <CheckBox Content="Variable rename warnings" IsChecked="{Binding RenameWarning}"/>
-            <CheckBox Content="Builder warnings" IsChecked="{Binding BuildWarning}"/>
-            <CheckBox Content="String length warnings" IsChecked="{Binding StringWarning}"/>
-            <CheckBox Content="Struct member warnings" IsChecked="{Binding StructWarning}"/>
+            <CheckBox Content="{DynamicResource str_pref_warn_generic}" IsChecked="{Binding GenericWarning}"/>
+            <CheckBox Content="{DynamicResource str_pref_warn_rename}" IsChecked="{Binding RenameWarning}"/>
+            <CheckBox Content="{DynamicResource str_pref_warn_build}" IsChecked="{Binding BuildWarning}"/>
+            <CheckBox Content="{DynamicResource str_pref_warn_string}" IsChecked="{Binding StringWarning}"/>
+            <CheckBox Content="{DynamicResource str_pref_warn_struct}" IsChecked="{Binding StructWarning}"/>
         </StackPanel>
 
         <!-- Buttons -->
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="10" Margin="0,15,0,0">
-            <Button Content="Save" IsDefault="True" Command="{Binding SaveCommand}"
+            <Button Content="{DynamicResource str_btn_save}" IsDefault="True" Command="{Binding SaveCommand}"
                     CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=dialogHost:DialogHost}}"
                     Click="SaveButton_Click" Width="80" HorizontalContentAlignment="Center"/>
-            <Button Content="Cancel" IsCancel="True"
+            <Button Content="{DynamicResource str_btn_cancel}" IsCancel="True"
                     Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=dialogHost:DialogHost}, Path=CloseDialogCommand}"
                     Width="80" HorizontalContentAlignment="Center"/>
         </StackPanel>

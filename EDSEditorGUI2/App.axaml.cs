@@ -29,4 +29,18 @@ public partial class App : Application
 
         base.OnFrameworkInitializationCompleted();
     }
+
+    public static void ChangeLanguage(string langCode)
+    {
+        var app = Current;
+        if (app == null) return;
+
+        var res = new Avalonia.Markup.Xaml.Styling.ResourceInclude(new System.Uri("avares://EDSEditorGUI2/App.axaml"))
+        {
+            Source = new System.Uri($"avares://EDSEditorGUI2/Assets/Langs/{langCode}.axaml")
+        };
+
+        app.Resources.MergedDictionaries.Clear();
+        app.Resources.MergedDictionaries.Add(res);
+    }
 }
