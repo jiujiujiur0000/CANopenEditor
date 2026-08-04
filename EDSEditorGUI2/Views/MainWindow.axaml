@@ -67,21 +67,20 @@
             </Grid>
 
             <!-- 主编辑器区域（有设备时显示） -->
-            <DockPanel IsVisible="{Binding HasDevice}">
-                <StackPanel DockPanel.Dock="Left" Margin="20" Width="300">
-                    <ListBox ItemsSource="{Binding Network}" SelectedItem="{Binding SelectedDevice}">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <Border BorderBrush="{DynamicResource SystemAccentColor}" BorderThickness="1"
-                                        CornerRadius="4" Padding="10" Margin="0,0,0,5">
-                                    <TextBlock Text="{Binding DeviceInfo.ProductName}" FontWeight="SemiBold"/>
-                                </Border>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
-                </StackPanel>
-                <view:DeviceView DataContext="{Binding SelectedDevice}" />
-            </DockPanel>
+            <Grid IsVisible="{Binding HasDevice}">
+                <TabControl ItemsSource="{Binding Network}" SelectedItem="{Binding SelectedDevice}" Padding="0,10,0,0">
+                    <TabControl.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding DeviceInfo.ProductName}" FontWeight="SemiBold" FontSize="14" Margin="5,0"/>
+                        </DataTemplate>
+                    </TabControl.ItemTemplate>
+                    <TabControl.ContentTemplate>
+                        <DataTemplate>
+                            <view:DeviceView />
+                        </DataTemplate>
+                    </TabControl.ContentTemplate>
+                </TabControl>
+            </Grid>
         </Grid>
     </DockPanel>
   </dialogHost:DialogHost>

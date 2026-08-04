@@ -46,8 +46,9 @@ public partial class MainWindowViewModel : ViewModelBase
         //device.Dock = DockStyle.Fill;
         //device.dispatch_updateOD();
 
-        var DeviceView = ProtobufferViewModelMapper.MapFromProtobuffer(device);
-        Network.Add(DeviceView);
+        var deviceView = ProtobufferViewModelMapper.MapFromProtobuffer(device);
+        Network.Add(deviceView);
+        SelectedDevice = deviceView;
     }
 
     public void InitMergeStatus(Device profile, List<int> offsets)

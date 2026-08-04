@@ -333,6 +333,7 @@ public partial class MainWindow : Window
                 if (DataContext is MainWindowViewModel dc)
                 {
                     dc.Network.Add(deviceView);
+                    dc.SelectedDevice = deviceView;
                 }
             }
             catch (Exception ex)
