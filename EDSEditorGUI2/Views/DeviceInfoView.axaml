@@ -4,37 +4,57 @@
              xmlns:view="using:EDSEditorGUI2.Views"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
              x:Class="EDSEditorGUI2.Views.DeviceInfoView"
              x:DataType="vm:DeviceInfo">
-  <StackPanel Orientation="Horizontal" >  
-    <StackPanel Width="500">
-      <TextBlock Text="{DynamicResource str_device_info_title}" Margin="0,10" />
-      <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0 5">
-        <TextBlock Text="{DynamicResource str_device_info_prod_name}" VerticalAlignment="Center" Width="200" />
-        <TextBox Text="{Binding ProductName}" Width="250"/>
+  
+  <ScrollViewer>
+    <Grid ColumnDefinitions="Auto, Auto" Margin="30" HorizontalAlignment="Left" VerticalAlignment="Top">
+      
+      <!-- Left Column: Device Info & Features -->
+      <StackPanel Grid.Column="0" Spacing="25" Margin="0,0,60,0" MinWidth="450">
+        
+        <!-- General Info Section -->
+        <StackPanel Spacing="15">
+          <TextBlock Text="{DynamicResource str_device_info_title}" FontWeight="SemiBold" FontSize="18" Foreground="{DynamicResource SystemAccentColor}" />
+          <Border BorderBrush="{DynamicResource SystemControlForegroundBaseMediumBrush}" BorderThickness="0,0,0,1" Margin="0,-10,0,5" Opacity="0.3"/>
+          
+          <Grid ColumnDefinitions="120, *" RowDefinitions="Auto, Auto">
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="{DynamicResource str_device_info_prod_name}" VerticalAlignment="Center" Margin="0,0,10,15"/>
+            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding ProductName}" Margin="0,0,0,15" MinWidth="300" HorizontalAlignment="Left" />
+            
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="{DynamicResource str_device_info_vendor_name}" VerticalAlignment="Center" />
+            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding VendorName}" MinWidth="300" HorizontalAlignment="Left" />
+          </Grid>
+        </StackPanel>
+
+        <!-- Features Section -->
+        <StackPanel Spacing="10">
+          <TextBlock Text="{DynamicResource str_device_info_features}" FontWeight="SemiBold" FontSize="18" Foreground="{DynamicResource SystemAccentColor}" Margin="0,10,0,0"/>
+          <Border BorderBrush="{DynamicResource SystemControlForegroundBaseMediumBrush}" BorderThickness="0,0,0,1" Margin="0,-5,0,5" Opacity="0.3"/>
+          
+          <StackPanel Orientation="Horizontal" Spacing="40">
+            <CheckBox IsChecked="{Binding LssSlave}" Content="{DynamicResource str_device_info_lss_slave}" />
+            <CheckBox IsChecked="{Binding LssMaster}" Content="{DynamicResource str_device_info_lss_master}" />
+          </StackPanel>
+        </StackPanel>
       </StackPanel>
-      <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Width="50">
-        <TextBlock Text="{DynamicResource str_device_info_vendor_name}" VerticalAlignment="Center" Width="200" />
-        <TextBox Text="{Binding VendorName}" Width="250" />
+
+      <!-- Right Column: Baudrates Section -->
+      <StackPanel Grid.Column="1" Spacing="10" MinWidth="200">
+        <TextBlock Text="{DynamicResource str_device_info_baudrates}" FontWeight="SemiBold" FontSize="18" Foreground="{DynamicResource SystemAccentColor}"/>
+        <Border BorderBrush="{DynamicResource SystemControlForegroundBaseMediumBrush}" BorderThickness="0,0,0,1" Margin="0,-5,0,5" Opacity="0.3"/>
+        
+        <CheckBox IsChecked="{Binding BaudRate10}" Content="10 kbit/s."/>
+        <CheckBox IsChecked="{Binding BaudRate20}" Content="20 kbit/s."/>
+        <CheckBox IsChecked="{Binding BaudRate50}" Content="50 kbit/s."/>
+        <CheckBox IsChecked="{Binding BaudRate125}" Content="125 kbit/s."/>
+        <CheckBox IsChecked="{Binding BaudRate250}" Content="250 kbit/s."/>
+        <CheckBox IsChecked="{Binding BaudRate500}" Content="500 kbit/s."/>
+        <CheckBox IsChecked="{Binding BaudRate800}" Content="800 kbit/s."/>
+        <CheckBox IsChecked="{Binding BaudRate1000}" Content="1000 kbit/s."/>
+        <CheckBox IsChecked="{Binding BaudRateAuto}" Content="{DynamicResource str_device_info_auto}"/>
       </StackPanel>
-      <TextBlock Text="{DynamicResource str_device_info_features}" Margin="0,10"/>
-      <CheckBox IsChecked="{Binding LssSlave}" Content="{DynamicResource str_device_info_lss_slave}"/>
-      <CheckBox IsChecked="{Binding LssMaster}" Content="{DynamicResource str_device_info_lss_master}"/>
-    </StackPanel>
-    <StackPanel Orientation="Vertical" HorizontalAlignment="Right" >
-      <TextBlock Text="{DynamicResource str_device_info_baudrates}"/>
-      <CheckBox IsChecked="{Binding BaudRate10}">10 kbit/s.</CheckBox>
-      <CheckBox IsChecked="{Binding BaudRate20}">20 kbit/s.</CheckBox>
-      <CheckBox IsChecked="{Binding BaudRate50}">50 kbit/s.</CheckBox>
-      <CheckBox IsChecked="{Binding BaudRate125}">125 kbit/s.</CheckBox>
-      <CheckBox IsChecked="{Binding BaudRate250}">250 kbit/s.</CheckBox>
-      <CheckBox IsChecked="{Binding BaudRate500}">500 kbit/s.</CheckBox>
-      <CheckBox IsChecked="{Binding BaudRate800}">800 kbit/s.</CheckBox>
-      <CheckBox IsChecked="{Binding BaudRate1000}">1000 kbit/s.</CheckBox>
-      <CheckBox IsChecked="{Binding BaudRateAuto}" Content="{DynamicResource str_device_info_auto}"/>
-    </StackPanel>
-  </StackPanel>
+    </Grid>
+  </ScrollViewer>
 </UserControl>
-
-
