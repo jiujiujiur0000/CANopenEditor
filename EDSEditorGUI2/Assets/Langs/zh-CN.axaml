@@ -82,6 +82,8 @@
     <sys:String x:Key="str_od_prop_desc">描述</sys:String>
     <sys:String x:Key="str_od_prop_obj_settings">对象设置</sys:String>
     <sys:String x:Key="str_od_prop_obj_type">对象类型</sys:String>
+    <sys:String x:Key="str_od_prop_datatype">数据类型</sys:String>
+    <sys:String x:Key="str_od_prop_default">默认值</sys:String>
     <sys:String x:Key="str_od_prop_highlimit">上限值</sys:String>
     <sys:String x:Key="str_od_prop_count_label">计数标签</sys:String>
     <sys:String x:Key="str_od_prop_lowlimit">下限值</sys:String>
@@ -93,7 +95,8 @@
     <sys:String x:Key="str_od_prop_str_len">字符串最小长度</sys:String>
     <sys:String x:Key="str_od_prop_tpdo_cos">TPDO COS计数</sys:String>
     <sys:String x:Key="str_od_prop_acc_srdo">SRDO 访问</sys:String>
-    <sys:String x:Key="str_od_chk_autosave">自动保存</sys:String>
+    <sys:String x:Key="str_od_btn_save">保存修改</sys:String>
+    <sys:String x:Key="str_od_chk_autosave">自动保存修改</sys:String>
 
     <!-- Device PDO View -->
     <sys:String x:Key="str_pdo_col_index">索引</sys:String>

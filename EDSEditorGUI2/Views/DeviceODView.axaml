@@ -54,14 +54,14 @@
       <GridSplitter Grid.Column="1" Classes="Vertical" ResizeDirection="Columns"/>
       
       <!-- Right Panel: DataGrid and Property Editor -->
-      <Grid RowDefinitions="*, Auto, Auto" Grid.Column="2" Margin="10,10,10,10">
+      <Grid RowDefinitions="*, Auto, *" Grid.Column="2" Margin="10,10,10,10">
         
         <!-- Top: SubObjects DataGrid -->
         <DataGrid Grid.Row="0" Margin="0,0,0,10" ItemsSource="{Binding SelectedObject.Value.SubObjects}"
                   x:Name="subindexGrid"
                   GridLinesVisibility="All"
                   BorderThickness="1" BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}"
-                  CornerRadius="4">
+                  CornerRadius="8">
           <DataGrid.Columns>
             <DataGridTextColumn Header="{DynamicResource str_od_col_sub}" Width="*" Binding="{Binding Key}"/>
             <DataGridTextColumn Header="{DynamicResource str_od_col_name}" Width="2*" Binding="{Binding Value.Name}" />
