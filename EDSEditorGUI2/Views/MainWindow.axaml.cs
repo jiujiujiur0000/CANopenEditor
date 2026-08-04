@@ -34,7 +34,33 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
         LoadProfileList();
+        ApplySavedTheme();
     }
+
+    private void ApplySavedTheme()
+    {
+        var app = Avalonia.Application.Current;
+        if (app != null)
+        {
+            var savedTheme = ConfigurationManager.Settings.CurrentTheme;
+            if (savedTheme == "Light")
+            {
+                app.RequestedThemeVariant = Avalonia.Styling.ThemeVariant.Light;
+                ThemeButton.Content = "☀️ 浅色";
+            }
+            else if (savedTheme == "Dark")
+            {
+                app.RequestedThemeVariant = Avalonia.Styling.ThemeVariant.Dark;
+                ThemeButton.Content = "🌙 深色";
+            }
+            else
+            {
+                app.RequestedThemeVariant = Avalonia.Styling.ThemeVariant.Default;
+                ThemeButton.Content = "🖥️ 跟随系统";
+            }
+        }
+    }
+
     private void LoadProfileList()
     {
         // load default profiles from the install directory
@@ -281,17 +307,21 @@ public partial class MainWindow : Window
             {
                 app.RequestedThemeVariant = Avalonia.Styling.ThemeVariant.Light;
                 btn.Content = "☀️ 浅色";
+                ConfigurationManager.Settings.CurrentTheme = "Light";
             }
             else if (app.RequestedThemeVariant == Avalonia.Styling.ThemeVariant.Light)
             {
                 app.RequestedThemeVariant = Avalonia.Styling.ThemeVariant.Dark;
                 btn.Content = "🌙 深色";
+                ConfigurationManager.Settings.CurrentTheme = "Dark";
             }
             else
             {
                 app.RequestedThemeVariant = Avalonia.Styling.ThemeVariant.Default;
                 btn.Content = "🖥️ 跟随系统";
+                ConfigurationManager.Settings.CurrentTheme = "Default";
             }
+            ConfigurationManager.Save();
         }
     }
 }

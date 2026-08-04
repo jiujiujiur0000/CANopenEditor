@@ -49,7 +49,7 @@
                     <MenuItem Header="{DynamicResource str_menu_preferences}" Click="OpenPreferences"/>
                 </MenuItem>
             </Menu>
-            <Button Grid.Column="1" Content="🖥️ 跟随系统" Click="ToggleTheme_Click" Margin="5,0,10,0" Padding="8,4" Background="Transparent" BorderThickness="1" CornerRadius="4" Cursor="Hand" VerticalAlignment="Center"/>
+            <Button x:Name="ThemeButton" Grid.Column="1" Content="🖥️ 跟随系统" Click="ToggleTheme_Click" Margin="5,0,10,0" Padding="8,4" Background="Transparent" BorderThickness="1" CornerRadius="4" Cursor="Hand" VerticalAlignment="Center"/>
         </Grid>
         <StackPanel DockPanel.Dock="Left" Margin="20" Width="300">
           <ListBox ItemsSource="{Binding Network}" SelectedItem="{Binding SelectedDevice}">
