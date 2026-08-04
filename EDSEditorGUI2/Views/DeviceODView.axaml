@@ -27,34 +27,29 @@
   </UserControl.Styles>
 
   <dialogHost:DialogHost Identifier="NoAnimationDialogHost" >
-    <Grid ColumnDefinitions="350, Auto, *">
+    <Grid ColumnDefinitions="350, *">
       <!-- Left Panel: OD Indexes -->
-      <Grid RowDefinitions="*, Auto, *, Auto, *" Grid.Column="0" Margin="10,10,0,10">
+      <Grid RowDefinitions="*, *, *" Grid.Column="0" Margin="10,10,10,10">
         <view:ODIndexRangeView Grid.Row="0" DataContext="{Binding}"
                                x:Name="ODView_Com"
                                Heading="{DynamicResource str_od_comm_params}"
                                MinIndex="0x1000"
                                MaxIndex="0x1FFF"/>
-        <GridSplitter Grid.Row="1" Classes="Horizontal" ResizeDirection="Rows" Margin="0,5,0,10" Background="Transparent" Height="8"/>
-        
-        <view:ODIndexRangeView Grid.Row="2" DataContext="{Binding}"
+        <view:ODIndexRangeView Grid.Row="1" DataContext="{Binding}"
                                x:Name="ODView_Man"
                                Heading="{DynamicResource str_od_man_params}"
                                MinIndex="0x2000"
-                               MaxIndex="0x5FFF"/>
-        <GridSplitter Grid.Row="3" Classes="Horizontal" ResizeDirection="Rows" Margin="0,5,0,10" Background="Transparent" Height="8"/>
+                               MaxIndex="0x5FFF" Margin="0,0,0,10"/>
         
-        <view:ODIndexRangeView Grid.Row="4" DataContext="{Binding}"
+        <view:ODIndexRangeView Grid.Row="2" DataContext="{Binding}"
                                x:Name="ODView_Device"
                                Heading="{DynamicResource str_od_dev_params}"
                                MinIndex="0x6000"
                                MaxIndex="0x9FFF"/>
       </Grid>
-
-      <GridSplitter Grid.Column="1" Classes="Vertical" ResizeDirection="Columns" Background="Transparent" Width="8"/>
       
       <!-- Right Panel: DataGrid and Property Editor -->
-      <Grid RowDefinitions="*, Auto, *" Grid.Column="2" Margin="10,10,10,10">
+      <Grid RowDefinitions="*, Auto" Grid.Column="1" Margin="10,10,10,10">
         <!-- Top: SubObjects DataGrid -->
         <Border Grid.Row="0" Margin="0,0,0,10" BorderThickness="1" BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" CornerRadius="8" ClipToBounds="True">
           <DataGrid ItemsSource="{Binding SelectedObject.Value.SubObjects}"
@@ -99,10 +94,8 @@
         </DataGrid>
         </Border>
         
-        <GridSplitter Grid.Row="1" Classes="Horizontal" ResizeDirection="Rows" Margin="0,5,0,10" Background="Transparent" Height="8"/>
-        
         <!-- Bottom: Property Editor Forms -->
-        <ScrollViewer Grid.Row="2" MaxHeight="500">
+        <ScrollViewer Grid.Row="1" MaxHeight="500">
           <StackPanel Spacing="20" Margin="0,0,15,0">
             <!-- Basic Properties -->
             <Border Background="{DynamicResource SystemControlBackgroundAltHighBrush}" CornerRadius="8" Padding="20"
