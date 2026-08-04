@@ -13,12 +13,12 @@
   <StackPanel Grid.Row="0" Margin="0,5,0,5">
     <TextBlock Text="{Binding Heading, RelativeSource={RelativeSource AncestorType=view:ODIndexRangeView}}" 
                x:Name="HeadingText" FontWeight="SemiBold" FontSize="16" Foreground="{DynamicResource SystemAccentColor}" Margin="0,5,0,10"/>
-    <DataGrid Margin="2" ItemsSource="{Binding .}"
-              x:Name="grid"
-              GridLinesVisibility="All"
-              BorderThickness="1" BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}"
-              CornerRadius="8"
-              SelectionChanged="DataGrid_SelectionChanged">
+    <Border BorderThickness="1" BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" CornerRadius="8" ClipToBounds="True" Margin="2">
+      <DataGrid ItemsSource="{Binding .}"
+                x:Name="grid"
+                GridLinesVisibility="All"
+                BorderThickness="0"
+                SelectionChanged="DataGrid_SelectionChanged">
       <DataGrid.Columns>
         <DataGridTextColumn Header="{DynamicResource str_pdo_col_index}" Width="*" Binding="{Binding Key}"/>
         <DataGridTextColumn Header="{DynamicResource str_od_col_name}" Width="*" Binding="{Binding Value.Name}" />
@@ -40,7 +40,8 @@
         </ContextMenu>
       </DataGrid.ContextMenu>
     </DataGrid>
-  </StackPanel>
+  </Border>
+</StackPanel>
   <UserControl.Resources>
     <converter:NewIndexMultiConvert x:Key="NewIndexMultiConvert" />
     <!-- New index dialog -->
