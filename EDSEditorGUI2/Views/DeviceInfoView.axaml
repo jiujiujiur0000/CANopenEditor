@@ -23,9 +23,9 @@
             <TextBlock Text="配置设备的基础信息和标识" FontSize="12" Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}"/>
           </StackPanel>
           
-          <Grid ColumnDefinitions="100, *" RowDefinitions="Auto, Auto" RowSpacing="15">
-            <TextBlock Grid.Row="0" Grid.Column="0" Text="{DynamicResource str_device_info_prod_name}" VerticalAlignment="Center" FontWeight="SemiBold"/>
-            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding ProductName}" MinWidth="300" HorizontalAlignment="Stretch" Classes="clearButton"/>
+          <Grid ColumnDefinitions="100, *" RowDefinitions="Auto, Auto">
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="{DynamicResource str_device_info_prod_name}" VerticalAlignment="Center" FontWeight="SemiBold" Margin="0,0,0,15"/>
+            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding ProductName}" MinWidth="300" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
             
             <TextBlock Grid.Row="1" Grid.Column="0" Text="{DynamicResource str_device_info_vendor_name}" VerticalAlignment="Center" FontWeight="SemiBold"/>
             <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding VendorName}" MinWidth="300" HorizontalAlignment="Stretch" Classes="clearButton"/>
