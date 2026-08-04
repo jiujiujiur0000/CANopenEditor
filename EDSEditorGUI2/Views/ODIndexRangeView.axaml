@@ -15,8 +15,8 @@
                x:Name="HeadingText" FontWeight="SemiBold" FontSize="16" Foreground="{DynamicResource SystemAccentColor}" Margin="0,5,0,10"/>
     <Border Grid.Row="1" BorderThickness="1" BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" CornerRadius="8" ClipToBounds="True">
       <DataGrid ItemsSource="{Binding .}"
-                x:Name="grid" Margin="0"
-                GridLinesVisibility="None"
+                x:Name="grid" Margin="-1"
+                GridLinesVisibility="Horizontal"
                 BorderThickness="0" CornerRadius="8"
                 Background="Transparent" RowBackground="Transparent"
                 FocusAdorner="{x:Null}"
