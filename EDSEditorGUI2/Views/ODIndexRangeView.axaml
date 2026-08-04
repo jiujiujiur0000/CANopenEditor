@@ -18,23 +18,23 @@
               BorderThickness="1" BorderBrush="Gray"
               SelectionChanged="DataGrid_SelectionChanged">
       <DataGrid.Columns>
-        <DataGridTextColumn Header="Index" Width="*" Binding="{Binding Key}"/>
-        <DataGridTextColumn Header="Name" Width="*" Binding="{Binding Value.Name}" />
+        <DataGridTextColumn Header="{DynamicResource str_pdo_col_index}" Width="*" Binding="{Binding Key}"/>
+        <DataGridTextColumn Header="{DynamicResource str_od_col_name}" Width="*" Binding="{Binding Value.Name}" />
       </DataGrid.Columns>
       <DataGrid.ContextMenu>
         <ContextMenu>
-          <MenuItem Header="Clone..."/>
-          <MenuItem Header="Add..." Click="AddIndex">
+          <MenuItem Header="{DynamicResource str_od_menu_clone}"/>
+          <MenuItem Header="{DynamicResource str_od_menu_add}" Click="AddIndex">
             <MenuItem.Icon>
               <PathIcon Data="{StaticResource add_regular}" />
             </MenuItem.Icon>
           </MenuItem>
-          <MenuItem Header="Delete..." Click="RemoveIndex">
+          <MenuItem Header="{DynamicResource str_od_menu_delete}" Click="RemoveIndex">
             <MenuItem.Icon>
               <PathIcon Data="{StaticResource remove_regular}" />
             </MenuItem.Icon>
           </MenuItem>
-          <MenuItem Header="Toggle..."/>
+          <MenuItem Header="{DynamicResource str_od_menu_toggle}"/>
         </ContextMenu>
       </DataGrid.ContextMenu>
     </DataGrid>
@@ -43,16 +43,15 @@
     <converter:NewIndexMultiConvert x:Key="NewIndexMultiConvert" />
     <!-- New index dialog -->
     <StackPanel x:Key="NewIndexDialog">
-      <TextBlock Text="Index (hex):"/>
+      <TextBlock Text="{DynamicResource str_od_dlg_index}"/>
       <!-- Need to be fixed to accept only hex -->
       <TextBox Watermark="1000" x:Name="index"/>
-      <TextBlock Text="Name:" />
+      <TextBlock Text="{DynamicResource str_od_dlg_name}" />
       <TextBox Text="" x:Name="name"/>
-      <TextBlock Text="Object Type:" />
+      <TextBlock Text="{DynamicResource str_od_dlg_objtype}" />
       <ListBox SelectionMode="Single,AlwaysSelected" x:Name="type"/>
       <StackPanel Orientation="Horizontal">
-        <Button IsDefault="True" Margin="10" Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=dialogHost:DialogHost}, Path=CloseDialogCommand}">
-          Create
+        <Button IsDefault="True" Margin="10" Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=dialogHost:DialogHost}, Path=CloseDialogCommand}" Content="{DynamicResource str_od_btn_create}">
           <Button.CommandParameter>
             <MultiBinding Converter="{StaticResource NewIndexMultiConvert}">
               <Binding Path="Text" ElementName="index" />
@@ -61,7 +60,7 @@
             </MultiBinding>
           </Button.CommandParameter>
         </Button>
-        <Button IsCancel="True" Margin="10" Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=dialogHost:DialogHost}, Path=CloseDialogCommand}">Cancel</Button>
+        <Button IsCancel="True" Margin="10" Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=dialogHost:DialogHost}, Path=CloseDialogCommand}" Content="{DynamicResource str_od_btn_cancel}"/>
       </StackPanel>
     </StackPanel>
   </UserControl.Resources>

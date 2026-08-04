@@ -17,62 +17,62 @@
                 GridLinesVisibility="All"
                 BorderThickness="1" BorderBrush="Gray">
         <DataGrid.Columns>
-          <DataGridTextColumn Header="Index" Width="*" />
-          <DataGridTextColumn Header="Sub" Width="*" />
-          <DataGridTextColumn Header="Name" Width="*" />
-          <DataGridTextColumn Header="Datatype" Width="*" />
-          <DataGridTextColumn Header="Bits" Width="*" />
+          <DataGridTextColumn Header="{DynamicResource str_pdo_col_index}" Width="*" />
+          <DataGridTextColumn Header="{DynamicResource str_pdo_col_sub}" Width="*" />
+          <DataGridTextColumn Header="{DynamicResource str_pdo_col_name}" Width="*" />
+          <DataGridTextColumn Header="{DynamicResource str_pdo_col_datatype}" Width="*" />
+          <DataGridTextColumn Header="{DynamicResource str_pdo_col_bits}" Width="*" />
         </DataGrid.Columns>
       </DataGrid>
       <Grid ColumnDefinitions="auto,100,100,auto" RowDefinitions="auto,auto,auto,auto,auto,auto,auto,auto" Grid.Column="1">
-        <TextBlock Text="Communication parameters:" Grid.Row="0" Grid.Column="0" />
-        <TextBlock Text="Communication" Grid.Row="1" Grid.Column="0" />
+        <TextBlock Text="{DynamicResource str_pdo_comm_params}" Grid.Row="0" Grid.Column="0" />
+        <TextBlock Text="{DynamicResource str_pdo_comm}" Grid.Row="1" Grid.Column="0" />
         <TextBox Background="Blue" Grid.Row="1" Grid.Column="1" />
         
-        <TextBlock Text="Mapping" Grid.Row="2" Grid.Column="0" />
+        <TextBlock Text="{DynamicResource str_pdo_mapping}" Grid.Row="2" Grid.Column="0" />
         <TextBox Background="Blue" Grid.Row="2" Grid.Column="1" />
         <Button Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="3" Grid.RowSpan="2">
           <StackPanel>
-            <TextBlock Text="Add new PDO" HorizontalAlignment="Center" />
+            <TextBlock Text="{DynamicResource str_pdo_btn_add}" HorizontalAlignment="Center" />
             <PathIcon Data="{StaticResource add_regular}" />
           </StackPanel>
         </Button>
 
-        <TextBlock Text="COB" Grid.Row="3" Grid.Column="0" />
+        <TextBlock Text="{DynamicResource str_pdo_cob}" Grid.Row="3" Grid.Column="0" />
         <TextBox Background="Blue" Grid.Row="3" Grid.Column="1" />
 
-        <TextBlock Text="Type" Grid.Row="4" Grid.Column="0" />
+        <TextBlock Text="{DynamicResource str_pdo_type}" Grid.Row="4" Grid.Column="0" />
         <TextBox Background="Blue" Grid.Row="4" Grid.Column="1" />
         <Button Grid.Row="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="3" Grid.RowSpan="2">
           <StackPanel>
-            <TextBlock Text="Delete PDO" HorizontalAlignment="Center" />
+            <TextBlock Text="{DynamicResource str_pdo_btn_delete}" HorizontalAlignment="Center" />
             <PathIcon Data="{StaticResource remove_regular}" />
           </StackPanel>
         </Button>
 
-        <TextBlock Text="Inhibit" Grid.Row="5" Grid.Column="0" />
+        <TextBlock Text="{DynamicResource str_pdo_inhibit}" Grid.Row="5" Grid.Column="0" />
         <TextBox Background="Blue" Grid.Row="5" Grid.Column="1" />
 
-        <TextBlock Text="Event Timer" Grid.Row="6" Grid.Column="0" />
+        <TextBlock Text="{DynamicResource str_pdo_event_timer}" Grid.Row="6" Grid.Column="0" />
         <TextBox Background="Blue" Grid.Row="6" Grid.Column="1" />
         <Button Grid.Row="6" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="3" Grid.RowSpan="2">
           <StackPanel>
-            <TextBlock Text="Save" HorizontalAlignment="Center" />
+            <TextBlock Text="{DynamicResource str_pdo_btn_save}" HorizontalAlignment="Center" />
             <PathIcon Data="{StaticResource save_regular}" />
           </StackPanel>
         </Button>
 
-        <TextBlock Text="Sync start" Grid.Row="7" Grid.Column="0" />
+        <TextBlock Text="{DynamicResource str_pdo_sync_start}" Grid.Row="7" Grid.Column="0" />
         <TextBox Background="Blue" Grid.Row="7" Grid.Column="1" />
-        <CheckBox Grid.Row="8" Grid.Column="2">Invalid</CheckBox>
+        <CheckBox Grid.Row="8" Grid.Column="2" Content="{DynamicResource str_pdo_chk_invalid}"/>
       </Grid>
     </Grid>
     <Grid x:Name="MappingGrid" Grid.Row="1" RowDefinitions="auto,auto" ColumnDefinitions="20,40,40">
-      <TextBlock Text="ID" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"/>
-      <TextBlock Text="COB" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center"/>
-      <TextBlock Text="Index" Grid.Row="0" Grid.Column="2" VerticalAlignment="Center"/>
+      <TextBlock Text="{DynamicResource str_pdo_id}" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"/>
+      <TextBlock Text="{DynamicResource str_pdo_cob}" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center"/>
+      <TextBlock Text="{DynamicResource str_pdo_index}" Grid.Row="0" Grid.Column="2" VerticalAlignment="Center"/>
     </Grid>
-    <TextBlock Grid.Row="2">Zoom:</TextBlock>
+    <TextBlock Grid.Row="2" Text="{DynamicResource str_pdo_zoom}"/>
     <NumericUpDown x:Name="Zoom" Grid.Row="3" Width="200" HorizontalAlignment="Left" PropertyChanged="Zoom_PropertyChanged" Minimum="100" Increment="10"/>
   </Grid>
 </UserControl>

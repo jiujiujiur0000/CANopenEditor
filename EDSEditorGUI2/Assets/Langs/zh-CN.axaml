@@ -22,7 +22,7 @@
 
     <!-- Preferences View -->
     <sys:String x:Key="str_pref_title">偏好设置</sys:String>
-    <sys:String x:Key="str_pref_language">语言 (Language)</sys:String>
+    <sys:String x:Key="str_pref_language">语言</sys:String>
     <sys:String x:Key="str_pref_exporter">默认导出代码版本</sys:String>
     <sys:String x:Key="str_pref_warnings">警报配置</sys:String>
     <sys:String x:Key="str_pref_warn_generic">常规警告</sys:String>
@@ -42,19 +42,88 @@
     <sys:String x:Key="str_insert_btn_insert">插入</sys:String>
 
     <!-- Device View Tabs -->
-    <sys:String x:Key="str_tab_device_info">设备信息 (Device Info)</sys:String>
-    <sys:String x:Key="str_tab_object_dict">对象字典 (Object Dictionary)</sys:String>
+    <sys:String x:Key="str_tab_device_info">设备信息</sys:String>
+    <sys:String x:Key="str_tab_object_dict">对象字典</sys:String>
     <sys:String x:Key="str_tab_tx_pdo">发送(TX) PDO 映射</sys:String>
     <sys:String x:Key="str_tab_rx_pdo">接收(RX) PDO 映射</sys:String>
-    <sys:String x:Key="str_tab_modules">模块 (Modules)</sys:String>
+    <sys:String x:Key="str_tab_modules">模块</sys:String>
 
     <!-- Device Info View -->
     <sys:String x:Key="str_device_info_title">设备基本信息:</sys:String>
-    <sys:String x:Key="str_device_info_prod_name">产品名称 (Product name)</sys:String>
-    <sys:String x:Key="str_device_info_vendor_name">厂商名称 (Vendor name)</sys:String>
+    <sys:String x:Key="str_device_info_prod_name">产品名称</sys:String>
+    <sys:String x:Key="str_device_info_vendor_name">厂商名称</sys:String>
     <sys:String x:Key="str_device_info_features">通用及主站特性:</sys:String>
-    <sys:String x:Key="str_device_info_lss_slave">LSS 从站 (LSS Slave)</sys:String>
-    <sys:String x:Key="str_device_info_lss_master">CANopen 主站 (Master)</sys:String>
+    <sys:String x:Key="str_device_info_lss_slave">LSS 从站</sys:String>
+    <sys:String x:Key="str_device_info_lss_master">CANopen 主站</sys:String>
     <sys:String x:Key="str_device_info_baudrates">支持的波特率</sys:String>
-    <sys:String x:Key="str_device_info_auto">自动检测 (auto)</sys:String>
+    <sys:String x:Key="str_device_info_auto">自动检测</sys:String>
+
+    <!-- Device Object Dictionary View -->
+    <sys:String x:Key="str_od_comm_params">通信特定参数</sys:String>
+    <sys:String x:Key="str_od_mfg_params">制造商特定参数</sys:String>
+    <sys:String x:Key="str_od_dev_params">设备规范特定参数</sys:String>
+    
+    <sys:String x:Key="str_od_col_sub">子索引</sys:String>
+    <sys:String x:Key="str_od_col_name">名称</sys:String>
+    <sys:String x:Key="str_od_col_datatype">数据类型</sys:String>
+    <sys:String x:Key="str_od_col_sdo">SDO</sys:String>
+    <sys:String x:Key="str_od_col_pdo">PDO</sys:String>
+    <sys:String x:Key="str_od_col_srdo">SRDO</sys:String>
+    <sys:String x:Key="str_od_col_default">默认值</sys:String>
+    
+    <sys:String x:Key="str_od_menu_add">添加</sys:String>
+    <sys:String x:Key="str_od_menu_remove_shift">移除 (并上移)</sys:String>
+    <sys:String x:Key="str_od_menu_remove_gap">移除 (并留空)</sys:String>
+    
+    <sys:String x:Key="str_od_prop_index">索引</sys:String>
+    <sys:String x:Key="str_od_prop_subindex">子索引</sys:String>
+    <sys:String x:Key="str_od_prop_name">名称</sys:String>
+    <sys:String x:Key="str_od_prop_denotation">表示符</sys:String>
+    <sys:String x:Key="str_od_prop_desc">描述</sys:String>
+    <sys:String x:Key="str_od_prop_obj_settings">对象设置</sys:String>
+    <sys:String x:Key="str_od_prop_obj_type">对象类型</sys:String>
+    <sys:String x:Key="str_od_prop_highlimit">上限值</sys:String>
+    <sys:String x:Key="str_od_prop_count_label">计数标签</sys:String>
+    <sys:String x:Key="str_od_prop_lowlimit">下限值</sys:String>
+    <sys:String x:Key="str_od_prop_storage">存储组</sys:String>
+    <sys:String x:Key="str_od_prop_acc_sdo">SDO 访问</sys:String>
+    <sys:String x:Key="str_od_prop_actual">当前值</sys:String>
+    <sys:String x:Key="str_od_prop_disabled">已禁用</sys:String>
+    <sys:String x:Key="str_od_prop_acc_pdo">PDO 访问</sys:String>
+    <sys:String x:Key="str_od_prop_str_len">字符串最小长度</sys:String>
+    <sys:String x:Key="str_od_prop_tpdo_cos">TPDO COS计数</sys:String>
+    <sys:String x:Key="str_od_prop_acc_srdo">SRDO 访问</sys:String>
+    <sys:String x:Key="str_od_chk_autosave">自动保存</sys:String>
+
+    <!-- Device PDO View -->
+    <sys:String x:Key="str_pdo_col_index">索引</sys:String>
+    <sys:String x:Key="str_pdo_col_sub">子索引</sys:String>
+    <sys:String x:Key="str_pdo_col_name">名称</sys:String>
+    <sys:String x:Key="str_pdo_col_datatype">数据类型</sys:String>
+    <sys:String x:Key="str_pdo_col_bits">位数</sys:String>
+    
+    <sys:String x:Key="str_pdo_comm_params">通信参数:</sys:String>
+    <sys:String x:Key="str_pdo_comm">通信设置</sys:String>
+    <sys:String x:Key="str_pdo_mapping">映射</sys:String>
+    <sys:String x:Key="str_pdo_btn_add">添加 PDO</sys:String>
+    <sys:String x:Key="str_pdo_cob">COB</sys:String>
+    <sys:String x:Key="str_pdo_type">类型 (Type)</sys:String>
+    <sys:String x:Key="str_pdo_btn_delete">删除 PDO</sys:String>
+    <sys:String x:Key="str_pdo_inhibit">禁止时间</sys:String>
+    <sys:String x:Key="str_pdo_event_timer">事件定时器</sys:String>
+    <sys:String x:Key="str_pdo_btn_save">保存</sys:String>
+    <sys:String x:Key="str_pdo_sync_start">同步启动</sys:String>
+    <sys:String x:Key="str_pdo_chk_invalid">失效</sys:String>
+    <sys:String x:Key="str_pdo_id">ID</sys:String>
+    <sys:String x:Key="str_pdo_zoom">缩放:</sys:String>
+
+    <!-- OD Index Range View -->
+    <sys:String x:Key="str_od_menu_clone">克隆...</sys:String>
+    <sys:String x:Key="str_od_menu_delete">删除...</sys:String>
+    <sys:String x:Key="str_od_menu_toggle">切换...</sys:String>
+    <sys:String x:Key="str_od_dlg_index">索引 (hex):</sys:String>
+    <sys:String x:Key="str_od_dlg_name">名称:</sys:String>
+    <sys:String x:Key="str_od_dlg_objtype">对象类型:</sys:String>
+    <sys:String x:Key="str_od_btn_create">创建</sys:String>
+    <sys:String x:Key="str_od_btn_cancel">取消</sys:String>
 </ResourceDictionary>

@@ -57,4 +57,73 @@
     <sys:String x:Key="str_device_info_lss_master">Master</sys:String>
     <sys:String x:Key="str_device_info_baudrates">Baudrates</sys:String>
     <sys:String x:Key="str_device_info_auto">auto</sys:String>
+
+    <!-- Device Object Dictionary View -->
+    <sys:String x:Key="str_od_comm_params">Communication Specific Parameters</sys:String>
+    <sys:String x:Key="str_od_mfg_params">Manufacturer Specific Parameters</sys:String>
+    <sys:String x:Key="str_od_dev_params">Device Profile Specific Parameters</sys:String>
+    
+    <sys:String x:Key="str_od_col_sub">Sub</sys:String>
+    <sys:String x:Key="str_od_col_name">Name</sys:String>
+    <sys:String x:Key="str_od_col_datatype">DataType</sys:String>
+    <sys:String x:Key="str_od_col_sdo">SDO</sys:String>
+    <sys:String x:Key="str_od_col_pdo">PDO</sys:String>
+    <sys:String x:Key="str_od_col_srdo">SRDO</sys:String>
+    <sys:String x:Key="str_od_col_default">Default Value</sys:String>
+    
+    <sys:String x:Key="str_od_menu_add">Add</sys:String>
+    <sys:String x:Key="str_od_menu_remove_shift">Remove (shift up)</sys:String>
+    <sys:String x:Key="str_od_menu_remove_gap">Remove (leave gap)</sys:String>
+    
+    <sys:String x:Key="str_od_prop_index">Index</sys:String>
+    <sys:String x:Key="str_od_prop_subindex">Sub Index</sys:String>
+    <sys:String x:Key="str_od_prop_name">Name</sys:String>
+    <sys:String x:Key="str_od_prop_denotation">Denotation</sys:String>
+    <sys:String x:Key="str_od_prop_desc">Description</sys:String>
+    <sys:String x:Key="str_od_prop_obj_settings">Object settings</sys:String>
+    <sys:String x:Key="str_od_prop_obj_type">Object Type</sys:String>
+    <sys:String x:Key="str_od_prop_highlimit">HighLimit</sys:String>
+    <sys:String x:Key="str_od_prop_count_label">Count Label</sys:String>
+    <sys:String x:Key="str_od_prop_lowlimit">LowLimit</sys:String>
+    <sys:String x:Key="str_od_prop_storage">Storage Group</sys:String>
+    <sys:String x:Key="str_od_prop_acc_sdo">Access SDO</sys:String>
+    <sys:String x:Key="str_od_prop_actual">Actual Value</sys:String>
+    <sys:String x:Key="str_od_prop_disabled">Disabled</sys:String>
+    <sys:String x:Key="str_od_prop_acc_pdo">Access PDO</sys:String>
+    <sys:String x:Key="str_od_prop_str_len">String Len Min</sys:String>
+    <sys:String x:Key="str_od_prop_tpdo_cos">Count TPDO COS</sys:String>
+    <sys:String x:Key="str_od_prop_acc_srdo">Access SRDO</sys:String>
+    <sys:String x:Key="str_od_chk_autosave">Autosave</sys:String>
+
+    <!-- Device PDO View -->
+    <sys:String x:Key="str_pdo_col_index">Index</sys:String>
+    <sys:String x:Key="str_pdo_col_sub">Sub</sys:String>
+    <sys:String x:Key="str_pdo_col_name">Name</sys:String>
+    <sys:String x:Key="str_pdo_col_datatype">Datatype</sys:String>
+    <sys:String x:Key="str_pdo_col_bits">Bits</sys:String>
+    
+    <sys:String x:Key="str_pdo_comm_params">Communication parameters:</sys:String>
+    <sys:String x:Key="str_pdo_comm">Communication</sys:String>
+    <sys:String x:Key="str_pdo_mapping">Mapping</sys:String>
+    <sys:String x:Key="str_pdo_btn_add">Add new PDO</sys:String>
+    <sys:String x:Key="str_pdo_cob">COB</sys:String>
+    <sys:String x:Key="str_pdo_type">Type</sys:String>
+    <sys:String x:Key="str_pdo_btn_delete">Delete PDO</sys:String>
+    <sys:String x:Key="str_pdo_inhibit">Inhibit</sys:String>
+    <sys:String x:Key="str_pdo_event_timer">Event Timer</sys:String>
+    <sys:String x:Key="str_pdo_btn_save">Save</sys:String>
+    <sys:String x:Key="str_pdo_sync_start">Sync start</sys:String>
+    <sys:String x:Key="str_pdo_chk_invalid">Invalid</sys:String>
+    <sys:String x:Key="str_pdo_id">ID</sys:String>
+    <sys:String x:Key="str_pdo_zoom">Zoom:</sys:String>
+
+    <!-- OD Index Range View -->
+    <sys:String x:Key="str_od_menu_clone">Clone...</sys:String>
+    <sys:String x:Key="str_od_menu_delete">Delete...</sys:String>
+    <sys:String x:Key="str_od_menu_toggle">Toggle...</sys:String>
+    <sys:String x:Key="str_od_dlg_index">Index (hex):</sys:String>
+    <sys:String x:Key="str_od_dlg_name">Name:</sys:String>
+    <sys:String x:Key="str_od_dlg_objtype">Object Type:</sys:String>
+    <sys:String x:Key="str_od_btn_create">Create</sys:String>
+    <sys:String x:Key="str_od_btn_cancel">Cancel</sys:String>
 </ResourceDictionary>
