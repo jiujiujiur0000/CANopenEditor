@@ -40,4 +40,21 @@
     <sys:String x:Key="str_insert_col_insert">是否插入</sys:String>
     <sys:String x:Key="str_insert_col_original">原始对象字典</sys:String>
     <sys:String x:Key="str_insert_btn_insert">插入</sys:String>
+
+    <!-- Device View Tabs -->
+    <sys:String x:Key="str_tab_device_info">设备信息 (Device Info)</sys:String>
+    <sys:String x:Key="str_tab_object_dict">对象字典 (Object Dictionary)</sys:String>
+    <sys:String x:Key="str_tab_tx_pdo">发送(TX) PDO 映射</sys:String>
+    <sys:String x:Key="str_tab_rx_pdo">接收(RX) PDO 映射</sys:String>
+    <sys:String x:Key="str_tab_modules">模块 (Modules)</sys:String>
+
+    <!-- Device Info View -->
+    <sys:String x:Key="str_device_info_title">设备基本信息:</sys:String>
+    <sys:String x:Key="str_device_info_prod_name">产品名称 (Product name)</sys:String>
+    <sys:String x:Key="str_device_info_vendor_name">厂商名称 (Vendor name)</sys:String>
+    <sys:String x:Key="str_device_info_features">通用及主站特性:</sys:String>
+    <sys:String x:Key="str_device_info_lss_slave">LSS 从站 (LSS Slave)</sys:String>
+    <sys:String x:Key="str_device_info_lss_master">CANopen 主站 (Master)</sys:String>
+    <sys:String x:Key="str_device_info_baudrates">支持的波特率</sys:String>
+    <sys:String x:Key="str_device_info_auto">自动检测 (auto)</sys:String>
 </ResourceDictionary>

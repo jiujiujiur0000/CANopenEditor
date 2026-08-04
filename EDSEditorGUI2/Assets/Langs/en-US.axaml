@@ -40,4 +40,21 @@
     <sys:String x:Key="str_insert_col_insert">Insert</sys:String>
     <sys:String x:Key="str_insert_col_original">Original Object</sys:String>
     <sys:String x:Key="str_insert_btn_insert">Insert</sys:String>
+
+    <!-- Device View Tabs -->
+    <sys:String x:Key="str_tab_device_info">Device Info</sys:String>
+    <sys:String x:Key="str_tab_object_dict">Object Dictionary</sys:String>
+    <sys:String x:Key="str_tab_tx_pdo">TX PDO Mapping</sys:String>
+    <sys:String x:Key="str_tab_rx_pdo">RX PDO Mapping</sys:String>
+    <sys:String x:Key="str_tab_modules">Modules</sys:String>
+
+    <!-- Device Info View -->
+    <sys:String x:Key="str_device_info_title">Device Info:</sys:String>
+    <sys:String x:Key="str_device_info_prod_name">Product name</sys:String>
+    <sys:String x:Key="str_device_info_vendor_name">Vendor name</sys:String>
+    <sys:String x:Key="str_device_info_features">General and Master Features:</sys:String>
+    <sys:String x:Key="str_device_info_lss_slave">LSS Slave</sys:String>
+    <sys:String x:Key="str_device_info_lss_master">Master</sys:String>
+    <sys:String x:Key="str_device_info_baudrates">Baudrates</sys:String>
+    <sys:String x:Key="str_device_info_auto">auto</sys:String>
 </ResourceDictionary>

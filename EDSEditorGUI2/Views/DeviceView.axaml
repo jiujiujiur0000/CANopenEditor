@@ -9,19 +9,19 @@
              x:DataType="vm:Device">
 
   <TabControl Margin="5">
-    <TabItem Header="Device Info">
+    <TabItem Header="{DynamicResource str_tab_device_info}">
       <view:DeviceInfoView DataContext="{Binding DeviceInfo}" />
     </TabItem>
-    <TabItem Header="Object Dictionary">
+    <TabItem Header="{DynamicResource str_tab_object_dict}">
       <view:DeviceODView DataContext="{Binding Objects}" />
     </TabItem>
-    <TabItem Header="TX PDO Mapping">
+    <TabItem Header="{DynamicResource str_tab_tx_pdo}">
       <view:DevicePDOView DataContext="{Binding Objects}" />
     </TabItem>
-    <TabItem Header="RX PDO Mapping">
+    <TabItem Header="{DynamicResource str_tab_rx_pdo}">
       <view:DevicePDOView DataContext="{Binding Objects}" />
     </TabItem>
-    <TabItem Header="Modules">
+    <TabItem Header="{DynamicResource str_tab_modules}">
       <TextBlock Margin="5">This is tab 3 content</TextBlock>
     </TabItem>  
   </TabControl>
