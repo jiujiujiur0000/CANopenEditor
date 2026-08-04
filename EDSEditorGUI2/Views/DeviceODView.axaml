@@ -59,7 +59,13 @@
         <DataGrid Grid.Row="0" Margin="0,0,0,10" ItemsSource="{Binding SelectedObject.Value.SubObjects}"
                   x:Name="subindexGrid"
                   GridLinesVisibility="Horizontal"
-                  BorderThickness="1" BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" CornerRadius="8">
+                  BorderThickness="1" BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" CornerRadius="8"
+                  Background="Transparent" RowBackground="Transparent">
+          <DataGrid.Styles>
+            <Style Selector="DataGridColumnHeader">
+              <Setter Property="Background" Value="Transparent"/>
+            </Style>
+          </DataGrid.Styles>
           <DataGrid.Columns>
             <DataGridTextColumn Header="{DynamicResource str_od_col_sub}" Width="*" Binding="{Binding Key}"/>
             <DataGridTextColumn Header="{DynamicResource str_od_col_name}" Width="2*" Binding="{Binding Value.Name}" />
