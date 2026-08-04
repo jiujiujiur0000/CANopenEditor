@@ -13,12 +13,14 @@
   <StackPanel Grid.Row="0" Margin="0,5,0,5">
     <TextBlock Text="{Binding Heading, RelativeSource={RelativeSource AncestorType=view:ODIndexRangeView}}" 
                x:Name="HeadingText" FontWeight="SemiBold" FontSize="16" Foreground="{DynamicResource SystemAccentColor}" Margin="0,5,0,10"/>
-    <DataGrid ItemsSource="{Binding .}"
-              x:Name="grid"
-              GridLinesVisibility="Horizontal"
-              BorderThickness="1" BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" CornerRadius="8"
-              Background="Transparent" RowBackground="Transparent"
-              SelectionChanged="DataGrid_SelectionChanged">
+    <Border BorderThickness="1" BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" CornerRadius="8" ClipToBounds="True">
+      <DataGrid ItemsSource="{Binding .}"
+                x:Name="grid"
+                GridLinesVisibility="Horizontal"
+                BorderThickness="0" CornerRadius="8"
+                Background="Transparent" RowBackground="Transparent"
+                FocusAdorner="{x:Null}"
+                SelectionChanged="DataGrid_SelectionChanged">
       <DataGrid.Styles>
         <Style Selector="DataGridColumnHeader">
           <Setter Property="Background" Value="Transparent"/>
@@ -45,6 +47,7 @@
         </ContextMenu>
       </DataGrid.ContextMenu>
     </DataGrid>
+    </Border>
   </StackPanel>
   <UserControl.Resources>
     <converter:NewIndexMultiConvert x:Key="NewIndexMultiConvert" />
