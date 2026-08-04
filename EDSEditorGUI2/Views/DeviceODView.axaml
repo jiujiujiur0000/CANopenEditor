@@ -58,7 +58,7 @@
         <!-- Top: SubObjects DataGrid -->
         <Border Grid.Row="0" Margin="0,0,0,10" BorderThickness="1" BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" CornerRadius="8" ClipToBounds="True">
           <DataGrid ItemsSource="{Binding SelectedObject.Value.SubObjects}"
-                    x:Name="subindexGrid"
+                    x:Name="subindexGrid" Margin="-1"
                     GridLinesVisibility="Horizontal"
                     BorderThickness="0" CornerRadius="8"
                     Background="Transparent" RowBackground="Transparent"
