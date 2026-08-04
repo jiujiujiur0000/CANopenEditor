@@ -8,7 +8,20 @@
              x:Class="EDSEditorGUI2.Views.DeviceView"
              x:DataType="vm:Device">
 
-  <TabControl Margin="5">
+  <TabControl Margin="5" Padding="0,10,0,0">
+    <TabControl.Styles>
+      <Style Selector="TabItem">
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="MinHeight" Value="36" />
+        <Setter Property="Padding" Value="16,8" />
+        <Setter Property="Margin" Value="0,0,4,0" />
+        <Setter Property="Foreground" Value="{DynamicResource SystemControlForegroundBaseMediumBrush}" />
+      </Style>
+      <Style Selector="TabItem:selected">
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="Foreground" Value="{DynamicResource SystemControlForegroundBaseHighBrush}" />
+      </Style>
+    </TabControl.Styles>
     <TabItem Header="{DynamicResource str_tab_device_info}">
       <view:DeviceInfoView DataContext="{Binding DeviceInfo}" />
     </TabItem>

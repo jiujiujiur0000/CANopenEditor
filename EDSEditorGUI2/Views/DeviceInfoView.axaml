@@ -9,14 +9,14 @@
              x:DataType="vm:DeviceInfo">
   
   <ScrollViewer>
-    <WrapPanel Margin="20" HorizontalAlignment="Left" VerticalAlignment="Top">
+    <Grid ColumnDefinitions="*, *" Margin="20" HorizontalAlignment="Stretch" VerticalAlignment="Top">
       
       <!-- Card 1: Device Info -->
-      <Border Background="{DynamicResource SystemControlBackgroundAltHighBrush}" 
+      <Border Grid.Column="0" Background="{DynamicResource SystemControlBackgroundAltHighBrush}" 
               BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" 
               BorderThickness="1" CornerRadius="8" Padding="25" Margin="10"
               BoxShadow="0 4 10 0 #1A000000">
-        <StackPanel Spacing="25" MinWidth="450">
+        <StackPanel Spacing="25" HorizontalAlignment="Stretch">
           
           <StackPanel Spacing="5">
             <TextBlock Text="{DynamicResource str_device_info_title}" FontWeight="Bold" FontSize="18"/>
@@ -25,10 +25,10 @@
           
           <Grid ColumnDefinitions="100, *" RowDefinitions="Auto, Auto">
             <TextBlock Grid.Row="0" Grid.Column="0" Text="{DynamicResource str_device_info_prod_name}" VerticalAlignment="Center" FontWeight="SemiBold" Margin="0,0,0,15"/>
-            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding ProductName}" MinWidth="300" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
+            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding ProductName}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
             
             <TextBlock Grid.Row="1" Grid.Column="0" Text="{DynamicResource str_device_info_vendor_name}" VerticalAlignment="Center" FontWeight="SemiBold"/>
-            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding VendorName}" MinWidth="300" HorizontalAlignment="Stretch" Classes="clearButton"/>
+            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding VendorName}" HorizontalAlignment="Stretch" Classes="clearButton"/>
           </Grid>
 
           <!-- Features Section (Moved into the same card for grouping) -->
@@ -45,30 +45,30 @@
       </Border>
 
       <!-- Card 2: Baudrates Section -->
-      <Border Background="{DynamicResource SystemControlBackgroundAltHighBrush}" 
+      <Border Grid.Column="1" Background="{DynamicResource SystemControlBackgroundAltHighBrush}" 
               BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" 
               BorderThickness="1" CornerRadius="8" Padding="25" Margin="10"
               BoxShadow="0 4 10 0 #1A000000">
-        <StackPanel Spacing="15" MinWidth="250">
+        <StackPanel Spacing="15" HorizontalAlignment="Stretch">
           <StackPanel Spacing="5">
             <TextBlock Text="{DynamicResource str_device_info_baudrates}" FontWeight="Bold" FontSize="18"/>
             <TextBlock Text="选择设备支持的通信速率" FontSize="12" Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}"/>
           </StackPanel>
           
-          <StackPanel Spacing="10" Margin="10,10,0,0">
-            <CheckBox IsChecked="{Binding BaudRate10}" Content="10 kbit/s"/>
-            <CheckBox IsChecked="{Binding BaudRate20}" Content="20 kbit/s"/>
-            <CheckBox IsChecked="{Binding BaudRate50}" Content="50 kbit/s"/>
-            <CheckBox IsChecked="{Binding BaudRate125}" Content="125 kbit/s"/>
-            <CheckBox IsChecked="{Binding BaudRate250}" Content="250 kbit/s"/>
-            <CheckBox IsChecked="{Binding BaudRate500}" Content="500 kbit/s"/>
-            <CheckBox IsChecked="{Binding BaudRate800}" Content="800 kbit/s"/>
-            <CheckBox IsChecked="{Binding BaudRate1000}" Content="1000 kbit/s"/>
-            <CheckBox IsChecked="{Binding BaudRateAuto}" Content="{DynamicResource str_device_info_auto}"/>
-          </StackPanel>
+          <UniformGrid Columns="2" Margin="10,15,0,0">
+            <CheckBox IsChecked="{Binding BaudRate10}" Content="10 kbit/s" Margin="0,0,0,15"/>
+            <CheckBox IsChecked="{Binding BaudRate20}" Content="20 kbit/s" Margin="0,0,0,15"/>
+            <CheckBox IsChecked="{Binding BaudRate50}" Content="50 kbit/s" Margin="0,0,0,15"/>
+            <CheckBox IsChecked="{Binding BaudRate125}" Content="125 kbit/s" Margin="0,0,0,15"/>
+            <CheckBox IsChecked="{Binding BaudRate250}" Content="250 kbit/s" Margin="0,0,0,15"/>
+            <CheckBox IsChecked="{Binding BaudRate500}" Content="500 kbit/s" Margin="0,0,0,15"/>
+            <CheckBox IsChecked="{Binding BaudRate800}" Content="800 kbit/s" Margin="0,0,0,15"/>
+            <CheckBox IsChecked="{Binding BaudRate1000}" Content="1000 kbit/s" Margin="0,0,0,15"/>
+            <CheckBox IsChecked="{Binding BaudRateAuto}" Content="{DynamicResource str_device_info_auto}" Margin="0,0,0,15"/>
+          </UniformGrid>
         </StackPanel>
       </Border>
 
-    </WrapPanel>
+    </Grid>
   </ScrollViewer>
 </UserControl>
