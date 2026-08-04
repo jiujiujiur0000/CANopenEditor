@@ -54,7 +54,12 @@ public partial class MainWindow : Window
 
             List<MenuItem> newMenuItems = [];
 
-            newMenuItems.Add(new MenuItem { Header = "Open Profile File...", Tag = "opendialog" });
+            var openItem = new MenuItem { Tag = "opendialog" };
+            if (Avalonia.Application.Current != null)
+            {
+                openItem.Bind(MenuItem.HeaderProperty, Avalonia.Application.Current.GetResourceObservable("str_profile_open_file"));
+            }
+            newMenuItems.Add(openItem);
             foreach (string file in profilelist)
             {
                 string ext = Path.GetExtension(file).ToLower();

@@ -32,4 +32,12 @@
     <sys:String x:Key="str_pref_warn_struct">结构体成员对齐警告</sys:String>
     <sys:String x:Key="str_btn_save">保存</sys:String>
     <sys:String x:Key="str_btn_cancel">取消</sys:String>
+
+    <!-- Insert Objects Dialog -->
+    <sys:String x:Key="str_profile_open_file">打开对象字典文件...</sys:String>
+    <sys:String x:Key="str_insert_target">目标设备:</sys:String>
+    <sys:String x:Key="str_insert_offset">索引偏移 (填单个偏移，或用空格隔开以支持批量多份插入)</sys:String>
+    <sys:String x:Key="str_insert_col_insert">是否插入</sys:String>
+    <sys:String x:Key="str_insert_col_original">原始对象字典</sys:String>
+    <sys:String x:Key="str_insert_btn_insert">插入</sys:String>
 </ResourceDictionary>

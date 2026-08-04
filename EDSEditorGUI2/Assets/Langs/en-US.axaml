@@ -32,4 +32,12 @@
     <sys:String x:Key="str_pref_warn_struct">Struct member warnings</sys:String>
     <sys:String x:Key="str_btn_save">Save</sys:String>
     <sys:String x:Key="str_btn_cancel">Cancel</sys:String>
+
+    <!-- Insert Objects Dialog -->
+    <sys:String x:Key="str_profile_open_file">Open Profile File...</sys:String>
+    <sys:String x:Key="str_insert_target">Target:</sys:String>
+    <sys:String x:Key="str_insert_offset">Index Offset (single or space separated list for multiple insert)</sys:String>
+    <sys:String x:Key="str_insert_col_insert">Insert</sys:String>
+    <sys:String x:Key="str_insert_col_original">Original Object</sys:String>
+    <sys:String x:Key="str_insert_btn_insert">Insert</sys:String>
 </ResourceDictionary>

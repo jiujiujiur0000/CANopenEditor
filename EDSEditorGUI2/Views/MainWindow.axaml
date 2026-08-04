@@ -73,9 +73,9 @@
     
     <!-- Insert Objects dialog -->
     <StackPanel x:Key="InsertObjectsDialog" MaxWidth="900">
-      <TextBlock Text="Target:" />
+      <TextBlock Text="{DynamicResource str_insert_target}" />
       <ComboBox x:Name="InsertObjects_target" ItemsSource="{Binding Network}" SelectedItem="{Binding SelectedDevice}" MaxDropDownHeight="100"  />
-      <TextBlock Text="Index Offset (single or space separated list for multiple insert)" />
+      <TextBlock Text="{DynamicResource str_insert_offset}" />
 	  <TextBox x:Name="InsertObjects_Offsets" Watermark="1 100 500" Text="0" TextChanged="OnOffsetTextChanged"/>
 
       <ScrollViewer>
@@ -86,16 +86,16 @@
                   x:Name="grid">
 
           <DataGrid.Columns>
-            <DataGridCheckBoxColumn  Header="Insert" Width="*"
+            <DataGridCheckBoxColumn  Header="{DynamicResource str_insert_col_insert}" Width="*"
                     Binding="{Binding Insert}"/>
-            <DataGridTextColumn Header="Original Object" Width="*" IsReadOnly="True"
+            <DataGridTextColumn Header="{DynamicResource str_insert_col_original}" Width="*" IsReadOnly="True"
                     Binding="{Binding OriginalObject}" />
 		      </DataGrid.Columns>
         </DataGrid>
       </ScrollViewer>
       <StackPanel Orientation="Horizontal">
-		    <Button x:Name="InsertObjects_Insert" IsDefault="True" Margin="10" Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=dialogHost:DialogHost}, Path=CloseDialogCommand}" CommandParameter="insert">Insert</Button>
-        <Button x:Name="InsertObjects_Cancel" IsCancel="True" Margin="10" Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=dialogHost:DialogHost}, Path=CloseDialogCommand}">Cancel</Button>
+		    <Button x:Name="InsertObjects_Insert" IsDefault="True" Margin="10" Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=dialogHost:DialogHost}, Path=CloseDialogCommand}" CommandParameter="insert" Content="{DynamicResource str_insert_btn_insert}"/>
+        <Button x:Name="InsertObjects_Cancel" IsCancel="True" Margin="10" Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=dialogHost:DialogHost}, Path=CloseDialogCommand}" Content="{DynamicResource str_btn_cancel}"/>
       </StackPanel>
     </StackPanel>
   </Window.Resources>
