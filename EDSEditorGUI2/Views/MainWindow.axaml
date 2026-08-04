@@ -41,6 +41,7 @@
             <MenuItem Header="_Reports">
             </MenuItem>
             <MenuItem Header="Tools">
+                <MenuItem Header="_Preferences" Click="OpenPreferences"/>
             </MenuItem>
         </Menu>
         <StackPanel DockPanel.Dock="Left" Margin="20" Width="300">
@@ -60,6 +61,9 @@
   </dialogHost:DialogHost>
 
   <Window.Resources>
+    <!-- Preferences dialog -->
+    <view:PreferencesView x:Key="PreferencesDialog"/>
+    
     <!-- Insert Objects dialog -->
     <StackPanel x:Key="InsertObjectsDialog" MaxWidth="900">
       <TextBlock Text="Target:" />

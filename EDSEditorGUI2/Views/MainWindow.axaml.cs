@@ -261,4 +261,9 @@ public partial class MainWindow : Window
             InsertObjects_Offsets.Text = "0";
         }
     }
-}
+
+    private async void OpenPreferences(object? sender, RoutedEventArgs e)
+    {
+        await DialogHostAvalonia.DialogHost.Show(Resources["PreferencesDialog"]!, "RootDialogHost");
+    }
+}

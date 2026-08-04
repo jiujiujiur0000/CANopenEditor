@@ -1,0 +1,42 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:EDSEditorGUI2.ViewModels"
+             xmlns:dialogHost="clr-namespace:DialogHostAvalonia;assembly=DialogHost.Avalonia"
+             mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="350"
+             x:Class="EDSEditorGUI2.Views.PreferencesView"
+             x:DataType="vm:PreferencesViewModel">
+
+    <StackPanel Margin="20" Spacing="15" MinWidth="350">
+        <TextBlock Text="Preferences" FontSize="20" FontWeight="Bold" Margin="0,0,0,10"/>
+
+        <!-- Exporter Settings -->
+        <TextBlock Text="Default Exporter Type" FontWeight="SemiBold"/>
+        <ComboBox ItemsSource="{Binding AvailableExporters}" 
+                  SelectedItem="{Binding SelectedExporter}" 
+                  HorizontalAlignment="Stretch"/>
+
+        <Separator Margin="0,5"/>
+
+        <!-- Warnings -->
+        <TextBlock Text="Warnings" FontWeight="SemiBold"/>
+        <StackPanel Spacing="5">
+            <CheckBox Content="Generic warnings" IsChecked="{Binding GenericWarning}"/>
+            <CheckBox Content="Variable rename warnings" IsChecked="{Binding RenameWarning}"/>
+            <CheckBox Content="Builder warnings" IsChecked="{Binding BuildWarning}"/>
+            <CheckBox Content="String length warnings" IsChecked="{Binding StringWarning}"/>
+            <CheckBox Content="Struct member warnings" IsChecked="{Binding StructWarning}"/>
+        </StackPanel>
+
+        <!-- Buttons -->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="10" Margin="0,15,0,0">
+            <Button Content="Save" IsDefault="True" Command="{Binding SaveCommand}"
+                    CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=dialogHost:DialogHost}}"
+                    Click="SaveButton_Click" Width="80" HorizontalContentAlignment="Center"/>
+            <Button Content="Cancel" IsCancel="True"
+                    Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=dialogHost:DialogHost}, Path=CloseDialogCommand}"
+                    Width="80" HorizontalContentAlignment="Center"/>
+        </StackPanel>
+    </StackPanel>
+</UserControl>
