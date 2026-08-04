@@ -10,6 +10,8 @@
         x:Class="EDSEditorGUI2.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
+        Width="1280" Height="800"
+        WindowStartupLocation="CenterScreen"
         Title="EDSEditorGUI2">
 
     <Design.DataContext>
