@@ -27,7 +27,7 @@
             <Menu Grid.Column="0" x:Name="menu">
                 <MenuItem Header="{DynamicResource str_menu_file}" x:Name="fileMenu" >
                     <MenuItem Header="{DynamicResource str_menu_new}" Command="{Binding AddNewDevice}"/>
-                    <MenuItem Header="{DynamicResource str_menu_open}"/>
+                    <MenuItem Header="{DynamicResource str_menu_open}" Click="OpenFileClick"/>
                     <MenuItem Header="{DynamicResource str_menu_save}" IsEnabled="{Binding SelectedDevice, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
                     <MenuItem Header="{DynamicResource str_menu_save_as}" IsEnabled="{Binding SelectedDevice, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
                     <Separator/>

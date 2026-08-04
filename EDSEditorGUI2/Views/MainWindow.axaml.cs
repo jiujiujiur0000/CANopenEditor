@@ -293,6 +293,55 @@ public partial class MainWindow : Window
         }
     }
 
+    private async void OpenFileClick(object? sender, RoutedEventArgs e)
+    {
+        var topLevel = TopLevel.GetTopLevel(this) ?? throw new Exception("Internal GUI error");
+        
+        var edsFilter = new FilePickerFileType("Electronic Data Sheet (*.eds)") { Patterns = ["*.eds"] };
+        var dcfFilter = new FilePickerFileType("Device Configuration File (*.dcf)") { Patterns = ["*.dcf"] };
+        
+        var files = await topLevel.StorageProvider.OpenFilePickerAsync(new FilePickerOpenOptions
+        {
+            Title = "Open CANopen Device",
+            AllowMultiple = false,
+            FileTypeFilter = [CombineFilePickerType("All supported files", [xpd, xdd, xdc, edsFilter, dcfFilter]), xpd, xdd, xdc, edsFilter, dcfFilter]
+        });
+
+        if (files.Count >= 1)
+        {
+            // Use LocalPath if available to get standard filesystem paths
+            string filePath = files[0].TryGetLocalPath() ?? files[0].Path.ToString();
+            
+            try
+            {
+                EDSsharp eds;
+                string ext = Path.GetExtension(filePath).ToLower();
+                if (ext == ".xdd" || ext == ".xdc" || ext == ".xpd")
+                {
+                    CanOpenXDD_1_1 coxml_1_1 = new();
+                    eds = coxml_1_1.ReadXML(filePath);
+                }
+                else
+                {
+                    eds = new EDSsharp();
+                    eds.Loadfile(filePath);
+                }
+
+                var proto = MappingEDS.MapToProtobuffer(eds);
+                var deviceView = ProtobufferViewModelMapper.MapFromProtobuffer(proto);
+
+                if (DataContext is MainWindowViewModel dc)
+                {
+                    dc.Network.Add(deviceView);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Failed to open file: {ex.Message}");
+            }
+        }
+    }
+
     private async void OpenPreferences(object? sender, RoutedEventArgs e)
     {
         await DialogHostAvalonia.DialogHost.Show(Resources["PreferencesDialog"]!, "RootDialogHost");
