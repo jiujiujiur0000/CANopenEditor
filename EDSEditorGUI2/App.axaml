@@ -11,6 +11,12 @@
     </Application.DataTemplates>
   
     <Application.Styles>
+        <Style Selector="Window">
+            <Setter Property="FontFamily" Value="Microsoft YaHei UI, Microsoft YaHei, Segoe UI, PingFang SC, sans-serif"/>
+        </Style>
+        <Style Selector="UserControl">
+            <Setter Property="FontFamily" Value="Microsoft YaHei UI, Microsoft YaHei, Segoe UI, PingFang SC, sans-serif"/>
+        </Style>
         <FluentTheme />
         <StyleInclude Source="avares://Avalonia.Controls.DataGrid/Themes/Fluent.xaml"/>
         <StyleInclude Source="avares://EDSEditorGUI2/Icons.axaml"/>
