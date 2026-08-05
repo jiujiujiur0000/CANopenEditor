@@ -25,7 +25,6 @@
             <DataGrid.Styles>
               <Style Selector="DataGridColumnHeader">
                 <Setter Property="Background" Value="Transparent"/>
-                <Setter Property="TextBlock.FontWeight" Value="SemiBold"/>
                 <Setter Property="SeparatorBrush" Value="{DynamicResource SystemControlForegroundBaseMediumLowBrush}"/>
               </Style>
               <Style Selector="DataGridColumnHeader:nth-last-child(1)">
@@ -121,13 +120,13 @@
             <Border BorderBrush="LightGray" BorderThickness="1,1,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
               <Grid x:Name="MappingGrid" ColumnDefinitions="40,80,80">
                 <Border Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" BorderBrush="LightGray" BorderThickness="0,0,1,1" Padding="5">
-                  <TextBlock Text="{DynamicResource str_pdo_id}" FontWeight="SemiBold" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                  <TextBlock Text="{DynamicResource str_pdo_id}" FontWeight="Medium" Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 </Border>
                 <Border Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" BorderBrush="LightGray" BorderThickness="0,0,1,1" Padding="5">
-                  <TextBlock Text="{DynamicResource str_pdo_cob}" FontWeight="SemiBold" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                  <TextBlock Text="{DynamicResource str_pdo_cob}" FontWeight="Medium" Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 </Border>
                 <Border Grid.Row="0" Grid.Column="2" Grid.RowSpan="2" BorderBrush="LightGray" BorderThickness="0,0,1,1" Padding="5">
-                  <TextBlock Text="{DynamicResource str_pdo_col_index}" FontWeight="SemiBold" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                  <TextBlock Text="{DynamicResource str_pdo_col_index}" FontWeight="Medium" Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 </Border>
               </Grid>
             </Border>

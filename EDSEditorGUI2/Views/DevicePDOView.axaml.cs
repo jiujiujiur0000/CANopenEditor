@@ -216,7 +216,8 @@ public partial class DevicePDOView : UserControl
             {
                 Text = $"Byte {i}",
                 HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Center,
-                FontWeight = Avalonia.Media.FontWeight.SemiBold,
+                FontWeight = Avalonia.Media.FontWeight.Medium,
+                Foreground = Avalonia.Application.Current!.FindResource("SystemControlForegroundBaseMediumBrush") as IBrush ?? Brushes.Gray,
                 TextWrapping = TextWrapping.Wrap,
             };
             border.Child = indication;
