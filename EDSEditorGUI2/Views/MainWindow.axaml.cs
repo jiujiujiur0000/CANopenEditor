@@ -322,11 +322,19 @@ public partial class MainWindow : Window
                     {
                         CanOpenXDD_1_1 coxml_1_1 = new();
                         eds = coxml_1_1.ReadXML(filePath);
+                        eds.projectFilename = filePath;
+                        if (ext == ".xdd")
+                        {
+                            eds.xddfilename_1_1 = filePath;
+                        }
                     }
                     else
                     {
                         eds = new EDSsharp();
                         eds.Loadfile(filePath);
+                        if (ext == ".eds") eds.edsfilename = filePath;
+                        else if (ext == ".dcf") eds.dcffilename = filePath;
+                        else if (ext == ".md") eds.mdfilename = filePath;
                     }
 
                     var proto = MappingEDS.MapToProtobuffer(eds);
@@ -375,6 +383,12 @@ public partial class MainWindow : Window
                     dc.Network.Clear();
                     foreach (var eds in edss)
                     {
+                        eds.projectFilename = filePath;
+                        if (Path.GetExtension(filePath).ToLower() == ".xdd" || Path.GetExtension(filePath).ToLower() == ".xpd") 
+                        {
+                            eds.xddfilename_1_1 = filePath;
+                        }
+                        
                         var proto = MappingEDS.MapToProtobuffer(eds);
                         var deviceView = ProtobufferViewModelMapper.MapFromProtobuffer(proto);
                         deviceView.Eds = eds;
