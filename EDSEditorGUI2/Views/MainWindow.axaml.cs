@@ -304,7 +304,7 @@ public partial class MainWindow : Window
         {
             Title = "Open CANopen Device",
             AllowMultiple = true,
-            FileTypeFilter = [CombineFilePickerType("All supported files", [xpd, xdd, xdc, edsFilter, dcfFilter]), xpd, xdd, xdc, edsFilter, dcfFilter]
+            FileTypeFilter = [CombineFilePickerType("All supported files", [xdd, xdc, edsFilter, dcfFilter]), xdd, xdc, edsFilter, dcfFilter]
         });
 
         if (files.Count > 0)
