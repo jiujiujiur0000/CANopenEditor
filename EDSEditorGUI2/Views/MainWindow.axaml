@@ -108,6 +108,7 @@
             <DataGrid.Styles>
               <Style Selector="DataGridColumnHeader">
                 <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="SeparatorBrush" Value="Transparent"/>
               </Style>
             </DataGrid.Styles>
           <DataGrid.Columns>
