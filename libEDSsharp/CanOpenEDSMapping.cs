@@ -129,6 +129,7 @@ namespace libEDSsharp
                 .ForMember(dest => dest.CO_storageGroup, opt => opt.MapFrom(src => src.StorageGroup))
                 .ForMember(dest => dest.CO_flagsPDO, opt => opt.MapFrom(src => src.FlagsPDO));
                 cfg.CreateMap<OdObject.Types.ObjectType, ObjectType>().ConvertUsing<ODTypeResolver>();
+                cfg.CreateMap<OdSubObject, PDOMappingType>().ConvertUsing<ODPDOTypeConverter>();
                 cfg.CreateMap<OdObject, ODentry>()
                 .ForMember(dest => dest.Index, opt => opt.Ignore())
                 .ForMember(dest => dest.parameter_name, opt => opt.MapFrom(src => src.Name))
@@ -147,7 +148,21 @@ namespace libEDSsharp
                 .ForMember(dest => dest.Label, opt => opt.Ignore())
                 .ForMember(dest => dest.parent, opt => opt.Ignore())
                 .ForMember(dest => dest.prop, opt => opt.MapFrom(src => src))
-                .ForMember(dest => dest.uniqueID, opt => opt.Ignore());
+                .ForMember(dest => dest.uniqueID, opt => opt.Ignore())
+                .AfterMap((src, dest, ctx) => {
+                    if (dest.objecttype == ObjectType.VAR && (src.SubObjects.TryGetValue("0", out var subObj) || src.SubObjects.TryGetValue("00", out subObj))) {
+                        dest.datatype = ctx.Mapper.Map<DataType>(subObj.DataType);
+                        dest.accesstype = ctx.Mapper.Map<EDSsharp.AccessType>(subObj);
+                        dest.defaultvalue = subObj.DefaultValue;
+                        dest.actualvalue = subObj.ActualValue;
+                        dest.LowLimit = subObj.LowLimit;
+                        dest.HighLimit = subObj.HighLimit;
+                        dest.prop.CO_accessSRDO = (libEDSsharp.AccessSRDO)subObj.Srdo;
+                        dest.prop.CO_stringLengthMin = subObj.StringLengthMin;
+                        dest.PDOtype = ctx.Mapper.Map<PDOMappingType>(subObj);
+                        dest.subobjects.Clear();
+                    }
+                });
                 cfg.CreateMap<OdSubObject, EDSsharp.AccessType>().ConvertUsing<ODAccessTypeResolver>();
                 cfg.CreateMap<OdSubObject, ODentry>()
                 .ForMember(dest => dest.parameter_name, opt => opt.MapFrom(src => src.Name))
@@ -158,7 +173,7 @@ namespace libEDSsharp
                 .ForMember(dest => dest.CompactSubObj, opt => opt.Ignore())
                 .ForMember(dest => dest.count, opt => opt.Ignore())
                 .ForMember(dest => dest.ObjExtend, opt => opt.Ignore())
-                .ForMember(dest => dest.PDOtype, opt => opt.Ignore())
+                .ForMember(dest => dest.PDOtype, opt => opt.MapFrom(src => src))
                 .ForMember(dest => dest.Label, opt => opt.Ignore())
                 .ForMember(dest => dest.parent, opt => opt.Ignore())
                 .ForMember(dest => dest.prop, opt => opt.Ignore())
@@ -249,16 +264,23 @@ namespace libEDSsharp
                 .ForMember(dest => dest.FlagsPDO, opt => opt.MapFrom(src => src.prop.CO_flagsPDO))
                 .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.parameter_name))
                 .ForMember(dest => dest.ObjectType, opt => opt.MapFrom(src => src.objecttype))
-                .ForMember(dest => dest.CountLabel, opt => opt.MapFrom(src => src.prop.CO_countLabel));
+                .ForMember(dest => dest.CountLabel, opt => opt.MapFrom(src => src.prop.CO_countLabel))
+                .AfterMap((src, dest, ctx) => {
+                    if (src.objecttype == ObjectType.VAR) {
+                        var subObj = ctx.Mapper.Map<OdSubObject>(src);
+                        dest.SubObjects.Add("0", subObj);
+                    }
+                });
                 cfg.CreateMap<ObjectType, OdObject.Types.ObjectType>().ConvertUsing<ODTypeResolver>();
                 cfg.CreateMap<EDSsharp.AccessType, OdSubObject.Types.AccessSDO>().ConvertUsing<ODAccessTypeResolver>();
                 cfg.CreateMap<EDSsharp.AccessType, OdSubObject.Types.AccessPDO>().ConvertUsing<ODAccessTypeResolver>();
+                cfg.CreateMap<ODentry, OdSubObject.Types.AccessPDO>().ConvertUsing<ODPDOAccessConverter>();
                 cfg.CreateMap<ODentry, OdSubObject>()
                 .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.parameter_name))
                 .ForMember(dest => dest.Alias, opt => opt.MapFrom(src => src.denotation))
                 .ForMember(dest => dest.DataType, opt => opt.MapFrom(src => src.datatype))
                 .ForMember(dest => dest.Sdo, opt => opt.MapFrom(src => src.accesstype))
-                .ForMember(dest => dest.Pdo, opt => opt.MapFrom(src => src.accesstype))
+                .ForMember(dest => dest.Pdo, opt => opt.MapFrom(src => src))
                 .ForMember(dest => dest.Srdo, opt => opt.MapFrom(src => src.prop.CO_accessSRDO))
                 .ForMember(dest => dest.StringLengthMin, opt => opt.MapFrom(src => src.prop.CO_stringLengthMin));
             }, LoggerFactory.Create(builder => { builder.AddDebug(); }));
@@ -501,6 +523,38 @@ namespace libEDSsharp
             {
                 return System.Convert.ToUInt16(source);
             }
+        }
+    }
+
+    public class ODPDOTypeConverter : ITypeConverter<OdSubObject, PDOMappingType>
+    {
+        public PDOMappingType Convert(OdSubObject source, PDOMappingType destination, ResolutionContext context)
+        {
+            if (source.Pdo == OdSubObject.Types.AccessPDO.T || source.Pdo == OdSubObject.Types.AccessPDO.Tr)
+                return PDOMappingType.TPDO;
+            else if (source.Pdo == OdSubObject.Types.AccessPDO.R)
+                return PDOMappingType.RPDO;
+            return PDOMappingType.no;
+        }
+    }
+
+    public class ODPDOAccessConverter : ITypeConverter<ODentry, OdSubObject.Types.AccessPDO>
+    {
+        public OdSubObject.Types.AccessPDO Convert(ODentry source, OdSubObject.Types.AccessPDO destination, ResolutionContext context)
+        {
+            if (source.PDOtype == PDOMappingType.TPDO)
+                return OdSubObject.Types.AccessPDO.T;
+            if (source.PDOtype == PDOMappingType.RPDO)
+                return OdSubObject.Types.AccessPDO.R;
+
+            if (source.accesstype == EDSsharp.AccessType.rww)
+                return OdSubObject.Types.AccessPDO.T;
+            if (source.accesstype == EDSsharp.AccessType.rwr)
+                return OdSubObject.Types.AccessPDO.R;
+            if (source.accesstype == EDSsharp.AccessType.rw)
+                return OdSubObject.Types.AccessPDO.Tr;
+
+            return OdSubObject.Types.AccessPDO.No;
         }
     }
 }

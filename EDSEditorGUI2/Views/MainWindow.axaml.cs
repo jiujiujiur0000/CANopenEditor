@@ -506,7 +506,7 @@ public partial class MainWindow : Window
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"Failed to open project {filePath}: {ex.Message}");
+                Console.WriteLine($"Failed to open project {filePath}: {ex.ToString()}");
             }
         }
     }

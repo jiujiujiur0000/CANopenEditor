@@ -1,0 +1,2487 @@
+{
+  "version": 4,
+  "targets": {
+    "net8.0": {
+      "AutoMapper/16.2.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Logging.Abstractions": "10.0.0",
+          "Microsoft.Extensions.Options": "10.0.0",
+          "Microsoft.IdentityModel.JsonWebTokens": "8.14.0"
+        },
+        "compile": {
+          "lib/net8.0/AutoMapper.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/AutoMapper.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Avalonia/11.1.5": {
+        "type": "package",
+        "dependencies": {
+          "Avalonia.BuildServices": "0.0.29",
+          "Avalonia.Remote.Protocol": "11.1.5",
+          "MicroCom.Runtime": "0.11.0"
+        },
+        "compile": {
+          "ref/net8.0/Avalonia.Base.dll": {
+            "related": ".xml"
+          },
+          "ref/net8.0/Avalonia.Controls.dll": {
+            "related": ".xml"
+          },
+          "ref/net8.0/Avalonia.DesignerSupport.dll": {
+            "related": ".xml"
+          },
+          "ref/net8.0/Avalonia.Dialogs.dll": {
+            "related": ".xml"
+          },
+          "ref/net8.0/Avalonia.Markup.Xaml.dll": {
+            "related": ".xml"
+          },
+          "ref/net8.0/Avalonia.Markup.dll": {
+            "related": ".Xaml.xml;.xml"
+          },
+          "ref/net8.0/Avalonia.Metal.dll": {
+            "related": ".xml"
+          },
+          "ref/net8.0/Avalonia.MicroCom.dll": {
+            "related": ".xml"
+          },
+          "ref/net8.0/Avalonia.OpenGL.dll": {
+            "related": ".xml"
+          },
+          "ref/net8.0/Avalonia.Vulkan.dll": {
+            "related": ".xml"
+          },
+          "ref/net8.0/Avalonia.dll": {
+            "related": ".Base.xml;.Controls.xml;.DesignerSupport.xml;.Dialogs.xml;.Markup.Xaml.xml;.Markup.xml;.Metal.xml;.MicroCom.xml;.OpenGL.xml;.Vulkan.xml;.xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Avalonia.Base.dll": {
+            "related": ".xml"
+          },
+          "lib/net8.0/Avalonia.Controls.dll": {
+            "related": ".xml"
+          },
+          "lib/net8.0/Avalonia.DesignerSupport.dll": {
+            "related": ".xml"
+          },
+          "lib/net8.0/Avalonia.Dialogs.dll": {
+            "related": ".xml"
+          },
+          "lib/net8.0/Avalonia.Markup.Xaml.dll": {
+            "related": ".xml"
+          },
+          "lib/net8.0/Avalonia.Markup.dll": {
+            "related": ".Xaml.xml;.xml"
+          },
+          "lib/net8.0/Avalonia.Metal.dll": {
+            "related": ".xml"
+          },
+          "lib/net8.0/Avalonia.MicroCom.dll": {
+            "related": ".xml"
+          },
+          "lib/net8.0/Avalonia.OpenGL.dll": {
+            "related": ".xml"
+          },
+          "lib/net8.0/Avalonia.Vulkan.dll": {
+            "related": ".xml"
+          },
+          "lib/net8.0/Avalonia.dll": {
+            "related": ".Base.xml;.Controls.xml;.DesignerSupport.xml;.Dialogs.xml;.Markup.Xaml.xml;.Markup.xml;.Metal.xml;.MicroCom.xml;.OpenGL.xml;.Vulkan.xml;.xml"
+          }
+        },
+        "build": {
+          "buildTransitive/Avalonia.props": {},
+          "buildTransitive/Avalonia.targets": {}
+        }
+      },
+      "Avalonia.Angle.Windows.Natives/2.1.22045.20230930": {
+        "type": "package",
+        "runtimeTargets": {
+          "runtimes/win-arm64/native/av_libglesv2.dll": {
+            "assetType": "native",
+            "rid": "win-arm64"
+          },
+          "runtimes/win-x64/native/av_libglesv2.dll": {
+            "assetType": "native",
+            "rid": "win-x64"
+          },
+          "runtimes/win-x86/native/av_libglesv2.dll": {
+            "assetType": "native",
+            "rid": "win-x86"
+          }
+        }
+      },
+      "Avalonia.BuildServices/0.0.29": {
+        "type": "package",
+        "build": {
+          "buildTransitive/Avalonia.BuildServices.targets": {}
+        }
+      },
+      "Avalonia.Controls.ColorPicker/11.1.5": {
+        "type": "package",
+        "dependencies": {
+          "Avalonia": "11.1.5",
+          "Avalonia.Remote.Protocol": "11.1.5"
+        },
+        "compile": {
+          "lib/net8.0/Avalonia.Controls.ColorPicker.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Avalonia.Controls.ColorPicker.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Avalonia.Controls.DataGrid/11.1.5": {
+        "type": "package",
+        "dependencies": {
+          "Avalonia": "11.1.5",
+          "Avalonia.Remote.Protocol": "11.1.5"
+        },
+        "compile": {
+          "lib/net8.0/Avalonia.Controls.DataGrid.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Avalonia.Controls.DataGrid.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Avalonia.Controls.ItemsRepeater/11.1.5": {
+        "type": "package",
+        "dependencies": {
+          "Avalonia": "11.1.5"
+        },
+        "compile": {
+          "lib/net8.0/Avalonia.Controls.ItemsRepeater.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Avalonia.Controls.ItemsRepeater.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Avalonia.Desktop/11.1.5": {
+        "type": "package",
+        "dependencies": {
+          "Avalonia": "11.1.5",
+          "Avalonia.Native": "11.1.5",
+          "Avalonia.Skia": "11.1.5",
+          "Avalonia.Win32": "11.1.5",
+          "Avalonia.X11": "11.1.5"
+        },
+        "compile": {
+          "lib/net8.0/Avalonia.Desktop.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Avalonia.Desktop.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Avalonia.Diagnostics/11.1.5": {
+        "type": "package",
+        "dependencies": {
+          "Avalonia": "11.1.5",
+          "Avalonia.Controls.ColorPicker": "11.1.5",
+          "Avalonia.Controls.DataGrid": "11.1.5",
+          "Avalonia.Themes.Simple": "11.1.5"
+        },
+        "compile": {
+          "lib/net8.0/Avalonia.Diagnostics.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Avalonia.Diagnostics.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Avalonia.Fonts.Inter/11.1.5": {
+        "type": "package",
+        "dependencies": {
+          "Avalonia": "11.1.5"
+        },
+        "compile": {
+          "lib/net8.0/Avalonia.Fonts.Inter.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Avalonia.Fonts.Inter.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Avalonia.FreeDesktop/11.1.5": {
+        "type": "package",
+        "dependencies": {
+          "Avalonia": "11.1.5",
+          "Tmds.DBus.Protocol": "0.16.0"
+        },
+        "compile": {
+          "lib/net8.0/Avalonia.FreeDesktop.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Avalonia.FreeDesktop.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Avalonia.Native/11.1.5": {
+        "type": "package",
+        "dependencies": {
+          "Avalonia": "11.1.5"
+        },
+        "compile": {
+          "lib/net8.0/Avalonia.Native.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Avalonia.Native.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/osx/native/libAvaloniaNative.dylib": {
+            "assetType": "native",
+            "rid": "osx"
+          }
+        }
+      },
+      "Avalonia.Remote.Protocol/11.1.5": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/Avalonia.Remote.Protocol.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Avalonia.Remote.Protocol.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Avalonia.Skia/11.1.5": {
+        "type": "package",
+        "dependencies": {
+          "Avalonia": "11.1.5",
+          "HarfBuzzSharp": "7.3.0.2",
+          "HarfBuzzSharp.NativeAssets.Linux": "7.3.0.2",
+          "HarfBuzzSharp.NativeAssets.WebAssembly": "7.3.0.2",
+          "SkiaSharp": "2.88.8",
+          "SkiaSharp.NativeAssets.Linux": "2.88.8",
+          "SkiaSharp.NativeAssets.WebAssembly": "2.88.8"
+        },
+        "compile": {
+          "lib/net8.0/Avalonia.Skia.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Avalonia.Skia.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Avalonia.Themes.Fluent/11.1.5": {
+        "type": "package",
+        "dependencies": {
+          "Avalonia": "11.1.5"
+        },
+        "compile": {
+          "lib/net8.0/Avalonia.Themes.Fluent.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Avalonia.Themes.Fluent.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Avalonia.Themes.Simple/11.1.5": {
+        "type": "package",
+        "dependencies": {
+          "Avalonia": "11.1.5"
+        },
+        "compile": {
+          "lib/net8.0/Avalonia.Themes.Simple.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Avalonia.Themes.Simple.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Avalonia.Win32/11.1.5": {
+        "type": "package",
+        "dependencies": {
+          "Avalonia": "11.1.5",
+          "Avalonia.Angle.Windows.Natives": "2.1.22045.20230930",
+          "System.Numerics.Vectors": "4.5.0"
+        },
+        "compile": {
+          "lib/net8.0/Avalonia.Win32.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Avalonia.Win32.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Avalonia.X11/11.1.5": {
+        "type": "package",
+        "dependencies": {
+          "Avalonia": "11.1.5",
+          "Avalonia.FreeDesktop": "11.1.5",
+          "Avalonia.Skia": "11.1.5"
+        },
+        "compile": {
+          "lib/net8.0/Avalonia.X11.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Avalonia.X11.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "CommunityToolkit.Mvvm/8.3.2": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/CommunityToolkit.Mvvm.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/CommunityToolkit.Mvvm.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "build": {
+          "buildTransitive/CommunityToolkit.Mvvm.targets": {}
+        }
+      },
+      "DialogHost.Avalonia/0.8.1": {
+        "type": "package",
+        "dependencies": {
+          "Avalonia": "11.1.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/DialogHost.Avalonia.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/DialogHost.Avalonia.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Google.Protobuf/3.27.2": {
+        "type": "package",
+        "compile": {
+          "lib/net5.0/Google.Protobuf.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/net5.0/Google.Protobuf.dll": {
+            "related": ".pdb;.xml"
+          }
+        }
+      },
+      "Google.Protobuf.Tools/3.27.2": {
+        "type": "package",
+        "build": {
+          "build/_._": {}
+        },
+        "buildMultiTargeting": {
+          "buildCrossTargeting/_._": {}
+        }
+      },
+      "HarfBuzzSharp/7.3.0.2": {
+        "type": "package",
+        "dependencies": {
+          "HarfBuzzSharp.NativeAssets.Win32": "7.3.0.2",
+          "HarfBuzzSharp.NativeAssets.macOS": "7.3.0.2"
+        },
+        "compile": {
+          "lib/net6.0/HarfBuzzSharp.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/HarfBuzzSharp.dll": {
+            "related": ".pdb;.xml"
+          }
+        }
+      },
+      "HarfBuzzSharp.NativeAssets.Linux/7.3.0.2": {
+        "type": "package",
+        "dependencies": {
+          "HarfBuzzSharp": "7.3.0.2"
+        },
+        "compile": {
+          "lib/net6.0/_._": {}
+        },
+        "runtime": {
+          "lib/net6.0/_._": {}
+        },
+        "runtimeTargets": {
+          "runtimes/linux-arm/native/libHarfBuzzSharp.so": {
+            "assetType": "native",
+            "rid": "linux-arm"
+          },
+          "runtimes/linux-arm64/native/libHarfBuzzSharp.so": {
+            "assetType": "native",
+            "rid": "linux-arm64"
+          },
+          "runtimes/linux-musl-x64/native/libHarfBuzzSharp.so": {
+            "assetType": "native",
+            "rid": "linux-musl-x64"
+          },
+          "runtimes/linux-x64/native/libHarfBuzzSharp.so": {
+            "assetType": "native",
+            "rid": "linux-x64"
+          }
+        }
+      },
+      "HarfBuzzSharp.NativeAssets.macOS/7.3.0.2": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/_._": {}
+        },
+        "runtime": {
+          "lib/net6.0/_._": {}
+        },
+        "runtimeTargets": {
+          "runtimes/osx/native/libHarfBuzzSharp.dylib": {
+            "assetType": "native",
+            "rid": "osx"
+          }
+        }
+      },
+      "HarfBuzzSharp.NativeAssets.WebAssembly/7.3.0.2": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard1.0/_._": {}
+        },
+        "runtime": {
+          "lib/netstandard1.0/_._": {}
+        },
+        "build": {
+          "buildTransitive/netstandard1.0/HarfBuzzSharp.NativeAssets.WebAssembly.props": {},
+          "buildTransitive/netstandard1.0/HarfBuzzSharp.NativeAssets.WebAssembly.targets": {}
+        }
+      },
+      "HarfBuzzSharp.NativeAssets.Win32/7.3.0.2": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/_._": {}
+        },
+        "runtime": {
+          "lib/net6.0/_._": {}
+        },
+        "runtimeTargets": {
+          "runtimes/win-arm64/native/libHarfBuzzSharp.dll": {
+            "assetType": "native",
+            "rid": "win-arm64"
+          },
+          "runtimes/win-x64/native/libHarfBuzzSharp.dll": {
+            "assetType": "native",
+            "rid": "win-x64"
+          },
+          "runtimes/win-x86/native/libHarfBuzzSharp.dll": {
+            "assetType": "native",
+            "rid": "win-x86"
+          }
+        }
+      },
+      "MicroCom.Runtime/0.11.0": {
+        "type": "package",
+        "compile": {
+          "lib/net5.0/MicroCom.Runtime.dll": {}
+        },
+        "runtime": {
+          "lib/net5.0/MicroCom.Runtime.dll": {}
+        }
+      },
+      "Microsoft.Extensions.DependencyInjection/10.0.10": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "10.0.10"
+        },
+        "compile": {
+          "lib/net8.0/Microsoft.Extensions.DependencyInjection.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.Extensions.DependencyInjection.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net8.0/_._": {}
+        }
+      },
+      "Microsoft.Extensions.DependencyInjection.Abstractions/10.0.10": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net8.0/_._": {}
+        }
+      },
+      "Microsoft.Extensions.Logging/10.0.10": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection": "10.0.10",
+          "Microsoft.Extensions.Logging.Abstractions": "10.0.10",
+          "Microsoft.Extensions.Options": "10.0.10"
+        },
+        "compile": {
+          "lib/net8.0/Microsoft.Extensions.Logging.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.Extensions.Logging.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net8.0/_._": {}
+        }
+      },
+      "Microsoft.Extensions.Logging.Abstractions/10.0.10": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "10.0.10",
+          "System.Diagnostics.DiagnosticSource": "10.0.10"
+        },
+        "compile": {
+          "lib/net8.0/Microsoft.Extensions.Logging.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.Extensions.Logging.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net8.0/Microsoft.Extensions.Logging.Abstractions.targets": {}
+        }
+      },
+      "Microsoft.Extensions.Logging.Debug/10.0.10": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "10.0.10",
+          "Microsoft.Extensions.Logging": "10.0.10",
+          "Microsoft.Extensions.Logging.Abstractions": "10.0.10"
+        },
+        "compile": {
+          "lib/net8.0/Microsoft.Extensions.Logging.Debug.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.Extensions.Logging.Debug.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net8.0/_._": {}
+        }
+      },
+      "Microsoft.Extensions.Options/10.0.10": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "10.0.10",
+          "Microsoft.Extensions.Primitives": "10.0.10"
+        },
+        "compile": {
+          "lib/net8.0/Microsoft.Extensions.Options.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.Extensions.Options.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net8.0/Microsoft.Extensions.Options.targets": {}
+        }
+      },
+      "Microsoft.Extensions.Primitives/10.0.10": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/Microsoft.Extensions.Primitives.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.Extensions.Primitives.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net8.0/_._": {}
+        }
+      },
+      "Microsoft.IdentityModel.Abstractions/8.14.0": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/Microsoft.IdentityModel.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.IdentityModel.Abstractions.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.IdentityModel.JsonWebTokens/8.14.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.IdentityModel.Tokens": "8.14.0"
+        },
+        "compile": {
+          "lib/net8.0/Microsoft.IdentityModel.JsonWebTokens.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.IdentityModel.JsonWebTokens.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.IdentityModel.Logging/8.14.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.IdentityModel.Abstractions": "8.14.0"
+        },
+        "compile": {
+          "lib/net8.0/Microsoft.IdentityModel.Logging.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.IdentityModel.Logging.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.IdentityModel.Tokens/8.14.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Logging.Abstractions": "8.0.0",
+          "Microsoft.IdentityModel.Logging": "8.14.0"
+        },
+        "compile": {
+          "lib/net8.0/Microsoft.IdentityModel.Tokens.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.IdentityModel.Tokens.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "SkiaSharp/2.88.8": {
+        "type": "package",
+        "dependencies": {
+          "SkiaSharp.NativeAssets.Win32": "2.88.8",
+          "SkiaSharp.NativeAssets.macOS": "2.88.8"
+        },
+        "compile": {
+          "lib/net6.0/SkiaSharp.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/SkiaSharp.dll": {
+            "related": ".pdb;.xml"
+          }
+        }
+      },
+      "SkiaSharp.NativeAssets.Linux/2.88.8": {
+        "type": "package",
+        "dependencies": {
+          "SkiaSharp": "2.88.8"
+        },
+        "compile": {
+          "lib/net6.0/_._": {}
+        },
+        "runtime": {
+          "lib/net6.0/_._": {}
+        },
+        "runtimeTargets": {
+          "runtimes/linux-arm/native/libSkiaSharp.so": {
+            "assetType": "native",
+            "rid": "linux-arm"
+          },
+          "runtimes/linux-arm64/native/libSkiaSharp.so": {
+            "assetType": "native",
+            "rid": "linux-arm64"
+          },
+          "runtimes/linux-musl-x64/native/libSkiaSharp.so": {
+            "assetType": "native",
+            "rid": "linux-musl-x64"
+          },
+          "runtimes/linux-x64/native/libSkiaSharp.so": {
+            "assetType": "native",
+            "rid": "linux-x64"
+          }
+        }
+      },
+      "SkiaSharp.NativeAssets.macOS/2.88.8": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/_._": {}
+        },
+        "runtime": {
+          "lib/net6.0/_._": {}
+        },
+        "runtimeTargets": {
+          "runtimes/osx/native/libSkiaSharp.dylib": {
+            "assetType": "native",
+            "rid": "osx"
+          }
+        }
+      },
+      "SkiaSharp.NativeAssets.WebAssembly/2.88.8": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard1.0/_._": {}
+        },
+        "runtime": {
+          "lib/netstandard1.0/_._": {}
+        },
+        "build": {
+          "buildTransitive/netstandard1.0/SkiaSharp.NativeAssets.WebAssembly.props": {},
+          "buildTransitive/netstandard1.0/SkiaSharp.NativeAssets.WebAssembly.targets": {}
+        }
+      },
+      "SkiaSharp.NativeAssets.Win32/2.88.8": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/_._": {}
+        },
+        "runtime": {
+          "lib/net6.0/_._": {}
+        },
+        "runtimeTargets": {
+          "runtimes/win-arm64/native/libSkiaSharp.dll": {
+            "assetType": "native",
+            "rid": "win-arm64"
+          },
+          "runtimes/win-x64/native/libSkiaSharp.dll": {
+            "assetType": "native",
+            "rid": "win-x64"
+          },
+          "runtimes/win-x86/native/libSkiaSharp.dll": {
+            "assetType": "native",
+            "rid": "win-x86"
+          }
+        }
+      },
+      "System.CodeDom/8.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/System.CodeDom.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/System.CodeDom.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net6.0/_._": {}
+        }
+      },
+      "System.Diagnostics.DiagnosticSource/10.0.10": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/System.Diagnostics.DiagnosticSource.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/System.Diagnostics.DiagnosticSource.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net8.0/_._": {}
+        }
+      },
+      "System.IO.Pipelines/6.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/System.IO.Pipelines.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/System.IO.Pipelines.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/netcoreapp3.1/_._": {}
+        }
+      },
+      "System.Numerics.Vectors/4.5.0": {
+        "type": "package",
+        "compile": {
+          "ref/netcoreapp2.0/_._": {}
+        },
+        "runtime": {
+          "lib/netcoreapp2.0/_._": {}
+        }
+      },
+      "Tmds.DBus.Protocol/0.16.0": {
+        "type": "package",
+        "dependencies": {
+          "System.IO.Pipelines": "6.0.0"
+        },
+        "compile": {
+          "lib/net6.0/Tmds.DBus.Protocol.dll": {}
+        },
+        "runtime": {
+          "lib/net6.0/Tmds.DBus.Protocol.dll": {}
+        }
+      },
+      "EDSEditorGUI2/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "AutoMapper": "16.2.0",
+          "Avalonia": "11.1.5",
+          "Avalonia.Controls.DataGrid": "11.1.5",
+          "Avalonia.Controls.ItemsRepeater": "11.1.5",
+          "Avalonia.Desktop": "11.1.5",
+          "Avalonia.Diagnostics": "11.1.5",
+          "Avalonia.Fonts.Inter": "11.1.5",
+          "Avalonia.Themes.Fluent": "11.1.5",
+          "CommunityToolkit.Mvvm": "8.3.2",
+          "DialogHost.Avalonia": "0.8.1",
+          "libEDSsharp": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/EDSEditorGUI2.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/EDSEditorGUI2.dll": {}
+        }
+      },
+      "libEDSsharp/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "AutoMapper": "16.2.0",
+          "Google.Protobuf": "3.27.2",
+          "Google.Protobuf.Tools": "3.27.2",
+          "Microsoft.Extensions.Logging.Debug": "10.0.10",
+          "System.CodeDom": "8.0.0"
+        },
+        "compile": {
+          "bin/placeholder/libEDSsharp.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/libEDSsharp.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "AutoMapper/16.2.0": {
+      "sha512": "PE8HgPc5BZJnAFwjvDTE72gWL6YrYib+V7+vxtLXDYz0CH/fFgbVcwLUC9UHk5ALwspZ6Vbmoo6PHvseIk/0ZA==",
+      "type": "package",
+      "path": "automapper/16.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.md",
+        "README.md",
+        "automapper.16.2.0.nupkg.sha512",
+        "automapper.nuspec",
+        "icon.png",
+        "lib/net10.0/AutoMapper.dll",
+        "lib/net10.0/AutoMapper.xml",
+        "lib/net471/AutoMapper.dll",
+        "lib/net471/AutoMapper.xml",
+        "lib/net8.0/AutoMapper.dll",
+        "lib/net8.0/AutoMapper.xml",
+        "lib/net9.0/AutoMapper.dll",
+        "lib/net9.0/AutoMapper.xml",
+        "lib/netstandard2.0/AutoMapper.dll",
+        "lib/netstandard2.0/AutoMapper.xml"
+      ]
+    },
+    "Avalonia/11.1.5": {
+      "sha512": "dvwO64mclvrAum0CrPrNPW1aV55DeXp/lxzq0YbwN5L80Nuw6niH8hzwjYk/+lsteSJqj3Q1MY2yW7JrPJxrNw==",
+      "type": "package",
+      "path": "avalonia/11.1.5",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "analyzers/dotnet/cs/Avalonia.Analyzers.dll",
+        "analyzers/dotnet/cs/Avalonia.Generators.dll",
+        "avalonia.11.1.5.nupkg.sha512",
+        "avalonia.nuspec",
+        "build/Avalonia.Generators.props",
+        "build/Avalonia.props",
+        "build/Avalonia.targets",
+        "build/AvaloniaBuildTasks.props",
+        "build/AvaloniaBuildTasks.targets",
+        "build/AvaloniaItemSchema.xaml",
+        "build/AvaloniaPrivateApis.targets",
+        "build/AvaloniaRules.Project.xml",
+        "build/AvaloniaVersion.props",
+        "buildTransitive/Avalonia.Generators.props",
+        "buildTransitive/Avalonia.props",
+        "buildTransitive/Avalonia.targets",
+        "buildTransitive/AvaloniaBuildTasks.props",
+        "buildTransitive/AvaloniaBuildTasks.targets",
+        "buildTransitive/AvaloniaItemSchema.xaml",
+        "buildTransitive/AvaloniaPrivateApis.targets",
+        "buildTransitive/AvaloniaRules.Project.xml",
+        "lib/net6.0/Avalonia.Base.dll",
+        "lib/net6.0/Avalonia.Base.xml",
+        "lib/net6.0/Avalonia.Controls.dll",
+        "lib/net6.0/Avalonia.Controls.xml",
+        "lib/net6.0/Avalonia.DesignerSupport.dll",
+        "lib/net6.0/Avalonia.DesignerSupport.xml",
+        "lib/net6.0/Avalonia.Dialogs.dll",
+        "lib/net6.0/Avalonia.Dialogs.xml",
+        "lib/net6.0/Avalonia.Markup.Xaml.dll",
+        "lib/net6.0/Avalonia.Markup.Xaml.xml",
+        "lib/net6.0/Avalonia.Markup.dll",
+        "lib/net6.0/Avalonia.Markup.xml",
+        "lib/net6.0/Avalonia.Metal.dll",
+        "lib/net6.0/Avalonia.Metal.xml",
+        "lib/net6.0/Avalonia.MicroCom.dll",
+        "lib/net6.0/Avalonia.MicroCom.xml",
+        "lib/net6.0/Avalonia.OpenGL.dll",
+        "lib/net6.0/Avalonia.OpenGL.xml",
+        "lib/net6.0/Avalonia.Vulkan.dll",
+        "lib/net6.0/Avalonia.Vulkan.xml",
+        "lib/net6.0/Avalonia.dll",
+        "lib/net6.0/Avalonia.xml",
+        "lib/net8.0/Avalonia.Base.dll",
+        "lib/net8.0/Avalonia.Base.xml",
+        "lib/net8.0/Avalonia.Controls.dll",
+        "lib/net8.0/Avalonia.Controls.xml",
+        "lib/net8.0/Avalonia.DesignerSupport.dll",
+        "lib/net8.0/Avalonia.DesignerSupport.xml",
+        "lib/net8.0/Avalonia.Dialogs.dll",
+        "lib/net8.0/Avalonia.Dialogs.xml",
+        "lib/net8.0/Avalonia.Markup.Xaml.dll",
+        "lib/net8.0/Avalonia.Markup.Xaml.xml",
+        "lib/net8.0/Avalonia.Markup.dll",
+        "lib/net8.0/Avalonia.Markup.xml",
+        "lib/net8.0/Avalonia.Metal.dll",
+        "lib/net8.0/Avalonia.Metal.xml",
+        "lib/net8.0/Avalonia.MicroCom.dll",
+        "lib/net8.0/Avalonia.MicroCom.xml",
+        "lib/net8.0/Avalonia.OpenGL.dll",
+        "lib/net8.0/Avalonia.OpenGL.xml",
+        "lib/net8.0/Avalonia.Vulkan.dll",
+        "lib/net8.0/Avalonia.Vulkan.xml",
+        "lib/net8.0/Avalonia.dll",
+        "lib/net8.0/Avalonia.xml",
+        "lib/netstandard2.0/Avalonia.Base.dll",
+        "lib/netstandard2.0/Avalonia.Base.xml",
+        "lib/netstandard2.0/Avalonia.Controls.dll",
+        "lib/netstandard2.0/Avalonia.Controls.xml",
+        "lib/netstandard2.0/Avalonia.DesignerSupport.dll",
+        "lib/netstandard2.0/Avalonia.DesignerSupport.xml",
+        "lib/netstandard2.0/Avalonia.Dialogs.dll",
+        "lib/netstandard2.0/Avalonia.Dialogs.xml",
+        "lib/netstandard2.0/Avalonia.Markup.Xaml.dll",
+        "lib/netstandard2.0/Avalonia.Markup.Xaml.xml",
+        "lib/netstandard2.0/Avalonia.Markup.dll",
+        "lib/netstandard2.0/Avalonia.Markup.xml",
+        "lib/netstandard2.0/Avalonia.Metal.dll",
+        "lib/netstandard2.0/Avalonia.Metal.xml",
+        "lib/netstandard2.0/Avalonia.MicroCom.dll",
+        "lib/netstandard2.0/Avalonia.MicroCom.xml",
+        "lib/netstandard2.0/Avalonia.OpenGL.dll",
+        "lib/netstandard2.0/Avalonia.OpenGL.xml",
+        "lib/netstandard2.0/Avalonia.Vulkan.dll",
+        "lib/netstandard2.0/Avalonia.Vulkan.xml",
+        "lib/netstandard2.0/Avalonia.dll",
+        "lib/netstandard2.0/Avalonia.xml",
+        "ref/net6.0/Avalonia.Base.dll",
+        "ref/net6.0/Avalonia.Base.xml",
+        "ref/net6.0/Avalonia.Controls.dll",
+        "ref/net6.0/Avalonia.Controls.xml",
+        "ref/net6.0/Avalonia.DesignerSupport.dll",
+        "ref/net6.0/Avalonia.DesignerSupport.xml",
+        "ref/net6.0/Avalonia.Dialogs.dll",
+        "ref/net6.0/Avalonia.Dialogs.xml",
+        "ref/net6.0/Avalonia.Markup.Xaml.dll",
+        "ref/net6.0/Avalonia.Markup.Xaml.xml",
+        "ref/net6.0/Avalonia.Markup.dll",
+        "ref/net6.0/Avalonia.Markup.xml",
+        "ref/net6.0/Avalonia.Metal.dll",
+        "ref/net6.0/Avalonia.Metal.xml",
+        "ref/net6.0/Avalonia.MicroCom.dll",
+        "ref/net6.0/Avalonia.MicroCom.xml",
+        "ref/net6.0/Avalonia.OpenGL.dll",
+        "ref/net6.0/Avalonia.OpenGL.xml",
+        "ref/net6.0/Avalonia.Vulkan.dll",
+        "ref/net6.0/Avalonia.Vulkan.xml",
+        "ref/net6.0/Avalonia.dll",
+        "ref/net6.0/Avalonia.xml",
+        "ref/net8.0/Avalonia.Base.dll",
+        "ref/net8.0/Avalonia.Base.xml",
+        "ref/net8.0/Avalonia.Controls.dll",
+        "ref/net8.0/Avalonia.Controls.xml",
+        "ref/net8.0/Avalonia.DesignerSupport.dll",
+        "ref/net8.0/Avalonia.DesignerSupport.xml",
+        "ref/net8.0/Avalonia.Dialogs.dll",
+        "ref/net8.0/Avalonia.Dialogs.xml",
+        "ref/net8.0/Avalonia.Markup.Xaml.dll",
+        "ref/net8.0/Avalonia.Markup.Xaml.xml",
+        "ref/net8.0/Avalonia.Markup.dll",
+        "ref/net8.0/Avalonia.Markup.xml",
+        "ref/net8.0/Avalonia.Metal.dll",
+        "ref/net8.0/Avalonia.Metal.xml",
+        "ref/net8.0/Avalonia.MicroCom.dll",
+        "ref/net8.0/Avalonia.MicroCom.xml",
+        "ref/net8.0/Avalonia.OpenGL.dll",
+        "ref/net8.0/Avalonia.OpenGL.xml",
+        "ref/net8.0/Avalonia.Vulkan.dll",
+        "ref/net8.0/Avalonia.Vulkan.xml",
+        "ref/net8.0/Avalonia.dll",
+        "ref/net8.0/Avalonia.xml",
+        "ref/netstandard2.0/Avalonia.Base.dll",
+        "ref/netstandard2.0/Avalonia.Base.xml",
+        "ref/netstandard2.0/Avalonia.Controls.dll",
+        "ref/netstandard2.0/Avalonia.Controls.xml",
+        "ref/netstandard2.0/Avalonia.DesignerSupport.dll",
+        "ref/netstandard2.0/Avalonia.DesignerSupport.xml",
+        "ref/netstandard2.0/Avalonia.Dialogs.dll",
+        "ref/netstandard2.0/Avalonia.Dialogs.xml",
+        "ref/netstandard2.0/Avalonia.Markup.Xaml.dll",
+        "ref/netstandard2.0/Avalonia.Markup.Xaml.xml",
+        "ref/netstandard2.0/Avalonia.Markup.dll",
+        "ref/netstandard2.0/Avalonia.Markup.xml",
+        "ref/netstandard2.0/Avalonia.Metal.dll",
+        "ref/netstandard2.0/Avalonia.Metal.xml",
+        "ref/netstandard2.0/Avalonia.MicroCom.dll",
+        "ref/netstandard2.0/Avalonia.MicroCom.xml",
+        "ref/netstandard2.0/Avalonia.OpenGL.dll",
+        "ref/netstandard2.0/Avalonia.OpenGL.xml",
+        "ref/netstandard2.0/Avalonia.Vulkan.dll",
+        "ref/netstandard2.0/Avalonia.Vulkan.xml",
+        "ref/netstandard2.0/Avalonia.dll",
+        "ref/netstandard2.0/Avalonia.xml",
+        "tools/net461/designer/Avalonia.Designer.HostApp.exe",
+        "tools/netstandard2.0/Avalonia.Build.Tasks.dll",
+        "tools/netstandard2.0/designer/Avalonia.Designer.HostApp.dll"
+      ]
+    },
+    "Avalonia.Angle.Windows.Natives/2.1.22045.20230930": {
+      "sha512": "Bo3qOhKC1b84BIhiogndMdAzB3UrrESKK7hS769f5HWeoMw/pcd42US5KFYW2JJ4ZSTrXnP8mXwLTMzh+S+9Lg==",
+      "type": "package",
+      "path": "avalonia.angle.windows.natives/2.1.22045.20230930",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE",
+        "avalonia.angle.windows.natives.2.1.22045.20230930.nupkg.sha512",
+        "avalonia.angle.windows.natives.nuspec",
+        "runtimes/win-arm64/native/av_libglesv2.dll",
+        "runtimes/win-x64/native/av_libglesv2.dll",
+        "runtimes/win-x86/native/av_libglesv2.dll"
+      ]
+    },
+    "Avalonia.BuildServices/0.0.29": {
+      "sha512": "U4eJLQdoDNHXtEba7MZUCwrBErBTxFp6sUewXBOdAhU0Kwzwaa/EKFcYm8kpcysjzKtfB4S0S9n0uxKZFz/ikw==",
+      "type": "package",
+      "path": "avalonia.buildservices/0.0.29",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "avalonia.buildservices.0.0.29.nupkg.sha512",
+        "avalonia.buildservices.nuspec",
+        "build/Avalonia.BuildServices.targets",
+        "buildTransitive/Avalonia.BuildServices.targets",
+        "tools/netstandard2.0/Avalonia.BuildServices.Collector.dll",
+        "tools/netstandard2.0/Avalonia.BuildServices.dll",
+        "tools/netstandard2.0/runtimeconfig.json"
+      ]
+    },
+    "Avalonia.Controls.ColorPicker/11.1.5": {
+      "sha512": "cBk0+RDBPy/htDIzCHFAa/rsg9HEbvGdoFEqpraPfNt6+/q09ndjabVLTKxa+nzBbM07Uh6T4QxGQruoJ/hdQQ==",
+      "type": "package",
+      "path": "avalonia.controls.colorpicker/11.1.5",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "avalonia.controls.colorpicker.11.1.5.nupkg.sha512",
+        "avalonia.controls.colorpicker.nuspec",
+        "lib/net6.0/Avalonia.Controls.ColorPicker.dll",
+        "lib/net6.0/Avalonia.Controls.ColorPicker.xml",
+        "lib/net8.0/Avalonia.Controls.ColorPicker.dll",
+        "lib/net8.0/Avalonia.Controls.ColorPicker.xml",
+        "lib/netstandard2.0/Avalonia.Controls.ColorPicker.dll",
+        "lib/netstandard2.0/Avalonia.Controls.ColorPicker.xml"
+      ]
+    },
+    "Avalonia.Controls.DataGrid/11.1.5": {
+      "sha512": "+qKAoxEkoVmcdVa03Tjt7aKqT6Dqlh1MpoCucdh6AXI2Oc5I7510OMij1kRMMIoKfF8POgZYuBuvl+ikv4NO5w==",
+      "type": "package",
+      "path": "avalonia.controls.datagrid/11.1.5",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "avalonia.controls.datagrid.11.1.5.nupkg.sha512",
+        "avalonia.controls.datagrid.nuspec",
+        "lib/net6.0/Avalonia.Controls.DataGrid.dll",
+        "lib/net6.0/Avalonia.Controls.DataGrid.xml",
+        "lib/net8.0/Avalonia.Controls.DataGrid.dll",
+        "lib/net8.0/Avalonia.Controls.DataGrid.xml",
+        "lib/netstandard2.0/Avalonia.Controls.DataGrid.dll",
+        "lib/netstandard2.0/Avalonia.Controls.DataGrid.xml"
+      ]
+    },
+    "Avalonia.Controls.ItemsRepeater/11.1.5": {
+      "sha512": "MfsDSvpa/QUvOw8c8BQtDHHu3DUHYYGjkDBpN0uOpjFqng6qCzkuoyJZ7vIXSlDNb685yqW8VluWMjniz5BI4A==",
+      "type": "package",
+      "path": "avalonia.controls.itemsrepeater/11.1.5",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "avalonia.controls.itemsrepeater.11.1.5.nupkg.sha512",
+        "avalonia.controls.itemsrepeater.nuspec",
+        "lib/net6.0/Avalonia.Controls.ItemsRepeater.dll",
+        "lib/net6.0/Avalonia.Controls.ItemsRepeater.xml",
+        "lib/net8.0/Avalonia.Controls.ItemsRepeater.dll",
+        "lib/net8.0/Avalonia.Controls.ItemsRepeater.xml",
+        "lib/netstandard2.0/Avalonia.Controls.ItemsRepeater.dll",
+        "lib/netstandard2.0/Avalonia.Controls.ItemsRepeater.xml"
+      ]
+    },
+    "Avalonia.Desktop/11.1.5": {
+      "sha512": "b/zO2QlFYshIOWwPKUwayF1LhubENFpBv7bRCB7n7xLQ98d9iU35gk2RTxcMZwy83qHeU4XcfGVETpOcUpozVg==",
+      "type": "package",
+      "path": "avalonia.desktop/11.1.5",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "avalonia.desktop.11.1.5.nupkg.sha512",
+        "avalonia.desktop.nuspec",
+        "lib/net6.0/Avalonia.Desktop.dll",
+        "lib/net6.0/Avalonia.Desktop.xml",
+        "lib/net8.0/Avalonia.Desktop.dll",
+        "lib/net8.0/Avalonia.Desktop.xml",
+        "lib/netstandard2.0/Avalonia.Desktop.dll",
+        "lib/netstandard2.0/Avalonia.Desktop.xml"
+      ]
+    },
+    "Avalonia.Diagnostics/11.1.5": {
+      "sha512": "2c0o32Cba+LFpn0eBuar3jys27EsAuFT1hyoaXi+sVTylJcdgPXUncUD+E9YK4GFz+Em4DPETKRvo76MXBkcSg==",
+      "type": "package",
+      "path": "avalonia.diagnostics/11.1.5",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "avalonia.diagnostics.11.1.5.nupkg.sha512",
+        "avalonia.diagnostics.nuspec",
+        "lib/net6.0/Avalonia.Diagnostics.dll",
+        "lib/net6.0/Avalonia.Diagnostics.xml",
+        "lib/net8.0/Avalonia.Diagnostics.dll",
+        "lib/net8.0/Avalonia.Diagnostics.xml",
+        "lib/netstandard2.0/Avalonia.Diagnostics.dll",
+        "lib/netstandard2.0/Avalonia.Diagnostics.xml"
+      ]
+    },
+    "Avalonia.Fonts.Inter/11.1.5": {
+      "sha512": "R3p8vU3XaBimf8c21Xh5qz1WhIlqNkMxOhrQyHxjIj+GMNvS05PX2O0gLF6okBnN7uc9ec+8ZCaiY7w1w606hw==",
+      "type": "package",
+      "path": "avalonia.fonts.inter/11.1.5",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "avalonia.fonts.inter.11.1.5.nupkg.sha512",
+        "avalonia.fonts.inter.nuspec",
+        "lib/net6.0/Avalonia.Fonts.Inter.dll",
+        "lib/net6.0/Avalonia.Fonts.Inter.xml",
+        "lib/net8.0/Avalonia.Fonts.Inter.dll",
+        "lib/net8.0/Avalonia.Fonts.Inter.xml",
+        "lib/netstandard2.0/Avalonia.Fonts.Inter.dll",
+        "lib/netstandard2.0/Avalonia.Fonts.Inter.xml"
+      ]
+    },
+    "Avalonia.FreeDesktop/11.1.5": {
+      "sha512": "bVuxrdqvYyWSiGm7OPIfi4RZhjSck9niZTSvWTIOAAFp6sCTCvvrGpFi9svzgtkyVu74N9EEP5+n2QsE0BA6CA==",
+      "type": "package",
+      "path": "avalonia.freedesktop/11.1.5",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "avalonia.freedesktop.11.1.5.nupkg.sha512",
+        "avalonia.freedesktop.nuspec",
+        "lib/net6.0/Avalonia.FreeDesktop.dll",
+        "lib/net6.0/Avalonia.FreeDesktop.xml",
+        "lib/net8.0/Avalonia.FreeDesktop.dll",
+        "lib/net8.0/Avalonia.FreeDesktop.xml",
+        "lib/netstandard2.0/Avalonia.FreeDesktop.dll",
+        "lib/netstandard2.0/Avalonia.FreeDesktop.xml"
+      ]
+    },
+    "Avalonia.Native/11.1.5": {
+      "sha512": "y/3pSOq/ahk+pXyUGi9lmBgp868IfT7n5Z1eWm5C8KPU05ZxXc4uK5p94t+ETZhVs5YtOQY9XyUxgp5HgkaibA==",
+      "type": "package",
+      "path": "avalonia.native/11.1.5",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "avalonia.native.11.1.5.nupkg.sha512",
+        "avalonia.native.nuspec",
+        "lib/net6.0/Avalonia.Native.dll",
+        "lib/net6.0/Avalonia.Native.xml",
+        "lib/net8.0/Avalonia.Native.dll",
+        "lib/net8.0/Avalonia.Native.xml",
+        "lib/netstandard2.0/Avalonia.Native.dll",
+        "lib/netstandard2.0/Avalonia.Native.xml",
+        "runtimes/osx/native/libAvaloniaNative.dylib"
+      ]
+    },
+    "Avalonia.Remote.Protocol/11.1.5": {
+      "sha512": "iBWc6j9DMJSpEdkBwAHZ9mhVBLuUWBgGkki207ZzH2XkUeiz9EWCjYuNEYe5kKgk5hm8kfDky5CQkVk7SAoUaw==",
+      "type": "package",
+      "path": "avalonia.remote.protocol/11.1.5",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "avalonia.remote.protocol.11.1.5.nupkg.sha512",
+        "avalonia.remote.protocol.nuspec",
+        "lib/net6.0/Avalonia.Remote.Protocol.dll",
+        "lib/net6.0/Avalonia.Remote.Protocol.xml",
+        "lib/net8.0/Avalonia.Remote.Protocol.dll",
+        "lib/net8.0/Avalonia.Remote.Protocol.xml",
+        "lib/netstandard2.0/Avalonia.Remote.Protocol.dll",
+        "lib/netstandard2.0/Avalonia.Remote.Protocol.xml"
+      ]
+    },
+    "Avalonia.Skia/11.1.5": {
+      "sha512": "JdzinV57qkZ35evO4PtFEn2BAI3RGUTa9yPLj6JzayFKPv1Me/yJ5xRjKxH0CopZh3jqbXWiTFukd8qzxIlHQw==",
+      "type": "package",
+      "path": "avalonia.skia/11.1.5",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "avalonia.skia.11.1.5.nupkg.sha512",
+        "avalonia.skia.nuspec",
+        "lib/net6.0/Avalonia.Skia.dll",
+        "lib/net6.0/Avalonia.Skia.xml",
+        "lib/net8.0/Avalonia.Skia.dll",
+        "lib/net8.0/Avalonia.Skia.xml",
+        "lib/netstandard2.0/Avalonia.Skia.dll",
+        "lib/netstandard2.0/Avalonia.Skia.xml"
+      ]
+    },
+    "Avalonia.Themes.Fluent/11.1.5": {
+      "sha512": "772xZTaeuPdr94I9AdMFS4JNLVq33Ahu+l1cNz7JK5zFETvt4WxUMJgHaLB1ftzGG1ETRrCMWeSRwiX8FtUhjw==",
+      "type": "package",
+      "path": "avalonia.themes.fluent/11.1.5",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "avalonia.themes.fluent.11.1.5.nupkg.sha512",
+        "avalonia.themes.fluent.nuspec",
+        "lib/net6.0/Avalonia.Themes.Fluent.dll",
+        "lib/net6.0/Avalonia.Themes.Fluent.xml",
+        "lib/net8.0/Avalonia.Themes.Fluent.dll",
+        "lib/net8.0/Avalonia.Themes.Fluent.xml",
+        "lib/netstandard2.0/Avalonia.Themes.Fluent.dll",
+        "lib/netstandard2.0/Avalonia.Themes.Fluent.xml"
+      ]
+    },
+    "Avalonia.Themes.Simple/11.1.5": {
+      "sha512": "Ces7o1Rfkc8WDsFU4l2TSSCDEzCVTbDjyFupdNXP/eILaKism94r5yYG7ZJl0v3dwleFqIckrUvQZhHucr7z9g==",
+      "type": "package",
+      "path": "avalonia.themes.simple/11.1.5",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "avalonia.themes.simple.11.1.5.nupkg.sha512",
+        "avalonia.themes.simple.nuspec",
+        "lib/net6.0/Avalonia.Themes.Simple.dll",
+        "lib/net6.0/Avalonia.Themes.Simple.xml",
+        "lib/net8.0/Avalonia.Themes.Simple.dll",
+        "lib/net8.0/Avalonia.Themes.Simple.xml",
+        "lib/netstandard2.0/Avalonia.Themes.Simple.dll",
+        "lib/netstandard2.0/Avalonia.Themes.Simple.xml"
+      ]
+    },
+    "Avalonia.Win32/11.1.5": {
+      "sha512": "b5Y2rO0fVmyo9OU0JSKCKsTbv6eOn3WvJGbUfgQj7n4S67R78djhr9okfx8x8Bdh2eL/nc3nnM7idvYdd0Zgzw==",
+      "type": "package",
+      "path": "avalonia.win32/11.1.5",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "avalonia.win32.11.1.5.nupkg.sha512",
+        "avalonia.win32.nuspec",
+        "lib/net6.0/Avalonia.Win32.dll",
+        "lib/net6.0/Avalonia.Win32.xml",
+        "lib/net8.0/Avalonia.Win32.dll",
+        "lib/net8.0/Avalonia.Win32.xml",
+        "lib/netstandard2.0/Avalonia.Win32.dll",
+        "lib/netstandard2.0/Avalonia.Win32.xml"
+      ]
+    },
+    "Avalonia.X11/11.1.5": {
+      "sha512": "l+KPbbcLpCbRfN4C4HwEX+72votIvr3RdXJ5eIZIoLpOuw24PX4bTNN0G1jeFxaiLxGc6/B11HpuZ22gGY3zoA==",
+      "type": "package",
+      "path": "avalonia.x11/11.1.5",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "avalonia.x11.11.1.5.nupkg.sha512",
+        "avalonia.x11.nuspec",
+        "lib/net6.0/Avalonia.X11.dll",
+        "lib/net6.0/Avalonia.X11.xml",
+        "lib/net8.0/Avalonia.X11.dll",
+        "lib/net8.0/Avalonia.X11.xml",
+        "lib/netstandard2.0/Avalonia.X11.dll",
+        "lib/netstandard2.0/Avalonia.X11.xml"
+      ]
+    },
+    "CommunityToolkit.Mvvm/8.3.2": {
+      "sha512": "m8EolE1A0Updj68WTsZSGI6VWb6mUqHPh7QFo0kt7+JPhYMNXRS1ch8TS/oITAdcxTLrwMOp3ku1KjeG1/Zdpg==",
+      "type": "package",
+      "path": "communitytoolkit.mvvm/8.3.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "License.md",
+        "ThirdPartyNotices.txt",
+        "analyzers/dotnet/roslyn4.0/cs/CommunityToolkit.Mvvm.CodeFixers.dll",
+        "analyzers/dotnet/roslyn4.0/cs/CommunityToolkit.Mvvm.SourceGenerators.dll",
+        "analyzers/dotnet/roslyn4.3/cs/CommunityToolkit.Mvvm.CodeFixers.dll",
+        "analyzers/dotnet/roslyn4.3/cs/CommunityToolkit.Mvvm.SourceGenerators.dll",
+        "build/CommunityToolkit.Mvvm.FeatureSwitches.targets",
+        "build/CommunityToolkit.Mvvm.SourceGenerators.targets",
+        "build/CommunityToolkit.Mvvm.WindowsSdk.targets",
+        "build/CommunityToolkit.Mvvm.targets",
+        "buildTransitive/CommunityToolkit.Mvvm.FeatureSwitches.targets",
+        "buildTransitive/CommunityToolkit.Mvvm.SourceGenerators.targets",
+        "buildTransitive/CommunityToolkit.Mvvm.WindowsSdk.targets",
+        "buildTransitive/CommunityToolkit.Mvvm.targets",
+        "communitytoolkit.mvvm.8.3.2.nupkg.sha512",
+        "communitytoolkit.mvvm.nuspec",
+        "lib/net6.0/CommunityToolkit.Mvvm.dll",
+        "lib/net6.0/CommunityToolkit.Mvvm.pdb",
+        "lib/net6.0/CommunityToolkit.Mvvm.xml",
+        "lib/net8.0-windows10.0.17763/CommunityToolkit.Mvvm.dll",
+        "lib/net8.0-windows10.0.17763/CommunityToolkit.Mvvm.pdb",
+        "lib/net8.0-windows10.0.17763/CommunityToolkit.Mvvm.xml",
+        "lib/net8.0/CommunityToolkit.Mvvm.dll",
+        "lib/net8.0/CommunityToolkit.Mvvm.pdb",
+        "lib/net8.0/CommunityToolkit.Mvvm.xml",
+        "lib/netstandard2.0/CommunityToolkit.Mvvm.dll",
+        "lib/netstandard2.0/CommunityToolkit.Mvvm.pdb",
+        "lib/netstandard2.0/CommunityToolkit.Mvvm.xml",
+        "lib/netstandard2.1/CommunityToolkit.Mvvm.dll",
+        "lib/netstandard2.1/CommunityToolkit.Mvvm.pdb",
+        "lib/netstandard2.1/CommunityToolkit.Mvvm.xml"
+      ]
+    },
+    "DialogHost.Avalonia/0.8.1": {
+      "sha512": "RLBOMqjJPgSmwe0i1pzX3Q7Pn0i4xE/E1b774krd4VyEkaorz1AYMdYQHyIfuhtQv5NntZyS0MuQbxJl/PhzBg==",
+      "type": "package",
+      "path": "dialoghost.avalonia/0.8.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "dialoghost.avalonia.0.8.1.nupkg.sha512",
+        "dialoghost.avalonia.nuspec",
+        "icon.png",
+        "lib/netstandard2.0/DialogHost.Avalonia.dll",
+        "lib/netstandard2.0/DialogHost.Avalonia.xml"
+      ]
+    },
+    "Google.Protobuf/3.27.2": {
+      "sha512": "0wdgA3LO9mBS477jieBFs4pU1sWhVtwv/P+i9nAEiFDQyUA7PPHDBbJL1CeqYtV18jLiq9og4n7wSVCO171OBg==",
+      "type": "package",
+      "path": "google.protobuf/3.27.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "google.protobuf.3.27.2.nupkg.sha512",
+        "google.protobuf.nuspec",
+        "lib/net45/Google.Protobuf.dll",
+        "lib/net45/Google.Protobuf.pdb",
+        "lib/net45/Google.Protobuf.xml",
+        "lib/net5.0/Google.Protobuf.dll",
+        "lib/net5.0/Google.Protobuf.pdb",
+        "lib/net5.0/Google.Protobuf.xml",
+        "lib/netstandard1.1/Google.Protobuf.dll",
+        "lib/netstandard1.1/Google.Protobuf.pdb",
+        "lib/netstandard1.1/Google.Protobuf.xml",
+        "lib/netstandard2.0/Google.Protobuf.dll",
+        "lib/netstandard2.0/Google.Protobuf.pdb",
+        "lib/netstandard2.0/Google.Protobuf.xml"
+      ]
+    },
+    "Google.Protobuf.Tools/3.27.2": {
+      "sha512": "T4/hN7t+FKc2HVB7eU8EkDzgepZFgdZWSy/Ro249FFHuOHczCu8MRzEsFUEurTlYX+SWva8dWnSJUGJmkqZ8Uw==",
+      "type": "package",
+      "path": "google.protobuf.tools/3.27.2",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "build/Google.Protobuf.Tools.targets",
+        "buildCrossTargeting/Google.Protobuf.Tools.targets",
+        "google.protobuf.tools.3.27.2.nupkg.sha512",
+        "google.protobuf.tools.nuspec",
+        "tools/google/protobuf/any.proto",
+        "tools/google/protobuf/api.proto",
+        "tools/google/protobuf/descriptor.proto",
+        "tools/google/protobuf/duration.proto",
+        "tools/google/protobuf/empty.proto",
+        "tools/google/protobuf/field_mask.proto",
+        "tools/google/protobuf/source_context.proto",
+        "tools/google/protobuf/struct.proto",
+        "tools/google/protobuf/timestamp.proto",
+        "tools/google/protobuf/type.proto",
+        "tools/google/protobuf/wrappers.proto",
+        "tools/linux_x64/protoc",
+        "tools/linux_x86/protoc",
+        "tools/macosx_x64/protoc",
+        "tools/windows_x64/protoc.exe",
+        "tools/windows_x86/protoc.exe"
+      ]
+    },
+    "HarfBuzzSharp/7.3.0.2": {
+      "sha512": "0tCd6HyCmNsX/DniCp2b00fo0xPbdNwKOs9BxxyT8oOOuMlWjcSFwzONKyeckCKVBFEsbSmsAHPDTqxoSDwZMg==",
+      "type": "package",
+      "path": "harfbuzzsharp/7.3.0.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.txt",
+        "THIRD-PARTY-NOTICES.txt",
+        "harfbuzzsharp.7.3.0.2.nupkg.sha512",
+        "harfbuzzsharp.nuspec",
+        "lib/monoandroid1.0/HarfBuzzSharp.dll",
+        "lib/monoandroid1.0/HarfBuzzSharp.pdb",
+        "lib/monoandroid1.0/HarfBuzzSharp.xml",
+        "lib/net462/HarfBuzzSharp.dll",
+        "lib/net462/HarfBuzzSharp.pdb",
+        "lib/net462/HarfBuzzSharp.xml",
+        "lib/net6.0-android30.0/HarfBuzzSharp.dll",
+        "lib/net6.0-android30.0/HarfBuzzSharp.pdb",
+        "lib/net6.0-android30.0/HarfBuzzSharp.xml",
+        "lib/net6.0-ios13.6/HarfBuzzSharp.dll",
+        "lib/net6.0-ios13.6/HarfBuzzSharp.pdb",
+        "lib/net6.0-ios13.6/HarfBuzzSharp.xml",
+        "lib/net6.0-maccatalyst13.5/HarfBuzzSharp.dll",
+        "lib/net6.0-maccatalyst13.5/HarfBuzzSharp.pdb",
+        "lib/net6.0-maccatalyst13.5/HarfBuzzSharp.xml",
+        "lib/net6.0-macos10.15/HarfBuzzSharp.dll",
+        "lib/net6.0-macos10.15/HarfBuzzSharp.pdb",
+        "lib/net6.0-macos10.15/HarfBuzzSharp.xml",
+        "lib/net6.0-tvos13.4/HarfBuzzSharp.dll",
+        "lib/net6.0-tvos13.4/HarfBuzzSharp.pdb",
+        "lib/net6.0-tvos13.4/HarfBuzzSharp.xml",
+        "lib/net6.0/HarfBuzzSharp.dll",
+        "lib/net6.0/HarfBuzzSharp.pdb",
+        "lib/net6.0/HarfBuzzSharp.xml",
+        "lib/netcoreapp3.1/HarfBuzzSharp.dll",
+        "lib/netcoreapp3.1/HarfBuzzSharp.pdb",
+        "lib/netcoreapp3.1/HarfBuzzSharp.xml",
+        "lib/netstandard1.3/HarfBuzzSharp.dll",
+        "lib/netstandard1.3/HarfBuzzSharp.pdb",
+        "lib/netstandard1.3/HarfBuzzSharp.xml",
+        "lib/netstandard2.0/HarfBuzzSharp.dll",
+        "lib/netstandard2.0/HarfBuzzSharp.pdb",
+        "lib/netstandard2.0/HarfBuzzSharp.xml",
+        "lib/netstandard2.1/HarfBuzzSharp.dll",
+        "lib/netstandard2.1/HarfBuzzSharp.pdb",
+        "lib/netstandard2.1/HarfBuzzSharp.xml",
+        "lib/tizen40/HarfBuzzSharp.dll",
+        "lib/tizen40/HarfBuzzSharp.pdb",
+        "lib/tizen40/HarfBuzzSharp.xml",
+        "lib/uap10.0.10240/HarfBuzzSharp.dll",
+        "lib/uap10.0.10240/HarfBuzzSharp.pdb",
+        "lib/uap10.0.10240/HarfBuzzSharp.xml",
+        "lib/uap10.0.16299/HarfBuzzSharp.dll",
+        "lib/uap10.0.16299/HarfBuzzSharp.pdb",
+        "lib/uap10.0.16299/HarfBuzzSharp.xml",
+        "lib/xamarinios1.0/HarfBuzzSharp.dll",
+        "lib/xamarinios1.0/HarfBuzzSharp.pdb",
+        "lib/xamarinios1.0/HarfBuzzSharp.xml",
+        "lib/xamarinmac2.0/HarfBuzzSharp.dll",
+        "lib/xamarinmac2.0/HarfBuzzSharp.pdb",
+        "lib/xamarinmac2.0/HarfBuzzSharp.xml",
+        "lib/xamarintvos1.0/HarfBuzzSharp.dll",
+        "lib/xamarintvos1.0/HarfBuzzSharp.pdb",
+        "lib/xamarintvos1.0/HarfBuzzSharp.xml",
+        "lib/xamarinwatchos1.0/HarfBuzzSharp.dll",
+        "lib/xamarinwatchos1.0/HarfBuzzSharp.pdb",
+        "lib/xamarinwatchos1.0/HarfBuzzSharp.xml"
+      ]
+    },
+    "HarfBuzzSharp.NativeAssets.Linux/7.3.0.2": {
+      "sha512": "aKa5J1RqjXKAtdcZJp5wjC78klfBIzJHM6CneN76lFmQ9LLRJA9Oa0TkIDaV8lVLDKMAy5fCKHXFlXUK1YfL/g==",
+      "type": "package",
+      "path": "harfbuzzsharp.nativeassets.linux/7.3.0.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.txt",
+        "THIRD-PARTY-NOTICES.txt",
+        "build/net462/HarfBuzzSharp.NativeAssets.Linux.targets",
+        "buildTransitive/net462/HarfBuzzSharp.NativeAssets.Linux.targets",
+        "harfbuzzsharp.nativeassets.linux.7.3.0.2.nupkg.sha512",
+        "harfbuzzsharp.nativeassets.linux.nuspec",
+        "lib/net462/_._",
+        "lib/net6.0/_._",
+        "lib/netcoreapp3.1/_._",
+        "lib/netstandard1.3/_._",
+        "runtimes/linux-arm/native/libHarfBuzzSharp.so",
+        "runtimes/linux-arm64/native/libHarfBuzzSharp.so",
+        "runtimes/linux-musl-x64/native/libHarfBuzzSharp.so",
+        "runtimes/linux-x64/native/libHarfBuzzSharp.so"
+      ]
+    },
+    "HarfBuzzSharp.NativeAssets.macOS/7.3.0.2": {
+      "sha512": "nycYH/WLJ6ogm+I+QSFCdPJsdxSb5GANWYbQyp1vsd/KjXN56RVUJWPhbgP2GKb/Y7mrsHM7EProqVXlO/EMsA==",
+      "type": "package",
+      "path": "harfbuzzsharp.nativeassets.macos/7.3.0.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.txt",
+        "THIRD-PARTY-NOTICES.txt",
+        "build/net462/HarfBuzzSharp.NativeAssets.macOS.targets",
+        "build/net6.0-macos10.15/HarfBuzzSharp.NativeAssets.macOS.targets",
+        "build/xamarinmac2.0/HarfBuzzSharp.NativeAssets.macOS.targets",
+        "buildTransitive/net462/HarfBuzzSharp.NativeAssets.macOS.targets",
+        "buildTransitive/net6.0-macos10.15/HarfBuzzSharp.NativeAssets.macOS.targets",
+        "buildTransitive/xamarinmac2.0/HarfBuzzSharp.NativeAssets.macOS.targets",
+        "harfbuzzsharp.nativeassets.macos.7.3.0.2.nupkg.sha512",
+        "harfbuzzsharp.nativeassets.macos.nuspec",
+        "lib/net462/_._",
+        "lib/net6.0-macos10.15/_._",
+        "lib/net6.0/_._",
+        "lib/netcoreapp3.1/_._",
+        "lib/netstandard1.3/_._",
+        "lib/xamarinmac2.0/_._",
+        "runtimes/osx/native/libHarfBuzzSharp.dylib"
+      ]
+    },
+    "HarfBuzzSharp.NativeAssets.WebAssembly/7.3.0.2": {
+      "sha512": "pR6H16NOAjIhfXomYsgN5anGbOHSfIA8z0RoWEVx8vgLySxz9Jie4DnQ/paWTh5MTtBC8XKkTUI7uKMXcq/Pxw==",
+      "type": "package",
+      "path": "harfbuzzsharp.nativeassets.webassembly/7.3.0.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.txt",
+        "THIRD-PARTY-NOTICES.txt",
+        "build/netstandard1.0/HarfBuzzSharp.NativeAssets.WebAssembly.props",
+        "build/netstandard1.0/HarfBuzzSharp.NativeAssets.WebAssembly.targets",
+        "build/netstandard1.0/libHarfBuzzSharp.a/2.0.23/libHarfBuzzSharp.a",
+        "build/netstandard1.0/libHarfBuzzSharp.a/2.0.6/libHarfBuzzSharp.a",
+        "build/netstandard1.0/libHarfBuzzSharp.a/3.1.12/mt,simd/libHarfBuzzSharp.a",
+        "build/netstandard1.0/libHarfBuzzSharp.a/3.1.12/mt/libHarfBuzzSharp.a",
+        "build/netstandard1.0/libHarfBuzzSharp.a/3.1.12/simd/libHarfBuzzSharp.a",
+        "build/netstandard1.0/libHarfBuzzSharp.a/3.1.12/st/libHarfBuzzSharp.a",
+        "build/netstandard1.0/libHarfBuzzSharp.a/3.1.34/mt/libHarfBuzzSharp.a",
+        "build/netstandard1.0/libHarfBuzzSharp.a/3.1.34/simd,mt/libHarfBuzzSharp.a",
+        "build/netstandard1.0/libHarfBuzzSharp.a/3.1.34/simd,st/libHarfBuzzSharp.a",
+        "build/netstandard1.0/libHarfBuzzSharp.a/3.1.34/st/libHarfBuzzSharp.a",
+        "build/netstandard1.0/libHarfBuzzSharp.a/3.1.7/libHarfBuzzSharp.a",
+        "buildTransitive/netstandard1.0/HarfBuzzSharp.NativeAssets.WebAssembly.props",
+        "buildTransitive/netstandard1.0/HarfBuzzSharp.NativeAssets.WebAssembly.targets",
+        "harfbuzzsharp.nativeassets.webassembly.7.3.0.2.nupkg.sha512",
+        "harfbuzzsharp.nativeassets.webassembly.nuspec",
+        "lib/netstandard1.0/_._"
+      ]
+    },
+    "HarfBuzzSharp.NativeAssets.Win32/7.3.0.2": {
+      "sha512": "DpF9JBzwws2dupOLnjME65hxQWWbN/GD40AoTkwB4S05WANvxo3n81AnQJKxWDCnrWfWhLPB36OF27TvEqzb/A==",
+      "type": "package",
+      "path": "harfbuzzsharp.nativeassets.win32/7.3.0.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.txt",
+        "THIRD-PARTY-NOTICES.txt",
+        "build/net462/HarfBuzzSharp.NativeAssets.Win32.targets",
+        "buildTransitive/net462/HarfBuzzSharp.NativeAssets.Win32.targets",
+        "harfbuzzsharp.nativeassets.win32.7.3.0.2.nupkg.sha512",
+        "harfbuzzsharp.nativeassets.win32.nuspec",
+        "lib/net462/_._",
+        "lib/net6.0/_._",
+        "lib/netcoreapp3.1/_._",
+        "lib/netstandard1.3/_._",
+        "runtimes/win-arm64/native/libHarfBuzzSharp.dll",
+        "runtimes/win-x64/native/libHarfBuzzSharp.dll",
+        "runtimes/win-x86/native/libHarfBuzzSharp.dll"
+      ]
+    },
+    "MicroCom.Runtime/0.11.0": {
+      "sha512": "MEnrZ3UIiH40hjzMDsxrTyi8dtqB5ziv3iBeeU4bXsL/7NLSal9F1lZKpK+tfBRnUoDSdtcW3KufE4yhATOMCA==",
+      "type": "package",
+      "path": "microcom.runtime/0.11.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net5.0/MicroCom.Runtime.dll",
+        "lib/netstandard2.0/MicroCom.Runtime.dll",
+        "microcom.runtime.0.11.0.nupkg.sha512",
+        "microcom.runtime.nuspec"
+      ]
+    },
+    "Microsoft.Extensions.DependencyInjection/10.0.10": {
+      "sha512": "ANyvsgkNBRvcJh2XLgn8veGmajf+8m0AbKK+HPWdRL1yraSNVVSmQhFntLtdz/C795jxqqup+k05cs/3jZQPOA==",
+      "type": "package",
+      "path": "microsoft.extensions.dependencyinjection/10.0.10",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "PACKAGE.md",
+        "THIRD-PARTY-NOTICES.TXT",
+        "buildTransitive/net461/Microsoft.Extensions.DependencyInjection.targets",
+        "buildTransitive/net462/_._",
+        "buildTransitive/net8.0/_._",
+        "buildTransitive/netcoreapp2.0/Microsoft.Extensions.DependencyInjection.targets",
+        "lib/net10.0/Microsoft.Extensions.DependencyInjection.dll",
+        "lib/net10.0/Microsoft.Extensions.DependencyInjection.xml",
+        "lib/net462/Microsoft.Extensions.DependencyInjection.dll",
+        "lib/net462/Microsoft.Extensions.DependencyInjection.xml",
+        "lib/net8.0/Microsoft.Extensions.DependencyInjection.dll",
+        "lib/net8.0/Microsoft.Extensions.DependencyInjection.xml",
+        "lib/net9.0/Microsoft.Extensions.DependencyInjection.dll",
+        "lib/net9.0/Microsoft.Extensions.DependencyInjection.xml",
+        "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.xml",
+        "lib/netstandard2.1/Microsoft.Extensions.DependencyInjection.dll",
+        "lib/netstandard2.1/Microsoft.Extensions.DependencyInjection.xml",
+        "microsoft.extensions.dependencyinjection.10.0.10.nupkg.sha512",
+        "microsoft.extensions.dependencyinjection.nuspec",
+        "useSharedDesignerContext.txt"
+      ]
+    },
+    "Microsoft.Extensions.DependencyInjection.Abstractions/10.0.10": {
+      "sha512": "z/2xXlFw2aLGjHyEm6E0tQ+In6VfzQzTrtArbQ2c0TQE16ZbyDCMGPvaUT9I0s8rgy9sRWlU2P9waW37qV04qA==",
+      "type": "package",
+      "path": "microsoft.extensions.dependencyinjection.abstractions/10.0.10",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "PACKAGE.md",
+        "THIRD-PARTY-NOTICES.TXT",
+        "buildTransitive/net461/Microsoft.Extensions.DependencyInjection.Abstractions.targets",
+        "buildTransitive/net462/_._",
+        "buildTransitive/net8.0/_._",
+        "buildTransitive/netcoreapp2.0/Microsoft.Extensions.DependencyInjection.Abstractions.targets",
+        "lib/net10.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll",
+        "lib/net10.0/Microsoft.Extensions.DependencyInjection.Abstractions.xml",
+        "lib/net462/Microsoft.Extensions.DependencyInjection.Abstractions.dll",
+        "lib/net462/Microsoft.Extensions.DependencyInjection.Abstractions.xml",
+        "lib/net8.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll",
+        "lib/net8.0/Microsoft.Extensions.DependencyInjection.Abstractions.xml",
+        "lib/net9.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll",
+        "lib/net9.0/Microsoft.Extensions.DependencyInjection.Abstractions.xml",
+        "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.xml",
+        "lib/netstandard2.1/Microsoft.Extensions.DependencyInjection.Abstractions.dll",
+        "lib/netstandard2.1/Microsoft.Extensions.DependencyInjection.Abstractions.xml",
+        "microsoft.extensions.dependencyinjection.abstractions.10.0.10.nupkg.sha512",
+        "microsoft.extensions.dependencyinjection.abstractions.nuspec",
+        "useSharedDesignerContext.txt"
+      ]
+    },
+    "Microsoft.Extensions.Logging/10.0.10": {
+      "sha512": "Tf6z5HsL0VDYRTfvsoNrTGHGheCwkTsZBA2FFh5ATJUbkAwug+FFNISJK2gjpUNemlAOoWllAK52HOWCjto3EQ==",
+      "type": "package",
+      "path": "microsoft.extensions.logging/10.0.10",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "PACKAGE.md",
+        "THIRD-PARTY-NOTICES.TXT",
+        "buildTransitive/net461/Microsoft.Extensions.Logging.targets",
+        "buildTransitive/net462/_._",
+        "buildTransitive/net8.0/_._",
+        "buildTransitive/netcoreapp2.0/Microsoft.Extensions.Logging.targets",
+        "lib/net10.0/Microsoft.Extensions.Logging.dll",
+        "lib/net10.0/Microsoft.Extensions.Logging.xml",
+        "lib/net462/Microsoft.Extensions.Logging.dll",
+        "lib/net462/Microsoft.Extensions.Logging.xml",
+        "lib/net8.0/Microsoft.Extensions.Logging.dll",
+        "lib/net8.0/Microsoft.Extensions.Logging.xml",
+        "lib/net9.0/Microsoft.Extensions.Logging.dll",
+        "lib/net9.0/Microsoft.Extensions.Logging.xml",
+        "lib/netstandard2.0/Microsoft.Extensions.Logging.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.Logging.xml",
+        "lib/netstandard2.1/Microsoft.Extensions.Logging.dll",
+        "lib/netstandard2.1/Microsoft.Extensions.Logging.xml",
+        "microsoft.extensions.logging.10.0.10.nupkg.sha512",
+        "microsoft.extensions.logging.nuspec",
+        "useSharedDesignerContext.txt"
+      ]
+    },
+    "Microsoft.Extensions.Logging.Abstractions/10.0.10": {
+      "sha512": "zkFxGYUvdxAvIKTyXHrmW+Sux53D4SezD9dMyZ6hrwwzPQJNuwCRy1f5W7AvYTqacEGhWF2XderRQG1OvbV8og==",
+      "type": "package",
+      "path": "microsoft.extensions.logging.abstractions/10.0.10",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "PACKAGE.md",
+        "THIRD-PARTY-NOTICES.TXT",
+        "analyzers/dotnet/roslyn3.11/cs/Microsoft.Extensions.Logging.Generators.dll",
+        "analyzers/dotnet/roslyn3.11/cs/cs/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/de/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/es/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/fr/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/it/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/ja/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/ko/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/pl/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/pt-BR/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/ru/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/tr/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/zh-Hans/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn3.11/cs/zh-Hant/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/Microsoft.Extensions.Logging.Generators.dll",
+        "analyzers/dotnet/roslyn4.0/cs/cs/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/de/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/es/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/fr/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/it/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/ja/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/ko/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/pl/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/pt-BR/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/ru/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/tr/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/zh-Hans/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn4.0/cs/zh-Hant/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn4.4/cs/Microsoft.Extensions.Logging.Generators.dll",
+        "analyzers/dotnet/roslyn4.4/cs/cs/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn4.4/cs/de/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn4.4/cs/es/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn4.4/cs/fr/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn4.4/cs/it/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn4.4/cs/ja/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn4.4/cs/ko/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn4.4/cs/pl/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn4.4/cs/pt-BR/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn4.4/cs/ru/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn4.4/cs/tr/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn4.4/cs/zh-Hans/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "analyzers/dotnet/roslyn4.4/cs/zh-Hant/Microsoft.Extensions.Logging.Generators.resources.dll",
+        "buildTransitive/net461/Microsoft.Extensions.Logging.Abstractions.targets",
+        "buildTransitive/net462/Microsoft.Extensions.Logging.Abstractions.targets",
+        "buildTransitive/net8.0/Microsoft.Extensions.Logging.Abstractions.targets",
+        "buildTransitive/netcoreapp2.0/Microsoft.Extensions.Logging.Abstractions.targets",
+        "buildTransitive/netstandard2.0/Microsoft.Extensions.Logging.Abstractions.targets",
+        "lib/net10.0/Microsoft.Extensions.Logging.Abstractions.dll",
+        "lib/net10.0/Microsoft.Extensions.Logging.Abstractions.xml",
+        "lib/net462/Microsoft.Extensions.Logging.Abstractions.dll",
+        "lib/net462/Microsoft.Extensions.Logging.Abstractions.xml",
+        "lib/net8.0/Microsoft.Extensions.Logging.Abstractions.dll",
+        "lib/net8.0/Microsoft.Extensions.Logging.Abstractions.xml",
+        "lib/net9.0/Microsoft.Extensions.Logging.Abstractions.dll",
+        "lib/net9.0/Microsoft.Extensions.Logging.Abstractions.xml",
+        "lib/netstandard2.0/Microsoft.Extensions.Logging.Abstractions.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.Logging.Abstractions.xml",
+        "microsoft.extensions.logging.abstractions.10.0.10.nupkg.sha512",
+        "microsoft.extensions.logging.abstractions.nuspec",
+        "useSharedDesignerContext.txt"
+      ]
+    },
+    "Microsoft.Extensions.Logging.Debug/10.0.10": {
+      "sha512": "8+TZBnV5fgBXoVNJ5ROSErUwYogk4hOgV7c2HWK1u5cqKGmiUTUn7+KqZ35iQu8e/B7Ykccyz5OTjdXcidNZ9g==",
+      "type": "package",
+      "path": "microsoft.extensions.logging.debug/10.0.10",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "PACKAGE.md",
+        "THIRD-PARTY-NOTICES.TXT",
+        "buildTransitive/net461/Microsoft.Extensions.Logging.Debug.targets",
+        "buildTransitive/net462/_._",
+        "buildTransitive/net8.0/_._",
+        "buildTransitive/netcoreapp2.0/Microsoft.Extensions.Logging.Debug.targets",
+        "lib/net10.0/Microsoft.Extensions.Logging.Debug.dll",
+        "lib/net10.0/Microsoft.Extensions.Logging.Debug.xml",
+        "lib/net462/Microsoft.Extensions.Logging.Debug.dll",
+        "lib/net462/Microsoft.Extensions.Logging.Debug.xml",
+        "lib/net8.0/Microsoft.Extensions.Logging.Debug.dll",
+        "lib/net8.0/Microsoft.Extensions.Logging.Debug.xml",
+        "lib/net9.0/Microsoft.Extensions.Logging.Debug.dll",
+        "lib/net9.0/Microsoft.Extensions.Logging.Debug.xml",
+        "lib/netstandard2.0/Microsoft.Extensions.Logging.Debug.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.Logging.Debug.xml",
+        "microsoft.extensions.logging.debug.10.0.10.nupkg.sha512",
+        "microsoft.extensions.logging.debug.nuspec",
+        "useSharedDesignerContext.txt"
+      ]
+    },
+    "Microsoft.Extensions.Options/10.0.10": {
+      "sha512": "srnhnk7nE8krBiIXp71LvBmKBtraBONWSRzdjJgRv1Ko9Mp8IVNqv4vIS9hGeVteBig8aQkva9ZG+sC+o5sVcA==",
+      "type": "package",
+      "path": "microsoft.extensions.options/10.0.10",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "PACKAGE.md",
+        "THIRD-PARTY-NOTICES.TXT",
+        "analyzers/dotnet/roslyn4.4/cs/Microsoft.Extensions.Options.SourceGeneration.dll",
+        "analyzers/dotnet/roslyn4.4/cs/cs/Microsoft.Extensions.Options.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.4/cs/de/Microsoft.Extensions.Options.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.4/cs/es/Microsoft.Extensions.Options.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.4/cs/fr/Microsoft.Extensions.Options.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.4/cs/it/Microsoft.Extensions.Options.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.4/cs/ja/Microsoft.Extensions.Options.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.4/cs/ko/Microsoft.Extensions.Options.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.4/cs/pl/Microsoft.Extensions.Options.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.4/cs/pt-BR/Microsoft.Extensions.Options.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.4/cs/ru/Microsoft.Extensions.Options.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.4/cs/tr/Microsoft.Extensions.Options.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.4/cs/zh-Hans/Microsoft.Extensions.Options.SourceGeneration.resources.dll",
+        "analyzers/dotnet/roslyn4.4/cs/zh-Hant/Microsoft.Extensions.Options.SourceGeneration.resources.dll",
+        "buildTransitive/net461/Microsoft.Extensions.Options.targets",
+        "buildTransitive/net462/Microsoft.Extensions.Options.targets",
+        "buildTransitive/net8.0/Microsoft.Extensions.Options.targets",
+        "buildTransitive/netcoreapp2.0/Microsoft.Extensions.Options.targets",
+        "buildTransitive/netstandard2.0/Microsoft.Extensions.Options.targets",
+        "lib/net10.0/Microsoft.Extensions.Options.dll",
+        "lib/net10.0/Microsoft.Extensions.Options.xml",
+        "lib/net462/Microsoft.Extensions.Options.dll",
+        "lib/net462/Microsoft.Extensions.Options.xml",
+        "lib/net8.0/Microsoft.Extensions.Options.dll",
+        "lib/net8.0/Microsoft.Extensions.Options.xml",
+        "lib/net9.0/Microsoft.Extensions.Options.dll",
+        "lib/net9.0/Microsoft.Extensions.Options.xml",
+        "lib/netstandard2.0/Microsoft.Extensions.Options.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.Options.xml",
+        "lib/netstandard2.1/Microsoft.Extensions.Options.dll",
+        "lib/netstandard2.1/Microsoft.Extensions.Options.xml",
+        "microsoft.extensions.options.10.0.10.nupkg.sha512",
+        "microsoft.extensions.options.nuspec",
+        "useSharedDesignerContext.txt"
+      ]
+    },
+    "Microsoft.Extensions.Primitives/10.0.10": {
+      "sha512": "5wu/GrYVd8mG2DVUw3vFJzF+O336TyTGg/Kmcgw9bfwYhCoFiV5lR5QeEmKecJyrW4W54nMfD3p3589E8a7czQ==",
+      "type": "package",
+      "path": "microsoft.extensions.primitives/10.0.10",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "PACKAGE.md",
+        "THIRD-PARTY-NOTICES.TXT",
+        "buildTransitive/net461/Microsoft.Extensions.Primitives.targets",
+        "buildTransitive/net462/_._",
+        "buildTransitive/net8.0/_._",
+        "buildTransitive/netcoreapp2.0/Microsoft.Extensions.Primitives.targets",
+        "lib/net10.0/Microsoft.Extensions.Primitives.dll",
+        "lib/net10.0/Microsoft.Extensions.Primitives.xml",
+        "lib/net462/Microsoft.Extensions.Primitives.dll",
+        "lib/net462/Microsoft.Extensions.Primitives.xml",
+        "lib/net8.0/Microsoft.Extensions.Primitives.dll",
+        "lib/net8.0/Microsoft.Extensions.Primitives.xml",
+        "lib/net9.0/Microsoft.Extensions.Primitives.dll",
+        "lib/net9.0/Microsoft.Extensions.Primitives.xml",
+        "lib/netstandard2.0/Microsoft.Extensions.Primitives.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.Primitives.xml",
+        "microsoft.extensions.primitives.10.0.10.nupkg.sha512",
+        "microsoft.extensions.primitives.nuspec",
+        "useSharedDesignerContext.txt"
+      ]
+    },
+    "Microsoft.IdentityModel.Abstractions/8.14.0": {
+      "sha512": "iwbCpSjD3ehfTwBhtSNEtKPK0ICun6ov7Ibx6ISNA9bfwIyzI2Siwyi9eJFCJBwxowK9xcA1mj+jBWiigeqgcQ==",
+      "type": "package",
+      "path": "microsoft.identitymodel.abstractions/8.14.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "lib/net462/Microsoft.IdentityModel.Abstractions.dll",
+        "lib/net462/Microsoft.IdentityModel.Abstractions.xml",
+        "lib/net472/Microsoft.IdentityModel.Abstractions.dll",
+        "lib/net472/Microsoft.IdentityModel.Abstractions.xml",
+        "lib/net6.0/Microsoft.IdentityModel.Abstractions.dll",
+        "lib/net6.0/Microsoft.IdentityModel.Abstractions.xml",
+        "lib/net8.0/Microsoft.IdentityModel.Abstractions.dll",
+        "lib/net8.0/Microsoft.IdentityModel.Abstractions.xml",
+        "lib/net9.0/Microsoft.IdentityModel.Abstractions.dll",
+        "lib/net9.0/Microsoft.IdentityModel.Abstractions.xml",
+        "lib/netstandard2.0/Microsoft.IdentityModel.Abstractions.dll",
+        "lib/netstandard2.0/Microsoft.IdentityModel.Abstractions.xml",
+        "microsoft.identitymodel.abstractions.8.14.0.nupkg.sha512",
+        "microsoft.identitymodel.abstractions.nuspec"
+      ]
+    },
+    "Microsoft.IdentityModel.JsonWebTokens/8.14.0": {
+      "sha512": "4jOpiA4THdtpLyMdAb24dtj7+6GmvhOhxf5XHLYWmPKF8ApEnApal1UnJsKO4HxUWRXDA6C4WQVfYyqsRhpNpQ==",
+      "type": "package",
+      "path": "microsoft.identitymodel.jsonwebtokens/8.14.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "lib/net462/Microsoft.IdentityModel.JsonWebTokens.dll",
+        "lib/net462/Microsoft.IdentityModel.JsonWebTokens.xml",
+        "lib/net472/Microsoft.IdentityModel.JsonWebTokens.dll",
+        "lib/net472/Microsoft.IdentityModel.JsonWebTokens.xml",
+        "lib/net6.0/Microsoft.IdentityModel.JsonWebTokens.dll",
+        "lib/net6.0/Microsoft.IdentityModel.JsonWebTokens.xml",
+        "lib/net8.0/Microsoft.IdentityModel.JsonWebTokens.dll",
+        "lib/net8.0/Microsoft.IdentityModel.JsonWebTokens.xml",
+        "lib/net9.0/Microsoft.IdentityModel.JsonWebTokens.dll",
+        "lib/net9.0/Microsoft.IdentityModel.JsonWebTokens.xml",
+        "lib/netstandard2.0/Microsoft.IdentityModel.JsonWebTokens.dll",
+        "lib/netstandard2.0/Microsoft.IdentityModel.JsonWebTokens.xml",
+        "microsoft.identitymodel.jsonwebtokens.8.14.0.nupkg.sha512",
+        "microsoft.identitymodel.jsonwebtokens.nuspec"
+      ]
+    },
+    "Microsoft.IdentityModel.Logging/8.14.0": {
+      "sha512": "eqqnemdW38CKZEHS6diA50BV94QICozDZEvSrsvN3SJXUFwVB9gy+/oz76gldP7nZliA16IglXjXTCTdmU/Ejg==",
+      "type": "package",
+      "path": "microsoft.identitymodel.logging/8.14.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "lib/net462/Microsoft.IdentityModel.Logging.dll",
+        "lib/net462/Microsoft.IdentityModel.Logging.xml",
+        "lib/net472/Microsoft.IdentityModel.Logging.dll",
+        "lib/net472/Microsoft.IdentityModel.Logging.xml",
+        "lib/net6.0/Microsoft.IdentityModel.Logging.dll",
+        "lib/net6.0/Microsoft.IdentityModel.Logging.xml",
+        "lib/net8.0/Microsoft.IdentityModel.Logging.dll",
+        "lib/net8.0/Microsoft.IdentityModel.Logging.xml",
+        "lib/net9.0/Microsoft.IdentityModel.Logging.dll",
+        "lib/net9.0/Microsoft.IdentityModel.Logging.xml",
+        "lib/netstandard2.0/Microsoft.IdentityModel.Logging.dll",
+        "lib/netstandard2.0/Microsoft.IdentityModel.Logging.xml",
+        "microsoft.identitymodel.logging.8.14.0.nupkg.sha512",
+        "microsoft.identitymodel.logging.nuspec"
+      ]
+    },
+    "Microsoft.IdentityModel.Tokens/8.14.0": {
+      "sha512": "lKIZiBiGd36k02TCdMHp1KlNWisyIvQxcYJvIkz7P4gSQ9zi8dgh6S5Grj8NNG7HWYIPfQymGyoZ6JB5d1Lo1g==",
+      "type": "package",
+      "path": "microsoft.identitymodel.tokens/8.14.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "lib/net462/Microsoft.IdentityModel.Tokens.dll",
+        "lib/net462/Microsoft.IdentityModel.Tokens.xml",
+        "lib/net472/Microsoft.IdentityModel.Tokens.dll",
+        "lib/net472/Microsoft.IdentityModel.Tokens.xml",
+        "lib/net6.0/Microsoft.IdentityModel.Tokens.dll",
+        "lib/net6.0/Microsoft.IdentityModel.Tokens.xml",
+        "lib/net8.0/Microsoft.IdentityModel.Tokens.dll",
+        "lib/net8.0/Microsoft.IdentityModel.Tokens.xml",
+        "lib/net9.0/Microsoft.IdentityModel.Tokens.dll",
+        "lib/net9.0/Microsoft.IdentityModel.Tokens.xml",
+        "lib/netstandard2.0/Microsoft.IdentityModel.Tokens.dll",
+        "lib/netstandard2.0/Microsoft.IdentityModel.Tokens.xml",
+        "microsoft.identitymodel.tokens.8.14.0.nupkg.sha512",
+        "microsoft.identitymodel.tokens.nuspec"
+      ]
+    },
+    "SkiaSharp/2.88.8": {
+      "sha512": "bRkp3uKp5ZI8gXYQT57uKwil1uobb2p8c69n7v5evlB/2JNcMAXVcw9DZAP5Ig3WSvgzGm2YSn27UVeOi05NlA==",
+      "type": "package",
+      "path": "skiasharp/2.88.8",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.txt",
+        "THIRD-PARTY-NOTICES.txt",
+        "interactive-extensions/dotnet/SkiaSharp.DotNet.Interactive.dll",
+        "lib/monoandroid1.0/SkiaSharp.dll",
+        "lib/monoandroid1.0/SkiaSharp.pdb",
+        "lib/monoandroid1.0/SkiaSharp.xml",
+        "lib/net462/SkiaSharp.dll",
+        "lib/net462/SkiaSharp.pdb",
+        "lib/net462/SkiaSharp.xml",
+        "lib/net6.0-android30.0/SkiaSharp.dll",
+        "lib/net6.0-android30.0/SkiaSharp.pdb",
+        "lib/net6.0-android30.0/SkiaSharp.xml",
+        "lib/net6.0-ios13.6/SkiaSharp.dll",
+        "lib/net6.0-ios13.6/SkiaSharp.pdb",
+        "lib/net6.0-ios13.6/SkiaSharp.xml",
+        "lib/net6.0-maccatalyst13.5/SkiaSharp.dll",
+        "lib/net6.0-maccatalyst13.5/SkiaSharp.pdb",
+        "lib/net6.0-maccatalyst13.5/SkiaSharp.xml",
+        "lib/net6.0-macos10.15/SkiaSharp.dll",
+        "lib/net6.0-macos10.15/SkiaSharp.pdb",
+        "lib/net6.0-macos10.15/SkiaSharp.xml",
+        "lib/net6.0-tizen7.0/SkiaSharp.dll",
+        "lib/net6.0-tizen7.0/SkiaSharp.pdb",
+        "lib/net6.0-tizen7.0/SkiaSharp.xml",
+        "lib/net6.0-tvos13.4/SkiaSharp.dll",
+        "lib/net6.0-tvos13.4/SkiaSharp.pdb",
+        "lib/net6.0-tvos13.4/SkiaSharp.xml",
+        "lib/net6.0/SkiaSharp.dll",
+        "lib/net6.0/SkiaSharp.pdb",
+        "lib/net6.0/SkiaSharp.xml",
+        "lib/netcoreapp3.1/SkiaSharp.dll",
+        "lib/netcoreapp3.1/SkiaSharp.pdb",
+        "lib/netcoreapp3.1/SkiaSharp.xml",
+        "lib/netstandard1.3/SkiaSharp.dll",
+        "lib/netstandard1.3/SkiaSharp.pdb",
+        "lib/netstandard1.3/SkiaSharp.xml",
+        "lib/netstandard2.0/SkiaSharp.dll",
+        "lib/netstandard2.0/SkiaSharp.pdb",
+        "lib/netstandard2.0/SkiaSharp.xml",
+        "lib/netstandard2.1/SkiaSharp.dll",
+        "lib/netstandard2.1/SkiaSharp.pdb",
+        "lib/netstandard2.1/SkiaSharp.xml",
+        "lib/tizen40/SkiaSharp.dll",
+        "lib/tizen40/SkiaSharp.pdb",
+        "lib/tizen40/SkiaSharp.xml",
+        "lib/uap10.0.10240/SkiaSharp.dll",
+        "lib/uap10.0.10240/SkiaSharp.pdb",
+        "lib/uap10.0.10240/SkiaSharp.xml",
+        "lib/uap10.0.16299/SkiaSharp.dll",
+        "lib/uap10.0.16299/SkiaSharp.pdb",
+        "lib/uap10.0.16299/SkiaSharp.xml",
+        "lib/xamarinios1.0/SkiaSharp.dll",
+        "lib/xamarinios1.0/SkiaSharp.pdb",
+        "lib/xamarinios1.0/SkiaSharp.xml",
+        "lib/xamarinmac2.0/SkiaSharp.dll",
+        "lib/xamarinmac2.0/SkiaSharp.pdb",
+        "lib/xamarinmac2.0/SkiaSharp.xml",
+        "lib/xamarintvos1.0/SkiaSharp.dll",
+        "lib/xamarintvos1.0/SkiaSharp.pdb",
+        "lib/xamarintvos1.0/SkiaSharp.xml",
+        "lib/xamarinwatchos1.0/SkiaSharp.dll",
+        "lib/xamarinwatchos1.0/SkiaSharp.pdb",
+        "lib/xamarinwatchos1.0/SkiaSharp.xml",
+        "skiasharp.2.88.8.nupkg.sha512",
+        "skiasharp.nuspec"
+      ]
+    },
+    "SkiaSharp.NativeAssets.Linux/2.88.8": {
+      "sha512": "0FO6YA7paNFBMJULvEyecPmCvL9/STvOAi5VOUw2srqJ7pNTbiiZkfl7sulAzcumbWgfzaVjRXYTgMj7SoUnWQ==",
+      "type": "package",
+      "path": "skiasharp.nativeassets.linux/2.88.8",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.txt",
+        "THIRD-PARTY-NOTICES.txt",
+        "build/net462/SkiaSharp.NativeAssets.Linux.targets",
+        "buildTransitive/net462/SkiaSharp.NativeAssets.Linux.targets",
+        "lib/net462/_._",
+        "lib/net6.0/_._",
+        "lib/netcoreapp3.1/_._",
+        "lib/netstandard1.3/_._",
+        "runtimes/linux-arm/native/libSkiaSharp.so",
+        "runtimes/linux-arm64/native/libSkiaSharp.so",
+        "runtimes/linux-musl-x64/native/libSkiaSharp.so",
+        "runtimes/linux-x64/native/libSkiaSharp.so",
+        "skiasharp.nativeassets.linux.2.88.8.nupkg.sha512",
+        "skiasharp.nativeassets.linux.nuspec"
+      ]
+    },
+    "SkiaSharp.NativeAssets.macOS/2.88.8": {
+      "sha512": "6Kn5TSkKlfyS6azWHF3Jk2sW5C4jCE5uSshM/5AbfFrR+5n6qM5XEnz9h4VaVl7LTxBvHvMkuPb/3bpbq0vxTw==",
+      "type": "package",
+      "path": "skiasharp.nativeassets.macos/2.88.8",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.txt",
+        "THIRD-PARTY-NOTICES.txt",
+        "build/net462/SkiaSharp.NativeAssets.macOS.targets",
+        "build/net6.0-macos10.15/SkiaSharp.NativeAssets.macOS.targets",
+        "build/xamarinmac2.0/SkiaSharp.NativeAssets.macOS.targets",
+        "buildTransitive/net462/SkiaSharp.NativeAssets.macOS.targets",
+        "buildTransitive/net6.0-macos10.15/SkiaSharp.NativeAssets.macOS.targets",
+        "buildTransitive/xamarinmac2.0/SkiaSharp.NativeAssets.macOS.targets",
+        "lib/net462/_._",
+        "lib/net6.0-macos10.15/_._",
+        "lib/net6.0/_._",
+        "lib/netcoreapp3.1/_._",
+        "lib/netstandard1.3/_._",
+        "lib/xamarinmac2.0/_._",
+        "runtimes/osx/native/libSkiaSharp.dylib",
+        "skiasharp.nativeassets.macos.2.88.8.nupkg.sha512",
+        "skiasharp.nativeassets.macos.nuspec"
+      ]
+    },
+    "SkiaSharp.NativeAssets.WebAssembly/2.88.8": {
+      "sha512": "S3qRo8c+gVYOyfrdf6FYnjx/ft+gPkb4dNY2IPv5Oy5yNBhDhXhKqHFr9h4+ne6ZU+7D4dbuRQqsIqCo8u1/DA==",
+      "type": "package",
+      "path": "skiasharp.nativeassets.webassembly/2.88.8",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.txt",
+        "THIRD-PARTY-NOTICES.txt",
+        "build/netstandard1.0/SkiaSharp.NativeAssets.WebAssembly.props",
+        "build/netstandard1.0/SkiaSharp.NativeAssets.WebAssembly.targets",
+        "build/netstandard1.0/libSkiaSharp.a/2.0.23/libSkiaSharp.a",
+        "build/netstandard1.0/libSkiaSharp.a/2.0.6/libSkiaSharp.a",
+        "build/netstandard1.0/libSkiaSharp.a/3.1.12/mt,simd/libSkiaSharp.a",
+        "build/netstandard1.0/libSkiaSharp.a/3.1.12/mt/libSkiaSharp.a",
+        "build/netstandard1.0/libSkiaSharp.a/3.1.12/simd/libSkiaSharp.a",
+        "build/netstandard1.0/libSkiaSharp.a/3.1.12/st/libSkiaSharp.a",
+        "build/netstandard1.0/libSkiaSharp.a/3.1.34/mt/libSkiaSharp.a",
+        "build/netstandard1.0/libSkiaSharp.a/3.1.34/simd,mt/libSkiaSharp.a",
+        "build/netstandard1.0/libSkiaSharp.a/3.1.34/simd,st/libSkiaSharp.a",
+        "build/netstandard1.0/libSkiaSharp.a/3.1.34/st/libSkiaSharp.a",
+        "build/netstandard1.0/libSkiaSharp.a/3.1.7/libSkiaSharp.a",
+        "buildTransitive/netstandard1.0/SkiaSharp.NativeAssets.WebAssembly.props",
+        "buildTransitive/netstandard1.0/SkiaSharp.NativeAssets.WebAssembly.targets",
+        "lib/netstandard1.0/_._",
+        "skiasharp.nativeassets.webassembly.2.88.8.nupkg.sha512",
+        "skiasharp.nativeassets.webassembly.nuspec"
+      ]
+    },
+    "SkiaSharp.NativeAssets.Win32/2.88.8": {
+      "sha512": "O9QXoWEXA+6cweR4h3BOnwMz+pO9vL9mXdjLrpDd0w1QzCgWmLQBxa1VgySDITiH7nQndrDG1h6937zm9pLj1Q==",
+      "type": "package",
+      "path": "skiasharp.nativeassets.win32/2.88.8",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.txt",
+        "THIRD-PARTY-NOTICES.txt",
+        "build/net462/SkiaSharp.NativeAssets.Win32.targets",
+        "buildTransitive/net462/SkiaSharp.NativeAssets.Win32.targets",
+        "lib/net462/_._",
+        "lib/net6.0/_._",
+        "lib/netcoreapp3.1/_._",
+        "lib/netstandard1.3/_._",
+        "runtimes/win-arm64/native/libSkiaSharp.dll",
+        "runtimes/win-x64/native/libSkiaSharp.dll",
+        "runtimes/win-x86/native/libSkiaSharp.dll",
+        "skiasharp.nativeassets.win32.2.88.8.nupkg.sha512",
+        "skiasharp.nativeassets.win32.nuspec"
+      ]
+    },
+    "System.CodeDom/8.0.0": {
+      "sha512": "WTlRjL6KWIMr/pAaq3rYqh0TJlzpouaQ/W1eelssHgtlwHAH25jXTkUphTYx9HaIIf7XA6qs/0+YhtLEQRkJ+Q==",
+      "type": "package",
+      "path": "system.codedom/8.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "buildTransitive/net461/System.CodeDom.targets",
+        "buildTransitive/net462/_._",
+        "buildTransitive/net6.0/_._",
+        "buildTransitive/netcoreapp2.0/System.CodeDom.targets",
+        "lib/net462/System.CodeDom.dll",
+        "lib/net462/System.CodeDom.xml",
+        "lib/net6.0/System.CodeDom.dll",
+        "lib/net6.0/System.CodeDom.xml",
+        "lib/net7.0/System.CodeDom.dll",
+        "lib/net7.0/System.CodeDom.xml",
+        "lib/net8.0/System.CodeDom.dll",
+        "lib/net8.0/System.CodeDom.xml",
+        "lib/netstandard2.0/System.CodeDom.dll",
+        "lib/netstandard2.0/System.CodeDom.xml",
+        "system.codedom.8.0.0.nupkg.sha512",
+        "system.codedom.nuspec",
+        "useSharedDesignerContext.txt"
+      ]
+    },
+    "System.Diagnostics.DiagnosticSource/10.0.10": {
+      "sha512": "cjtKi6ERMYWp6b9UTVPcwDT29PjKDtlM3W9OwnWL5abRsI8ku42Q2wqZoLIIXJnT/XF2s2CjuK8Nl4a3mmTxQQ==",
+      "type": "package",
+      "path": "system.diagnostics.diagnosticsource/10.0.10",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.TXT",
+        "buildTransitive/net461/System.Diagnostics.DiagnosticSource.targets",
+        "buildTransitive/net462/_._",
+        "buildTransitive/net8.0/_._",
+        "buildTransitive/netcoreapp2.0/System.Diagnostics.DiagnosticSource.targets",
+        "lib/net10.0/System.Diagnostics.DiagnosticSource.dll",
+        "lib/net10.0/System.Diagnostics.DiagnosticSource.xml",
+        "lib/net462/System.Diagnostics.DiagnosticSource.dll",
+        "lib/net462/System.Diagnostics.DiagnosticSource.xml",
+        "lib/net8.0/System.Diagnostics.DiagnosticSource.dll",
+        "lib/net8.0/System.Diagnostics.DiagnosticSource.xml",
+        "lib/net9.0/System.Diagnostics.DiagnosticSource.dll",
+        "lib/net9.0/System.Diagnostics.DiagnosticSource.xml",
+        "lib/netstandard2.0/System.Diagnostics.DiagnosticSource.dll",
+        "lib/netstandard2.0/System.Diagnostics.DiagnosticSource.xml",
+        "system.diagnostics.diagnosticsource.10.0.10.nupkg.sha512",
+        "system.diagnostics.diagnosticsource.nuspec",
+        "useSharedDesignerContext.txt"
+      ]
+    },
+    "System.IO.Pipelines/6.0.0": {
+      "sha512": "mXX66shZ4xLlI3vNLaJ0lt8OIZdmXTvIqXRdQX5HLVGSkLhINLsVhyZuX2UdRFnOGkqnwmMUs40pIIQ7mna4+A==",
+      "type": "package",
+      "path": "system.io.pipelines/6.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "buildTransitive/netcoreapp2.0/System.IO.Pipelines.targets",
+        "buildTransitive/netcoreapp3.1/_._",
+        "lib/net461/System.IO.Pipelines.dll",
+        "lib/net461/System.IO.Pipelines.xml",
+        "lib/net6.0/System.IO.Pipelines.dll",
+        "lib/net6.0/System.IO.Pipelines.xml",
+        "lib/netcoreapp3.1/System.IO.Pipelines.dll",
+        "lib/netcoreapp3.1/System.IO.Pipelines.xml",
+        "lib/netstandard2.0/System.IO.Pipelines.dll",
+        "lib/netstandard2.0/System.IO.Pipelines.xml",
+        "system.io.pipelines.6.0.0.nupkg.sha512",
+        "system.io.pipelines.nuspec",
+        "useSharedDesignerContext.txt"
+      ]
+    },
+    "System.Numerics.Vectors/4.5.0": {
+      "sha512": "QQTlPTl06J/iiDbJCiepZ4H//BVraReU4O4EoRw1U02H5TLUIT7xn3GnDp9AXPSlJUDyFs4uWjWafNX6WrAojQ==",
+      "type": "package",
+      "path": "system.numerics.vectors/4.5.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/net46/System.Numerics.Vectors.dll",
+        "lib/net46/System.Numerics.Vectors.xml",
+        "lib/netcoreapp2.0/_._",
+        "lib/netstandard1.0/System.Numerics.Vectors.dll",
+        "lib/netstandard1.0/System.Numerics.Vectors.xml",
+        "lib/netstandard2.0/System.Numerics.Vectors.dll",
+        "lib/netstandard2.0/System.Numerics.Vectors.xml",
+        "lib/portable-net45+win8+wp8+wpa81/System.Numerics.Vectors.dll",
+        "lib/portable-net45+win8+wp8+wpa81/System.Numerics.Vectors.xml",
+        "lib/uap10.0.16299/_._",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "lib/xamarintvos10/_._",
+        "lib/xamarinwatchos10/_._",
+        "ref/MonoAndroid10/_._",
+        "ref/MonoTouch10/_._",
+        "ref/net45/System.Numerics.Vectors.dll",
+        "ref/net45/System.Numerics.Vectors.xml",
+        "ref/net46/System.Numerics.Vectors.dll",
+        "ref/net46/System.Numerics.Vectors.xml",
+        "ref/netcoreapp2.0/_._",
+        "ref/netstandard1.0/System.Numerics.Vectors.dll",
+        "ref/netstandard1.0/System.Numerics.Vectors.xml",
+        "ref/netstandard2.0/System.Numerics.Vectors.dll",
+        "ref/netstandard2.0/System.Numerics.Vectors.xml",
+        "ref/uap10.0.16299/_._",
+        "ref/xamarinios10/_._",
+        "ref/xamarinmac20/_._",
+        "ref/xamarintvos10/_._",
+        "ref/xamarinwatchos10/_._",
+        "system.numerics.vectors.4.5.0.nupkg.sha512",
+        "system.numerics.vectors.nuspec",
+        "useSharedDesignerContext.txt",
+        "version.txt"
+      ]
+    },
+    "Tmds.DBus.Protocol/0.16.0": {
+      "sha512": "9Ne9AvrRWrDQvzbMcbTz3EaGRE1vQmkeeu0Xp7Ii0Wdlhwfjst8FDRas+RBslU5kdPWs2aeMLErzyT1DwH9zeA==",
+      "type": "package",
+      "path": "tmds.dbus.protocol/0.16.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net6.0/Tmds.DBus.Protocol.dll",
+        "lib/netstandard2.0/Tmds.DBus.Protocol.dll",
+        "lib/netstandard2.1/Tmds.DBus.Protocol.dll",
+        "tmds.dbus.protocol.0.16.0.nupkg.sha512",
+        "tmds.dbus.protocol.nuspec"
+      ]
+    },
+    "EDSEditorGUI2/1.0.0": {
+      "type": "project",
+      "path": "../EDSEditorGUI2/EDSEditorGUI2.csproj",
+      "msbuildProject": "../EDSEditorGUI2/EDSEditorGUI2.csproj"
+    },
+    "libEDSsharp/1.0.0": {
+      "type": "project",
+      "path": "../libEDSsharp/libEDSsharp.csproj",
+      "msbuildProject": "../libEDSsharp/libEDSsharp.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net8.0": [
+      "EDSEditorGUI2 >= 1.0.0",
+      "libEDSsharp >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\14588\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\Users\\14588\\workspace\\CANopenEditor\\TestCrash\\TestCrash.csproj",
+      "projectName": "TestCrash",
+      "projectPath": "C:\\Users\\14588\\workspace\\CANopenEditor\\TestCrash\\TestCrash.csproj",
+      "packagesPath": "C:\\Users\\14588\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\14588\\workspace\\CANopenEditor\\TestCrash\\obj\\",
+      "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
+      "configFilePaths": [
+        "C:\\Users\\14588\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "net8.0"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net8.0": {
+          "framework": "net8.0",
+          "targetAlias": "net8.0",
+          "projectReferences": {
+            "C:\\Users\\14588\\workspace\\CANopenEditor\\EDSEditorGUI2\\EDSEditorGUI2.csproj": {
+              "projectPath": "C:\\Users\\14588\\workspace\\CANopenEditor\\EDSEditorGUI2\\EDSEditorGUI2.csproj"
+            },
+            "C:\\Users\\14588\\workspace\\CANopenEditor\\libEDSsharp\\libEDSsharp.csproj": {
+              "projectPath": "C:\\Users\\14588\\workspace\\CANopenEditor\\libEDSsharp\\libEDSsharp.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
+      },
+      "SdkAnalysisLevel": "10.0.300"
+    },
+    "frameworks": {
+      "net8.0": {
+        "framework": "net8.0",
+        "targetAlias": "net8.0",
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.302/PortableRuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}
