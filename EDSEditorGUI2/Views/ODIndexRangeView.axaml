@@ -29,7 +29,7 @@
         </Style>
       </DataGrid.Styles>
       <DataGrid.Columns>
-        <DataGridTextColumn Header="{DynamicResource str_pdo_col_index}" Width="*" Binding="{Binding Key}"/>
+        <DataGridTextColumn Header="{DynamicResource str_pdo_col_index}" Width="*" Binding="{Binding Key, StringFormat='0x\{0\}'}"/>
         <DataGridTextColumn Header="{DynamicResource str_od_col_name}" Width="*" Binding="{Binding Value.Name}" />
       </DataGrid.Columns>
       <DataGrid.ContextMenu>
