@@ -172,15 +172,9 @@ public partial class DevicePDOView : UserControl
 
             Grid.SetRow(rowOverlay, row);
             Grid.SetColumn(rowOverlay, 0);
-            Grid.SetColumnSpan(rowOverlay, 68); // Span across all 68 columns
+            Grid.SetColumnSpan(rowOverlay, 67); // Span across all 67 columns (0 to 66)
             rowOverlay.PointerPressed += (s, e) => { _vm.SelectedSlot = slot; };
             MappingGrid.Children.Insert(0, rowOverlay);
-
-            // Add star column filler for this row to complete the right border
-            var starFiller = new Border { BorderBrush = Brushes.LightGray, BorderThickness = new Avalonia.Thickness(0, 0, 1, 1) };
-            Grid.SetRow(starFiller, row);
-            Grid.SetColumn(starFiller, 67);
-            MappingGrid.Children.Add(starFiller);
 
             row++;
             mappingIndex++;
@@ -226,16 +220,6 @@ public partial class DevicePDOView : UserControl
             border.Child = indication;
             AddToMappingGrid(border, 1, 3 + (i*8), 8);
         }
-        
-        // Add a final star column to absorb extra space when stretched
-        MappingGrid.ColumnDefinitions.Add(new ColumnDefinition(new GridLength(1, GridUnitType.Star)));
-        
-        // Add star column filler for the header to complete the top-right border
-        var headerStarFiller = new Border { BorderBrush = Brushes.LightGray, BorderThickness = new Avalonia.Thickness(0, 0, 1, 1) };
-        Grid.SetRow(headerStarFiller, 0);
-        Grid.SetRowSpan(headerStarFiller, 2);
-        Grid.SetColumn(headerStarFiller, 67);
-        MappingGrid.Children.Add(headerStarFiller);
     }
     
     void AddToMappingGrid(Control element, int row,int column, int columnspam = 1)
