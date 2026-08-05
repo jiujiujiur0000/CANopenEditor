@@ -132,7 +132,22 @@ namespace EDSEditorGUI2.Mapper
         {
             var config = new MapperConfiguration(cfg =>
             {
-                //TODO
+                cfg.CreateMap<DateTime, Timestamp>().ConvertUsing(dt => 
+                    dt == DateTime.MinValue ? new Timestamp() : Timestamp.FromDateTime(dt.Kind == DateTimeKind.Utc ? dt : dt.ToUniversalTime())
+                );
+                cfg.CreateMap<ViewModels.FileInfo, CanOpen_FileInfo>(MemberList.None);
+                cfg.CreateMap<ViewModels.ObjectDictionary, Google.Protobuf.Collections.MapField<string, OdObject>>().ConvertUsing<ODConverter>();
+                
+                cfg.CreateMap<ViewModels.Device, CanOpenDevice>(MemberList.None)
+                .ForMember(dest => dest.FileInfo, opt => opt.MapFrom(src => src.FileInfo))
+                .ForMember(dest => dest.DeviceInfo, opt => opt.MapFrom(src => src.DeviceInfo))
+                .ForMember(dest => dest.DeviceCommissioning, opt => opt.MapFrom(src => src.DeviceCommissioning))
+                .ForMember(dest => dest.Objects, opt => opt.MapFrom(src => src.Objects))
+                .ForMember(dest => dest.NrSupportedModules, opt => opt.MapFrom(src => src.ModuleInfo.NrSupportedModules))
+                .ForMember(dest => dest.Modules, opt => opt.Ignore());
+
+                cfg.CreateMap<ViewModels.DeviceInfo, CanOpen_DeviceInfo>(MemberList.None);
+                cfg.CreateMap<ViewModels.DeviceCommissioning, CanOpen_DeviceCommissioning>(MemberList.None);
             }, LoggerFactory.Create(builder => { builder.AddDebug(); }));
             config.AssertConfigurationIsValid();
             var mapper = config.CreateMapper();

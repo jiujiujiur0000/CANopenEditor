@@ -356,6 +356,110 @@ public partial class MainWindow : Window
         }
     }
 
+    private ViewModels.Device? GetTargetDevice(RoutedEventArgs args)
+    {
+        if (args.Source is MenuItem menuItem && menuItem.DataContext is ViewModels.Device deviceContext)
+        {
+            return deviceContext;
+        }
+        if (DataContext is MainWindowViewModel dc)
+        {
+            return dc.SelectedDevice;
+        }
+        return null;
+    }
+
+    public async void ExportCurrentDeviceEdsClick(object? sender, RoutedEventArgs args)
+    {
+        var targetDevice = GetTargetDevice(args);
+        if (targetDevice == null) return;
+
+        var topLevel = TopLevel.GetTopLevel(this) ?? throw new Exception("Internal GUI error");
+        var xdd11 = new FilePickerFileType("CANopen XDD v1.1 (*.xdd)") { Patterns = ["*.xdd"] };
+        var edsFilter = new FilePickerFileType("Electronic Data Sheet (*.eds)") { Patterns = ["*.eds"] };
+        var dcfFilter = new FilePickerFileType("Device Configuration File (*.dcf)") { Patterns = ["*.dcf"] };
+        
+        var file = await topLevel.StorageProvider.SaveFilePickerAsync(new FilePickerSaveOptions
+        {
+            Title = "Export Device File",
+            DefaultExtension = ".eds",
+            SuggestedFileName = Path.GetFileNameWithoutExtension(targetDevice.ProjectInfo.ProjectFile),
+            FileTypeChoices = [xdd11, edsFilter, dcfFilter]
+        });
+
+        if (file != null)
+        {
+            string filePath = file.TryGetLocalPath() ?? file.Path.ToString();
+            string ext = Path.GetExtension(filePath).ToLower();
+            var eds = targetDevice.GetUpdatedEds();
+            
+            try
+            {
+                if (ext == ".xdd")
+                {
+                    libEDSsharp.CanOpenXDD_1_1 coxml = new();
+                    coxml.WriteXML(filePath, eds, true, false);
+                }
+                else if (ext == ".eds")
+                {
+                    eds.Savefile(filePath, libEDSsharp.InfoSection.Filetype.File_EDS);
+                }
+                else if (ext == ".dcf")
+                {
+                    eds.Savefile(filePath, libEDSsharp.InfoSection.Filetype.File_DCF);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Export failed: {ex}");
+            }
+        }
+    }
+
+    private async void ExportCurrentDeviceSource(RoutedEventArgs args, libEDSsharp.ExporterFactory.Exporter version)
+    {
+        var targetDevice = GetTargetDevice(args);
+        if (targetDevice == null) return;
+
+        var topLevel = TopLevel.GetTopLevel(this) ?? throw new Exception("Internal GUI error");
+        var cHeader = new FilePickerFileType("C Header File (*.h)") { Patterns = ["*.h"] };
+        var cSource = new FilePickerFileType("C Source File (*.c)") { Patterns = ["*.c"] };
+        
+        var file = await topLevel.StorageProvider.SaveFilePickerAsync(new FilePickerSaveOptions
+        {
+            Title = "Export CANopenNode Source",
+            SuggestedFileName = version == libEDSsharp.ExporterFactory.Exporter.CANOPENNODE_V4 ? "OD.h" : "CO_OD.c",
+            FileTypeChoices = version == libEDSsharp.ExporterFactory.Exporter.CANOPENNODE_V4 ? [cHeader, cSource] : [cSource, cHeader]
+        });
+
+        if (file != null)
+        {
+            string filePath = file.TryGetLocalPath() ?? file.Path.ToString();
+            var eds = targetDevice.GetUpdatedEds();
+            eds.ODfileVersion = version == libEDSsharp.ExporterFactory.Exporter.CANOPENNODE_V4 ? "V4" : "V1";
+            
+            try
+            {
+                var exporter = libEDSsharp.ExporterFactory.getExporter(version);
+                exporter.export(filePath, eds);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Export failed: {ex}");
+            }
+        }
+    }
+
+    public void ExportCurrentDeviceSourceV4Click(object? sender, RoutedEventArgs args)
+    {
+        ExportCurrentDeviceSource(args, libEDSsharp.ExporterFactory.Exporter.CANOPENNODE_V4);
+    }
+
+    public void ExportCurrentDeviceSourceLegacyClick(object? sender, RoutedEventArgs args)
+    {
+        ExportCurrentDeviceSource(args, libEDSsharp.ExporterFactory.Exporter.CANOPENNODE_LEGACY);
+    }
+
     public async void OpenProjectClick(object sender, RoutedEventArgs args)
     {
         var topLevel = TopLevel.GetTopLevel(this) ?? throw new Exception("Internal GUI error");

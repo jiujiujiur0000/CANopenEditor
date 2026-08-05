@@ -41,8 +41,11 @@
                     <MenuItem Header="{DynamicResource str_menu_recent}"/>
                     <Separator/>
                     <MenuItem Header="导出当前设备" IsEnabled="{Binding SelectedDevice, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
-                        <MenuItem Header="EDS / XDD 格式"/>
-                        <MenuItem Header="CANopenNode 源码"/>
+                        <MenuItem Header="EDS / XDD 格式" Click="ExportCurrentDeviceEdsClick"/>
+                        <MenuItem Header="CANopenNode 源码">
+                            <MenuItem Header="导出为 V4 最新版" Click="ExportCurrentDeviceSourceV4Click"/>
+                            <MenuItem Header="导出为 V1-V3 兼容版" Click="ExportCurrentDeviceSourceLegacyClick"/>
+                        </MenuItem>
                     </MenuItem>
                     <MenuItem Header="导出所有设备" IsEnabled="{Binding HasDevice}">
                         <MenuItem Header="EDS / XDD 格式"/>
@@ -99,8 +102,11 @@
                                                           CommandParameter="{Binding}"/>
                                                 <Separator/>
                                                 <MenuItem Header="导出当前设备">
-                                                    <MenuItem Header="EDS / XDD 格式"/>
-                                                    <MenuItem Header="CANopenNode 源码"/>
+                                                    <MenuItem Header="EDS / XDD 格式" Click="ExportCurrentDeviceEdsClick"/>
+                                                    <MenuItem Header="CANopenNode 源码">
+                                                        <MenuItem Header="导出为 V4 最新版" Click="ExportCurrentDeviceSourceV4Click"/>
+                                                        <MenuItem Header="导出为 V1-V3 兼容版" Click="ExportCurrentDeviceSourceLegacyClick"/>
+                                                    </MenuItem>
                                                 </MenuItem>
                                             </ContextMenu>
                                         </Grid.ContextMenu>

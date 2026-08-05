@@ -86,6 +86,35 @@ namespace EDSEditorGUI2.ViewModels
         [ObservableProperty]
         private ModuleViewModel _moduleInfo = new();
 
+        public libEDSsharp.EDSsharp GetUpdatedEds()
+        {
+            var proto = Mapper.ProtobufferViewModelMapper.MapToProtobuffer(this);
+            var updatedEds = libEDSsharp.MappingEDS.MapFromProtobuffer(proto);
+            
+            updatedEds.projectFilename = this.ProjectInfo.ProjectFile;
+            updatedEds.xddfilenameStripped = this.ProjectInfo.XddFileStripped;
+            updatedEds.edsfilename = this.ProjectInfo.EdsFile;
+            updatedEds.dcffilename = this.ProjectInfo.DcfFile;
+            updatedEds.ODfilename = this.ProjectInfo.CanopenNodeFile;
+            updatedEds.ODfileVersion = this.ProjectInfo.CanopenNodeFileVersion;
+            updatedEds.mdfilename = this.ProjectInfo.DocumentationFile;
+
+            if (updatedEds.di == null) updatedEds.di = new libEDSsharp.DeviceInfo();
+            updatedEds.di.NrOfRXPDO = (ushort)this.DeviceInfo.RpdoCount;
+            updatedEds.di.NrOfTXPDO = (ushort)this.DeviceInfo.TpdoCount;
+            updatedEds.di.NG_Slave = this.DeviceInfo.NodeGuardingSlave;
+            updatedEds.di.NG_Master = this.DeviceInfo.NodeGuardingMaster;
+            updatedEds.di.NrOfNG_MonitoredNodes = (ushort)this.DeviceInfo.NumberOfMonitoredNodes;
+
+            if (updatedEds.dc == null) updatedEds.dc = new libEDSsharp.DeviceCommissioning();
+            updatedEds.dc.NetNumber = this.DeviceCommissioning.NetNumber;
+            updatedEds.dc.NetworkName = this.DeviceCommissioning.NetName;
+            updatedEds.dc.CANopenManager = this.DeviceCommissioning.CanopenManager;
+            updatedEds.dc.LSS_SerialNumber = this.DeviceCommissioning.LssSerialNo;
+
+            return updatedEds;
+        }
+
         public void OnClickCommand()
         {
             // do something
