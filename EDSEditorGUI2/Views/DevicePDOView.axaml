@@ -35,7 +35,7 @@
               <DataGridTextColumn Header="{DynamicResource str_pdo_col_index}" Width="*" Binding="{Binding IndexString}"/>
               <DataGridTextColumn Header="{DynamicResource str_pdo_col_sub}" Width="*" Binding="{Binding SubIndexString}"/>
               <DataGridTextColumn Header="{DynamicResource str_pdo_col_name}" Width="2*" Binding="{Binding Name}"/>
-              <DataGridTextColumn Header="{DynamicResource str_pdo_col_datatype}" Width="*" Binding="{Binding ObjectTypeString}"/>
+              <DataGridTextColumn Header="{DynamicResource str_pdo_col_datatype}" Width="1.5*" Binding="{Binding ObjectTypeString}"/>
               <DataGridTextColumn Header="{DynamicResource str_pdo_col_bits}" Width="*" Binding="{Binding TypeSize}"/>
             </DataGrid.Columns>
           </DataGrid>
@@ -46,7 +46,7 @@
                 BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" BorderThickness="1"
                 BoxShadow="0 2 6 0 #1A000000" VerticalAlignment="Top">
           <StackPanel Spacing="15">
-            <TextBlock Text="{DynamicResource str_pdo_comm_params}" FontWeight="SemiBold" FontSize="16" Foreground="{DynamicResource SystemAccentColor}" Margin="0,0,0,5"/>
+            <TextBlock Text="{DynamicResource str_pdo_comm_params}" FontWeight="Bold" FontSize="18" Margin="0,0,0,5"/>
             <Border BorderBrush="{DynamicResource SystemControlForegroundBaseMediumBrush}" BorderThickness="0,0,0,1" Margin="0,-15,0,5" Opacity="0.3"/>
 
             <Grid RowDefinitions="auto,auto,auto,auto,auto,auto" ColumnDefinitions="auto,auto" Margin="0,0,25,0">
@@ -86,7 +86,7 @@
               BoxShadow="0 2 6 0 #1A000000">
         <StackPanel Spacing="15">
           <StackPanel Orientation="Horizontal" Spacing="20">
-            <TextBlock Text="{DynamicResource str_pdo_zoom}" VerticalAlignment="Center" FontWeight="SemiBold"/>
+            <TextBlock Text="{DynamicResource str_pdo_zoom}" VerticalAlignment="Center"/>
             <NumericUpDown x:Name="Zoom" Width="150" PropertyChanged="Zoom_PropertyChanged" Minimum="100" Increment="10"/>
           </StackPanel>
           
