@@ -10,7 +10,7 @@
              x:DataType="vm:DevicePDOViewModel">
 
   <ScrollViewer>
-    <StackPanel Spacing="25" Margin="25">
+    <StackPanel Spacing="25" Margin="25" MaxWidth="1200">
       
       <!-- Top Area: DataGrid & Properties -->
       <Grid ColumnDefinitions="*, 450" MinHeight="350">

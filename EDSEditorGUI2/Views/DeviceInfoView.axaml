@@ -9,7 +9,7 @@
              x:DataType="vm:Device">
   
   <ScrollViewer>
-    <Grid ColumnDefinitions="*, *" Margin="20" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+    <Grid ColumnDefinitions="*, *" Margin="20" HorizontalAlignment="Stretch" VerticalAlignment="Top" MaxWidth="1200">
       
       <!-- Left Column -->
       <StackPanel Grid.Column="0" Spacing="0">
