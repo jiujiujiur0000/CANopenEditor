@@ -59,8 +59,8 @@ namespace Tests
                 }
             };
 
-            var creationDateTime = DateTime.ParseExact($"{eds.fi.CreationTime} {eds.fi.CreationDate}", "h:mmtt MM-dd-yyyy", CultureInfo.InvariantCulture);
-            var modificationDateTime = DateTime.ParseExact($"{eds.fi.ModificationTime} {eds.fi.ModificationDate}", "h:mmtt MM-dd-yyyy", CultureInfo.InvariantCulture);
+            var creationDateTime = DateTime.ParseExact($"{eds.fi.CreationTime} {eds.fi.CreationDate}", "h:mmtt MM-dd-yyyy", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal | DateTimeStyles.AdjustToUniversal);
+            var modificationDateTime = DateTime.ParseExact($"{eds.fi.ModificationTime} {eds.fi.ModificationDate}", "h:mmtt MM-dd-yyyy", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal | DateTimeStyles.AdjustToUniversal);
             var creationTimestamp = Timestamp.FromDateTime(creationDateTime.ToUniversalTime());
             var modificationTimestamp = Timestamp.FromDateTime(modificationDateTime.ToUniversalTime());
 

@@ -9,12 +9,7 @@
   <ItemGroup>
     <ProjectReference Include="..\libEDSsharp\libEDSsharp.csproj" />
   </ItemGroup>
-  <Target Name="CopyEDSSharpToTestOutDir" AfterTargets="Build">
-    <ItemGroup>
-      <EDSSharpFiles Include="..\EDSSharp\bin\$(Configuration)\$(TargetFramework)\*"/>
-    </ItemGroup>
-    <Copy SourceFiles="@(EDSSharpFiles)" DestinationFolder="$(OutDir)" />
-  </Target>
+
   <ItemGroup>
     <None Include="minimal_project.xdd">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

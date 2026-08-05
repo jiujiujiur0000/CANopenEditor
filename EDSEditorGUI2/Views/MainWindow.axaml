@@ -9,7 +9,7 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="EDSEditorGUI2.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
-        Icon="/Assets/avalonia-logo.ico"
+        Icon="/Assets/icon.ico"
         Width="1280" Height="800"
         MinWidth="800" MinHeight="600"
         WindowStartupLocation="CenterScreen"
@@ -32,6 +32,7 @@
                     <MenuItem Header="新建项目" Command="{Binding NewProjectCommand}"/>
                     <MenuItem Header="打开项目" Click="OpenProjectClick"/>
                     <MenuItem Header="保存项目" Click="SaveProjectClick" IsEnabled="{Binding HasDevice}"/>
+                    <MenuItem Header="另存为项目" Click="SaveProjectAsClick" IsEnabled="{Binding HasDevice}"/>
                     <MenuItem Header="关闭项目" Command="{Binding CloseAllDevicesCommand}" IsEnabled="{Binding HasDevice}"/>
                     <Separator/>
                     <MenuItem Header="新建设备" Command="{Binding AddNewDevice}"/>
@@ -52,7 +53,7 @@
                         <MenuItem Header="CANopenNode 源码"/>
                     </MenuItem>
                     <Separator/>
-                    <MenuItem Header="{DynamicResource str_menu_quit}"/>
+                    <MenuItem Header="{DynamicResource str_menu_quit}" Click="QuitClick"/>
                 </MenuItem>
                 <MenuItem Header="{DynamicResource str_menu_insert_profile}" x:Name="profileMenu" IsEnabled="{Binding SelectedDevice, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
                 <MenuItem Header="{DynamicResource str_menu_reports}">

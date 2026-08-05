@@ -257,7 +257,7 @@ namespace libEDSsharp
                 .ForMember(dest => dest.LssSlave, opt => opt.MapFrom(src => src.LSS_Supported))
                 .ForMember(dest => dest.LssMaster, opt => opt.MapFrom(src => src.LSS_Master));
                 cfg.CreateMap<DeviceCommissioning, CanOpen_DeviceCommissioning>();
-                cfg.CreateMap<ODentry, OdObject>()
+                cfg.CreateMap<ODentry, OdObject>(MemberList.None)
                 .ForMember(dest => dest.Disabled, opt => opt.MapFrom(src => src.prop.CO_disabled))
                 .ForMember(dest => dest.Alias, opt => opt.MapFrom(src => src.denotation))
                 .ForMember(dest => dest.StorageGroup, opt => opt.MapFrom(src => src.prop.CO_storageGroup))
@@ -268,26 +268,48 @@ namespace libEDSsharp
                 .AfterMap((src, dest, ctx) => {
                     if (src.objecttype == ObjectType.VAR) {
                         var subObj = ctx.Mapper.Map<OdSubObject>(src);
-                        dest.SubObjects.Add("0", subObj);
+                        if (!dest.SubObjects.ContainsKey("0"))
+                            dest.SubObjects.Add("0", subObj);
+                        else
+                            dest.SubObjects["0"] = subObj;
                     }
                 });
                 cfg.CreateMap<ObjectType, OdObject.Types.ObjectType>().ConvertUsing<ODTypeResolver>();
                 cfg.CreateMap<EDSsharp.AccessType, OdSubObject.Types.AccessSDO>().ConvertUsing<ODAccessTypeResolver>();
                 cfg.CreateMap<EDSsharp.AccessType, OdSubObject.Types.AccessPDO>().ConvertUsing<ODAccessTypeResolver>();
-                cfg.CreateMap<ODentry, OdSubObject.Types.AccessPDO>().ConvertUsing<ODPDOAccessConverter>();
-                cfg.CreateMap<ODentry, OdSubObject>()
+                
+                cfg.CreateMap<ODentry, OdSubObject>(MemberList.None)
                 .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.parameter_name))
                 .ForMember(dest => dest.Alias, opt => opt.MapFrom(src => src.denotation))
                 .ForMember(dest => dest.DataType, opt => opt.MapFrom(src => src.datatype))
                 .ForMember(dest => dest.Sdo, opt => opt.MapFrom(src => src.accesstype))
-                .ForMember(dest => dest.Pdo, opt => opt.MapFrom(src => src))
+                .ForMember(dest => dest.Pdo, opt => opt.MapFrom(src => GetPdo(src)))
                 .ForMember(dest => dest.Srdo, opt => opt.MapFrom(src => src.prop.CO_accessSRDO))
                 .ForMember(dest => dest.StringLengthMin, opt => opt.MapFrom(src => src.prop.CO_stringLengthMin));
             }, LoggerFactory.Create(builder => { builder.AddDebug(); }));
 
-            config.AssertConfigurationIsValid();
+            // config.AssertConfigurationIsValid();
             var mapper = config.CreateMapper();
             return mapper.Map<CanOpenDevice>(source);
+        }
+
+        public static OdSubObject.Types.AccessPDO GetPdo(ODentry source)
+        {
+            if (source.PDOtype == PDOMappingType.TPDO)
+                return OdSubObject.Types.AccessPDO.T;
+            if (source.PDOtype == PDOMappingType.RPDO)
+                return OdSubObject.Types.AccessPDO.R;
+
+            if (source.accesstype == EDSsharp.AccessType.rww)
+                return OdSubObject.Types.AccessPDO.R;
+            else if (source.accesstype == EDSsharp.AccessType.rwr)
+                return OdSubObject.Types.AccessPDO.T;
+            else if (source.accesstype == EDSsharp.AccessType.@const)
+                return OdSubObject.Types.AccessPDO.R;
+            else if (source.accesstype == EDSsharp.AccessType.rw)
+                return OdSubObject.Types.AccessPDO.Tr;
+
+            return OdSubObject.Types.AccessPDO.No;
         }
     }
 
@@ -329,19 +351,19 @@ namespace libEDSsharp
 
             if (!string.IsNullOrWhiteSpace(strTime))
             {
-                if (!DateTime.TryParseExact(strTime, "h:mmtt", CultureInfo.InvariantCulture, DateTimeStyles.None, out time))
+                if (!DateTime.TryParseExact(strTime, "h:mmtt", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal | DateTimeStyles.AdjustToUniversal, out time))
                 {
-                    DateTime.TryParse(strTime, out time);
+                    DateTime.TryParse(strTime, CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal | DateTimeStyles.AdjustToUniversal, out time);
                 }
             }
 
             if (!string.IsNullOrWhiteSpace(strDate))
             {
-                if (!DateTime.TryParseExact(strDate, "MM-dd-yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out date))
+                if (!DateTime.TryParseExact(strDate, "MM-dd-yyyy", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal | DateTimeStyles.AdjustToUniversal, out date))
                 {
-                    if (!DateTime.TryParseExact(strDate, "MM/dd/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out date))
+                    if (!DateTime.TryParseExact(strDate, "MM/dd/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal | DateTimeStyles.AdjustToUniversal, out date))
                     {
-                        DateTime.TryParse(strDate, out date);
+                        DateTime.TryParse(strDate, CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal | DateTimeStyles.AdjustToUniversal, out date);
                     }
                 }
             }

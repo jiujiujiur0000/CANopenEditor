@@ -511,6 +511,17 @@ public partial class MainWindow : Window
         }
     }
 
+    public void QuitClick(object sender, RoutedEventArgs args)
+    {
+        Close();
+    }
+
+    public void SaveProjectAsClick(object sender, RoutedEventArgs args)
+    {
+        // For now, it maps to the same SaveProjectClick behavior which prompts for a file picker.
+        SaveProjectClick(sender, args);
+    }
+
     public async void SaveProjectClick(object sender, RoutedEventArgs args)
     {
         var topLevel = TopLevel.GetTopLevel(this) ?? throw new Exception("Internal GUI error");
