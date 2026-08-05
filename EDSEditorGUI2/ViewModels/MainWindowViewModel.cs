@@ -32,6 +32,8 @@ public partial class MainWindowViewModel : ViewModelBase
             {
                 ProductName = "New Product" + Counter.ToString()
             },
+            DeviceCommissioning = new(),
+            FileInfo = new()
         };
 
         Counter++;

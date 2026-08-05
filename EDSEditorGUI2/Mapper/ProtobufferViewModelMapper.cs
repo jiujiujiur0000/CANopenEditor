@@ -12,7 +12,7 @@ namespace EDSEditorGUI2.Mapper
         {
             var config = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<Timestamp, DateTime>().ConvertUsing(ts => ts.ToDateTime());
+                cfg.CreateMap<Timestamp, DateTime>().ConvertUsing(ts => ts == null ? default : ts.ToDateTime());
                 cfg.CreateMap<CanOpen_FileInfo, ViewModels.FileInfo>()
                 .ForMember(dest => dest.FileVersion, opt => opt.MapFrom(src => src.FileVersion))
                 .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Description))
