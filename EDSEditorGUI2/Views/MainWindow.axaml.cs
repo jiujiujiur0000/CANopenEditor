@@ -303,42 +303,47 @@ public partial class MainWindow : Window
         var files = await topLevel.StorageProvider.OpenFilePickerAsync(new FilePickerOpenOptions
         {
             Title = "Open CANopen Device",
-            AllowMultiple = false,
+            AllowMultiple = true,
             FileTypeFilter = [CombineFilePickerType("All supported files", [xpd, xdd, xdc, edsFilter, dcfFilter]), xpd, xdd, xdc, edsFilter, dcfFilter]
         });
 
-        if (files.Count >= 1)
+        if (files.Count > 0)
         {
-            // Use LocalPath if available to get standard filesystem paths
-            string filePath = files[0].TryGetLocalPath() ?? files[0].Path.ToString();
-            
-            try
+            foreach (var file in files)
             {
-                EDSsharp eds;
-                string ext = Path.GetExtension(filePath).ToLower();
-                if (ext == ".xdd" || ext == ".xdc" || ext == ".xpd")
+                // Use LocalPath if available to get standard filesystem paths
+                string filePath = file.TryGetLocalPath() ?? file.Path.ToString();
+                
+                try
                 {
-                    CanOpenXDD_1_1 coxml_1_1 = new();
-                    eds = coxml_1_1.ReadXML(filePath);
-                }
-                else
-                {
-                    eds = new EDSsharp();
-                    eds.Loadfile(filePath);
-                }
+                    EDSsharp eds;
+                    string ext = Path.GetExtension(filePath).ToLower();
+                    if (ext == ".xdd" || ext == ".xdc" || ext == ".xpd")
+                    {
+                        CanOpenXDD_1_1 coxml_1_1 = new();
+                        eds = coxml_1_1.ReadXML(filePath);
+                    }
+                    else
+                    {
+                        eds = new EDSsharp();
+                        eds.Loadfile(filePath);
+                    }
 
-                var proto = MappingEDS.MapToProtobuffer(eds);
-                var deviceView = ProtobufferViewModelMapper.MapFromProtobuffer(proto);
+                    var proto = MappingEDS.MapToProtobuffer(eds);
+                    var deviceView = ProtobufferViewModelMapper.MapFromProtobuffer(proto);
+                    deviceView.Eds = eds;
 
-                if (DataContext is MainWindowViewModel dc)
-                {
-                    dc.Network.Add(deviceView);
-                    dc.SelectedDevice = deviceView;
+                    if (DataContext is MainWindowViewModel dc)
+                    {
+                        dc.Network.Add(deviceView);
+                        dc.SelectedDevice = deviceView;
+                    }
                 }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine($"Failed to open file: {ex.Message}");
+                catch (Exception ex)
+                {
+                    System.IO.File.WriteAllText("crash.log", ex.ToString());
+                    Debug.WriteLine($"Failed to open file {filePath}: {ex.Message}");
+                }
             }
         }
     }

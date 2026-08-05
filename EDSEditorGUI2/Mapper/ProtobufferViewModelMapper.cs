@@ -23,6 +23,9 @@ namespace EDSEditorGUI2.Mapper
                 cfg.CreateMap<Google.Protobuf.Collections.MapField<string, OdObject>, ViewModels.ObjectDictionary>().ConvertUsing<ODConverter>();
                 cfg.CreateMap<Google.Protobuf.Collections.MapField<uint, CanOpenModule>, System.Collections.ObjectModel.ObservableCollection<ViewModels.ModuleItemViewModel>>().ConvertUsing<ModuleConverter>();
                 cfg.CreateMap<CanOpenDevice, ViewModels.Device>()
+                .ForMember(d => d.Eds, opt => opt.Ignore())
+                .ForMember(d => d.TxPdo, opt => opt.Ignore())
+                .ForMember(d => d.RxPdo, opt => opt.Ignore())
                 .ForMember(dest => dest.FileInfo, opt => opt.MapFrom(src => src.FileInfo))
                 .ForMember(dest => dest.DeviceInfo, opt => opt.MapFrom(src => src.DeviceInfo))
                 .ForMember(dest => dest.DeviceCommissioning, opt => opt.MapFrom(src => src.DeviceCommissioning))

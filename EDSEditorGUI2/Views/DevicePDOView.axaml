@@ -7,7 +7,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="1200" d:DesignHeight="800"
              x:Class="EDSEditorGUI2.Views.DevicePDOView"
-             x:DataType="vm:ObjectDictionary">
+             x:DataType="vm:DevicePDOViewModel">
 
   <ScrollViewer>
     <StackPanel Spacing="25" Margin="25">
@@ -16,7 +16,7 @@
       <Grid ColumnDefinitions="*, 450" MinHeight="350">
         <!-- Left: DataGrid -->
         <Border Grid.Column="0" Margin="0,0,25,0" BorderThickness="1" BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" CornerRadius="8" ClipToBounds="True">
-          <DataGrid ItemsSource="{Binding SelectedObject.Value.SubObjects}"
+          <DataGrid ItemsSource="{Binding AvailableObjects}"
                     x:Name="subindexGrid"
                     GridLinesVisibility="Horizontal"
                     BorderThickness="0"
@@ -32,11 +32,11 @@
               </Style>
             </DataGrid.Styles>
             <DataGrid.Columns>
-              <DataGridTextColumn Header="{DynamicResource str_pdo_col_index}" Width="*" />
-              <DataGridTextColumn Header="{DynamicResource str_pdo_col_sub}" Width="*" />
-              <DataGridTextColumn Header="{DynamicResource str_pdo_col_name}" Width="2*" />
-              <DataGridTextColumn Header="{DynamicResource str_pdo_col_datatype}" Width="*" />
-              <DataGridTextColumn Header="{DynamicResource str_pdo_col_bits}" Width="*" />
+              <DataGridTextColumn Header="{DynamicResource str_pdo_col_index}" Width="*" Binding="{Binding IndexString}"/>
+              <DataGridTextColumn Header="{DynamicResource str_pdo_col_sub}" Width="*" Binding="{Binding SubIndexString}"/>
+              <DataGridTextColumn Header="{DynamicResource str_pdo_col_name}" Width="2*" Binding="{Binding Name}"/>
+              <DataGridTextColumn Header="{DynamicResource str_pdo_col_datatype}" Width="*" Binding="{Binding ObjectTypeString}"/>
+              <DataGridTextColumn Header="{DynamicResource str_pdo_col_bits}" Width="*" Binding="{Binding TypeSize}"/>
             </DataGrid.Columns>
           </DataGrid>
         </Border>
@@ -49,57 +49,33 @@
             <TextBlock Text="{DynamicResource str_pdo_comm_params}" FontWeight="SemiBold" FontSize="16" Foreground="{DynamicResource SystemAccentColor}" Margin="0,0,0,5"/>
             <Border BorderBrush="{DynamicResource SystemControlForegroundBaseMediumBrush}" BorderThickness="0,0,0,1" Margin="0,-15,0,5" Opacity="0.3"/>
 
-            <Grid ColumnDefinitions="90, *, Auto" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto" Margin="0,10,0,0">
-              
-              <!-- Communication -->
-              <TextBlock Text="{DynamicResource str_pdo_comm}" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,15"/>
-              <TextBox Grid.Row="0" Grid.Column="1" Margin="0,0,15,15" />
-              
-              <!-- Mapping & Add Button -->
-              <TextBlock Text="{DynamicResource str_pdo_mapping}" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,15"/>
-              <TextBox Grid.Row="1" Grid.Column="1" Margin="0,0,15,15" />
-              <Button Grid.Row="1" Grid.Column="2" Grid.RowSpan="2" Classes="accent" VerticalAlignment="Top" Padding="15,10" Height="70" Width="100">
-                <StackPanel Spacing="5" HorizontalAlignment="Center" VerticalAlignment="Center">
-                  <PathIcon Data="{StaticResource add_regular}" />
-                  <TextBlock Text="{DynamicResource str_pdo_btn_add}" TextWrapping="Wrap" TextAlignment="Center" />
-                </StackPanel>
-              </Button>
+            <Grid RowDefinitions="auto,auto,auto,auto,auto,auto" ColumnDefinitions="auto,auto" Margin="0,0,25,0">
+            <!-- Header for Properties -->
+            <ComboBox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,0,15" Width="200"
+                      ItemsSource="{Binding Slots}" SelectedItem="{Binding SelectedSlot}">
+              <ComboBox.ItemTemplate>
+                <DataTemplate>
+                  <TextBlock Text="{Binding DescriptionComm}"/>
+                </DataTemplate>
+              </ComboBox.ItemTemplate>
+            </ComboBox>
 
-              <!-- COB -->
-              <TextBlock Text="{DynamicResource str_pdo_cob}" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,15"/>
-              <TextBox Grid.Row="2" Grid.Column="1" Margin="0,0,15,15" />
+            <!-- TextBoxes for Selected PDO -->
+            <TextBlock Text="{DynamicResource str_pdo_cob}" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,15,15"/>
+            <TextBox Grid.Row="1" Grid.Column="1" Margin="0,0,0,15" Text="{Binding SelectedSlot.COB, FallbackValue=''}" IsEnabled="{Binding IsSlotSelected}"/>
 
-              <!-- Type & Delete Button -->
-              <TextBlock Text="{DynamicResource str_pdo_type}" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,15"/>
-              <TextBox Grid.Row="3" Grid.Column="1" Margin="0,0,15,15" />
-              <Button Grid.Row="3" Grid.Column="2" Grid.RowSpan="2" VerticalAlignment="Top" Padding="15,10" Height="70" Width="100">
-                <StackPanel Spacing="5" HorizontalAlignment="Center" VerticalAlignment="Center">
-                  <PathIcon Data="{StaticResource remove_regular}" />
-                  <TextBlock Text="{DynamicResource str_pdo_btn_delete}" TextWrapping="Wrap" TextAlignment="Center" />
-                </StackPanel>
-              </Button>
+            <TextBlock Text="{DynamicResource str_pdo_trans_type}" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,15,15"/>
+            <TextBox Grid.Row="2" Grid.Column="1" Margin="0,0,0,15" Text="{Binding SelectedSlot.TransmissionType, FallbackValue=''}" IsEnabled="{Binding IsSlotSelected}"/>
 
-              <!-- Inhibit -->
-              <TextBlock Text="{DynamicResource str_pdo_inhibit}" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,15"/>
-              <TextBox Grid.Row="4" Grid.Column="1" Margin="0,0,15,15" />
+            <TextBlock Text="{DynamicResource str_pdo_inhibit}" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,15,15"/>
+            <TextBox Grid.Row="3" Grid.Column="1" Margin="0,0,0,15" Text="{Binding SelectedSlot.Inhibit, FallbackValue=''}" IsEnabled="{Binding IsSlotSelected}"/>
 
-              <!-- Event Timer & Save Button -->
-              <TextBlock Text="{DynamicResource str_pdo_event_timer}" Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,15"/>
-              <TextBox Grid.Row="5" Grid.Column="1" Margin="0,0,15,15" />
-              <Button Grid.Row="5" Grid.Column="2" Grid.RowSpan="2" Classes="accent" VerticalAlignment="Top" Padding="15,10" Height="70" Width="100">
-                <StackPanel Spacing="5" HorizontalAlignment="Center" VerticalAlignment="Center">
-                  <PathIcon Data="{StaticResource save_regular}" />
-                  <TextBlock Text="{DynamicResource str_pdo_btn_save}" TextWrapping="Wrap" TextAlignment="Center" />
-                </StackPanel>
-              </Button>
+            <TextBlock Text="{DynamicResource str_pdo_event}" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,15,15"/>
+            <TextBox Grid.Row="4" Grid.Column="1" Margin="0,0,0,15" Text="{Binding SelectedSlot.EventTimer, FallbackValue=''}" IsEnabled="{Binding IsSlotSelected}"/>
 
-              <!-- Sync Start & Invalid -->
-              <TextBlock Text="{DynamicResource str_pdo_sync_start}" Grid.Row="6" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,15"/>
-              <TextBox Grid.Row="6" Grid.Column="1" Margin="0,0,15,15" />
-              
-              <CheckBox Grid.Row="7" Grid.Column="1" Content="{DynamicResource str_pdo_chk_invalid}" Margin="0,0,0,0"/>
-
-            </Grid>
+            <TextBlock Text="{DynamicResource str_pdo_sync}" Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,15,15"/>
+            <TextBox Grid.Row="5" Grid.Column="1" Margin="0,0,0,15" Text="{Binding SelectedSlot.SyncStart, FallbackValue=''}" IsEnabled="{Binding IsSlotSelected}"/>
+          </Grid>
           </StackPanel>
         </Border>
       </Grid>
@@ -115,10 +91,17 @@
           </StackPanel>
           
           <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Height="250" Margin="0,10,0,0">
-            <Grid x:Name="MappingGrid" RowDefinitions="Auto,Auto" ColumnDefinitions="40,80,80">
-              <TextBlock Text="{DynamicResource str_pdo_id}" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" FontWeight="SemiBold" Foreground="{DynamicResource SystemAccentColor}" Margin="0,0,10,10"/>
-              <TextBlock Text="{DynamicResource str_pdo_cob}" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" FontWeight="SemiBold" Foreground="{DynamicResource SystemAccentColor}" Margin="0,0,10,10"/>
-              <TextBlock Text="{DynamicResource str_pdo_index}" Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" FontWeight="SemiBold" Foreground="{DynamicResource SystemAccentColor}" Margin="0,0,10,10"/>
+            <Grid x:Name="MappingGrid" Grid.Row="1" Height="200">
+              <DataGrid ItemsSource="{Binding Mappings}"
+                        GridLinesVisibility="Horizontal"
+                        BorderThickness="1" BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" CornerRadius="8">
+                <DataGrid.Columns>
+                  <DataGridTextColumn Header="{DynamicResource str_pdo_col_index}" Width="*" Binding="{Binding IndexString}"/>
+                  <DataGridTextColumn Header="{DynamicResource str_pdo_col_sub}" Width="*" Binding="{Binding SubIndexString}"/>
+                  <DataGridTextColumn Header="{DynamicResource str_pdo_col_name}" Width="2*" Binding="{Binding Name}"/>
+                  <DataGridTextColumn Header="Size (Bits)" Width="*" Binding="{Binding Width}"/>
+                </DataGrid.Columns>
+              </DataGrid>
             </Grid>
           </ScrollViewer>
         </StackPanel>

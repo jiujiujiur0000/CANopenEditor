@@ -1,4 +1,5 @@
 using CommunityToolkit.Mvvm.ComponentModel;
+using libEDSsharp;
 
 namespace EDSEditorGUI2.ViewModels
 {
@@ -19,6 +20,24 @@ namespace EDSEditorGUI2.ViewModels
                 return DeviceInfo.ProductName;
             }
         }
+
+        private libEDSsharp.EDSsharp _eds;
+        public libEDSsharp.EDSsharp Eds 
+        { 
+            get => _eds;
+            set 
+            {
+                _eds = value;
+                TxPdo = new DevicePDOViewModel(_eds, true);
+                RxPdo = new DevicePDOViewModel(_eds, false);
+            }
+        }
+
+        [ObservableProperty]
+        private DevicePDOViewModel _txPdo;
+
+        [ObservableProperty]
+        private DevicePDOViewModel _rxPdo;
 
         [ObservableProperty]
         private FileInfo _fileInfo = new();

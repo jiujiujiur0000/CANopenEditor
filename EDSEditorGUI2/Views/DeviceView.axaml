@@ -38,13 +38,13 @@
       <TabItem.Header>
         <TextBlock Text="{DynamicResource str_tab_tx_pdo}" Margin="0,0,0,4"/>
       </TabItem.Header>
-      <view:DevicePDOView DataContext="{Binding Objects}" />
+      <view:DevicePDOView DataContext="{Binding TxPdo}" />
     </TabItem>
     <TabItem>
       <TabItem.Header>
         <TextBlock Text="{DynamicResource str_tab_rx_pdo}" Margin="0,0,0,4"/>
       </TabItem.Header>
-      <view:DevicePDOView DataContext="{Binding Objects}" />
+      <view:DevicePDOView DataContext="{Binding RxPdo}" />
     </TabItem>
     <TabItem>
       <TabItem.Header>

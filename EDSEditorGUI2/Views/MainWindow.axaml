@@ -31,6 +31,8 @@
                 <MenuItem Header="{DynamicResource str_menu_file}" x:Name="fileMenu" >
                     <MenuItem Header="{DynamicResource str_menu_new}" Command="{Binding AddNewDevice}"/>
                     <MenuItem Header="{DynamicResource str_menu_open}" Click="OpenFileClick"/>
+                    <MenuItem Header="关闭当前设备 (Close)" Command="{Binding CloseDeviceCommand}" CommandParameter="{Binding SelectedDevice}" IsEnabled="{Binding SelectedDevice, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+                    <MenuItem Header="全部关闭 (Close All)" Command="{Binding CloseAllDevicesCommand}" IsEnabled="{Binding HasDevice}"/>
                     <MenuItem Header="{DynamicResource str_menu_save}" IsEnabled="{Binding SelectedDevice, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
                     <MenuItem Header="{DynamicResource str_menu_save_as}" IsEnabled="{Binding SelectedDevice, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
                     <Separator/>
@@ -83,10 +85,16 @@
                                  Background="Transparent" BorderThickness="0" Padding="5,0">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
-                                    <StackPanel Orientation="Horizontal" Spacing="8" Margin="0,4">
-                                        <TextBlock Text="💻" VerticalAlignment="Center" FontSize="16"/>
-                                        <TextBlock Text="{Binding DeviceInfo.ProductName}" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="14" TextTrimming="CharacterEllipsis"/>
-                                    </StackPanel>
+                                    <Grid ColumnDefinitions="Auto,*,Auto" Margin="0,4">
+                                        <TextBlock Grid.Column="0" Text="💻" VerticalAlignment="Center" FontSize="16" Margin="0,0,8,0"/>
+                                        <TextBlock Grid.Column="1" Text="{Binding DeviceInfo.ProductName}" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="14" TextTrimming="CharacterEllipsis"/>
+                                        <Button Grid.Column="2" Classes="icon" Padding="4" Background="Transparent" BorderThickness="0" 
+                                                Command="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).CloseDeviceCommand}" 
+                                                CommandParameter="{Binding}"
+                                                ToolTip.Tip="关闭设备">
+                                            <PathIcon Data="{StaticResource dismiss_regular}" Width="12" Height="12"/>
+                                        </Button>
+                                    </Grid>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                         </ListBox>

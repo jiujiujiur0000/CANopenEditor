@@ -1,5 +1,6 @@
 using Avalonia.Media;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using EDSEditorGUI2.Mapper;
 using System;
 using System.Collections.Generic;
@@ -23,7 +24,7 @@ public partial class MainWindowViewModel : ViewModelBase
 
     public bool HasDevice => Network.Count > 0;
 
-    public void AddNewDevice(object sender)
+    public void AddNewDevice(object? sender = null)
     {
         var device = new LibCanOpen.CanOpenDevice
         {
@@ -47,8 +48,29 @@ public partial class MainWindowViewModel : ViewModelBase
         //device.dispatch_updateOD();
 
         var deviceView = ProtobufferViewModelMapper.MapFromProtobuffer(device);
+        deviceView.Eds = new libEDSsharp.EDSsharp();
         Network.Add(deviceView);
         SelectedDevice = deviceView;
+    }
+
+    [RelayCommand]
+    public void CloseDevice(Device device)
+    {
+        if (device != null && Network.Contains(device))
+        {
+            Network.Remove(device);
+            if (SelectedDevice == device)
+            {
+                SelectedDevice = Network.Count > 0 ? Network[0] : null;
+            }
+        }
+    }
+
+    [RelayCommand]
+    public void CloseAllDevices()
+    {
+        Network.Clear();
+        SelectedDevice = null;
     }
 
     public void InitMergeStatus(Device profile, List<int> offsets)
