@@ -44,8 +44,8 @@
     <!-- Device View Tabs -->
     <sys:String x:Key="str_tab_device_info">设备信息</sys:String>
     <sys:String x:Key="str_tab_object_dict">对象字典</sys:String>
-    <sys:String x:Key="str_tab_tx_pdo">发送(TX) PDO 映射</sys:String>
-    <sys:String x:Key="str_tab_rx_pdo">接收(RX) PDO 映射</sys:String>
+    <sys:String x:Key="str_tab_tx_pdo">TPDO 映射</sys:String>
+    <sys:String x:Key="str_tab_rx_pdo">RPDO 映射</sys:String>
     <sys:String x:Key="str_tab_modules">模块</sys:String>
 
     <!-- Device Info View -->
