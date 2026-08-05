@@ -69,18 +69,39 @@
 
             <!-- 主编辑器区域（有设备时显示） -->
             <Grid IsVisible="{Binding HasDevice}">
-                <TabControl ItemsSource="{Binding Network}" SelectedItem="{Binding SelectedDevice}" Padding="0,10,0,0">
-                    <TabControl.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding DeviceInfo.ProductName}" FontWeight="SemiBold" FontSize="14" Margin="5,0"/>
-                        </DataTemplate>
-                    </TabControl.ItemTemplate>
-                    <TabControl.ContentTemplate>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200" MinWidth="150" />
+                    <ColumnDefinition Width="1" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                
+                <Border Grid.Column="0" BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" BorderThickness="0,0,1,0">
+                    <Grid RowDefinitions="Auto,*">
+                        <TextBlock Grid.Row="0" Text="设备网络 (Network)" FontWeight="Bold" Margin="15,15,10,10" Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}" />
+                        
+                        <ListBox Grid.Row="1" ItemsSource="{Binding Network}" SelectedItem="{Binding SelectedDevice}" 
+                                 Background="Transparent" BorderThickness="0" Padding="5,0">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal" Spacing="8" Margin="0,4">
+                                        <TextBlock Text="💻" VerticalAlignment="Center" FontSize="16"/>
+                                        <TextBlock Text="{Binding DeviceInfo.ProductName}" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="14" TextTrimming="CharacterEllipsis"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </Grid>
+                </Border>
+                
+                <GridSplitter Grid.Column="1" Background="{DynamicResource SystemControlForegroundBaseLowBrush}" ResizeDirection="Columns" />
+                
+                <ContentControl Grid.Column="2" Content="{Binding SelectedDevice}">
+                    <ContentControl.ContentTemplate>
                         <DataTemplate>
                             <view:DeviceView />
                         </DataTemplate>
-                    </TabControl.ContentTemplate>
-                </TabControl>
+                    </ContentControl.ContentTemplate>
+                </ContentControl>
             </Grid>
         </Grid>
     </DockPanel>
