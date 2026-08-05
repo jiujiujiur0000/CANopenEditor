@@ -100,7 +100,7 @@
       <ScrollViewer>
         <Border Margin="20" BorderThickness="1" BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" CornerRadius="8" ClipToBounds="True">
           <DataGrid ItemsSource="{Binding MergeStatus}"
-                    GridLinesVisibility="Horizontal"
+                    GridLinesVisibility="All"
                     BorderThickness="0" CornerRadius="8" Margin="-1"
                     Background="Transparent" RowBackground="Transparent"
                     MaxHeight="500"
