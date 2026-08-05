@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "EDSEditorGUI2": {
+    "windows": {
       "commandName": "Project"
     },
     "WSL": {
