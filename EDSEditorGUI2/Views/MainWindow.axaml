@@ -100,12 +100,16 @@
       <ScrollViewer>
         <Border Margin="20" BorderThickness="1" BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" CornerRadius="8" ClipToBounds="True">
           <DataGrid ItemsSource="{Binding MergeStatus}"
-                    GridLinesVisibility="All"
+                    GridLinesVisibility="Horizontal"
                     BorderThickness="0"
                     Background="Transparent" RowBackground="Transparent"
                     MaxHeight="500"
                     x:Name="grid">
-
+            <DataGrid.Styles>
+              <Style Selector="DataGridColumnHeader">
+                <Setter Property="Background" Value="Transparent"/>
+              </Style>
+            </DataGrid.Styles>
           <DataGrid.Columns>
             <DataGridCheckBoxColumn  Header="{DynamicResource str_insert_col_insert}" Width="*"
                     Binding="{Binding Insert}"/>
