@@ -52,11 +52,14 @@ namespace EDSEditorGUI2.ViewModels
                 Slot = slot;
             }
             public string DescriptionComm => Slot.DescriptionComm;
+            public string Communication => "0x" + Slot.ConfigurationIndex.ToString("X4");
+            public string Mapping => "0x" + Slot.MappingIndex.ToString("X4");
             public string COB => "0x" + Slot.COB.ToString("X");
             public string TransmissionType => Slot.transmissiontype.ToString();
             public string Inhibit => Slot.inhibit.ToString();
             public string EventTimer => Slot.eventtimer.ToString();
             public string SyncStart => Slot.syncstart.ToString();
+            public bool Invalid => Slot.invalid;
         }
 
         [ObservableProperty]
@@ -106,6 +109,7 @@ namespace EDSEditorGUI2.ViewModels
             public string SubIndexString { get; }
             public string Name { get; }
             public string Width { get; }
+            public int BitWidth => Entry.width;
         }
 
         [ObservableProperty]
