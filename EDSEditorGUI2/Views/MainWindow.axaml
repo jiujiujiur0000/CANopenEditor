@@ -37,11 +37,11 @@
                     <Separator/>
                     <MenuItem Header="新建设备" Command="{Binding AddNewDevice}"/>
                     <MenuItem Header="导入设备" Click="OpenFileClick"/>
-                    <MenuItem Header="移除当前设备" Command="{Binding CloseDeviceCommand}" CommandParameter="{Binding SelectedDevice}" IsEnabled="{Binding SelectedDevice, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+                    <MenuItem Header="移除当前设备" Command="{Binding CloseDeviceCommand}" CommandParameter="{Binding SelectedDevice}" IsEnabled="{Binding SelectedDevice, Converter={x:Static ObjectConverters.IsNotNull}}"/>
                     <Separator/>
                     <MenuItem Header="{DynamicResource str_menu_recent}"/>
                     <Separator/>
-                    <MenuItem Header="导出当前设备" IsEnabled="{Binding SelectedDevice, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
+                    <MenuItem Header="导出当前设备" IsEnabled="{Binding SelectedDevice, Converter={x:Static ObjectConverters.IsNotNull}}">
                         <MenuItem Header="EDS / XDD 格式" Click="ExportCurrentDeviceEdsClick"/>
                         <MenuItem Header="CANopenNode 源码">
                             <MenuItem Header="导出为 V4 最新版" Click="ExportCurrentDeviceSourceV4Click"/>
@@ -55,7 +55,7 @@
                     <Separator/>
                     <MenuItem Header="{DynamicResource str_menu_quit}" Click="QuitClick"/>
                 </MenuItem>
-                <MenuItem Header="{DynamicResource str_menu_insert_profile}" x:Name="profileMenu" IsEnabled="{Binding SelectedDevice, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+                <MenuItem Header="{DynamicResource str_menu_insert_profile}" x:Name="profileMenu" IsEnabled="{Binding SelectedDevice, Converter={x:Static ObjectConverters.IsNotNull}}"/>
                 <MenuItem Header="{DynamicResource str_menu_reports}">
                 </MenuItem>
                 <MenuItem Header="{DynamicResource str_menu_tools}">
