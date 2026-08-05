@@ -24,7 +24,7 @@ public partial class ModuleItemViewModel : ObservableObject
     [NotifyPropertyChangedFor(nameof(IsConnectedBrush))]
     private bool _isConnected;
 
-    public Avalonia.Media.IBrush IsConnectedBrush => _isConnected ? Avalonia.Media.Brushes.MediumSeaGreen : Avalonia.Media.Brushes.Tomato;
+    public Avalonia.Media.IBrush IsConnectedBrush => IsConnected ? Avalonia.Media.Brushes.MediumSeaGreen : Avalonia.Media.Brushes.Tomato;
 
     [ObservableProperty]
     private string _comments = string.Empty;

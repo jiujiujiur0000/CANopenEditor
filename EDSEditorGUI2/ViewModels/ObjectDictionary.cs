@@ -55,7 +55,9 @@ public class ObjectDictionary : IDictionary<string, OdObject>, INotifyCollection
 
     public bool TryGetValue(string key, out OdObject value)
     {
+#pragma warning disable CS8601
         return Dictionary.TryGetValue(key, out value);
+#pragma warning restore CS8601
     }
 
     public ICollection<OdObject> Values
