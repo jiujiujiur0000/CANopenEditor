@@ -98,10 +98,10 @@
 	  <TextBox x:Name="InsertObjects_Offsets" Watermark="1 100 500" Text="0" TextChanged="OnOffsetTextChanged"/>
 
       <ScrollViewer>
-        <Border Margin="20" BorderThickness="1" BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" CornerRadius="8" ClipToBounds="True">
+        <Grid Margin="20">
           <DataGrid ItemsSource="{Binding MergeStatus}"
                     GridLinesVisibility="All"
-                    BorderThickness="0" CornerRadius="8" Margin="-1"
+                    BorderThickness="0" CornerRadius="8"
                     Background="Transparent" RowBackground="Transparent"
                     MaxHeight="500"
                     x:Name="grid">
@@ -113,7 +113,9 @@
                     Binding="{Binding OriginalObject}" />
 		      </DataGrid.Columns>
           </DataGrid>
-        </Border>
+          <!-- Overlay border for clean rounded corners without double borders -->
+          <Border BorderThickness="1" BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" CornerRadius="8" IsHitTestVisible="False" />
+        </Grid>
       </ScrollViewer>
       <StackPanel Orientation="Horizontal">
 		    <Button x:Name="InsertObjects_Insert" IsDefault="True" Margin="10" Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=dialogHost:DialogHost}, Path=CloseDialogCommand}" CommandParameter="insert" Content="{DynamicResource str_insert_btn_insert}"/>

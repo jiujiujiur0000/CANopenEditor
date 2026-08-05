@@ -13,15 +13,15 @@
   <Grid RowDefinitions="Auto, *" Margin="0,5,0,5">
     <TextBlock Grid.Row="0" Text="{Binding Heading, RelativeSource={RelativeSource AncestorType=view:ODIndexRangeView}}" 
                x:Name="HeadingText" FontWeight="SemiBold" FontSize="16" Foreground="{DynamicResource SystemAccentColor}" Margin="0,5,0,10"/>
-    <Border Grid.Row="1" BorderThickness="1" BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" CornerRadius="8" ClipToBounds="True">
-      <DataGrid x:Name="grid" Margin="-1"
+    <Grid Grid.Row="1">
+      <DataGrid x:Name="grid"
                 ItemsSource="{Binding FilteredItems, RelativeSource={RelativeSource AncestorType=UserControl}}"
                 x:CompileBindings="False"
                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                 GridLinesVisibility="Horizontal"
                 BorderThickness="0" CornerRadius="8"
                 Background="Transparent" RowBackground="Transparent"
-                FocusAdorner="{x:Null}"
+                SelectionMode="Single"
                 SelectionChanged="DataGrid_SelectionChanged">
       <DataGrid.Styles>
         <Style Selector="DataGridColumnHeader">
@@ -48,8 +48,10 @@
           <MenuItem Header="{DynamicResource str_od_menu_toggle}"/>
         </ContextMenu>
       </DataGrid.ContextMenu>
-    </DataGrid>
-    </Border>
+      </DataGrid>
+      <!-- Overlay border for clean rounded corners without double borders -->
+      <Border BorderThickness="1" BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" CornerRadius="8" IsHitTestVisible="False" />
+    </Grid>
   </Grid>
   <UserControl.Resources>
     <converter:NewIndexMultiConvert x:Key="NewIndexMultiConvert" />
