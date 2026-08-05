@@ -9,13 +9,13 @@
     <Grid RowDefinitions="Auto,*,Auto" ColumnDefinitions="*,*" Margin="10">
         <!-- Top bar: Nr Supported Modules -->
         <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="0,0,0,10">
-            <TextBlock Text="Number of connected modules:" FontWeight="SemiBold" VerticalAlignment="Center" Margin="0,0,10,0"/>
+            <TextBlock Text="{DynamicResource str_module_connected_count}" FontWeight="SemiBold" VerticalAlignment="Center" Margin="0,0,10,0"/>
             <TextBox Text="{Binding NrSupportedModules}" IsReadOnly="True" Width="80"/>
         </StackPanel>
         
         <!-- Left panel: Modules List -->
         <Grid Grid.Row="1" Grid.Column="0" RowDefinitions="Auto,*" Margin="0,0,10,0">
-            <TextBlock Grid.Row="0" Text="Modules List:" FontWeight="SemiBold" Margin="0,0,0,5"/>
+            <TextBlock Grid.Row="0" Text="{DynamicResource str_module_list}" FontWeight="SemiBold" Margin="0,0,0,5"/>
             <Border Grid.Row="1"
                     BorderBrush="{DynamicResource SystemControlForegroundBaseMediumLowBrush}" 
                     BorderThickness="1" CornerRadius="8" ClipToBounds="True">
@@ -36,7 +36,7 @@
                     </DataGrid.Styles>
                     <DataGrid.Columns>
                         <!-- Connection Status Icon -->
-                        <DataGridTemplateColumn Header="Status" Width="80">
+                        <DataGridTemplateColumn Header="{DynamicResource str_module_col_status}" Width="80">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <Ellipse Width="12" Height="12" 
@@ -45,11 +45,11 @@
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
-                        <DataGridTextColumn Header="Index" Binding="{Binding Index}" IsReadOnly="True"/>
-                        <DataGridTextColumn Header="Product Name" Binding="{Binding ProductName}" IsReadOnly="True" Width="*"/>
-                        <DataGridTextColumn Header="Version" Binding="{Binding ProductVersion}" IsReadOnly="True"/>
-                        <DataGridTextColumn Header="Revision" Binding="{Binding ProductRevision}" IsReadOnly="True"/>
-                        <DataGridTextColumn Header="Order Code" Binding="{Binding OrderCode}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="{DynamicResource str_module_col_index}" Binding="{Binding Index}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="{DynamicResource str_module_col_product_name}" Binding="{Binding ProductName}" IsReadOnly="True" Width="*"/>
+                        <DataGridTextColumn Header="{DynamicResource str_module_col_version}" Binding="{Binding ProductVersion}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="{DynamicResource str_module_col_revision}" Binding="{Binding ProductRevision}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="{DynamicResource str_module_col_order_code}" Binding="{Binding OrderCode}" IsReadOnly="True"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </Border>
@@ -57,7 +57,7 @@
 
         <!-- Right panel: Extended Objects and Comments -->
         <Grid Grid.Row="1" Grid.Column="1" RowDefinitions="Auto,*,Auto" Margin="10,0,0,0">
-            <TextBlock Grid.Row="0" Text="Extended Objects:" FontWeight="SemiBold" Margin="0,0,0,5"/>
+            <TextBlock Grid.Row="0" Text="{DynamicResource str_module_extended_objects}" FontWeight="SemiBold" Margin="0,0,0,5"/>
             <Border Grid.Row="1" Margin="0,0,0,10"
                     BorderBrush="{DynamicResource SystemControlForegroundBaseMediumLowBrush}" 
                     BorderThickness="1" CornerRadius="8" ClipToBounds="True">
@@ -76,15 +76,15 @@
                         </Style>
                     </DataGrid.Styles>
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Index" Binding="{Binding IndexHex}" IsReadOnly="True" Width="100"/>
-                        <DataGridTextColumn Header="Name" Binding="{Binding Name}" IsReadOnly="True" Width="*"/>
+                        <DataGridTextColumn Header="{DynamicResource str_module_col_index}" Binding="{Binding IndexHex}" IsReadOnly="True" Width="100"/>
+                        <DataGridTextColumn Header="{DynamicResource str_module_col_name}" Binding="{Binding Name}" IsReadOnly="True" Width="*"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </Border>
 
             <!-- Comments -->
             <StackPanel Grid.Row="2">
-                <TextBlock Text="Module Comments:" FontWeight="SemiBold" Margin="0,0,0,5"/>
+                <TextBlock Text="{DynamicResource str_module_comments}" FontWeight="SemiBold" Margin="0,0,0,5"/>
                 <TextBox Text="{Binding SelectedModule.Comments}" IsReadOnly="True" 
                          TextWrapping="Wrap" AcceptsReturn="True" Height="120"
                          FontFamily="Consolas, Courier New, monospace"/>

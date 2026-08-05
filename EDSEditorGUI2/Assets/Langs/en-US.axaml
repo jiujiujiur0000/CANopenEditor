@@ -128,5 +128,19 @@
     <sys:String x:Key="str_od_dlg_name">Name:</sys:String>
     <sys:String x:Key="str_od_dlg_objtype">Object Type:</sys:String>
     <sys:String x:Key="str_od_btn_create">Create</sys:String>
-    <sys:String x:Key="str_od_btn_cancel">Cancel</sys:String>
+    <sys:String x:Key="str_menu_options_theme_dark">Dark</sys:String>
+
+    <!-- Modules Tab -->
+    <sys:String x:Key="str_module_connected_count">Number of connected modules:</sys:String>
+    <sys:String x:Key="str_module_list">Modules List:</sys:String>
+    <sys:String x:Key="str_module_extended_objects">Extended Objects:</sys:String>
+    <sys:String x:Key="str_module_comments">Module Comments:</sys:String>
+    
+    <sys:String x:Key="str_module_col_status">Status</sys:String>
+    <sys:String x:Key="str_module_col_index">Index</sys:String>
+    <sys:String x:Key="str_module_col_product_name">Product Name</sys:String>
+    <sys:String x:Key="str_module_col_version">Version</sys:String>
+    <sys:String x:Key="str_module_col_revision">Revision</sys:String>
+    <sys:String x:Key="str_module_col_order_code">Order Code</sys:String>
+    <sys:String x:Key="str_module_col_name">Name</sys:String>
 </ResourceDictionary>
