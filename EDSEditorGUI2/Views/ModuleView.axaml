@@ -9,7 +9,7 @@
     <Grid RowDefinitions="Auto,*,Auto" ColumnDefinitions="*,*" Margin="10">
         <!-- Top bar: Nr Supported Modules -->
         <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="0,0,0,10">
-            <TextBlock Text="{DynamicResource str_module_connected_count}" FontWeight="SemiBold" VerticalAlignment="Center" Margin="0,0,10,0"/>
+            <TextBlock Text="{DynamicResource str_module_connected_count}" VerticalAlignment="Center" Margin="0,0,10,0"/>
             <TextBox Text="{Binding NrSupportedModules}" IsReadOnly="True" Width="80"/>
         </StackPanel>
         
