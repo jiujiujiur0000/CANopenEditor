@@ -12,9 +12,8 @@
     <TabControl.Styles>
       <Style Selector="TabItem">
         <Setter Property="FontSize" Value="16" />
-        <Setter Property="MinHeight" Value="42" />
-        <Setter Property="Padding" Value="16,8,16,12" />
-        <Setter Property="VerticalContentAlignment" Value="Top" />
+        <Setter Property="MinHeight" Value="48" />
+        <Setter Property="Padding" Value="16,0,16,6" />
         <Setter Property="Margin" Value="0,0,4,0" />
         <Setter Property="Foreground" Value="{DynamicResource SystemControlForegroundBaseMediumBrush}" />
       </Style>
@@ -23,19 +22,34 @@
         <Setter Property="Foreground" Value="{DynamicResource SystemControlForegroundBaseHighBrush}" />
       </Style>
     </TabControl.Styles>
-    <TabItem Header="{DynamicResource str_tab_device_info}">
+    <TabItem>
+      <TabItem.Header>
+        <TextBlock Text="{DynamicResource str_tab_device_info}" Margin="0,0,0,4"/>
+      </TabItem.Header>
       <view:DeviceInfoView DataContext="{Binding}" />
     </TabItem>
-    <TabItem Header="{DynamicResource str_tab_object_dict}">
+    <TabItem>
+      <TabItem.Header>
+        <TextBlock Text="{DynamicResource str_tab_object_dict}" Margin="0,0,0,4"/>
+      </TabItem.Header>
       <view:DeviceODView DataContext="{Binding Objects}" />
     </TabItem>
-    <TabItem Header="{DynamicResource str_tab_tx_pdo}">
+    <TabItem>
+      <TabItem.Header>
+        <TextBlock Text="{DynamicResource str_tab_tx_pdo}" Margin="0,0,0,4"/>
+      </TabItem.Header>
       <view:DevicePDOView DataContext="{Binding Objects}" />
     </TabItem>
-    <TabItem Header="{DynamicResource str_tab_rx_pdo}">
+    <TabItem>
+      <TabItem.Header>
+        <TextBlock Text="{DynamicResource str_tab_rx_pdo}" Margin="0,0,0,4"/>
+      </TabItem.Header>
       <view:DevicePDOView DataContext="{Binding Objects}" />
     </TabItem>
-    <TabItem Header="{DynamicResource str_tab_modules}">
+    <TabItem>
+      <TabItem.Header>
+        <TextBlock Text="{DynamicResource str_tab_modules}" Margin="0,0,0,4"/>
+      </TabItem.Header>
       <view:ModuleView DataContext="{Binding ModuleInfo}"/>
     </TabItem>  
   </TabControl>
