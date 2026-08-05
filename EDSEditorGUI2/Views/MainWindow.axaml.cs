@@ -348,6 +348,88 @@ public partial class MainWindow : Window
         }
     }
 
+    public async void OpenProjectClick(object sender, RoutedEventArgs args)
+    {
+        var topLevel = TopLevel.GetTopLevel(this) ?? throw new Exception("Internal GUI error");
+
+        var xpd = new FilePickerFileType("XML Project Description (*.xpd)") { Patterns = ["*.xpd"] };
+        var cpj = new FilePickerFileType("CANopen Project (*.cpj)") { Patterns = ["*.cpj"] };
+
+        var files = await topLevel.StorageProvider.OpenFilePickerAsync(new FilePickerOpenOptions
+        {
+            Title = "Open CANopen Project",
+            AllowMultiple = false,
+            FileTypeFilter = [xpd, cpj]
+        });
+
+        if (files.Count > 0)
+        {
+            string filePath = files[0].TryGetLocalPath() ?? files[0].Path.ToString();
+            try
+            {
+                CanOpenXDD_1_1 coxml_1_1 = new();
+                List<EDSsharp> edss = coxml_1_1.ReadMultiXML(filePath);
+                
+                if (edss != null && DataContext is MainWindowViewModel dc)
+                {
+                    dc.Network.Clear();
+                    foreach (var eds in edss)
+                    {
+                        var proto = MappingEDS.MapToProtobuffer(eds);
+                        var deviceView = ProtobufferViewModelMapper.MapFromProtobuffer(proto);
+                        deviceView.Eds = eds;
+                        dc.Network.Add(deviceView);
+                    }
+                    if (dc.Network.Count > 0)
+                    {
+                        dc.SelectedDevice = dc.Network[0];
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Failed to open project {filePath}: {ex.Message}");
+            }
+        }
+    }
+
+    public async void SaveProjectClick(object sender, RoutedEventArgs args)
+    {
+        var topLevel = TopLevel.GetTopLevel(this) ?? throw new Exception("Internal GUI error");
+
+        var xpd = new FilePickerFileType("XML Project Description (*.xpd)") { Patterns = ["*.xpd"] };
+
+        var file = await topLevel.StorageProvider.SaveFilePickerAsync(new FilePickerSaveOptions
+        {
+            Title = "Save CANopen Project",
+            DefaultExtension = "xpd",
+            FileTypeChoices = [xpd]
+        });
+
+        if (file != null)
+        {
+            string filePath = file.TryGetLocalPath() ?? file.Path.ToString();
+            try
+            {
+                if (DataContext is MainWindowViewModel dc)
+                {
+                    List<EDSsharp> edss = new List<EDSsharp>();
+                    foreach (var device in dc.Network)
+                    {
+                        edss.Add(device.Eds);
+                    }
+
+                    CanOpenXDD_1_1 coxml_1_1 = new();
+                    coxml_1_1.WriteMultiXML(filePath, edss, true);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Failed to save project {filePath}: {ex.Message}");
+            }
+        }
+    }
+
     private async void OpenPreferences(object? sender, RoutedEventArgs e)
     {
         await DialogHostAvalonia.DialogHost.Show(Resources["PreferencesDialog"]!, "RootDialogHost");

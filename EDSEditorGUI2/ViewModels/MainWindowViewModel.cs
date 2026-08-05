@@ -73,6 +73,13 @@ public partial class MainWindowViewModel : ViewModelBase
         SelectedDevice = null;
     }
 
+    [RelayCommand]
+    public void NewProject()
+    {
+        Network.Clear();
+        AddNewDevice();
+    }
+
     public void InitMergeStatus(Device profile, List<int> offsets)
     {
         MergeStatus.Clear();

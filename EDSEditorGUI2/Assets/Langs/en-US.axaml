@@ -9,7 +9,7 @@
     <sys:String x:Key="str_menu_save_as">_Save Project AS...</sys:String>
     <sys:String x:Key="str_menu_open_network">Open _Network XML</sys:String>
     <sys:String x:Key="str_menu_save_network">Save Networ_k XML</sys:String>
-    <sys:String x:Key="str_menu_recent">_Recent Files</sys:String>
+    <sys:String x:Key="str_menu_recent">_Recent Projects</sys:String>
     <sys:String x:Key="str_menu_export">_Export</sys:String>
     <sys:String x:Key="str_menu_export_canopennode">_Export CanOpenNode...</sys:String>
     <sys:String x:Key="str_menu_save_all">Save _All</sys:String>

@@ -9,7 +9,7 @@
     <sys:String x:Key="str_menu_save_as">另存为(_A)...</sys:String>
     <sys:String x:Key="str_menu_open_network">打开网络配置(_N)</sys:String>
     <sys:String x:Key="str_menu_save_network">保存网络配置(_K)</sys:String>
-    <sys:String x:Key="str_menu_recent">最近文件(_R)</sys:String>
+    <sys:String x:Key="str_menu_recent">最近项目(_R)</sys:String>
     <sys:String x:Key="str_menu_export">导出(_E)</sys:String>
     <sys:String x:Key="str_menu_export_canopennode">导出CanOpenNode代码(_C)...</sys:String>
     <sys:String x:Key="str_menu_save_all">全部保存(_A)</sys:String>

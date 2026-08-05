@@ -29,21 +29,25 @@
             </Grid.ColumnDefinitions>
             <Menu Grid.Column="0" x:Name="menu">
                 <MenuItem Header="{DynamicResource str_menu_file}" x:Name="fileMenu" >
-                    <MenuItem Header="{DynamicResource str_menu_new}" Command="{Binding AddNewDevice}"/>
-                    <MenuItem Header="{DynamicResource str_menu_open}" Click="OpenFileClick"/>
-                    <MenuItem Header="关闭当前设备 (Close)" Command="{Binding CloseDeviceCommand}" CommandParameter="{Binding SelectedDevice}" IsEnabled="{Binding SelectedDevice, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
-                    <MenuItem Header="全部关闭 (Close All)" Command="{Binding CloseAllDevicesCommand}" IsEnabled="{Binding HasDevice}"/>
-                    <MenuItem Header="{DynamicResource str_menu_save}" IsEnabled="{Binding SelectedDevice, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
-                    <MenuItem Header="{DynamicResource str_menu_save_as}" IsEnabled="{Binding SelectedDevice, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+                    <MenuItem Header="新建项目" Command="{Binding NewProjectCommand}"/>
+                    <MenuItem Header="打开项目" Click="OpenProjectClick"/>
+                    <MenuItem Header="保存项目" Click="SaveProjectClick" IsEnabled="{Binding HasDevice}"/>
+                    <MenuItem Header="关闭项目" Command="{Binding CloseAllDevicesCommand}" IsEnabled="{Binding HasDevice}"/>
                     <Separator/>
-                    <MenuItem Header="{DynamicResource str_menu_open_network}"/>
-                    <MenuItem Header="{DynamicResource str_menu_save_network}" IsEnabled="{Binding SelectedDevice, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+                    <MenuItem Header="新建设备" Command="{Binding AddNewDevice}"/>
+                    <MenuItem Header="导入设备" Click="OpenFileClick"/>
+                    <MenuItem Header="移除当前设备" Command="{Binding CloseDeviceCommand}" CommandParameter="{Binding SelectedDevice}" IsEnabled="{Binding SelectedDevice, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
                     <Separator/>
                     <MenuItem Header="{DynamicResource str_menu_recent}"/>
                     <Separator/>
-                    <MenuItem Header="{DynamicResource str_menu_export}" IsEnabled="{Binding SelectedDevice, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
-                    <MenuItem Header="{DynamicResource str_menu_export_canopennode}" IsEnabled="{Binding SelectedDevice, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
-                    <MenuItem Header="{DynamicResource str_menu_save_all}" IsEnabled="{Binding SelectedDevice, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+                    <MenuItem Header="导出当前设备" IsEnabled="{Binding SelectedDevice, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
+                        <MenuItem Header="EDS / XDD 格式"/>
+                        <MenuItem Header="CANopenNode 源码"/>
+                    </MenuItem>
+                    <MenuItem Header="导出所有设备" IsEnabled="{Binding HasDevice}">
+                        <MenuItem Header="EDS / XDD 格式"/>
+                        <MenuItem Header="CANopenNode 源码"/>
+                    </MenuItem>
                     <Separator/>
                     <MenuItem Header="{DynamicResource str_menu_quit}"/>
                 </MenuItem>
@@ -61,10 +65,10 @@
             <Grid IsVisible="{Binding HasNoDevice}" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <StackPanel Spacing="20">
                     <TextBlock Text="欢迎使用 CANopen Editor" FontSize="32" FontWeight="Bold" HorizontalAlignment="Center"/>
-                    <TextBlock Text="请选择一个操作开始" FontSize="16" Foreground="Gray" HorizontalAlignment="Center"/>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="20" Margin="0,30,0,0">
-                        <Button Content="📄 新建项目" Command="{Binding AddNewDevice}" Classes="accent" FontSize="16" Padding="25,12" CornerRadius="8" Cursor="Hand"/>
-                        <Button Content="📂 打开文件" Click="OpenFileClick" FontSize="16" Padding="25,12" CornerRadius="8" Cursor="Hand"/>
+                        <Button Content="📄 新建项目" Command="{Binding NewProjectCommand}" Classes="accent" FontSize="16" Padding="25,12" CornerRadius="8" Cursor="Hand"/>
+                        <Button Content="📂 打开项目" Click="OpenProjectClick" FontSize="16" Padding="25,12" CornerRadius="8" Cursor="Hand"/>
+                        <Button Content="📥 导入设备" Click="OpenFileClick" FontSize="16" Padding="25,12" CornerRadius="8" Cursor="Hand"/>
                     </StackPanel>
                 </StackPanel>
             </Grid>
@@ -85,13 +89,28 @@
                                  Background="Transparent" BorderThickness="0" Padding="5,0">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
-                                    <Grid ColumnDefinitions="Auto,*,Auto" Margin="0,4">
+                                    <Grid ColumnDefinitions="Auto,*,Auto" Margin="0,4" Background="Transparent">
+                                        <Grid.ContextMenu>
+                                            <ContextMenu>
+                                                <MenuItem Header="新建设备" Command="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).AddNewDevice}"/>
+                                                <MenuItem Header="导入设备" Click="OpenFileClick"/>
+                                                <Separator/>
+                                                <MenuItem Header="移除设备" 
+                                                          Command="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).CloseDeviceCommand}" 
+                                                          CommandParameter="{Binding}"/>
+                                                <Separator/>
+                                                <MenuItem Header="导出当前设备">
+                                                    <MenuItem Header="EDS / XDD 格式"/>
+                                                    <MenuItem Header="CANopenNode 源码"/>
+                                                </MenuItem>
+                                            </ContextMenu>
+                                        </Grid.ContextMenu>
                                         <TextBlock Grid.Column="0" Text="💻" VerticalAlignment="Center" FontSize="16" Margin="0,0,8,0"/>
                                         <TextBlock Grid.Column="1" Text="{Binding DeviceInfo.ProductName}" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="14" TextTrimming="CharacterEllipsis"/>
                                         <Button Grid.Column="2" Classes="icon" Padding="4" Background="Transparent" BorderThickness="0" 
                                                 Command="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).CloseDeviceCommand}" 
                                                 CommandParameter="{Binding}"
-                                                ToolTip.Tip="关闭设备">
+                                                ToolTip.Tip="移除设备">
                                             <PathIcon Data="{StaticResource dismiss_regular}" Width="12" Height="12"/>
                                         </Button>
                                     </Grid>
