@@ -15,7 +15,7 @@
         <ProfileTechnology>CANopen</ProfileTechnology>
       </ISO15745Reference>
     </ProfileHeader>
-    <ProfileBody xmlns:q1="http://www.canopen.org/xml/1.1" xsi:type="q1:ProfileBody_Device_CANopen" formatName="CANopen" formatVersion="1.0" fileName="test.xdd" fileCreator="" fileCreationDate="2026-08-04" fileCreationTime="15:49:00.0000000Z" fileModifiedBy="" fileModificationDate="2026-08-05" fileModificationTime="16:22:24.3987531+08:00" fileVersion="1" supportedLanguages="en" xmlns="">
+    <ProfileBody xmlns:q1="http://www.canopen.org/xml/1.1" xsi:type="q1:ProfileBody_Device_CANopen" formatName="CANopen" formatVersion="1.0" fileName="test_cli.xdd" fileCreator="" fileCreationDate="2026-08-04" fileCreationTime="15:49:53.0000000+08:00" fileModifiedBy="" fileModificationDate="2026-08-05" fileModificationTime="16:21:09.8287876+08:00" fileVersion="1" supportedLanguages="en" xmlns="">
       <q1:DeviceIdentity>
         <q1:vendorName></q1:vendorName>
         <q1:vendorID>0x00</q1:vendorID>
@@ -46,39 +46,39 @@
         <q1:dataTypeList>
           <q1:array name="Pre-defined error field" uniqueID="UID_ARR_1003">
             <q1:subrange lowerLimit="0" upperLimit="16" />
-            <DINT />
+            <UDINT />
           </q1:array>
           <q1:array name="Store parameters" uniqueID="UID_ARR_1010">
             <q1:subrange lowerLimit="0" upperLimit="4" />
-            <DINT />
+            <UDINT />
           </q1:array>
           <q1:array name="Restore default parameters" uniqueID="UID_ARR_1011">
             <q1:subrange lowerLimit="0" upperLimit="4" />
-            <DINT />
+            <UDINT />
           </q1:array>
           <q1:array name="Consumer heartbeat time" uniqueID="UID_ARR_1016">
             <q1:subrange lowerLimit="0" upperLimit="8" />
-            <DINT />
+            <UDINT />
           </q1:array>
           <q1:array name="Verify configuration" uniqueID="UID_ARR_1020">
             <q1:subrange lowerLimit="0" upperLimit="2" />
-            <DINT />
+            <UDINT />
           </q1:array>
           <q1:array name="OS prompt" uniqueID="UID_ARR_1026">
             <q1:subrange lowerLimit="0" upperLimit="3" />
-            <DINT />
+            <USINT />
           </q1:array>
           <q1:array name="Module list" uniqueID="UID_ARR_1027">
             <q1:subrange lowerLimit="0" upperLimit="1" />
-            <DINT />
+            <UINT />
           </q1:array>
           <q1:array name="Emergency consumer object" uniqueID="UID_ARR_1028">
             <q1:subrange lowerLimit="0" upperLimit="8" />
-            <DINT />
+            <UDINT />
           </q1:array>
           <q1:array name="Error behavior object" uniqueID="UID_ARR_1029">
             <q1:subrange lowerLimit="0" upperLimit="2" />
-            <DINT />
+            <USINT />
           </q1:array>
           <q1:struct name="Identity" uniqueID="UID_REC_1018">
             <q1:varDeclaration name="Highest sub-index supported" uniqueID="UID_RECSUB_101800">
@@ -534,14 +534,15 @@
           </q1:struct>
         </q1:dataTypeList>
         <q1:parameterList>
-          <q1:parameter uniqueID="UID_OBJ_1000" access="noAccess">
+          <q1:parameter uniqueID="UID_OBJ_1000">
             <description lang="en">* bit 16-31: Additional information
 * bit 0-15: Device profile number</description>
-            <DINT />
+            <UDINT />
+            <q1:defaultValue value="0x00000000" />
             <q1:property name="CO_countLabel" value="NMT" />
             <q1:property name="CO_storageGroup" value="PERSIST_COMM" />
           </q1:parameter>
-          <q1:parameter uniqueID="UID_OBJ_1001" access="noAccess">
+          <q1:parameter uniqueID="UID_OBJ_1001">
             <description lang="en">* bit 7: manufacturer specific
 * bit 6: Reserved (always 0)
 * bit 5: device profile specific
@@ -550,12 +551,14 @@
 * bit 2: voltage
 * bit 1: current
 * bit 0: generic error</description>
-            <DINT />
+            <USINT />
+            <q1:defaultValue value="0x00" />
             <q1:property name="CO_countLabel" value="EM" />
           </q1:parameter>
-          <q1:parameter uniqueID="UID_OBJ_1002" access="noAccess">
+          <q1:parameter uniqueID="UID_OBJ_1002">
             <label lang="en">Manufacturer status register</label>
-            <DINT />
+            <UDINT />
+            <q1:defaultValue value="0" />
             <q1:property name="CO_disabled" value="true" />
           </q1:parameter>
           <q1:parameter uniqueID="UID_OBJ_1003">
@@ -605,87 +608,92 @@
             <label lang="en">Standard error field</label>
             <UDINT />
           </q1:parameter>
+          <q1:parameter uniqueID="UID_SUB_10030A">
+            <label lang="en">Standard error field</label>
+            <UDINT />
+          </q1:parameter>
+          <q1:parameter uniqueID="UID_SUB_10030B">
+            <label lang="en">Standard error field</label>
+            <UDINT />
+          </q1:parameter>
+          <q1:parameter uniqueID="UID_SUB_10030C">
+            <label lang="en">Standard error field</label>
+            <UDINT />
+          </q1:parameter>
+          <q1:parameter uniqueID="UID_SUB_10030D">
+            <label lang="en">Standard error field</label>
+            <UDINT />
+          </q1:parameter>
+          <q1:parameter uniqueID="UID_SUB_10030E">
+            <label lang="en">Standard error field</label>
+            <UDINT />
+          </q1:parameter>
+          <q1:parameter uniqueID="UID_SUB_10030F">
+            <label lang="en">Standard error field</label>
+            <UDINT />
+          </q1:parameter>
           <q1:parameter uniqueID="UID_SUB_100310">
             <label lang="en">Standard error field</label>
             <UDINT />
           </q1:parameter>
-          <q1:parameter uniqueID="UID_SUB_100311">
-            <label lang="en">Standard error field</label>
-            <UDINT />
-          </q1:parameter>
-          <q1:parameter uniqueID="UID_SUB_100312">
-            <label lang="en">Standard error field</label>
-            <UDINT />
-          </q1:parameter>
-          <q1:parameter uniqueID="UID_SUB_100313">
-            <label lang="en">Standard error field</label>
-            <UDINT />
-          </q1:parameter>
-          <q1:parameter uniqueID="UID_SUB_100314">
-            <label lang="en">Standard error field</label>
-            <UDINT />
-          </q1:parameter>
-          <q1:parameter uniqueID="UID_SUB_100315">
-            <label lang="en">Standard error field</label>
-            <UDINT />
-          </q1:parameter>
-          <q1:parameter uniqueID="UID_SUB_100316">
-            <label lang="en">Standard error field</label>
-            <UDINT />
-          </q1:parameter>
-          <q1:parameter uniqueID="UID_OBJ_1005" access="noAccess">
+          <q1:parameter uniqueID="UID_OBJ_1005" access="readWrite">
             <description lang="en">* bit 31: set to 0
 * bit 30: If set, CANopen device generates SYNC object
 * bit 11-29: set to 0
 * bit 0-10: 11-bit CAN-ID</description>
-            <DINT />
+            <UDINT />
+            <q1:defaultValue value="0x00000080" />
             <q1:property name="CO_countLabel" value="SYNC" />
             <q1:property name="CO_storageGroup" value="PERSIST_COMM" />
           </q1:parameter>
-          <q1:parameter uniqueID="UID_OBJ_1006" access="noAccess">
+          <q1:parameter uniqueID="UID_OBJ_1006" access="readWrite">
             <description lang="en">Period of SYNC transmission in µs (0 = transmission disabled).</description>
-            <DINT />
+            <UDINT />
+            <q1:defaultValue value="0" />
             <q1:property name="CO_countLabel" value="SYNC_PROD" />
             <q1:property name="CO_storageGroup" value="PERSIST_COMM" />
           </q1:parameter>
-          <q1:parameter uniqueID="UID_OBJ_1007" access="noAccess">
+          <q1:parameter uniqueID="UID_OBJ_1007" access="readWrite">
             <description lang="en">Synchronous window leghth in µs (0 = not used). All synchronous PDOs must be transmitted within this time window.</description>
-            <DINT />
+            <UDINT />
+            <q1:defaultValue value="0" />
             <q1:property name="CO_storageGroup" value="PERSIST_COMM" />
           </q1:parameter>
-          <q1:parameter uniqueID="UID_OBJ_1008" access="noAccess">
+          <q1:parameter uniqueID="UID_OBJ_1008">
             <label lang="en">Manufacturer device name</label>
-            <DINT />
+            <STRING />
             <q1:property name="CO_disabled" value="true" />
             <q1:property name="CO_storageGroup" value="PERSIST_COMM" />
           </q1:parameter>
-          <q1:parameter uniqueID="UID_OBJ_1009" access="noAccess">
+          <q1:parameter uniqueID="UID_OBJ_1009">
             <label lang="en">Manufacturer hardware version</label>
-            <DINT />
+            <STRING />
             <q1:property name="CO_disabled" value="true" />
             <q1:property name="CO_storageGroup" value="PERSIST_COMM" />
           </q1:parameter>
-          <q1:parameter uniqueID="UID_OBJ_100A" access="noAccess">
+          <q1:parameter uniqueID="UID_OBJ_100A">
             <label lang="en">Manufacturer software version</label>
-            <DINT />
+            <STRING />
             <q1:property name="CO_disabled" value="true" />
             <q1:property name="CO_storageGroup" value="PERSIST_COMM" />
           </q1:parameter>
-          <q1:parameter uniqueID="UID_OBJ_100C" access="noAccess">
+          <q1:parameter uniqueID="UID_OBJ_100C" access="readWrite">
             <description lang="en">The objects at index 100Ch and 100Dh include the guard time in milliseconds and the life time factor.
 
 The life time factor multiplied with the guard time gives the life time for the Life Guarding Protocol. It is
 
 0 if not used.</description>
-            <DINT />
+            <UINT />
+            <q1:defaultValue value="0" />
             <q1:property name="CO_disabled" value="true" />
             <q1:property name="CO_storageGroup" value="PERSIST_COMM" />
           </q1:parameter>
-          <q1:parameter uniqueID="UID_OBJ_100D" access="noAccess">
+          <q1:parameter uniqueID="UID_OBJ_100D" access="readWrite">
             <description lang="en">The life time factor multiplied with the guard time gives the life time for the node guarding protocol. It is
 
 0 if not used.</description>
-            <DINT />
+            <USINT />
+            <q1:defaultValue value="0" />
             <q1:property name="CO_disabled" value="true" />
             <q1:property name="CO_storageGroup" value="PERSIST_COMM" />
           </q1:parameter>
@@ -755,31 +763,35 @@ The life time factor multiplied with the guard time gives the life time for the 
             <UDINT />
             <q1:defaultValue value="0x00000001" />
           </q1:parameter>
-          <q1:parameter uniqueID="UID_OBJ_1012" access="noAccess">
+          <q1:parameter uniqueID="UID_OBJ_1012" access="readWrite">
             <description lang="en">* bit 31: If set, CANopen device consumes TIME message
 * bit 30: If set, CANopen device produces TIME message
 * bit 11-29: set to 0
 * bit 0-10: 11-bit CAN-ID</description>
-            <DINT />
+            <UDINT />
+            <q1:defaultValue value="0x00000100" />
             <q1:property name="CO_countLabel" value="TIME" />
             <q1:property name="CO_storageGroup" value="PERSIST_COMM" />
           </q1:parameter>
-          <q1:parameter uniqueID="UID_OBJ_1013" access="noAccess">
+          <q1:parameter uniqueID="UID_OBJ_1013" access="readWrite">
             <label lang="en">High resolution time stamp</label>
-            <DINT />
+            <UDINT />
+            <q1:defaultValue value="0" />
             <q1:property name="CO_disabled" value="true" />
           </q1:parameter>
-          <q1:parameter uniqueID="UID_OBJ_1014" access="noAccess">
+          <q1:parameter uniqueID="UID_OBJ_1014" access="readWrite">
             <description lang="en">* bit 31: If set, EMCY does NOT exist / is NOT valid
 * bit 11-30: set to 0
 * bit 0-10: 11-bit CAN-ID</description>
-            <DINT />
+            <UDINT />
+            <q1:defaultValue value="$NODEID+0x80" />
             <q1:property name="CO_countLabel" value="EM_PROD" />
             <q1:property name="CO_storageGroup" value="PERSIST_COMM" />
           </q1:parameter>
-          <q1:parameter uniqueID="UID_OBJ_1015" access="noAccess">
+          <q1:parameter uniqueID="UID_OBJ_1015" access="readWrite">
             <description lang="en">Inhibit time of emergency message in multiples of 100µs. The value 0 disables the inhibit time.</description>
-            <DINT />
+            <UINT />
+            <q1:defaultValue value="0" />
             <q1:property name="CO_storageGroup" value="PERSIST_COMM" />
           </q1:parameter>
           <q1:parameter uniqueID="UID_OBJ_1016">
@@ -836,9 +848,10 @@ The life time factor multiplied with the guard time gives the life time for the 
             <UDINT />
             <q1:defaultValue value="0x00000000" />
           </q1:parameter>
-          <q1:parameter uniqueID="UID_OBJ_1017" access="noAccess">
+          <q1:parameter uniqueID="UID_OBJ_1017" access="readWrite">
             <description lang="en">Heartbeat producer time in ms (0 = disable transmission).</description>
-            <DINT />
+            <UINT />
+            <q1:defaultValue value="0" />
             <q1:property name="CO_countLabel" value="HB_PROD" />
             <q1:property name="CO_storageGroup" value="PERSIST_COMM" />
           </q1:parameter>
@@ -877,12 +890,13 @@ The life time factor multiplied with the guard time gives the life time for the 
             <UDINT />
             <q1:defaultValue value="0x00000000" />
           </q1:parameter>
-          <q1:parameter uniqueID="UID_OBJ_1019" access="noAccess">
+          <q1:parameter uniqueID="UID_OBJ_1019" access="readWrite">
             <description lang="en">* Value 0: SYNC message is transmitted with data length 0.
 * Value 1: reserved.
 * Value 2-240: SYNC message has one data byte, which contains the counter.
 * Value 241-255: reserved.</description>
-            <DINT />
+            <USINT />
+            <q1:defaultValue value="0" />
             <q1:property name="CO_storageGroup" value="PERSIST_COMM" />
           </q1:parameter>
           <q1:parameter uniqueID="UID_OBJ_1020">
@@ -906,14 +920,15 @@ The life time factor multiplied with the guard time gives the life time for the 
             <UDINT />
             <q1:defaultValue value="0" />
           </q1:parameter>
-          <q1:parameter uniqueID="UID_OBJ_1021" access="noAccess">
+          <q1:parameter uniqueID="UID_OBJ_1021">
             <label lang="en">Store EDS</label>
-            <DINT />
+            <BITSTRING />
             <q1:property name="CO_disabled" value="true" />
           </q1:parameter>
-          <q1:parameter uniqueID="UID_OBJ_1022" access="noAccess">
+          <q1:parameter uniqueID="UID_OBJ_1022">
             <label lang="en">Store format</label>
-            <DINT />
+            <UINT />
+            <q1:defaultValue value="0x0000" />
             <q1:property name="CO_disabled" value="true" />
             <q1:property name="CO_storageGroup" value="PERSIST_COMM" />
           </q1:parameter>
@@ -939,9 +954,10 @@ The life time factor multiplied with the guard time gives the life time for the 
             <label lang="en">Reply</label>
             <BITSTRING />
           </q1:parameter>
-          <q1:parameter uniqueID="UID_OBJ_1024" access="noAccess">
+          <q1:parameter uniqueID="UID_OBJ_1024" access="write">
             <label lang="en">OS command mode</label>
-            <DINT />
+            <USINT />
+            <q1:defaultValue value="0x00" />
             <q1:property name="CO_disabled" value="true" />
             <q1:property name="CO_storageGroup" value="PERSIST_COMM" />
           </q1:parameter>
@@ -1968,9 +1984,10 @@ The life time factor multiplied with the guard time gives the life time for the 
             <UDINT />
             <q1:defaultValue value="0x00000000" />
           </q1:parameter>
-          <q1:parameter uniqueID="UID_OBJ_2000" access="noAccess">
+          <q1:parameter uniqueID="UID_OBJ_2000" access="readWriteInput">
             <label lang="en">Temperature</label>
-            <DINT />
+            <INT />
+            <q1:defaultValue value="0" />
           </q1:parameter>
         </q1:parameterList>
       </q1:ApplicationProcess>
@@ -1989,12 +2006,12 @@ The life time factor multiplied with the guard time gives the life time for the 
         <ProfileTechnology>CANopen</ProfileTechnology>
       </ISO15745Reference>
     </ProfileHeader>
-    <ProfileBody xmlns:q2="http://www.canopen.org/xml/1.1" xsi:type="q2:ProfileBody_CommunicationNetwork_CANopen" formatName="CANopen" formatVersion="1.0" fileName="test.xdd" fileCreator="" fileCreationDate="2026-08-04" fileCreationTime="15:49:00.0000000Z" fileModificationDate="2026-08-05" fileModificationTime="16:22:24.3987531+08:00" fileVersion="1" supportedLanguages="en" xmlns="">
+    <ProfileBody xmlns:q2="http://www.canopen.org/xml/1.1" xsi:type="q2:ProfileBody_CommunicationNetwork_CANopen" formatName="CANopen" formatVersion="1.0" fileName="test_cli.xdd" fileCreator="" fileCreationDate="2026-08-04" fileCreationTime="15:49:53.0000000+08:00" fileModificationDate="2026-08-05" fileModificationTime="16:21:09.8287876+08:00" fileVersion="1" supportedLanguages="en" xmlns="">
       <ApplicationLayers>
         <q2:CANopenObjectList>
           <CANopenObject index="1000" name="Device type" objectType="7" PDOmapping="no" uniqueIDRef="UID_OBJ_1000" />
-          <CANopenObject index="1001" name="Error register" objectType="7" PDOmapping="no" uniqueIDRef="UID_OBJ_1001" />
-          <CANopenObject index="1002" name="Manufacturer status register" objectType="7" PDOmapping="no" uniqueIDRef="UID_OBJ_1002" />
+          <CANopenObject index="1001" name="Error register" objectType="7" PDOmapping="TPDO" uniqueIDRef="UID_OBJ_1001" />
+          <CANopenObject index="1002" name="Manufacturer status register" objectType="7" PDOmapping="optional" uniqueIDRef="UID_OBJ_1002" />
           <CANopenObject index="1003" name="Pre-defined error field" objectType="8" uniqueIDRef="UID_OBJ_1003" subNumber="17">
             <CANopenSubObject subIndex="00" name="Number of errors" objectType="7" PDOmapping="no" uniqueIDRef="UID_SUB_100300" />
             <CANopenSubObject subIndex="01" name="Standard error field" objectType="7" PDOmapping="no" uniqueIDRef="UID_SUB_100301" />
@@ -2006,13 +2023,13 @@ The life time factor multiplied with the guard time gives the life time for the 
             <CANopenSubObject subIndex="07" name="Standard error field" objectType="7" PDOmapping="no" uniqueIDRef="UID_SUB_100307" />
             <CANopenSubObject subIndex="08" name="Standard error field" objectType="7" PDOmapping="no" uniqueIDRef="UID_SUB_100308" />
             <CANopenSubObject subIndex="09" name="Standard error field" objectType="7" PDOmapping="no" uniqueIDRef="UID_SUB_100309" />
+            <CANopenSubObject subIndex="0A" name="Standard error field" objectType="7" PDOmapping="no" uniqueIDRef="UID_SUB_10030A" />
+            <CANopenSubObject subIndex="0B" name="Standard error field" objectType="7" PDOmapping="no" uniqueIDRef="UID_SUB_10030B" />
+            <CANopenSubObject subIndex="0C" name="Standard error field" objectType="7" PDOmapping="no" uniqueIDRef="UID_SUB_10030C" />
+            <CANopenSubObject subIndex="0D" name="Standard error field" objectType="7" PDOmapping="no" uniqueIDRef="UID_SUB_10030D" />
+            <CANopenSubObject subIndex="0E" name="Standard error field" objectType="7" PDOmapping="no" uniqueIDRef="UID_SUB_10030E" />
+            <CANopenSubObject subIndex="0F" name="Standard error field" objectType="7" PDOmapping="no" uniqueIDRef="UID_SUB_10030F" />
             <CANopenSubObject subIndex="10" name="Standard error field" objectType="7" PDOmapping="no" uniqueIDRef="UID_SUB_100310" />
-            <CANopenSubObject subIndex="11" name="Standard error field" objectType="7" PDOmapping="no" uniqueIDRef="UID_SUB_100311" />
-            <CANopenSubObject subIndex="12" name="Standard error field" objectType="7" PDOmapping="no" uniqueIDRef="UID_SUB_100312" />
-            <CANopenSubObject subIndex="13" name="Standard error field" objectType="7" PDOmapping="no" uniqueIDRef="UID_SUB_100313" />
-            <CANopenSubObject subIndex="14" name="Standard error field" objectType="7" PDOmapping="no" uniqueIDRef="UID_SUB_100314" />
-            <CANopenSubObject subIndex="15" name="Standard error field" objectType="7" PDOmapping="no" uniqueIDRef="UID_SUB_100315" />
-            <CANopenSubObject subIndex="16" name="Standard error field" objectType="7" PDOmapping="no" uniqueIDRef="UID_SUB_100316" />
           </CANopenObject>
           <CANopenObject index="1005" name="COB-ID SYNC message" objectType="7" PDOmapping="no" uniqueIDRef="UID_OBJ_1005" />
           <CANopenObject index="1006" name="Communication cycle period" objectType="7" PDOmapping="no" uniqueIDRef="UID_OBJ_1006" />
@@ -2037,7 +2054,7 @@ The life time factor multiplied with the guard time gives the life time for the 
             <CANopenSubObject subIndex="04" name="Restore manufacturer defined default parameters" objectType="7" PDOmapping="no" uniqueIDRef="UID_SUB_101104" />
           </CANopenObject>
           <CANopenObject index="1012" name="COB-ID time stamp object" objectType="7" PDOmapping="no" uniqueIDRef="UID_OBJ_1012" />
-          <CANopenObject index="1013" name="High resolution time stamp" objectType="7" PDOmapping="no" uniqueIDRef="UID_OBJ_1013" />
+          <CANopenObject index="1013" name="High resolution time stamp" objectType="7" PDOmapping="optional" uniqueIDRef="UID_OBJ_1013" />
           <CANopenObject index="1014" name="COB-ID EMCY" objectType="7" PDOmapping="no" uniqueIDRef="UID_OBJ_1014" />
           <CANopenObject index="1015" name="Inhibit time EMCY" objectType="7" PDOmapping="no" uniqueIDRef="UID_OBJ_1015" />
           <CANopenObject index="1016" name="Consumer heartbeat time" objectType="8" uniqueIDRef="UID_OBJ_1016" subNumber="9">
@@ -2082,9 +2099,9 @@ The life time factor multiplied with the guard time gives the life time for the 
           </CANopenObject>
           <CANopenObject index="1026" name="OS prompt" objectType="8" uniqueIDRef="UID_OBJ_1026" subNumber="4">
             <CANopenSubObject subIndex="00" name="Highest sub-index supported" objectType="7" PDOmapping="no" uniqueIDRef="UID_SUB_102600" />
-            <CANopenSubObject subIndex="01" name="StdIn" objectType="7" PDOmapping="no" uniqueIDRef="UID_SUB_102601" />
-            <CANopenSubObject subIndex="02" name="StdOut" objectType="7" PDOmapping="no" uniqueIDRef="UID_SUB_102602" />
-            <CANopenSubObject subIndex="03" name="StdErr" objectType="7" PDOmapping="no" uniqueIDRef="UID_SUB_102603" />
+            <CANopenSubObject subIndex="01" name="StdIn" objectType="7" PDOmapping="optional" uniqueIDRef="UID_SUB_102601" />
+            <CANopenSubObject subIndex="02" name="StdOut" objectType="7" PDOmapping="optional" uniqueIDRef="UID_SUB_102602" />
+            <CANopenSubObject subIndex="03" name="StdErr" objectType="7" PDOmapping="optional" uniqueIDRef="UID_SUB_102603" />
           </CANopenObject>
           <CANopenObject index="1027" name="Module list" objectType="8" uniqueIDRef="UID_OBJ_1027" subNumber="2">
             <CANopenSubObject subIndex="00" name="Number of connected modules" objectType="7" PDOmapping="no" uniqueIDRef="UID_SUB_102700" />
@@ -2108,19 +2125,19 @@ The life time factor multiplied with the guard time gives the life time for the 
           </CANopenObject>
           <CANopenObject index="1200" name="SDO server parameter" objectType="9" uniqueIDRef="UID_OBJ_1200" subNumber="3">
             <CANopenSubObject subIndex="00" name="Highest sub-index supported" objectType="7" PDOmapping="no" uniqueIDRef="UID_SUB_120000" />
-            <CANopenSubObject subIndex="01" name="COB-ID client to server (rx)" objectType="7" PDOmapping="no" uniqueIDRef="UID_SUB_120001" />
-            <CANopenSubObject subIndex="02" name="COB-ID server to client (tx)" objectType="7" PDOmapping="no" uniqueIDRef="UID_SUB_120002" />
+            <CANopenSubObject subIndex="01" name="COB-ID client to server (rx)" objectType="7" PDOmapping="TPDO" uniqueIDRef="UID_SUB_120001" />
+            <CANopenSubObject subIndex="02" name="COB-ID server to client (tx)" objectType="7" PDOmapping="TPDO" uniqueIDRef="UID_SUB_120002" />
           </CANopenObject>
           <CANopenObject index="1201" name="SDO server parameter" objectType="9" uniqueIDRef="UID_OBJ_1201" subNumber="4">
             <CANopenSubObject subIndex="00" name="Highest sub-index supported" objectType="7" PDOmapping="no" uniqueIDRef="UID_SUB_120100" />
-            <CANopenSubObject subIndex="01" name="COB-ID client to server (rx)" objectType="7" PDOmapping="no" uniqueIDRef="UID_SUB_120101" />
-            <CANopenSubObject subIndex="02" name="COB-ID server to client (tx)" objectType="7" PDOmapping="no" uniqueIDRef="UID_SUB_120102" />
+            <CANopenSubObject subIndex="01" name="COB-ID client to server (rx)" objectType="7" PDOmapping="optional" uniqueIDRef="UID_SUB_120101" />
+            <CANopenSubObject subIndex="02" name="COB-ID server to client (tx)" objectType="7" PDOmapping="optional" uniqueIDRef="UID_SUB_120102" />
             <CANopenSubObject subIndex="03" name="Node-ID of the SDO client" objectType="7" PDOmapping="no" uniqueIDRef="UID_SUB_120103" />
           </CANopenObject>
           <CANopenObject index="1280" name="SDO client parameter" objectType="9" uniqueIDRef="UID_OBJ_1280" subNumber="4">
             <CANopenSubObject subIndex="00" name="Highest sub-index supported" objectType="7" PDOmapping="no" uniqueIDRef="UID_SUB_128000" />
-            <CANopenSubObject subIndex="01" name="COB-ID client to server (tx)" objectType="7" PDOmapping="no" uniqueIDRef="UID_SUB_128001" />
-            <CANopenSubObject subIndex="02" name="COB-ID server to client (rx)" objectType="7" PDOmapping="no" uniqueIDRef="UID_SUB_128002" />
+            <CANopenSubObject subIndex="01" name="COB-ID client to server (tx)" objectType="7" PDOmapping="optional" uniqueIDRef="UID_SUB_128001" />
+            <CANopenSubObject subIndex="02" name="COB-ID server to client (rx)" objectType="7" PDOmapping="optional" uniqueIDRef="UID_SUB_128002" />
             <CANopenSubObject subIndex="03" name="Node-ID of the SDO server" objectType="7" PDOmapping="no" uniqueIDRef="UID_SUB_128003" />
           </CANopenObject>
           <CANopenObject index="1400" name="RPDO communication parameter" objectType="9" uniqueIDRef="UID_OBJ_1400" subNumber="4">
@@ -2267,7 +2284,7 @@ The life time factor multiplied with the guard time gives the life time for the 
             <CANopenSubObject subIndex="07" name="Application object 7" objectType="7" PDOmapping="no" uniqueIDRef="UID_SUB_1A0307" />
             <CANopenSubObject subIndex="08" name="Application object 8" objectType="7" PDOmapping="no" uniqueIDRef="UID_SUB_1A0308" />
           </CANopenObject>
-          <CANopenObject index="2000" name="Temperature" objectType="7" PDOmapping="no" uniqueIDRef="UID_OBJ_2000" />
+          <CANopenObject index="2000" name="Temperature" objectType="7" PDOmapping="TPDO" uniqueIDRef="UID_OBJ_2000" />
         </q2:CANopenObjectList>
         <dummyUsage>
           <dummy entry="Dummy0001=0" />
@@ -2289,7 +2306,6 @@ The life time factor multiplied with the guard time gives the life time for the 
       <NetworkManagement>
         <CANopenGeneralFeatures granularity="8" nrOfRxPDO="4" nrOfTxPDO="4" />
         <CANopenMasterFeatures />
-        <deviceCommissioning NodeID="0" nodeName="" actualBaudRate="0" networkNumber="0" networkName="" CANopenManager="false" />
       </NetworkManagement>
     </ProfileBody>
   </ISO15745Profile>

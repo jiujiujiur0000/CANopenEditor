@@ -302,35 +302,36 @@ namespace libEDSsharp
                 strTime = source.ModificationTime;
             }
 
-            var time = new DateTime(0);
-            var date = new DateTime(0);
+            DateTime time = new DateTime(1970, 1, 1);
+            DateTime date = new DateTime(1970, 1, 1);
 
-            try
+            if (!string.IsNullOrWhiteSpace(strTime))
             {
-                time = DateTime.ParseExact(strTime, "h:mmtt", CultureInfo.InvariantCulture);
-            }
-            catch (Exception e)
-            {
-                if (e is FormatException)
+                if (!DateTime.TryParseExact(strTime, "h:mmtt", CultureInfo.InvariantCulture, DateTimeStyles.None, out time))
                 {
-                    //Silently ignore
+                    DateTime.TryParse(strTime, out time);
                 }
             }
 
-            try
+            if (!string.IsNullOrWhiteSpace(strDate))
             {
-                date = DateTime.ParseExact(strDate, "MM-dd-yyyy", CultureInfo.InvariantCulture);
-            }
-            catch (Exception e)
-            {
-                if (e is FormatException)
+                if (!DateTime.TryParseExact(strDate, "MM-dd-yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out date))
                 {
-                    //Silently ignore
+                    if (!DateTime.TryParseExact(strDate, "MM/dd/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out date))
+                    {
+                        DateTime.TryParse(strDate, out date);
+                    }
                 }
             }
 
-            var datetime = date.AddTicks(time.TimeOfDay.Ticks);
-            return Timestamp.FromDateTime(datetime.ToUniversalTime());
+            // Combine date and time
+            var datetime = new DateTime(
+                date.Year > 1 ? date.Year : 1970, 
+                date.Month > 0 ? date.Month : 1, 
+                date.Day > 0 ? date.Day : 1, 
+                time.Hour, time.Minute, time.Second, time.Millisecond, DateTimeKind.Utc);
+                
+            return Timestamp.FromDateTime(datetime);
         }
     }
 
