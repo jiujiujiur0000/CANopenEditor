@@ -82,15 +82,15 @@ public partial class DevicePDOView : UserControl
             string cobHex = slot.COB ?? "";
             if (cobHex.Length > 6) cobHex = cobHex.Substring(0, 6) + "..."; // Shorten if too long
 
-            var idBorder = new Border { BorderBrush = Brushes.LightGray, BorderThickness = new Avalonia.Thickness(0, 0, 1, 1), Padding = new Avalonia.Thickness(10, 0, 10, 0) };
+            var idBorder = new Border { BorderBrush = Brushes.LightGray, BorderThickness = new Avalonia.Thickness(0, 0, 1, 1), Padding = new Avalonia.Thickness(10, 0, 10, 0), IsHitTestVisible = false };
             idBorder.Child = new TextBlock { Text = mappingIndex.ToString(), VerticalAlignment = VerticalAlignment.Center };
             AddToMappingGrid(idBorder, row, 0);
 
-            var cobBorder = new Border { BorderBrush = Brushes.LightGray, BorderThickness = new Avalonia.Thickness(0, 0, 1, 1), Padding = new Avalonia.Thickness(10, 0, 10, 0) };
+            var cobBorder = new Border { BorderBrush = Brushes.LightGray, BorderThickness = new Avalonia.Thickness(0, 0, 1, 1), Padding = new Avalonia.Thickness(10, 0, 10, 0), IsHitTestVisible = false };
             cobBorder.Child = new TextBlock { Text = cobHex, VerticalAlignment = VerticalAlignment.Center };
             AddToMappingGrid(cobBorder, row, 1);
 
-            var indexBorder = new Border { BorderBrush = Brushes.LightGray, BorderThickness = new Avalonia.Thickness(0, 0, 1, 1), Padding = new Avalonia.Thickness(10, 0, 10, 0) };
+            var indexBorder = new Border { BorderBrush = Brushes.LightGray, BorderThickness = new Avalonia.Thickness(0, 0, 1, 1), Padding = new Avalonia.Thickness(10, 0, 10, 0), IsHitTestVisible = false };
             indexBorder.Child = new TextBlock { Text = slot.Communication, VerticalAlignment = VerticalAlignment.Center };
             AddToMappingGrid(indexBorder, row, 2);
 
@@ -111,6 +111,7 @@ public partial class DevicePDOView : UserControl
                             Background = bgBrush,
                             BorderBrush = Brushes.Gray,
                             BorderThickness = new Avalonia.Thickness(0, 0, 1, 1),
+                            IsHitTestVisible = false,
                             Child = new TextBlock 
                             { 
                                 Text = isAvailable ? (entry.IndexString + "/" + entry.SubIndexString + "/" + entry.Name) : "Empty", 
@@ -140,6 +141,7 @@ public partial class DevicePDOView : UserControl
                     Background = Brushes.LightGray,
                     BorderBrush = Brushes.Gray,
                     BorderThickness = new Avalonia.Thickness(0, 0, 1, 1),
+                    IsHitTestVisible = false,
                     Child = new TextBlock 
                     { 
                         Text = "Empty", 
