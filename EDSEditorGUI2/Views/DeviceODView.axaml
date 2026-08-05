@@ -67,6 +67,7 @@
           <DataGrid.Styles>
             <Style Selector="DataGridColumnHeader">
               <Setter Property="Background" Value="Transparent"/>
+              <Setter Property="TextBlock.FontWeight" Value="SemiBold"/>
               <Setter Property="SeparatorBrush" Value="{DynamicResource SystemControlForegroundBaseMediumLowBrush}"/>
             </Style>
             <Style Selector="DataGridColumnHeader:nth-last-child(1)">

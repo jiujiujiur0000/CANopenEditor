@@ -216,7 +216,7 @@ public partial class DevicePDOView : UserControl
             {
                 Text = $"Byte {i}",
                 HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Center,
-
+                FontWeight = Avalonia.Media.FontWeight.SemiBold,
                 TextWrapping = TextWrapping.Wrap,
             };
             border.Child = indication;
