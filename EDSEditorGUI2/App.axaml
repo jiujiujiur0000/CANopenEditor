@@ -11,6 +11,10 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceInclude Source="avares://EDSEditorGUI2/Assets/Langs/en-US.axaml"/>
             </ResourceDictionary.MergedDictionaries>
+            
+            <SolidColorBrush x:Key="TextControlBackground">#F5F5F5</SolidColorBrush>
+            <SolidColorBrush x:Key="TextControlBackgroundPointerOver">#EAEAEA</SolidColorBrush>
+            <SolidColorBrush x:Key="TextControlBackgroundFocused">#FFFFFF</SolidColorBrush>
         </ResourceDictionary>
     </Application.Resources>
 
@@ -32,6 +36,12 @@
         <Style Selector="DataGridColumnHeader">
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="FontWeight" Value="Medium"/>
+        </Style>
+        
+        <!-- Global override for TextBox -->
+        <Style Selector="TextBox">
+            <Setter Property="BorderBrush" Value="{DynamicResource SystemControlForegroundBaseMediumLowBrush}"/>
+            <Setter Property="BorderThickness" Value="1"/>
         </Style>
     </Application.Styles>
 </Application>

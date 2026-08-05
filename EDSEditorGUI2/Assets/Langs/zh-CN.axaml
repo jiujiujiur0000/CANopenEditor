@@ -55,7 +55,7 @@
     <sys:String x:Key="str_device_info_features">通用及主站特性:</sys:String>
     <sys:String x:Key="str_device_info_lss_slave">LSS 从站</sys:String>
     <sys:String x:Key="str_device_info_lss_master">CANopen 主站</sys:String>
-    <sys:String x:Key="str_device_info_baudrates">支持的波特率</sys:String>
+    <sys:String x:Key="str_device_info_baudrates">波特率</sys:String>
     <sys:String x:Key="str_device_info_auto">自动检测</sys:String>
 
     <!-- Device Object Dictionary View -->

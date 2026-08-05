@@ -55,7 +55,7 @@
     <sys:String x:Key="str_device_info_features">General and Master Features:</sys:String>
     <sys:String x:Key="str_device_info_lss_slave">LSS Slave</sys:String>
     <sys:String x:Key="str_device_info_lss_master">Master</sys:String>
-    <sys:String x:Key="str_device_info_baudrates">Baudrates</sys:String>
+    <sys:String x:Key="str_device_info_baudrates">Baudrate</sys:String>
     <sys:String x:Key="str_device_info_auto">auto</sys:String>
 
     <!-- Device Object Dictionary View -->
