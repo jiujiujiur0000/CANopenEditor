@@ -20,6 +20,7 @@
             <DataGrid ItemsSource="{Binding Modules}" SelectedItem="{Binding SelectedModule}"
                       AutoGenerateColumns="False" CanUserReorderColumns="False" 
                       CanUserResizeColumns="True" CanUserSortColumns="True"
+                      HeadersVisibility="Column"
                       GridLinesVisibility="Horizontal" BorderThickness="0" CornerRadius="8"
                       RowBackground="Transparent">
                 <DataGrid.Styles>
@@ -30,7 +31,7 @@
                 </DataGrid.Styles>
                 <DataGrid.Columns>
                     <!-- Connection Status Icon -->
-                    <DataGridTemplateColumn Header="Status" Width="60">
+                    <DataGridTemplateColumn Header="Status" Width="80">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Ellipse Width="12" Height="12" 
@@ -49,13 +50,15 @@
         </Border>
 
         <!-- Right panel: Extended Objects and Comments -->
-        <Grid Grid.Row="1" Grid.Column="1" RowDefinitions="*,150" Margin="10,0,0,0">
-            <Border Grid.Row="0" Margin="0,0,0,10"
+        <Grid Grid.Row="1" Grid.Column="1" RowDefinitions="Auto,*,Auto" Margin="10,0,0,0">
+            <TextBlock Grid.Row="0" Text="Extended Objects:" FontWeight="SemiBold" Margin="0,0,0,5"/>
+            <Border Grid.Row="1" Margin="0,0,0,10"
                     BorderBrush="{DynamicResource SystemControlForegroundBaseMediumLowBrush}" 
                     BorderThickness="1" CornerRadius="8" ClipToBounds="True">
                 <DataGrid ItemsSource="{Binding SelectedModule.ExtendedObjects}"
                           AutoGenerateColumns="False" CanUserReorderColumns="False" 
                           CanUserResizeColumns="True" CanUserSortColumns="True"
+                          HeadersVisibility="Column"
                           GridLinesVisibility="Horizontal" BorderThickness="0" CornerRadius="8">
                     <DataGrid.Styles>
                         <Style Selector="DataGridColumnHeader">
@@ -71,7 +74,7 @@
             </Border>
 
             <!-- Comments -->
-            <StackPanel Grid.Row="1">
+            <StackPanel Grid.Row="2">
                 <TextBlock Text="Module Comments:" FontWeight="SemiBold" Margin="0,0,0,5"/>
                 <TextBox Text="{Binding SelectedModule.Comments}" IsReadOnly="True" 
                          TextWrapping="Wrap" AcceptsReturn="True" Height="120"
