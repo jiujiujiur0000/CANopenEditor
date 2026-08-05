@@ -6477,12 +6477,44 @@
             Vendor name.
             </summary>
         </member>
+        <member name="F:LibCanOpen.CanOpen_DeviceInfo.VendorNumberFieldNumber">
+            <summary>Field number for the "vendorNumber" field.</summary>
+        </member>
+        <member name="P:LibCanOpen.CanOpen_DeviceInfo.VendorNumber">
+            <summary>
+            Vendor ID / Number
+            </summary>
+        </member>
         <member name="F:LibCanOpen.CanOpen_DeviceInfo.ProductNameFieldNumber">
             <summary>Field number for the "productName" field.</summary>
         </member>
         <member name="P:LibCanOpen.CanOpen_DeviceInfo.ProductName">
             <summary>
             Product name.
+            </summary>
+        </member>
+        <member name="F:LibCanOpen.CanOpen_DeviceInfo.ProductNumberFieldNumber">
+            <summary>Field number for the "productNumber" field.</summary>
+        </member>
+        <member name="P:LibCanOpen.CanOpen_DeviceInfo.ProductNumber">
+            <summary>
+            Product ID / Number
+            </summary>
+        </member>
+        <member name="F:LibCanOpen.CanOpen_DeviceInfo.RevisionNumberFieldNumber">
+            <summary>Field number for the "revisionNumber" field.</summary>
+        </member>
+        <member name="P:LibCanOpen.CanOpen_DeviceInfo.RevisionNumber">
+            <summary>
+            Revision Number
+            </summary>
+        </member>
+        <member name="F:LibCanOpen.CanOpen_DeviceInfo.GranularityFieldNumber">
+            <summary>Field number for the "granularity" field.</summary>
+        </member>
+        <member name="P:LibCanOpen.CanOpen_DeviceInfo.Granularity">
+            <summary>
+            Granularity
             </summary>
         </member>
         <member name="F:LibCanOpen.CanOpen_DeviceInfo.BaudRate10FieldNumber">
@@ -7056,6 +7088,46 @@
             <summary>
             CANopen Object Dictionary as sorted dictionary.
             </summary>
+        </member>
+        <member name="F:LibCanOpen.CanOpenDevice.NrSupportedModulesFieldNumber">
+            <summary>Field number for the "nrSupportedModules" field.</summary>
+        </member>
+        <member name="P:LibCanOpen.CanOpenDevice.NrSupportedModules">
+            <summary>
+            Number of supported modules
+            </summary>
+        </member>
+        <member name="F:LibCanOpen.CanOpenDevice.ModulesFieldNumber">
+            <summary>Field number for the "modules" field.</summary>
+        </member>
+        <member name="P:LibCanOpen.CanOpenDevice.Modules">
+            <summary>
+            Map of modules by index
+            </summary>
+        </member>
+        <member name="F:LibCanOpen.CanOpenModuleInfo.ProductNameFieldNumber">
+            <summary>Field number for the "productName" field.</summary>
+        </member>
+        <member name="F:LibCanOpen.CanOpenModuleInfo.ProductVersionFieldNumber">
+            <summary>Field number for the "productVersion" field.</summary>
+        </member>
+        <member name="F:LibCanOpen.CanOpenModuleInfo.ProductRevisionFieldNumber">
+            <summary>Field number for the "productRevision" field.</summary>
+        </member>
+        <member name="F:LibCanOpen.CanOpenModuleInfo.OrderCodeFieldNumber">
+            <summary>Field number for the "orderCode" field.</summary>
+        </member>
+        <member name="F:LibCanOpen.CanOpenModule.InfoFieldNumber">
+            <summary>Field number for the "info" field.</summary>
+        </member>
+        <member name="F:LibCanOpen.CanOpenModule.ExtendedObjectsFieldNumber">
+            <summary>Field number for the "extendedObjects" field.</summary>
+        </member>
+        <member name="F:LibCanOpen.CanOpenModule.CommentsFieldNumber">
+            <summary>Field number for the "comments" field.</summary>
+        </member>
+        <member name="F:LibCanOpen.CanOpenModule.IsConnectedFieldNumber">
+            <summary>Field number for the "isConnected" field.</summary>
         </member>
     </members>
 </doc>

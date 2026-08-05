@@ -5,101 +5,95 @@
   <h1>CANopenEditor</h1>
 </div>
 
-This project is a fork of [CANopenEditor](https://github.com/CANopenNode/CANopenEditor.git).
-The original CANopenEditor is a fork of [libedssharp, authored by Robin Cornelius](https://github.com/robincornelius/libedssharp).
+本项目复刻自 [CANopenEditor](https://github.com/CANopenNode/CANopenEditor.git)。
+原始的 CANopenEditor 是 [libedssharp](https://github.com/robincornelius/libedssharp) 的一个分支，原作者为 Robin Cornelius。
 
-CANopen Object Dictionary Editor:
+CANopen 对象字典编辑器 (Object Dictionary Editor):
+ - 导入：支持 EDS 或 XDD 格式的 CANopen 电子数据文档。
+ - 导出：支持 EDS 或 XDD 格式的 CANopen 电子数据文档、文档说明、CANopenNode C 源代码文件等。
+ - 界面：提供 CANopen 对象字典、设备信息等图形界面(GUI)编辑器。提供用于简单转换的命令行(CLI)客户端。
 
-- Imports: CANopen electronic data sheets in EDS or XDD format.
-- Exports: CANopen electronic data sheets in EDS or XDD format, documentation, CANopenNode C source files and more.
-- Interfaces: GUI editor for CANopen Object Dictionary, Device information, etc. CLI client for simple conversions.
+CANopen 是一种国际标准化 (EN 50325-4) ([CiA301](https://can-cia.org/cia-groups/technical-documents)) 的高级协议，建立在 CAN 总线之上，用于嵌入式控制系统。关于 CANopen 的更多信息，请访问 http://www.can-cia.org/。
 
-CANopen is the internationally standardized (EN 50325-4) ([CiA301](https://can-cia.org/cia-groups/technical-documents)) higher-layer protocol for embedded control system built on top of CAN. For more information on CANopen see <http://www.can-cia.org/>.
+[CANopenNode](https://github.com/CANopenNode/CANopenNode) 是一个免费且开源的 CANopen 协议栈。
 
-[CANopenNode](https://github.com/CANopenNode/CANopenNode) is a free and open source CANopen Stack.
-
-Repository structure
+代码库结构
 --------
+本代码库包含三个主要项目：
+- [LibEDSsharp](libEDSsharp/README.md)，一个用于操作 EDS 文件的 C# 核心库。它已经合并到上游，目前在此代码库中持续维护。
+- [CLI (命令行工具)](EDSSharp/README.md)，用于在所有支持的格式之间进行简单的转换。
+- [GUI (图形界面)](EDSEditorGUI/README.md)，用于全面操作和编辑您的 CANopen 文件。[该界面正在使用 Avalonia 重写以支持跨平台](EDSEditorGUI2/README.md)。
 
-This repository is home to three projects:
-
-- [LibEDSsharp](libEDSsharp/README.md), a C# library for EDS files manipulation which went upstream and is now maintained in this repository.
-- [A CLI](EDSSharp/README.md), used for simple conversions across all supported formats.
-- [A GUI](EDSEditorGUI/README.md) for full manipulation of your CANopen files [which is being rewritten to be more multi platform](EDSEditorGUI2/README.md).
-
-How to use
+如何使用
 --------
+1. [下载最新发布的二进制压缩包(zip)](https://github.com/CANopenNode/CANopenEditor/releases)。**请不要直接下载源码**。
+2. 解压缩文件。
+3. 进入 `net8.0-windows` 目录（或其他对应平台的目录）。
+4. 运行对应的可执行文件 (如 `.exe`)。
 
-1. [Download the latest release's binary zip file](https://github.com/CANopenNode/CANopenEditor/releases). DO NOT DOWNLOAD SOURCE CODE.
-2. Unzip it.
-3. Go to net8.0-windows directory.
-4. Execute the .exe .
-
-Available formats
+支持的格式
 --------
+以下是迄今为止该库支持的格式完整列表，按类别排序：<br>
 
-Exhaustive list of the library's supported formats to date, sorted by category:<br>
-
-### CAN in Automation official formats
-
-| Description                           | Exporter                                                   | Format |
+### CAN in Automation 官方格式：
+| 描述                                  | 导出器                                                     | 格式   |
 |---------------------------------------|------------------------------------------------------------|--------|
-| Electronic Data Sheet (CiA 306-1)     | ElectronicDataSheet                                        | .eds   |
-| Device Configuration File (CiA 306-1) | DeviceConfigurationFile                                    | .dcf   |
-| XML Device Description (CiA 311)      | CanOpenXDDv1.0<br>CanOpenXDDv1.1<br>CanOpenXDDv1.1stripped | .xdd   |
-| XML Device Configuration (CiA 311)    | CanOpenXDCv1.1                                             | .xdc   |
+| 电子数据文档 (CiA 306-1)              | ElectronicDataSheet                                        | .eds   |
+| 设备配置文件 (CiA 306-1)              | DeviceConfigurationFile                                    | .dcf   |
+| XML 设备描述文件 (CiA 311)            | CanOpenXDDv1.0<br>CanOpenXDDv1.1<br>CanOpenXDDv1.1stripped | .xdd   |
+| XML 设备配置文件 (CiA 311)            | CanOpenXDCv1.1                                             | .xdc   |
 
-### Extended formats
-
-| Description                      | Exporter                                    | Format |
+### 扩展格式：
+| 描述                             | 导出器                                      | 格式   |
 |----------------------------------|---------------------------------------------|--------|
-| Network XML Device Description   | CanOpenNetworkv1.0<br>CanOpenNetworkXDDv1.1 | .nxdd  |
-| Network XML Device Configuration | CanOpenNetworkXDCv1.1                       | .nxdc  |
-| XML Profile Description          | None                                        | .xpd   |
+| 网络 XML 设备描述文件            | CanOpenNetworkv1.0<br>CanOpenNetworkXDDv1.1 | .nxdd  |
+| 网络 XML 设备配置文件            | CanOpenNetworkXDCv1.1                       | .nxdc  |
+| XML Profile 描述文件             | 无 (None)                                   | .xpd   |
 
-### CANopenNode specific formats
-
-| Description                              | Exporter                                                 | Format          |
+### CANopenNode 专用格式：
+| 描述                                     | 导出器                                                   | 格式            |
 |------------------------------------------|----------------------------------------------------------|-----------------|
-| CanOpenNode Object Dictionary file pairs | CanOpenNode<br>CanOpenNodeV4                             | .h,.c           |
-| PCanOpenNode Project file                | CanOpenNodeProtobuf(json)<br>CanOpenNodeProtobuf(binary) | .json<br>.binpb |
+| CanOpenNode 对象字典文件对               | CanOpenNode<br>CanOpenNodeV4                             | .h,.c           |
+| PCanOpenNode 项目文件                    | CanOpenNodeProtobuf(json)<br>CanOpenNodeProtobuf(binary) | .json<br>.binpb |
 
-### Documentation formats
-
-| Exporter            | Format |
+### 文档格式：
+| 导出器              | 格式   |
 |---------------------|--------|
 | DocumentationHTML   | .html  |
 | DocumentationMarkup | .md    |
 | NetworkPDOReport    | .md    |
 
-File structure
+文件结构
 --------
+您需要了解的主要文件和目录包括：
+- [setup.nsi](setup.nsi) 是 Windows 安装脚本。
+- [Makefile](Makefile) 是 Linux 安装和操作脚本。
+- [EDSEditorGUI](EDSEditorGUI) 目录是旧版 GUI。功能完备但仅支持 Windows。
+- [EDSEditorGUI2](EDSEditorGUI2) 目录是新版跨平台 GUI。尚未完全完工，但原生支持 Windows、Mac 和 Linux 等操作系统。
+- [EDSSharp](EDSSharp) 目录是 CLI 命令行工具。目前主要用于简单的格式转换。
+- [GUITests](GUITests) 目录包含所有 GUI 单元测试。
+- [Images](Images) 目录包含文档中使用的所有图片。
+- [Tests](Tests) 目录包含所有库(Lib)相关的核心单元测试。
+- [libEDSsharp](libEDSsharp) 目录包含了由 Robin Cornelius 编写的核心驱动和解析库。
 
-The main files and directories you'll need to understand are:
-
-- [setup.nsi](setup.nsi) is the Windows installer.
-- [Makefile](Makefile) is the Linux installation and manipulation script.
-- [EDSEditorGUI](EDSEditorGUI) directory is the old GUI. Fully functional but only works on Windows.
-- [EDSEditorGUI2](EDSEditorGUI2) directory is the new GUI. It is not fully finished yet but is meant to work on any Windows, Mac or Linux OS.
-- [EDSSharp](EDSSharp) directory is the CLI. It is only meant for simple conversions for now.
-- [GUITests](GUITests) directory is the directory for all GUI unit tests. More tests, functional tests and tests for GUI2 may come here.
-- [Images](Images) directory is the directory containing any and all of the documentation's images.
-- [Tests](Tests) directory is the directory for all Lib unit tests. More tests, functional tests and tests for CLI may come here.
-- [libEDSsharp](libEDSsharp) directory contains the library from Robin Cornelius making all of this work.
-
-BUGS
+近期修复 (Recent Fixes)
 --------
+- 修复了在导出 XDD 时，CANopen `VAR` 对象 (`OdObject`) 丢失 `DataType`、`Access`、`DefaultValue` 和 `ActualValue` 核心属性的严重 Bug。
+- 修复了在加载/保存项目时，`lastModificationTime` 和 `createTime` 等时间戳无法正确解析并格式化为 ISO 8601 标准的问题。
+- 修复了新版 GUI (`EDSEditorGUI2`) 在加载项目时由于 `OdObject` 和 `OdSubObject` 映射配置不严谨而触发 `AutoMapperConfigurationException` 导致崩溃的问题。
+- 更新并验证了跨平台 (Linux) 的发布编译能力。
 
-If you find any, please open a bug report on github and attach any files you have created/opened etc... We need any help we can have and the main maintainers are quite active and will answer you fast.
-
-You might want to check your EDS/XDD file with this free [EDSchecker](https://www.vector.com/de/de/support-downloads/download-center/#product=%5B%2274771%22%5D&tab=1&pageSize=15&sort=date&order=desc)
-
-Contributing
+BUG 反馈
 --------
+如果您发现了任何 Bug，请在 GitHub 上提交 bug report，并附上您创建或打开的相关复现文件。我们非常需要您的帮助，主要的维护者们非常活跃并且会尽快回复您。
 
-If you want to help us out by contributing to this project, first of all thank you ! And please read our [Contributing Guidelines](CONTRIBUTING.md). We are very beginner friendly so, even if you are not extremely experienced with contributing to open source projects, fear not and try !
+推荐使用免费的 [EDSchecker](https://www.vector.com/de/de/support-downloads/download-center/#product=%5B%2274771%22%5D&tab=1&pageSize=15&sort=date&order=desc) 工具来检查您的 EDS/XDD 文件是否合规。
 
-Collaborators
+参与贡献
+--------
+如果您想为这个项目做出贡献，首先向您表示感谢！请阅读我们的 [贡献指南 (CONTRIBUTING.md)](CONTRIBUTING.md)。我们对新手非常友好，即便您没有太多参与开源项目的经验，也请勇敢尝试！
+
+核心成员 (Collaborators)
 --------
 <!-- readme: collaborators -start -->
 <table>
@@ -138,7 +132,7 @@ Collaborators
 </table>
 <!-- readme: collaborators -end -->
 
-Contributors
+贡献者 (Contributors)
 --------
 <!-- readme: contributors -start -->
 <table>
