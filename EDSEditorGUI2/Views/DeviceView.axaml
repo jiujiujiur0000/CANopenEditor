@@ -35,7 +35,7 @@
       <view:DevicePDOView DataContext="{Binding Objects}" />
     </TabItem>
     <TabItem Header="{DynamicResource str_tab_modules}">
-      <TextBlock Margin="5">This is tab 3 content</TextBlock>
+      <view:ModuleView DataContext="{Binding ModuleInfo}"/>
     </TabItem>  
   </TabControl>
 

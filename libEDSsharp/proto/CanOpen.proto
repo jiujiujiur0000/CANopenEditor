@@ -169,4 +169,20 @@ message CanOpenDevice
     CanOpen_DeviceInfo deviceInfo = 2; //CANopen device information related properties.
     CanOpen_DeviceCommissioning deviceCommissioning = 3; // Parameters of the actual CANopen device.
     map<string, OdObject> objects = 200; // CANopen Object Dictionary as sorted dictionary.
+    uint32 nrSupportedModules = 201; // Number of supported modules
+    map<uint32, CanOpenModule> modules = 202; // Map of modules by index
+}
+
+message CanOpenModuleInfo {
+    string productName = 1;
+    string productVersion = 2;
+    string productRevision = 3;
+    string orderCode = 4;
+}
+
+message CanOpenModule {
+    CanOpenModuleInfo info = 1;
+    repeated uint32 extendedObjects = 2;
+    repeated string comments = 3;
+    bool isConnected = 4;
 }

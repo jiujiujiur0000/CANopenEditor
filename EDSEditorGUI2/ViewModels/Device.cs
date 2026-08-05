@@ -1,4 +1,4 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace EDSEditorGUI2.ViewModels
 {
@@ -31,6 +31,9 @@ namespace EDSEditorGUI2.ViewModels
 
         [ObservableProperty]
         private ObjectDictionary _objects = new();
+
+        [ObservableProperty]
+        private ModuleViewModel _moduleInfo = new();
 
         public void OnClickCommand()
         {

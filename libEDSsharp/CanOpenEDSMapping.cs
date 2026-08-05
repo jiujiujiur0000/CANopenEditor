@@ -201,7 +201,27 @@ namespace libEDSsharp
                 .ForMember(dest => dest.FileInfo, opt => opt.MapFrom(src => src.fi))
                 .ForMember(dest => dest.DeviceInfo, opt => opt.MapFrom(src => src.di))
                 .ForMember(dest => dest.DeviceCommissioning, opt => opt.MapFrom(src => src.dc))
-                .ForMember(dest => dest.Objects, opt => opt.MapFrom(src => src.ods));
+                .ForMember(dest => dest.Objects, opt => opt.MapFrom(src => src.ods))
+                .ForMember(dest => dest.NrSupportedModules, opt => opt.MapFrom(src => src.sm.NrOfEntries))
+                .ForMember(dest => dest.Modules, opt => opt.MapFrom(src => src.modules))
+                .AfterMap((src, dest) => {
+                    if (src.cm?.connectedmodulelist != null)
+                    {
+                        foreach (var kvp in src.cm.connectedmodulelist)
+                        {
+                            if (dest.Modules.TryGetValue((uint)kvp.Key, out var module))
+                            {
+                                module.IsConnected = true;
+                            }
+                        }
+                    }
+                });
+                cfg.CreateMap<libEDSsharp.ModuleInfo, LibCanOpen.CanOpenModuleInfo>();
+                cfg.CreateMap<libEDSsharp.Module, LibCanOpen.CanOpenModule>()
+                .ForMember(dest => dest.Info, opt => opt.MapFrom(src => src.mi))
+                .ForMember(dest => dest.ExtendedObjects, opt => opt.MapFrom(src => src.mse.objectlist.Values))
+                .ForMember(dest => dest.Comments, opt => opt.MapFrom(src => src.mc.comments))
+                .ForMember(dest => dest.IsConnected, opt => opt.Ignore()); // We map IsConnected dynamically later
                 cfg.CreateMap<FileInfo, CanOpen_FileInfo>()
                 .ForMember(dest => dest.CreationTime, opt => opt.MapFrom(new EDSDateAndTimeResolver("creation")))
                 .ForMember(dest => dest.ModificationTime, opt => opt.MapFrom(new EDSDateAndTimeResolver("modification")));

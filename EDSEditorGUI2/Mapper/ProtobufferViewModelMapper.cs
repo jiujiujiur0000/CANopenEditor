@@ -21,11 +21,14 @@ namespace EDSEditorGUI2.Mapper
                 .ForMember(dest => dest.ModificationTime, opt => opt.MapFrom(src => src.ModificationTime))
                 .ForMember(dest => dest.ModifiedBy, opt => opt.MapFrom(src => src.ModifiedBy));
                 cfg.CreateMap<Google.Protobuf.Collections.MapField<string, OdObject>, ViewModels.ObjectDictionary>().ConvertUsing<ODConverter>();
+                cfg.CreateMap<Google.Protobuf.Collections.MapField<uint, CanOpenModule>, System.Collections.ObjectModel.ObservableCollection<ViewModels.ModuleItemViewModel>>().ConvertUsing<ModuleConverter>();
                 cfg.CreateMap<CanOpenDevice, ViewModels.Device>()
                 .ForMember(dest => dest.FileInfo, opt => opt.MapFrom(src => src.FileInfo))
                 .ForMember(dest => dest.DeviceInfo, opt => opt.MapFrom(src => src.DeviceInfo))
                 .ForMember(dest => dest.DeviceCommissioning, opt => opt.MapFrom(src => src.DeviceCommissioning))
-                .ForMember(dest => dest.Objects, opt => opt.MapFrom(src => src.Objects));
+                .ForMember(dest => dest.Objects, opt => opt.MapFrom(src => src.Objects))
+                .ForPath(dest => dest.ModuleInfo.NrSupportedModules, opt => opt.MapFrom(src => src.NrSupportedModules))
+                .ForPath(dest => dest.ModuleInfo.Modules, opt => opt.MapFrom(src => src.Modules));
                 cfg.CreateMap<CanOpen_DeviceInfo, ViewModels.DeviceInfo>();
                 cfg.CreateMap<CanOpen_DeviceCommissioning, ViewModels.DeviceCommissioning>();
             }, LoggerFactory.Create(builder => { builder.AddDebug(); }));
@@ -85,6 +88,37 @@ namespace EDSEditorGUI2.Mapper
                     {
                         destination.Add(item.Key, mapper.Map<OdObject>(item.Value));
                     }
+                }
+                return destination;
+            }
+        }
+
+        public class ModuleConverter : ITypeConverter<Google.Protobuf.Collections.MapField<uint, CanOpenModule>, System.Collections.ObjectModel.ObservableCollection<ViewModels.ModuleItemViewModel>>
+        {
+            public System.Collections.ObjectModel.ObservableCollection<ViewModels.ModuleItemViewModel> Convert(Google.Protobuf.Collections.MapField<uint, CanOpenModule> source, System.Collections.ObjectModel.ObservableCollection<ViewModels.ModuleItemViewModel> destination, ResolutionContext context)
+            {
+                destination ??= new();
+                foreach (var item in source)
+                {
+                    var vm = new ViewModels.ModuleItemViewModel
+                    {
+                        Index = item.Key,
+                        ProductName = item.Value.Info?.ProductName ?? string.Empty,
+                        ProductVersion = item.Value.Info?.ProductVersion ?? string.Empty,
+                        ProductRevision = item.Value.Info?.ProductRevision ?? string.Empty,
+                        OrderCode = item.Value.Info?.OrderCode ?? string.Empty,
+                        IsConnected = item.Value.IsConnected,
+                        Comments = string.Join("\r\n", item.Value.Comments)
+                    };
+                    foreach (var extObj in item.Value.ExtendedObjects)
+                    {
+                        vm.ExtendedObjects.Add(new ViewModels.ModuleObjectViewModel
+                        {
+                            IndexHex = $"0x{extObj:X4}",
+                            Name = $"Index {extObj:X4}" // Name mapping is handled later or left simple for now
+                        });
+                    }
+                    destination.Add(vm);
                 }
                 return destination;
             }
