@@ -152,10 +152,26 @@ public partial class DevicePDOView : UserControl
             }
 
             // Click handler to select slot
-            var rowOverlay = new Border { Background = Brushes.Transparent, Cursor = new Avalonia.Input.Cursor(Avalonia.Input.StandardCursorType.Hand) };
+            bool isSelected = (slot == _vm.SelectedSlot);
+            var rowOverlay = new Border 
+            { 
+                Background = isSelected ? new Avalonia.Media.SolidColorBrush(Avalonia.Media.Color.FromArgb(50, 0, 120, 215)) : Brushes.Transparent, 
+                Cursor = new Avalonia.Input.Cursor(Avalonia.Input.StandardCursorType.Hand) 
+            };
+            
+            // Hover effect
+            rowOverlay.PointerEntered += (s, e) => 
+            {
+                if (!isSelected) rowOverlay.Background = new Avalonia.Media.SolidColorBrush(Avalonia.Media.Color.FromArgb(20, 0, 0, 0));
+            };
+            rowOverlay.PointerExited += (s, e) => 
+            {
+                if (!isSelected) rowOverlay.Background = Brushes.Transparent;
+            };
+
             Grid.SetRow(rowOverlay, row);
             Grid.SetColumn(rowOverlay, 0);
-            Grid.SetColumnSpan(rowOverlay, 67); // Span across all columns
+            Grid.SetColumnSpan(rowOverlay, 68); // Span across all 68 columns
             rowOverlay.PointerPressed += (s, e) => { _vm.SelectedSlot = slot; };
             MappingGrid.Children.Add(rowOverlay);
 
@@ -198,7 +214,11 @@ public partial class DevicePDOView : UserControl
             };
             AddToMappingGrid(indication, 1, 3 + (i*8), 8);
         }
+        
+        // Add a final star column to absorb extra space when stretched
+        MappingGrid.ColumnDefinitions.Add(new ColumnDefinition(new GridLength(1, GridUnitType.Star)));
     }
+    
     void AddToMappingGrid(Control element, int row,int column, int columnspam = 1)
     {
         Grid.SetRow(element, row);
