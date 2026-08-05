@@ -39,27 +39,67 @@ namespace EDSEditorGUI2.ViewModels
             if (_eds != null)
             {
                 _helper = new PDOHelper(_eds);
+                _helper.build_PDOlists();
                 UpdatePDOList();
                 UpdateAvailableObjects();
             }
         }
 
-        public class PDOSlotViewModel
+        public partial class PDOSlotViewModel : ObservableObject
         {
             public PDOSlot Slot { get; }
             public PDOSlotViewModel(PDOSlot slot)
             {
                 Slot = slot;
             }
+            public string Name => (Slot.ConfigurationIndex >= 0x1800 ? "TPDO " : "RPDO ") + (Slot.ConfigurationIndex >= 0x1800 ? (Slot.ConfigurationIndex - 0x1800 + 1) : (Slot.ConfigurationIndex - 0x1400 + 1));
             public string DescriptionComm => Slot.DescriptionComm;
-            public string Communication => "0x" + Slot.ConfigurationIndex.ToString("X4");
-            public string Mapping => "0x" + Slot.MappingIndex.ToString("X4");
-            public string COB => "0x" + Slot.COB.ToString("X");
-            public string TransmissionType => Slot.transmissiontype.ToString();
-            public string Inhibit => Slot.inhibit.ToString();
-            public string EventTimer => Slot.eventtimer.ToString();
-            public string SyncStart => Slot.syncstart.ToString();
-            public bool Invalid => Slot.invalid;
+            
+            public string Communication
+            {
+                get => "0x" + Slot.ConfigurationIndex.ToString("X4");
+            }
+            
+            public string Mapping
+            {
+                get => "0x" + Slot.MappingIndex.ToString("X4");
+            }
+            
+            public string COB
+            {
+                get => "0x" + Slot.COB.ToString("X");
+                set { if (uint.TryParse(value.Replace("0x", ""), System.Globalization.NumberStyles.HexNumber, null, out uint val)) { Slot.COB = val; OnPropertyChanged(); } }
+            }
+            
+            public string TransmissionType
+            {
+                get => Slot.transmissiontype.ToString();
+                set { if (byte.TryParse(value, out byte val)) { Slot.transmissiontype = val; OnPropertyChanged(); } }
+            }
+            
+            public string Inhibit
+            {
+                get => Slot.inhibit.ToString();
+                set { if (ushort.TryParse(value, out ushort val)) { Slot.inhibit = val; OnPropertyChanged(); } }
+            }
+            
+            public string EventTimer
+            {
+                get => Slot.eventtimer.ToString();
+                set { if (ushort.TryParse(value, out ushort val)) { Slot.eventtimer = val; OnPropertyChanged(); } }
+            }
+            
+            public string SyncStart
+            {
+                get => Slot.syncstart.ToString();
+                set { if (byte.TryParse(value, out byte val)) { Slot.syncstart = val; OnPropertyChanged(); } }
+            }
+            
+            public bool Invalid
+            {
+                get => Slot.invalid;
+                set { Slot.invalid = value; OnPropertyChanged(); }
+            }
         }
 
         [ObservableProperty]
@@ -134,6 +174,10 @@ namespace EDSEditorGUI2.ViewModels
             foreach (var slot in _helper.pdoslots.Where(s => s.isTXPDO() == _isTx))
             {
                 Slots.Add(new PDOSlotViewModel(slot));
+            }
+            if (Slots.Count > 0)
+            {
+                SelectedSlot = Slots[0];
             }
         }
 

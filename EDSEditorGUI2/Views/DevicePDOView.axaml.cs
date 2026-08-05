@@ -70,18 +70,17 @@ public partial class DevicePDOView : UserControl
             MappingGrid.RowDefinitions.RemoveAt(MappingGrid.RowDefinitions.Count - 1);
         }
 
-        if (_vm.Mappings.Count == 0) return;
+        if (_vm.Slots.Count == 0) return;
 
         int row = 2;
-        int currentBit = 0;
         int mappingIndex = 1;
 
-        string cobHex = _vm.SelectedSlot?.COB ?? "";
-        if (cobHex.Length > 6) cobHex = cobHex.Substring(0, 6) + "..."; // Shorten if too long
-
-        foreach (var mapping in _vm.Mappings)
+        foreach (var slot in _vm.Slots)
         {
             MappingGrid.RowDefinitions.Add(new RowDefinition(GridLength.Auto));
+
+            string cobHex = slot.COB ?? "";
+            if (cobHex.Length > 6) cobHex = cobHex.Substring(0, 6) + "..."; // Shorten if too long
 
             var idBlock = new TextBlock { Text = mappingIndex.ToString(), VerticalAlignment = VerticalAlignment.Center, Margin = new Avalonia.Thickness(0, 0, 10, 10) };
             AddToMappingGrid(idBlock, row, 0);
@@ -89,38 +88,76 @@ public partial class DevicePDOView : UserControl
             var cobBlock = new TextBlock { Text = cobHex, VerticalAlignment = VerticalAlignment.Center, Margin = new Avalonia.Thickness(0, 0, 10, 10) };
             AddToMappingGrid(cobBlock, row, 1);
 
-            var indexBlock = new TextBlock { Text = string.IsNullOrEmpty(mapping.IndexString) ? "Empty" : mapping.IndexString, VerticalAlignment = VerticalAlignment.Center, Margin = new Avalonia.Thickness(0, 0, 10, 10) };
+            var indexBlock = new TextBlock { Text = slot.Communication, VerticalAlignment = VerticalAlignment.Center, Margin = new Avalonia.Thickness(0, 0, 10, 10) };
             AddToMappingGrid(indexBlock, row, 2);
 
-            int width = mapping.BitWidth;
-            if (width > 0 && currentBit + width <= 64)
+            int currentBit = 0;
+            if (slot.Slot != null && slot.Slot.Mapping != null)
             {
-                var isAvailable = !string.IsNullOrEmpty(mapping.IndexString);
-                var bgBrush = isAvailable ? Brushes.Khaki : Brushes.LightGray;
+                foreach (var mapping in slot.Slot.Mapping)
+                {
+                    var entry = new EDSEditorGUI2.ViewModels.DevicePDOViewModel.MappingEntryViewModel(mapping);
+                    int width = entry.BitWidth;
+                    if (width > 0 && currentBit + width <= 64)
+                    {
+                        var isAvailable = !string.IsNullOrEmpty(entry.IndexString);
+                        var bgBrush = isAvailable ? Brushes.Khaki : Brushes.LightGray;
 
+                        var border = new Border
+                        {
+                            Background = bgBrush,
+                            BorderBrush = Brushes.Gray,
+                            BorderThickness = new Avalonia.Thickness(1),
+                            Margin = new Avalonia.Thickness(0, 0, 0, 5),
+                            Child = new TextBlock 
+                            { 
+                                Text = isAvailable ? (entry.IndexString + "/" + entry.SubIndexString + "/" + entry.Name) : "Empty", 
+                                VerticalAlignment = VerticalAlignment.Center,
+                                HorizontalAlignment = HorizontalAlignment.Center,
+                                TextWrapping = TextWrapping.NoWrap,
+                                ClipToBounds = true
+                            }
+                        };
+
+                        AddToMappingGrid(border, row, 3 + currentBit, width);
+                        currentBit += width;
+                    }
+                    else
+                    {
+                        currentBit += width;
+                    }
+                }
+            }
+
+            // Fill remainder with Empty
+            if (currentBit < 64)
+            {
+                int remaining = 64 - currentBit;
                 var border = new Border
                 {
-                    Background = bgBrush,
+                    Background = Brushes.LightGray,
                     BorderBrush = Brushes.Gray,
                     BorderThickness = new Avalonia.Thickness(1),
                     Margin = new Avalonia.Thickness(0, 0, 0, 5),
                     Child = new TextBlock 
                     { 
-                        Text = isAvailable ? (mapping.IndexString + "/" + mapping.SubIndexString + "/" + mapping.Name) : "Empty", 
+                        Text = "Empty", 
                         VerticalAlignment = VerticalAlignment.Center,
                         HorizontalAlignment = HorizontalAlignment.Center,
                         TextWrapping = TextWrapping.NoWrap,
                         ClipToBounds = true
                     }
                 };
+                AddToMappingGrid(border, row, 3 + currentBit, remaining);
+            }
 
-                AddToMappingGrid(border, row, 3 + currentBit, width);
-                currentBit += width;
-            }
-            else
-            {
-                currentBit += width; // Might exceed 64
-            }
+            // Click handler to select slot
+            var rowOverlay = new Border { Background = Brushes.Transparent, Cursor = new Avalonia.Input.Cursor(Avalonia.Input.StandardCursorType.Hand) };
+            Grid.SetRow(rowOverlay, row);
+            Grid.SetColumn(rowOverlay, 0);
+            Grid.SetColumnSpan(rowOverlay, 67); // Span across all columns
+            rowOverlay.PointerPressed += (s, e) => { _vm.SelectedSlot = slot; };
+            MappingGrid.Children.Add(rowOverlay);
 
             row++;
             mappingIndex++;
