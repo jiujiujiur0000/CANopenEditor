@@ -7,7 +7,16 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <ApplicationIcon>Assets\icon.ico</ApplicationIcon>
     <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+    
+    <!-- Linux DEB Packaging Properties -->
+    <LinuxPackageDependencies>libx11-6, libice6, libsm6, libfontconfig1, fonts-wqy-microhei, fonts-noto-color-emoji</LinuxPackageDependencies>
+    <Maintainer>CANopenEditor Developer</Maintainer>
+    <Description>CANopen Editor 2 GUI</Description>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Packaging.Targets" Version="0.1.220" PrivateAssets="All" />
+  </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Models\" />
