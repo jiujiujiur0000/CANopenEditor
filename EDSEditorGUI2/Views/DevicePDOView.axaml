@@ -117,11 +117,17 @@
           </StackPanel>
           
           <ScrollViewer x:Name="MapScrollViewer" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Height="250" Margin="0,10,0,0">
-            <Border BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" BorderThickness="1" CornerRadius="4" MinWidth="{Binding #MapScrollViewer.Bounds.Width}">
-              <Grid x:Name="MappingGrid" Grid.Row="1" Height="200" ColumnDefinitions="40,80,80" Margin="10">
-                <TextBlock Text="{DynamicResource str_pdo_id}" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" FontWeight="SemiBold" Foreground="{DynamicResource SystemAccentColor}" Margin="0,0,10,10"/>
-                <TextBlock Text="{DynamicResource str_pdo_cob}" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" FontWeight="SemiBold" Foreground="{DynamicResource SystemAccentColor}" Margin="0,0,10,10"/>
-                <TextBlock Text="{DynamicResource str_pdo_col_index}" Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" FontWeight="SemiBold" Foreground="{DynamicResource SystemAccentColor}" Margin="0,0,10,10"/>
+            <Border BorderBrush="LightGray" BorderThickness="1,1,0,0" MinWidth="{Binding #MapScrollViewer.Bounds.Width}" VerticalAlignment="Top">
+              <Grid x:Name="MappingGrid" ColumnDefinitions="40,80,80">
+                <Border Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" BorderBrush="LightGray" BorderThickness="0,0,1,1" Padding="5">
+                  <TextBlock Text="{DynamicResource str_pdo_id}" VerticalAlignment="Center" FontWeight="SemiBold" Foreground="{DynamicResource SystemAccentColor}"/>
+                </Border>
+                <Border Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" BorderBrush="LightGray" BorderThickness="0,0,1,1" Padding="5">
+                  <TextBlock Text="{DynamicResource str_pdo_cob}" VerticalAlignment="Center" FontWeight="SemiBold" Foreground="{DynamicResource SystemAccentColor}"/>
+                </Border>
+                <Border Grid.Row="0" Grid.Column="2" Grid.RowSpan="2" BorderBrush="LightGray" BorderThickness="0,0,1,1" Padding="5">
+                  <TextBlock Text="{DynamicResource str_pdo_col_index}" VerticalAlignment="Center" FontWeight="SemiBold" Foreground="{DynamicResource SystemAccentColor}"/>
+                </Border>
               </Grid>
             </Border>
           </ScrollViewer>

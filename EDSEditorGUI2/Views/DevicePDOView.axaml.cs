@@ -82,14 +82,17 @@ public partial class DevicePDOView : UserControl
             string cobHex = slot.COB ?? "";
             if (cobHex.Length > 6) cobHex = cobHex.Substring(0, 6) + "..."; // Shorten if too long
 
-            var idBlock = new TextBlock { Text = mappingIndex.ToString(), VerticalAlignment = VerticalAlignment.Center, Margin = new Avalonia.Thickness(0, 0, 10, 10) };
-            AddToMappingGrid(idBlock, row, 0);
+            var idBorder = new Border { BorderBrush = Brushes.LightGray, BorderThickness = new Avalonia.Thickness(0, 0, 1, 1), Padding = new Avalonia.Thickness(10, 0, 10, 0) };
+            idBorder.Child = new TextBlock { Text = mappingIndex.ToString(), VerticalAlignment = VerticalAlignment.Center };
+            AddToMappingGrid(idBorder, row, 0);
 
-            var cobBlock = new TextBlock { Text = cobHex, VerticalAlignment = VerticalAlignment.Center, Margin = new Avalonia.Thickness(0, 0, 10, 10) };
-            AddToMappingGrid(cobBlock, row, 1);
+            var cobBorder = new Border { BorderBrush = Brushes.LightGray, BorderThickness = new Avalonia.Thickness(0, 0, 1, 1), Padding = new Avalonia.Thickness(10, 0, 10, 0) };
+            cobBorder.Child = new TextBlock { Text = cobHex, VerticalAlignment = VerticalAlignment.Center };
+            AddToMappingGrid(cobBorder, row, 1);
 
-            var indexBlock = new TextBlock { Text = slot.Communication, VerticalAlignment = VerticalAlignment.Center, Margin = new Avalonia.Thickness(0, 0, 10, 10) };
-            AddToMappingGrid(indexBlock, row, 2);
+            var indexBorder = new Border { BorderBrush = Brushes.LightGray, BorderThickness = new Avalonia.Thickness(0, 0, 1, 1), Padding = new Avalonia.Thickness(10, 0, 10, 0) };
+            indexBorder.Child = new TextBlock { Text = slot.Communication, VerticalAlignment = VerticalAlignment.Center };
+            AddToMappingGrid(indexBorder, row, 2);
 
             int currentBit = 0;
             if (slot.Slot != null && slot.Slot.Mapping != null)
@@ -107,8 +110,7 @@ public partial class DevicePDOView : UserControl
                         {
                             Background = bgBrush,
                             BorderBrush = Brushes.Gray,
-                            BorderThickness = new Avalonia.Thickness(1),
-                            Margin = new Avalonia.Thickness(0, 0, 0, 5),
+                            BorderThickness = new Avalonia.Thickness(0, 0, 1, 1),
                             Child = new TextBlock 
                             { 
                                 Text = isAvailable ? (entry.IndexString + "/" + entry.SubIndexString + "/" + entry.Name) : "Empty", 
@@ -137,8 +139,7 @@ public partial class DevicePDOView : UserControl
                 {
                     Background = Brushes.LightGray,
                     BorderBrush = Brushes.Gray,
-                    BorderThickness = new Avalonia.Thickness(1),
-                    Margin = new Avalonia.Thickness(0, 0, 0, 5),
+                    BorderThickness = new Avalonia.Thickness(0, 0, 1, 1),
                     Child = new TextBlock 
                     { 
                         Text = "Empty", 
@@ -173,7 +174,13 @@ public partial class DevicePDOView : UserControl
             Grid.SetColumn(rowOverlay, 0);
             Grid.SetColumnSpan(rowOverlay, 68); // Span across all 68 columns
             rowOverlay.PointerPressed += (s, e) => { _vm.SelectedSlot = slot; };
-            MappingGrid.Children.Add(rowOverlay);
+            MappingGrid.Children.Insert(0, rowOverlay);
+
+            // Add star column filler for this row to complete the right border
+            var starFiller = new Border { BorderBrush = Brushes.LightGray, BorderThickness = new Avalonia.Thickness(0, 0, 1, 1) };
+            Grid.SetRow(starFiller, row);
+            Grid.SetColumn(starFiller, 67);
+            MappingGrid.Children.Add(starFiller);
 
             row++;
             mappingIndex++;
@@ -185,19 +192,22 @@ public partial class DevicePDOView : UserControl
         //Bits
         for (int i = 0; i < 64; i++)
         {
+            var border = new Border { BorderBrush = Brushes.LightGray, BorderThickness = new Avalonia.Thickness(0, 0, 1, 1) };
             var indication = new TextBlock
             {
                 Text = i.ToString(),
                 VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center,
+                HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Center,
                 TextWrapping = TextWrapping.Wrap,
             };
             if ((i % 8) == 0)
             {
                 indication.Foreground = Brushes.Red;
             }
-            AddToMappingGrid(indication, 0, 3 + i);
+            border.Child = indication;
+            AddToMappingGrid(border, 0, 3 + i);
 
-            var newColumn = new ColumnDefinition(new GridLength(10 * 1.0));
+            var newColumn = new ColumnDefinition(new GridLength(11.5 * 1.0));
             _bitColumns.Add(newColumn);
 
             MappingGrid.ColumnDefinitions.Add(newColumn);
@@ -205,6 +215,7 @@ public partial class DevicePDOView : UserControl
         //Bytes
         for (int i = 0; i < 8; i++)
         {
+            var border = new Border { BorderBrush = Brushes.LightGray, BorderThickness = new Avalonia.Thickness(0, 0, 1, 1) };
             var indication = new TextBlock
             {
                 Text = $"Byte {i}",
@@ -212,11 +223,19 @@ public partial class DevicePDOView : UserControl
 
                 TextWrapping = TextWrapping.Wrap,
             };
-            AddToMappingGrid(indication, 1, 3 + (i*8), 8);
+            border.Child = indication;
+            AddToMappingGrid(border, 1, 3 + (i*8), 8);
         }
         
         // Add a final star column to absorb extra space when stretched
         MappingGrid.ColumnDefinitions.Add(new ColumnDefinition(new GridLength(1, GridUnitType.Star)));
+        
+        // Add star column filler for the header to complete the top-right border
+        var headerStarFiller = new Border { BorderBrush = Brushes.LightGray, BorderThickness = new Avalonia.Thickness(0, 0, 1, 1) };
+        Grid.SetRow(headerStarFiller, 0);
+        Grid.SetRowSpan(headerStarFiller, 2);
+        Grid.SetColumn(headerStarFiller, 67);
+        MappingGrid.Children.Add(headerStarFiller);
     }
     
     void AddToMappingGrid(Control element, int row,int column, int columnspam = 1)
@@ -244,7 +263,7 @@ public partial class DevicePDOView : UserControl
         var zoom = zoomPercent / 100;
         foreach (var column in _bitColumns)
         {
-            column.Width = new GridLength(10 * zoom);
+            column.Width = new GridLength(11.5 * zoom);
         }
     }
 }
