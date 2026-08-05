@@ -23,12 +23,15 @@
                 Background="Transparent" RowBackground="Transparent"
                 SelectionMode="Single"
                 SelectionChanged="DataGrid_SelectionChanged">
-      <DataGrid.Styles>
-        <Style Selector="DataGridColumnHeader">
-          <Setter Property="Background" Value="Transparent"/>
-          <Setter Property="SeparatorBrush" Value="Transparent"/>
-        </Style>
-      </DataGrid.Styles>
+          <DataGrid.Styles>
+            <Style Selector="DataGridColumnHeader">
+              <Setter Property="Background" Value="Transparent"/>
+              <Setter Property="SeparatorBrush" Value="{DynamicResource SystemControlForegroundBaseMediumLowBrush}"/>
+            </Style>
+            <Style Selector="DataGridColumnHeader:nth-last-child(1)">
+              <Setter Property="SeparatorBrush" Value="Transparent"/>
+            </Style>
+          </DataGrid.Styles>
       <DataGrid.Columns>
         <DataGridTextColumn Header="{DynamicResource str_pdo_col_index}" Width="*" Binding="{Binding Key, StringFormat='0x\{0\}'}"/>
         <DataGridTextColumn Header="{DynamicResource str_od_col_name}" Width="*" Binding="{Binding Value.Name}" />
