@@ -29,28 +29,28 @@
             </Grid.ColumnDefinitions>
             <Menu Grid.Column="0" x:Name="menu">
                 <MenuItem Header="{DynamicResource str_menu_file}" x:Name="fileMenu" >
-                    <MenuItem Header="新建项目" Command="{Binding NewProjectCommand}"/>
-                    <MenuItem Header="打开项目" Click="OpenProjectClick"/>
-                    <MenuItem Header="保存项目" Click="SaveProjectClick" IsEnabled="{Binding HasDevice}"/>
-                    <MenuItem Header="另存为项目" Click="SaveProjectAsClick" IsEnabled="{Binding HasDevice}"/>
-                    <MenuItem Header="关闭项目" Command="{Binding CloseAllDevicesCommand}" IsEnabled="{Binding HasDevice}"/>
+                    <MenuItem Header="{DynamicResource str_menu_new_project}" Command="{Binding NewProjectCommand}"/>
+                    <MenuItem Header="{DynamicResource str_menu_open_project}" Click="OpenProjectClick"/>
+                    <MenuItem Header="{DynamicResource str_menu_save_project}" Click="SaveProjectClick" IsEnabled="{Binding HasDevice}"/>
+                    <MenuItem Header="{DynamicResource str_menu_save_project_as}" Click="SaveProjectAsClick" IsEnabled="{Binding HasDevice}"/>
+                    <MenuItem Header="{DynamicResource str_menu_close_project}" Command="{Binding CloseAllDevicesCommand}" IsEnabled="{Binding HasDevice}"/>
                     <Separator/>
-                    <MenuItem Header="新建设备" Command="{Binding AddNewDevice}"/>
-                    <MenuItem Header="导入设备" Click="OpenFileClick"/>
-                    <MenuItem Header="移除当前设备" Command="{Binding CloseDeviceCommand}" CommandParameter="{Binding SelectedDevice}" IsEnabled="{Binding SelectedDevice, Converter={x:Static ObjectConverters.IsNotNull}}"/>
+                    <MenuItem Header="{DynamicResource str_menu_new_device}" Command="{Binding AddNewDevice}"/>
+                    <MenuItem Header="{DynamicResource str_menu_import_device}" Click="OpenFileClick"/>
+                    <MenuItem Header="{DynamicResource str_menu_remove_device}" Command="{Binding CloseDeviceCommand}" CommandParameter="{Binding SelectedDevice}" IsEnabled="{Binding SelectedDevice, Converter={x:Static ObjectConverters.IsNotNull}}"/>
                     <Separator/>
                     <MenuItem Header="{DynamicResource str_menu_recent}"/>
                     <Separator/>
-                    <MenuItem Header="导出当前设备" IsEnabled="{Binding SelectedDevice, Converter={x:Static ObjectConverters.IsNotNull}}">
-                        <MenuItem Header="EDS / XDD 格式" Click="ExportCurrentDeviceEdsClick"/>
-                        <MenuItem Header="CANopenNode 源码">
-                            <MenuItem Header="导出为 V4 最新版" Click="ExportCurrentDeviceSourceV4Click"/>
-                            <MenuItem Header="导出为 V1-V3 兼容版" Click="ExportCurrentDeviceSourceLegacyClick"/>
+                    <MenuItem Header="{DynamicResource str_menu_export_device}" IsEnabled="{Binding SelectedDevice, Converter={x:Static ObjectConverters.IsNotNull}}">
+                        <MenuItem Header="{DynamicResource str_menu_export_eds}" Click="ExportCurrentDeviceEdsClick"/>
+                        <MenuItem Header="{DynamicResource str_menu_export_source}">
+                            <MenuItem Header="{DynamicResource str_menu_export_source_v4}" Click="ExportCurrentDeviceSourceV4Click"/>
+                            <MenuItem Header="{DynamicResource str_menu_export_source_legacy}" Click="ExportCurrentDeviceSourceLegacyClick"/>
                         </MenuItem>
                     </MenuItem>
-                    <MenuItem Header="导出所有设备" IsEnabled="{Binding HasDevice}">
-                        <MenuItem Header="EDS / XDD 格式"/>
-                        <MenuItem Header="CANopenNode 源码"/>
+                    <MenuItem Header="{DynamicResource str_menu_export_all}" IsEnabled="{Binding HasDevice}">
+                        <MenuItem Header="{DynamicResource str_menu_export_eds}"/>
+                        <MenuItem Header="{DynamicResource str_menu_export_source}"/>
                     </MenuItem>
                     <Separator/>
                     <MenuItem Header="{DynamicResource str_menu_quit}" Click="QuitClick"/>
@@ -62,16 +62,16 @@
                     <MenuItem Header="{DynamicResource str_menu_preferences}" Click="OpenPreferences"/>
                 </MenuItem>
             </Menu>
-            <Button x:Name="ThemeButton" Grid.Column="1" Content="🖥️ 跟随系统" Click="ToggleTheme_Click" Margin="5,0,10,0" Padding="8,4" Background="Transparent" BorderThickness="1" CornerRadius="4" Cursor="Hand" VerticalAlignment="Center"/>
+            <Button x:Name="ThemeButton" Grid.Column="1" Content="{DynamicResource str_theme_system}" Click="ToggleTheme_Click" Margin="5,0,10,0" Padding="8,4" Background="Transparent" BorderThickness="1" CornerRadius="4" Cursor="Hand" VerticalAlignment="Center"/>
         </Grid>
         <Grid>
             <!-- 欢迎界面（没有设备时显示） -->
             <Grid IsVisible="{Binding HasNoDevice}" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <StackPanel Spacing="20">
-                    <TextBlock Text="欢迎使用 CANopen Editor 2" FontSize="32" FontWeight="Bold" HorizontalAlignment="Center"/>
+                    <TextBlock Text="{DynamicResource str_welcome_title}" FontSize="32" FontWeight="Bold" HorizontalAlignment="Center"/>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="20" Margin="0,30,0,0">
-                        <Button Content="📄 新建项目" Command="{Binding NewProjectCommand}" Classes="accent" FontSize="16" Padding="25,12" CornerRadius="8" Cursor="Hand"/>
-                        <Button Content="📂 打开项目" Click="OpenProjectClick" FontSize="16" Padding="25,12" CornerRadius="8" Cursor="Hand"/>
+                        <Button Content="{DynamicResource str_btn_new_project}" Command="{Binding NewProjectCommand}" Classes="accent" FontSize="16" Padding="25,12" CornerRadius="8" Cursor="Hand"/>
+                        <Button Content="{DynamicResource str_btn_open_project}" Click="OpenProjectClick" FontSize="16" Padding="25,12" CornerRadius="8" Cursor="Hand"/>
                     </StackPanel>
                 </StackPanel>
             </Grid>
@@ -86,7 +86,7 @@
                 
                 <Border Grid.Column="0" BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" BorderThickness="0,0,1,0">
                     <Grid RowDefinitions="Auto,*">
-                        <TextBlock Grid.Row="0" Text="设备网络 (Network)" FontWeight="Bold" Margin="15,15,10,10" Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}" />
+                        <TextBlock Grid.Row="0" Text="设备网络" FontWeight="Bold" Margin="15,15,10,10" Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}" />
                         
                         <ListBox Grid.Row="1" ItemsSource="{Binding Network}" SelectedItem="{Binding SelectedDevice}" 
                                  Background="Transparent" BorderThickness="0" Padding="5,0">

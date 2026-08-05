@@ -15,6 +15,29 @@
     <sys:String x:Key="str_menu_save_all">Save _All</sys:String>
     <sys:String x:Key="str_menu_quit">_Quit</sys:String>
 
+    <sys:String x:Key="str_menu_new_project">New Project</sys:String>
+    <sys:String x:Key="str_menu_open_project">Open Project</sys:String>
+    <sys:String x:Key="str_menu_save_project">Save Project</sys:String>
+    <sys:String x:Key="str_menu_save_project_as">Save Project As...</sys:String>
+    <sys:String x:Key="str_menu_close_project">Close Project</sys:String>
+    <sys:String x:Key="str_menu_new_device">New Device</sys:String>
+    <sys:String x:Key="str_menu_import_device">Import Device</sys:String>
+    <sys:String x:Key="str_menu_remove_device">Remove Current Device</sys:String>
+    <sys:String x:Key="str_menu_export_device">Export Current Device</sys:String>
+    <sys:String x:Key="str_menu_export_eds">EDS / XDD Format</sys:String>
+    <sys:String x:Key="str_menu_export_source">CANopenNode Source</sys:String>
+    <sys:String x:Key="str_menu_export_source_v4">Export as V4 (Latest)</sys:String>
+    <sys:String x:Key="str_menu_export_source_legacy">Export as V1-V3 Compatible</sys:String>
+    <sys:String x:Key="str_menu_export_all">Export All Devices</sys:String>
+    
+    <sys:String x:Key="str_welcome_title">Welcome to CANopen Editor 2</sys:String>
+    <sys:String x:Key="str_btn_new_project">📄 New Project</sys:String>
+    <sys:String x:Key="str_btn_open_project">📂 Open Project</sys:String>
+    
+    <sys:String x:Key="str_theme_light">☀️ Light</sys:String>
+    <sys:String x:Key="str_theme_dark">🌙 Dark</sys:String>
+    <sys:String x:Key="str_theme_system">🖥️ System</sys:String>
+
     <sys:String x:Key="str_menu_insert_profile">_Insert Profile</sys:String>
     <sys:String x:Key="str_menu_reports">_Reports</sys:String>
     <sys:String x:Key="str_menu_tools">Tools</sys:String>

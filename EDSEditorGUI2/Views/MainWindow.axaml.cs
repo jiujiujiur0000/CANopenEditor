@@ -46,17 +46,20 @@ public partial class MainWindow : Window
             if (savedTheme == "Light")
             {
                 app.RequestedThemeVariant = Avalonia.Styling.ThemeVariant.Light;
-                ThemeButton.Content = "☀️ 浅色";
+                app.TryGetResource("str_theme_light", app.ActualThemeVariant, out var val);
+                ThemeButton.Content = val ?? "☀️ Light";
             }
             else if (savedTheme == "Dark")
             {
                 app.RequestedThemeVariant = Avalonia.Styling.ThemeVariant.Dark;
-                ThemeButton.Content = "🌙 深色";
+                app.TryGetResource("str_theme_dark", app.ActualThemeVariant, out var val);
+                ThemeButton.Content = val ?? "🌙 Dark";
             }
             else
             {
                 app.RequestedThemeVariant = Avalonia.Styling.ThemeVariant.Default;
-                ThemeButton.Content = "🖥️ 跟随系统";
+                app.TryGetResource("str_theme_system", app.ActualThemeVariant, out var val);
+                ThemeButton.Content = val ?? "🖥️ System";
             }
         }
     }
@@ -572,19 +575,22 @@ public partial class MainWindow : Window
             if (app.RequestedThemeVariant == Avalonia.Styling.ThemeVariant.Default)
             {
                 app.RequestedThemeVariant = Avalonia.Styling.ThemeVariant.Light;
-                btn.Content = "☀️ 浅色";
+                app.TryGetResource("str_theme_light", app.ActualThemeVariant, out var val);
+                btn.Content = val ?? "☀️ Light";
                 ConfigurationManager.Settings.CurrentTheme = "Light";
             }
             else if (app.RequestedThemeVariant == Avalonia.Styling.ThemeVariant.Light)
             {
                 app.RequestedThemeVariant = Avalonia.Styling.ThemeVariant.Dark;
-                btn.Content = "🌙 深色";
+                app.TryGetResource("str_theme_dark", app.ActualThemeVariant, out var val);
+                btn.Content = val ?? "🌙 Dark";
                 ConfigurationManager.Settings.CurrentTheme = "Dark";
             }
             else
             {
                 app.RequestedThemeVariant = Avalonia.Styling.ThemeVariant.Default;
-                btn.Content = "🖥️ 跟随系统";
+                app.TryGetResource("str_theme_system", app.ActualThemeVariant, out var val);
+                btn.Content = val ?? "🖥️ System";
                 ConfigurationManager.Settings.CurrentTheme = "Default";
             }
             ConfigurationManager.Save();
