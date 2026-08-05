@@ -73,13 +73,35 @@ namespace EDSEditorGUI2.Mapper
             {
                 var config = new MapperConfiguration(cfg =>
                 {
-                    cfg.CreateMap<ViewModels.OdObject, OdObject>();
+                    cfg.CreateMap<ViewModels.OdObject, OdObject>()
+                        .ForMember(dest => dest.SubObjects, opt => opt.Ignore())
+                        .AfterMap((src, dest, ctx) => 
+                        {
+                            dest.SubObjects.Clear();
+                            if (src.SubObjects != null)
+                            {
+                                foreach (var subItem in src.SubObjects)
+                                {
+                                    var mappedSub = ctx.Mapper.Map<OdSubObject>(subItem.Value);
+                                    if (int.TryParse(subItem.Key, System.Globalization.NumberStyles.HexNumber, null, out int decSubKey))
+                                    {
+                                        dest.SubObjects.Add(decSubKey.ToString(), mappedSub);
+                                    }
+                                    else
+                                    {
+                                        dest.SubObjects.Add(subItem.Key, mappedSub);
+                                    }
+                                }
+                            }
+                        });
                     cfg.CreateMap<ViewModels.OdSubObject, OdSubObject>();
                 }, LoggerFactory.Create(builder => { builder.AddDebug(); }));
                 config.AssertConfigurationIsValid();
                 var mapper = config.CreateMapper();
 
-                destination = [];
+                if (destination == null) destination = new Google.Protobuf.Collections.MapField<string, OdObject>();
+                else destination.Clear();
+                
                 foreach (var item in source)
                 {
                     // Convert ViewModel hex string key to Protobuf decimal string key
@@ -135,7 +157,7 @@ namespace EDSEditorGUI2.Mapper
                 cfg.CreateMap<DateTime, Timestamp>().ConvertUsing(dt => 
                     dt == DateTime.MinValue ? new Timestamp() : Timestamp.FromDateTime(dt.Kind == DateTimeKind.Utc ? dt : dt.ToUniversalTime())
                 );
-                cfg.CreateMap<ViewModels.FileInfo, CanOpen_FileInfo>(MemberList.None);
+                cfg.CreateMap<ViewModels.FileInfo, CanOpen_FileInfo>();
                 cfg.CreateMap<ViewModels.ObjectDictionary, Google.Protobuf.Collections.MapField<string, OdObject>>().ConvertUsing<ODConverter>();
                 
                 cfg.CreateMap<ViewModels.Device, CanOpenDevice>(MemberList.None)
@@ -146,8 +168,8 @@ namespace EDSEditorGUI2.Mapper
                 .ForMember(dest => dest.NrSupportedModules, opt => opt.MapFrom(src => src.ModuleInfo.NrSupportedModules))
                 .ForMember(dest => dest.Modules, opt => opt.Ignore());
 
-                cfg.CreateMap<ViewModels.DeviceInfo, CanOpen_DeviceInfo>(MemberList.None);
-                cfg.CreateMap<ViewModels.DeviceCommissioning, CanOpen_DeviceCommissioning>(MemberList.None);
+                cfg.CreateMap<ViewModels.DeviceInfo, CanOpen_DeviceInfo>();
+                cfg.CreateMap<ViewModels.DeviceCommissioning, CanOpen_DeviceCommissioning>();
             }, LoggerFactory.Create(builder => { builder.AddDebug(); }));
             config.AssertConfigurationIsValid();
             var mapper = config.CreateMapper();
