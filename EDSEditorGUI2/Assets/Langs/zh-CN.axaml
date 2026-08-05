@@ -57,6 +57,22 @@
     <sys:String x:Key="str_device_info_lss_master">CANopen 主站</sys:String>
     <sys:String x:Key="str_device_info_baudrates">波特率</sys:String>
     <sys:String x:Key="str_device_info_auto">自动检测</sys:String>
+    <sys:String x:Key="str_device_info_project_title">项目信息</sys:String>
+    <sys:String x:Key="str_device_info_project_file">项目文件 (版本)</sys:String>
+    <sys:String x:Key="str_device_info_xdd_file">XDD v1.1 文件</sys:String>
+    <sys:String x:Key="str_device_info_eds_file">EDS 文件</sys:String>
+    <sys:String x:Key="str_device_info_dcf_file">DCF 文件</sys:String>
+    <sys:String x:Key="str_device_info_canopennode_file">CANopenNode 文件 (版本)</sys:String>
+    <sys:String x:Key="str_device_info_doc_file">文档文件</sys:String>
+    <sys:String x:Key="str_device_info_rpdo_count">RPDO 数量</sys:String>
+    <sys:String x:Key="str_device_info_tpdo_count">TPDO 数量</sys:String>
+    <sys:String x:Key="str_device_info_node_guarding_slave">节点守护 从站</sys:String>
+    <sys:String x:Key="str_device_info_node_guarding_master">节点守护 主站</sys:String>
+    <sys:String x:Key="str_device_info_monitored_nodes">监控节点数</sys:String>
+    <sys:String x:Key="str_device_info_net_number">网络编号</sys:String>
+    <sys:String x:Key="str_device_info_net_name">网络名称</sys:String>
+    <sys:String x:Key="str_device_info_canopen_manager">CANopen 管理器</sys:String>
+    <sys:String x:Key="str_device_info_lss_serial">LSS 序列号</sys:String>
 
     <!-- Device Object Dictionary View -->
     <sys:String x:Key="str_od_comm_params">通信特定参数</sys:String>

@@ -1,4 +1,4 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.ComponentModel;
 using System;
 
 namespace EDSEditorGUI2.ViewModels;
@@ -13,4 +13,16 @@ public partial class DeviceCommissioning : ObservableObject
 
     [ObservableProperty]
     private UInt32 _baudrate;
+
+    [ObservableProperty]
+    private UInt32 _netNumber;
+
+    [ObservableProperty]
+    private string _netName = string.Empty;
+
+    [ObservableProperty]
+    private bool _canopenManager;
+
+    [ObservableProperty]
+    private UInt32 _lssSerialNo;
 }

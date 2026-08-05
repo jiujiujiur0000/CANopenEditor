@@ -22,18 +22,19 @@ namespace EDSEditorGUI2.Mapper
                 .ForMember(dest => dest.ModifiedBy, opt => opt.MapFrom(src => src.ModifiedBy));
                 cfg.CreateMap<Google.Protobuf.Collections.MapField<string, OdObject>, ViewModels.ObjectDictionary>().ConvertUsing<ODConverter>();
                 cfg.CreateMap<Google.Protobuf.Collections.MapField<uint, CanOpenModule>, System.Collections.ObjectModel.ObservableCollection<ViewModels.ModuleItemViewModel>>().ConvertUsing<ModuleConverter>();
-                cfg.CreateMap<CanOpenDevice, ViewModels.Device>()
+                cfg.CreateMap<CanOpenDevice, ViewModels.Device>(MemberList.None)
                 .ForMember(d => d.Eds, opt => opt.Ignore())
                 .ForMember(d => d.TxPdo, opt => opt.Ignore())
                 .ForMember(d => d.RxPdo, opt => opt.Ignore())
+                .ForMember(d => d.ProjectInfo, opt => opt.Ignore())
                 .ForMember(dest => dest.FileInfo, opt => opt.MapFrom(src => src.FileInfo))
                 .ForMember(dest => dest.DeviceInfo, opt => opt.MapFrom(src => src.DeviceInfo))
                 .ForMember(dest => dest.DeviceCommissioning, opt => opt.MapFrom(src => src.DeviceCommissioning))
                 .ForMember(dest => dest.Objects, opt => opt.MapFrom(src => src.Objects))
                 .ForPath(dest => dest.ModuleInfo.NrSupportedModules, opt => opt.MapFrom(src => src.NrSupportedModules))
                 .ForPath(dest => dest.ModuleInfo.Modules, opt => opt.MapFrom(src => src.Modules));
-                cfg.CreateMap<CanOpen_DeviceInfo, ViewModels.DeviceInfo>();
-                cfg.CreateMap<CanOpen_DeviceCommissioning, ViewModels.DeviceCommissioning>();
+                cfg.CreateMap<CanOpen_DeviceInfo, ViewModels.DeviceInfo>(MemberList.None);
+                cfg.CreateMap<CanOpen_DeviceCommissioning, ViewModels.DeviceCommissioning>(MemberList.None);
             }, LoggerFactory.Create(builder => { builder.AddDebug(); }));
             config.AssertConfigurationIsValid();
             var mapper = config.CreateMapper();

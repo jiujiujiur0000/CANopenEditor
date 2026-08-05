@@ -54,4 +54,19 @@ public partial class DeviceInfo : ObservableObject
 
     [ObservableProperty]
     bool _lssMaster;
+
+    [ObservableProperty]
+    uint _rpdoCount;
+
+    [ObservableProperty]
+    uint _tpdoCount;
+
+    [ObservableProperty]
+    bool _nodeGuardingSlave;
+
+    [ObservableProperty]
+    bool _nodeGuardingMaster;
+
+    [ObservableProperty]
+    uint _numberOfMonitoredNodes;
 }

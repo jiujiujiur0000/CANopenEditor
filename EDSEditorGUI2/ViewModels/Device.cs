@@ -43,6 +43,9 @@ namespace EDSEditorGUI2.ViewModels
         private FileInfo _fileInfo = new();
 
         [ObservableProperty]
+        private ProjectInfo _projectInfo = new();
+
+        [ObservableProperty]
         private DeviceInfo _deviceInfo = new();
 
         [ObservableProperty]

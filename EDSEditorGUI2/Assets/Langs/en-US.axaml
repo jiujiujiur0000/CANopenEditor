@@ -57,6 +57,22 @@
     <sys:String x:Key="str_device_info_lss_master">Master</sys:String>
     <sys:String x:Key="str_device_info_baudrates">Baudrate</sys:String>
     <sys:String x:Key="str_device_info_auto">auto</sys:String>
+    <sys:String x:Key="str_device_info_project_title">Project Info</sys:String>
+    <sys:String x:Key="str_device_info_project_file">Project file (version)</sys:String>
+    <sys:String x:Key="str_device_info_xdd_file">XDD v1.1 file - stripped</sys:String>
+    <sys:String x:Key="str_device_info_eds_file">EDS file</sys:String>
+    <sys:String x:Key="str_device_info_dcf_file">DCF file</sys:String>
+    <sys:String x:Key="str_device_info_canopennode_file">CANopenNode file (ver)</sys:String>
+    <sys:String x:Key="str_device_info_doc_file">Documentation file</sys:String>
+    <sys:String x:Key="str_device_info_rpdo_count">RPDO count</sys:String>
+    <sys:String x:Key="str_device_info_tpdo_count">TPDO count</sys:String>
+    <sys:String x:Key="str_device_info_node_guarding_slave">Node guarding Slave</sys:String>
+    <sys:String x:Key="str_device_info_node_guarding_master">Node guarding Master</sys:String>
+    <sys:String x:Key="str_device_info_monitored_nodes">No of monitored nodes</sys:String>
+    <sys:String x:Key="str_device_info_net_number">Net number</sys:String>
+    <sys:String x:Key="str_device_info_net_name">Net name</sys:String>
+    <sys:String x:Key="str_device_info_canopen_manager">CANopen Manager</sys:String>
+    <sys:String x:Key="str_device_info_lss_serial">LSS Serial no</sys:String>
 
     <!-- Device Object Dictionary View -->
     <sys:String x:Key="str_od_comm_params">Communication Specific Parameters</sys:String>

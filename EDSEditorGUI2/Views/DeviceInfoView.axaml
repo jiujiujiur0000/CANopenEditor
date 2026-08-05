@@ -73,6 +73,40 @@
             </Grid>
           </StackPanel>
         </Border>
+
+        <!-- Card 3: Project Info -->
+        <Border Background="{DynamicResource SystemControlBackgroundAltHighBrush}" 
+                BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" 
+                BorderThickness="1" CornerRadius="8" Padding="25" Margin="10"
+                BoxShadow="0 4 10 0 #1A000000">
+          <StackPanel Spacing="25" HorizontalAlignment="Stretch">
+            <StackPanel Spacing="5">
+              <TextBlock Text="{DynamicResource str_device_info_project_title}" FontWeight="Bold" FontSize="18"/>
+            </StackPanel>
+            
+            <Grid ColumnDefinitions="200, *, 60" RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto">
+              <TextBlock Grid.Row="0" Grid.Column="0" Text="{DynamicResource str_device_info_project_file}" VerticalAlignment="Center" Margin="0,0,0,15"/>
+              <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding ProjectInfo.ProjectFile}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,10,15"/>
+              <TextBox Grid.Row="0" Grid.Column="2" Text="{Binding ProjectInfo.ProjectFileVersion}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
+              
+              <TextBlock Grid.Row="1" Grid.Column="0" Text="{DynamicResource str_device_info_xdd_file}" VerticalAlignment="Center" Margin="0,0,0,15"/>
+              <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding ProjectInfo.XddFileStripped}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
+              
+              <TextBlock Grid.Row="2" Grid.Column="0" Text="{DynamicResource str_device_info_eds_file}" VerticalAlignment="Center" Margin="0,0,0,15"/>
+              <TextBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding ProjectInfo.EdsFile}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
+              
+              <TextBlock Grid.Row="3" Grid.Column="0" Text="{DynamicResource str_device_info_dcf_file}" VerticalAlignment="Center" Margin="0,0,0,15"/>
+              <TextBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding ProjectInfo.DcfFile}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
+              
+              <TextBlock Grid.Row="4" Grid.Column="0" Text="{DynamicResource str_device_info_canopennode_file}" VerticalAlignment="Center" Margin="0,0,0,15"/>
+              <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding ProjectInfo.CanopenNodeFile}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,10,15"/>
+              <TextBox Grid.Row="4" Grid.Column="2" Text="{Binding ProjectInfo.CanopenNodeFileVersion}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
+              
+              <TextBlock Grid.Row="5" Grid.Column="0" Text="{DynamicResource str_device_info_doc_file}" VerticalAlignment="Center"/>
+              <TextBox Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding ProjectInfo.DocumentationFile}" HorizontalAlignment="Stretch" Classes="clearButton"/>
+            </Grid>
+          </StackPanel>
+        </Border>
       </StackPanel>
 
       <!-- Right Column -->
@@ -111,15 +145,31 @@
               <TextBlock Text="通用及主站特性" FontWeight="Bold" FontSize="18"/>
             </StackPanel>
             
-            <Grid ColumnDefinitions="120, *" RowDefinitions="Auto, Auto">
+            <Grid ColumnDefinitions="160, *" RowDefinitions="Auto, Auto, Auto">
               <TextBlock Grid.Row="0" Grid.Column="0" Text="映射粒度" VerticalAlignment="Center" Margin="0,0,0,15"/>
               <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding DeviceInfo.Granularity}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
+
+              <TextBlock Grid.Row="1" Grid.Column="0" Text="{DynamicResource str_device_info_rpdo_count}" VerticalAlignment="Center" Margin="0,0,0,15"/>
+              <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding DeviceInfo.RpdoCount}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
+
+              <TextBlock Grid.Row="2" Grid.Column="0" Text="{DynamicResource str_device_info_tpdo_count}" VerticalAlignment="Center" Margin="0,0,0,15"/>
+              <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding DeviceInfo.TpdoCount}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
             </Grid>
 
-            <StackPanel Orientation="Horizontal" Spacing="40" Margin="10,0,0,0">
-              <CheckBox IsChecked="{Binding DeviceInfo.LssSlave}" Content="LSS 从站" />
-              <CheckBox IsChecked="{Binding DeviceInfo.LssMaster}" Content="LSS 主站" />
+            <StackPanel Orientation="Horizontal" Spacing="40" Margin="10,0,0,15">
+              <CheckBox IsChecked="{Binding DeviceInfo.LssSlave}" Content="{DynamicResource str_device_info_lss_slave}" />
+              <CheckBox IsChecked="{Binding DeviceInfo.LssMaster}" Content="{DynamicResource str_device_info_lss_master}" />
             </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Spacing="40" Margin="10,0,0,15">
+              <CheckBox IsChecked="{Binding DeviceInfo.NodeGuardingSlave}" Content="{DynamicResource str_device_info_node_guarding_slave}" />
+              <CheckBox IsChecked="{Binding DeviceInfo.NodeGuardingMaster}" Content="{DynamicResource str_device_info_node_guarding_master}" />
+            </StackPanel>
+
+            <Grid ColumnDefinitions="160, *">
+              <TextBlock Grid.Column="0" Text="{DynamicResource str_device_info_monitored_nodes}" VerticalAlignment="Center"/>
+              <TextBox Grid.Column="1" Text="{Binding DeviceInfo.NumberOfMonitoredNodes}" HorizontalAlignment="Stretch" Classes="clearButton"/>
+            </Grid>
           </StackPanel>
         </Border>
 
@@ -133,15 +183,27 @@
               <TextBlock Text="设备部署信息" FontWeight="Bold" FontSize="18"/>
             </StackPanel>
             
-            <Grid ColumnDefinitions="120, *" RowDefinitions="Auto, Auto, Auto">
+            <Grid ColumnDefinitions="160, *" RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto">
               <TextBlock Grid.Row="0" Grid.Column="0" Text="节点 ID" VerticalAlignment="Center" Margin="0,0,0,15"/>
               <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding DeviceCommissioning.NodeId}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
               
               <TextBlock Grid.Row="1" Grid.Column="0" Text="节点名称" VerticalAlignment="Center" Margin="0,0,0,15"/>
               <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding DeviceCommissioning.NodeName}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
               
-              <TextBlock Grid.Row="2" Grid.Column="0" Text="通信波特率" VerticalAlignment="Center"/>
-              <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding DeviceCommissioning.Baudrate}" HorizontalAlignment="Stretch" Classes="clearButton"/>
+              <TextBlock Grid.Row="2" Grid.Column="0" Text="通信波特率" VerticalAlignment="Center" Margin="0,0,0,15"/>
+              <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding DeviceCommissioning.Baudrate}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
+
+              <TextBlock Grid.Row="3" Grid.Column="0" Text="{DynamicResource str_device_info_net_number}" VerticalAlignment="Center" Margin="0,0,0,15"/>
+              <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding DeviceCommissioning.NetNumber}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
+
+              <TextBlock Grid.Row="4" Grid.Column="0" Text="{DynamicResource str_device_info_net_name}" VerticalAlignment="Center" Margin="0,0,0,15"/>
+              <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding DeviceCommissioning.NetName}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
+
+              <TextBlock Grid.Row="5" Grid.Column="0" Text="{DynamicResource str_device_info_canopen_manager}" VerticalAlignment="Center" Margin="0,0,0,15"/>
+              <CheckBox Grid.Row="5" Grid.Column="1" IsChecked="{Binding DeviceCommissioning.CanopenManager}" Margin="0,0,0,15"/>
+
+              <TextBlock Grid.Row="6" Grid.Column="0" Text="{DynamicResource str_device_info_lss_serial}" VerticalAlignment="Center"/>
+              <TextBox Grid.Row="6" Grid.Column="1" Text="{Binding DeviceCommissioning.LssSerialNo}" HorizontalAlignment="Stretch" Classes="clearButton"/>
             </Grid>
           </StackPanel>
         </Border>
