@@ -115,10 +115,10 @@
                 </StackPanel>
 
                 <TextBlock Text="{DynamicResource str_od_prop_name}" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,0,15"/>
-                <TextBox Text="{Binding SelectedSubObject.Value.Name}" Grid.Row="1" Grid.Column="1" Margin="0,0,20,15"/>
+                <TextBox Text="{Binding ActiveName}" Grid.Row="1" Grid.Column="1" Margin="0,0,20,15"/>
 
                 <TextBlock Text="{DynamicResource str_od_prop_denotation}" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,0,15"/>
-                <TextBox Text="" Grid.Row="2" Grid.Column="1" Margin="0,0,20,15"/>
+                <TextBox Text="{Binding ActiveAlias}" Grid.Row="2" Grid.Column="1" Margin="0,0,20,15"/>
 
                 <TextBlock Text="{DynamicResource str_od_prop_desc}" Grid.Row="3" Grid.Column="0" VerticalAlignment="Top"/>
                 <TextBox Text="{Binding SelectedObject.Value.Description}" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Height="70" TextWrapping="Wrap" AcceptsReturn="True" Margin="0,0,0,0"/>

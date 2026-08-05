@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -294,6 +294,17 @@ public class ObjectDictionary : IDictionary<string, OdObject>, INotifyCollection
             {
                 this._selectedObject = value;
                 NotifyPropertyChanged();
+                NotifyPropertyChanged(nameof(ActiveName));
+                NotifyPropertyChanged(nameof(ActiveAlias));
+                
+                if (value.Value != null && value.Value.ObjectType == LibCanOpen.OdObject.Types.ObjectType.Var && value.Value.SubObjects != null && value.Value.SubObjects.Count > 0)
+                {
+                    SelectedSubObject = value.Value.SubObjects[0];
+                }
+                else
+                {
+                    SelectedSubObject = default;
+                }
             }
         }
     }
@@ -310,6 +321,58 @@ public class ObjectDictionary : IDictionary<string, OdObject>, INotifyCollection
             if (value.Key != _selectedSubObject.Key || value.Value != _selectedSubObject.Value)
             {
                 _selectedSubObject = value;
+                NotifyPropertyChanged();
+                NotifyPropertyChanged(nameof(ActiveName));
+                NotifyPropertyChanged(nameof(ActiveAlias));
+            }
+        }
+    }
+
+    public string ActiveName
+    {
+        get
+        {
+            if (SelectedSubObject.Value != null)
+                return SelectedSubObject.Value.Name;
+            if (SelectedObject.Value != null)
+                return SelectedObject.Value.Name;
+            return string.Empty;
+        }
+        set
+        {
+            if (SelectedSubObject.Value != null)
+            {
+                SelectedSubObject.Value.Name = value;
+                NotifyPropertyChanged();
+            }
+            else if (SelectedObject.Value != null)
+            {
+                SelectedObject.Value.Name = value;
+                NotifyPropertyChanged();
+            }
+        }
+    }
+
+    public string ActiveAlias
+    {
+        get
+        {
+            if (SelectedSubObject.Value != null)
+                return SelectedSubObject.Value.Alias;
+            if (SelectedObject.Value != null)
+                return SelectedObject.Value.Alias;
+            return string.Empty;
+        }
+        set
+        {
+            if (SelectedSubObject.Value != null)
+            {
+                SelectedSubObject.Value.Alias = value;
+                NotifyPropertyChanged();
+            }
+            else if (SelectedObject.Value != null)
+            {
+                SelectedObject.Value.Alias = value;
                 NotifyPropertyChanged();
             }
         }
