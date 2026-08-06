@@ -9,14 +9,14 @@
              x:DataType="vm:Device">
   
   <ScrollViewer>
-    <Grid ColumnDefinitions="*, *" Margin="20" HorizontalAlignment="Stretch" VerticalAlignment="Top" MaxWidth="1200">
+    <Grid ColumnDefinitions="*, *" Margin="15,5,15,15" HorizontalAlignment="Stretch" VerticalAlignment="Top" MaxWidth="1200">
       
       <!-- Left Column -->
-      <StackPanel Grid.Column="0" Spacing="0">
+      <StackPanel Grid.Column="0" Spacing="15" Margin="0,0,7.5,0">
         <!-- Card 1: Device Info -->
         <Border Background="{DynamicResource SystemControlBackgroundAltHighBrush}" 
                 BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" 
-                BorderThickness="1" CornerRadius="8" Padding="25" Margin="10"
+                BorderThickness="1" CornerRadius="8" Padding="25"
                 BoxShadow="0 4 10 0 #1A000000">
           <StackPanel Spacing="25" HorizontalAlignment="Stretch">
             <StackPanel Spacing="5">
@@ -45,7 +45,7 @@
         <!-- Card 2: File Info -->
         <Border Background="{DynamicResource SystemControlBackgroundAltHighBrush}" 
                 BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" 
-                BorderThickness="1" CornerRadius="8" Padding="25" Margin="10"
+                BorderThickness="1" CornerRadius="8" Padding="25"
                 BoxShadow="0 4 10 0 #1A000000">
           <StackPanel Spacing="25" HorizontalAlignment="Stretch">
             <StackPanel Spacing="5">
@@ -77,7 +77,7 @@
         <!-- Card 3: Project Info -->
         <Border Background="{DynamicResource SystemControlBackgroundAltHighBrush}" 
                 BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" 
-                BorderThickness="1" CornerRadius="8" Padding="25" Margin="10"
+                BorderThickness="1" CornerRadius="8" Padding="25"
                 BoxShadow="0 4 10 0 #1A000000">
           <StackPanel Spacing="25" HorizontalAlignment="Stretch">
             <StackPanel Spacing="5">
@@ -110,18 +110,18 @@
       </StackPanel>
 
       <!-- Right Column -->
-      <StackPanel Grid.Column="1" Spacing="0">
+      <StackPanel Grid.Column="1" Spacing="15" Margin="7.5,0,0,0">
         <!-- Card 3: Baudrates Section -->
         <Border Background="{DynamicResource SystemControlBackgroundAltHighBrush}" 
                 BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" 
-                BorderThickness="1" CornerRadius="8" Padding="25" Margin="10"
+                BorderThickness="1" CornerRadius="8" Padding="25"
                 BoxShadow="0 4 10 0 #1A000000">
           <StackPanel Spacing="15" HorizontalAlignment="Stretch">
             <StackPanel Spacing="5">
               <TextBlock Text="{DynamicResource str_device_info_baudrates}" FontWeight="Bold" FontSize="18"/>
             </StackPanel>
             
-            <UniformGrid Columns="3" Margin="10,15,0,0">
+            <UniformGrid Columns="3" Margin="10,0,0,0">
               <CheckBox IsChecked="{Binding DeviceInfo.BaudRate10}" Content="10 kbit/s" Margin="0,0,0,15"/>
               <CheckBox IsChecked="{Binding DeviceInfo.BaudRate20}" Content="20 kbit/s" Margin="0,0,0,15"/>
               <CheckBox IsChecked="{Binding DeviceInfo.BaudRate50}" Content="50 kbit/s" Margin="0,0,0,15"/>
@@ -138,7 +138,7 @@
         <!-- Card 4: Features Section -->
         <Border Background="{DynamicResource SystemControlBackgroundAltHighBrush}" 
                 BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" 
-                BorderThickness="1" CornerRadius="8" Padding="25" Margin="10"
+                BorderThickness="1" CornerRadius="8" Padding="25"
                 BoxShadow="0 4 10 0 #1A000000">
           <StackPanel Spacing="15" HorizontalAlignment="Stretch">
             <StackPanel Spacing="5">
@@ -152,16 +152,16 @@
               <TextBlock Grid.Row="1" Grid.Column="0" Text="{DynamicResource str_device_info_rpdo_count}" VerticalAlignment="Center" Margin="0,0,0,15"/>
               <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding DeviceInfo.RpdoCount}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
 
-              <TextBlock Grid.Row="2" Grid.Column="0" Text="{DynamicResource str_device_info_tpdo_count}" VerticalAlignment="Center" Margin="0,0,0,15"/>
-              <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding DeviceInfo.TpdoCount}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
+              <TextBlock Grid.Row="2" Grid.Column="0" Text="{DynamicResource str_device_info_tpdo_count}" VerticalAlignment="Center"/>
+              <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding DeviceInfo.TpdoCount}" HorizontalAlignment="Stretch" Classes="clearButton"/>
             </Grid>
 
-            <StackPanel Orientation="Horizontal" Spacing="40" Margin="10,0,0,15">
+            <StackPanel Orientation="Horizontal" Spacing="40" Margin="10,0,0,0">
               <CheckBox IsChecked="{Binding DeviceInfo.LssSlave}" Content="{DynamicResource str_device_info_lss_slave}" />
               <CheckBox IsChecked="{Binding DeviceInfo.LssMaster}" Content="{DynamicResource str_device_info_lss_master}" />
             </StackPanel>
 
-            <StackPanel Orientation="Horizontal" Spacing="40" Margin="10,0,0,15">
+            <StackPanel Orientation="Horizontal" Spacing="40" Margin="10,0,0,0">
               <CheckBox IsChecked="{Binding DeviceInfo.NodeGuardingSlave}" Content="{DynamicResource str_device_info_node_guarding_slave}" />
               <CheckBox IsChecked="{Binding DeviceInfo.NodeGuardingMaster}" Content="{DynamicResource str_device_info_node_guarding_master}" />
             </StackPanel>
@@ -176,7 +176,7 @@
         <!-- Card 5: Device Commissioning -->
         <Border Background="{DynamicResource SystemControlBackgroundAltHighBrush}" 
                 BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" 
-                BorderThickness="1" CornerRadius="8" Padding="25" Margin="10"
+                BorderThickness="1" CornerRadius="8" Padding="25"
                 BoxShadow="0 4 10 0 #1A000000">
           <StackPanel Spacing="15" HorizontalAlignment="Stretch">
             <StackPanel Spacing="5">
