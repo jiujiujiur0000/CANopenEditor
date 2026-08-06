@@ -413,7 +413,7 @@ public partial class MainWindow : Window
                 
                 try
                 {
-                    EDSsharp eds = null;
+                    EDSsharp? eds = null;
                     string ext = Path.GetExtension(filePath).ToLower();
                     if (ext == ".xdd" || ext == ".xdc" || ext == ".xpd")
                     {
@@ -599,7 +599,7 @@ public partial class MainWindow : Window
             try
             {
                 CanOpenXDD_1_1 coxml_1_1 = new();
-                List<EDSsharp> edss = null;
+                List<EDSsharp>? edss = null;
                 if (filePath.ToLower().EndsWith(".cpj"))
                 {
                     edss = coxml_1_1.ReadMultiXML(filePath);

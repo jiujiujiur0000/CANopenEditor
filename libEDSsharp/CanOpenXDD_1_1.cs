@@ -100,7 +100,7 @@ namespace libEDSsharp
                 dev = (ISO15745ProfileContainer)serializer.Deserialize(reader);
                 reader.Close();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return null;
             }
@@ -132,7 +132,7 @@ namespace libEDSsharp
 
                 return edss;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return null;
             }

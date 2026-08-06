@@ -27,8 +27,8 @@ namespace EDSEditorGUI2.ViewModels
             public string TypeSize { get; }
         }
 
-        private EDSsharp _eds;
-        private PDOHelper _helper;
+        private EDSsharp _eds = null!;
+        private PDOHelper _helper = null!;
         private bool _isTx;
 
         public DevicePDOViewModel(EDSsharp eds, bool isTx)
@@ -105,7 +105,7 @@ namespace EDSEditorGUI2.ViewModels
         [ObservableProperty]
         private ObservableCollection<PDOSlotViewModel> _slots = new();
 
-        private PDOSlotViewModel _selectedSlot;
+        private PDOSlotViewModel _selectedSlot = null!;
         public PDOSlotViewModel SelectedSlot
         {
             get => _selectedSlot;

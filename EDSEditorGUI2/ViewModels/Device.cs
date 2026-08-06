@@ -21,7 +21,7 @@ namespace EDSEditorGUI2.ViewModels
             }
         }
 
-        private libEDSsharp.EDSsharp _eds;
+        private libEDSsharp.EDSsharp _eds = null!;
         public libEDSsharp.EDSsharp Eds 
         { 
             get => _eds;
@@ -63,10 +63,10 @@ namespace EDSEditorGUI2.ViewModels
         }
 
         [ObservableProperty]
-        private DevicePDOViewModel _txPdo;
+        private DevicePDOViewModel _txPdo = null!;
 
         [ObservableProperty]
-        private DevicePDOViewModel _rxPdo;
+        private DevicePDOViewModel _rxPdo = null!;
 
         [ObservableProperty]
         private FileInfo _fileInfo = new();
