@@ -671,11 +671,15 @@ public partial class MainWindow : Window
         var cpj = new FilePickerFileType("CANopen Project (Multi-Device) (*.cpj)") { Patterns = ["*.cpj"] };
         var xpd = new FilePickerFileType("XML Project Description (Single Device) (*.xpd)") { Patterns = ["*.xpd"] };
 
+        var docsFolder = await topLevel.StorageProvider.TryGetWellKnownFolderAsync(Avalonia.Platform.Storage.WellKnownFolder.Documents);
+
         var file = await topLevel.StorageProvider.SaveFilePickerAsync(new FilePickerSaveOptions
         {
             Title = "Save CANopen Project",
             DefaultExtension = "cpj",
-            FileTypeChoices = [cpj, xpd]
+            FileTypeChoices = [cpj, xpd],
+            SuggestedFileName = "NewCANopenProject",
+            SuggestedStartLocation = docsFolder
         });
 
         if (file != null)
