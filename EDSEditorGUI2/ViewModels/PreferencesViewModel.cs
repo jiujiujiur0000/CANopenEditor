@@ -41,7 +41,7 @@ namespace EDSEditorGUI2.ViewModels
             public override string ToString() => Display;
         }
 
-        public List<LanguageOption> AvailableLanguages => new() 
+        public List<LanguageOption> AvailableLanguages { get; } = new() 
         { 
             new("en-US", "English"), 
             new("zh-CN", "中文") 
@@ -55,7 +55,7 @@ namespace EDSEditorGUI2.ViewModels
             public override string ToString() => Display;
         }
 
-        public List<ThemeOption> AvailableThemes => new()
+        public List<ThemeOption> AvailableThemes { get; } = new()
         {
             new("Default", "🖥️ System / 系统"),
             new("Light", "☀️ Light / 浅色"),
