@@ -579,6 +579,34 @@ public partial class MainWindow : Window
         ExportCurrentDeviceSource(args, libEDSsharp.ExporterFactory.Exporter.CANOPENNODE_LEGACY);
     }
 
+    public async void NewProjectClick(object sender, RoutedEventArgs args)
+    {
+        var topLevel = TopLevel.GetTopLevel(this) ?? throw new Exception("Internal GUI error");
+        var cpj = new FilePickerFileType("CANopen Project (*.cpj)") { Patterns = ["*.cpj"] };
+
+        var docsFolder = await topLevel.StorageProvider.TryGetWellKnownFolderAsync(Avalonia.Platform.Storage.WellKnownFolder.Documents);
+
+        var file = await topLevel.StorageProvider.SaveFilePickerAsync(new FilePickerSaveOptions
+        {
+            Title = "Create New CANopen Project",
+            DefaultExtension = "cpj",
+            FileTypeChoices = [cpj],
+            SuggestedFileName = "NewCANopenProject",
+            SuggestedStartLocation = docsFolder
+        });
+
+        if (file != null)
+        {
+            string filePath = file.TryGetLocalPath() ?? file.Path.ToString();
+            if (DataContext is MainWindowViewModel dc)
+            {
+                dc.NewProject();
+                dc.CurrentProjectPath = filePath;
+                DoSaveProject(filePath);
+            }
+        }
+    }
+
     public async void OpenProjectClick(object sender, RoutedEventArgs args)
     {
         var topLevel = TopLevel.GetTopLevel(this) ?? throw new Exception("Internal GUI error");

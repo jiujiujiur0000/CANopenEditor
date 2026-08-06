@@ -30,7 +30,7 @@
             </Grid.ColumnDefinitions>
             <Menu Grid.Column="0" x:Name="menu">
                 <MenuItem Header="{DynamicResource str_menu_file}" x:Name="fileMenu" >
-                    <MenuItem Header="{DynamicResource str_menu_new_project}" Command="{Binding NewProjectCommand}"/>
+                    <MenuItem Header="{DynamicResource str_menu_new_project}" Click="NewProjectClick"/>
                     <MenuItem Header="{DynamicResource str_menu_open_project}" Click="OpenProjectClick"/>
                     <MenuItem Header="{DynamicResource str_menu_save_project}" Click="SaveProjectClick" IsEnabled="{Binding IsDirty}"/>
                     <MenuItem Header="{DynamicResource str_menu_save_project_as}" Click="SaveProjectAsClick" IsEnabled="{Binding HasDevice}"/>
@@ -63,7 +63,17 @@
                     <MenuItem Header="{DynamicResource str_menu_preferences}" Click="OpenPreferences"/>
                 </MenuItem>
             </Menu>
-            <Button x:Name="ThemeButton" Grid.Column="1" Content="{DynamicResource str_theme_system}" Click="ToggleTheme_Click" Margin="5,0,10,0" Padding="8,4" Background="Transparent" BorderThickness="1" CornerRadius="4" Cursor="Hand" VerticalAlignment="Center"/>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" Margin="5,0,10,0" Spacing="15">
+                <StackPanel Orientation="Horizontal" Spacing="8" IsVisible="{Binding HasDevice}">
+                    <Button Click="SaveProjectClick" IsEnabled="{Binding IsDirty}" Padding="8,4" Background="Transparent" BorderThickness="1" CornerRadius="4" Cursor="Hand" ToolTip.Tip="保存工程">
+                        <StackPanel Orientation="Horizontal" Spacing="4">
+                            <TextBlock Text="💾" />
+                            <TextBlock Text="{DynamicResource str_menu_save_project}" />
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+                <Button x:Name="ThemeButton" Content="{DynamicResource str_theme_system}" Click="ToggleTheme_Click" Padding="8,4" Background="Transparent" BorderThickness="1" CornerRadius="4" Cursor="Hand" />
+            </StackPanel>
         </Grid>
         <Grid>
             <!-- 欢迎界面（没有设备时显示） -->
@@ -71,7 +81,7 @@
                 <StackPanel Spacing="20">
                     <TextBlock Text="{DynamicResource str_welcome_title}" FontSize="32" FontWeight="Bold" HorizontalAlignment="Center"/>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="20" Margin="0,30,0,0">
-                        <Button Content="{DynamicResource str_btn_new_project}" Command="{Binding NewProjectCommand}" Classes="accent" FontSize="16" Padding="25,12" CornerRadius="8" Cursor="Hand"/>
+                        <Button Content="{DynamicResource str_btn_new_project}" Click="NewProjectClick" Classes="accent" FontSize="16" Padding="25,12" CornerRadius="8" Cursor="Hand"/>
                         <Button Content="{DynamicResource str_btn_open_project}" Click="OpenProjectClick" FontSize="16" Padding="25,12" CornerRadius="8" Cursor="Hand"/>
                     </StackPanel>
                 </StackPanel>
