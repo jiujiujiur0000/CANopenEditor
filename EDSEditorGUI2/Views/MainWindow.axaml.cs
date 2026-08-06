@@ -39,19 +39,43 @@ public partial class MainWindow : Window
         
         // Auto-save feature: trigger on lost focus, toggle changes, or text changes
         this.AddHandler(Avalonia.Input.InputElement.LostFocusEvent, OnAnyInteractionTriggerAutoSave, RoutingStrategies.Bubble);
-        this.AddHandler(Avalonia.Controls.Primitives.ToggleButton.IsCheckedChangedEvent, OnAnyInteractionTriggerAutoSave, RoutingStrategies.Bubble);
-        this.AddHandler(Avalonia.Controls.TextBox.TextChangedEvent, OnAnyInteractionTriggerAutoSave, RoutingStrategies.Bubble);
+        this.AddHandler(Avalonia.Controls.Button.ClickEvent, OnAnyInteractionTriggerAutoSave, RoutingStrategies.Bubble);
+        this.AddHandler(Avalonia.Input.InputElement.KeyUpEvent, OnAnyInteractionTriggerAutoSave, RoutingStrategies.Bubble);
         LoadProfileList();
     }
 
+    private bool _isProgrammaticChange = false;
+
     private void OnAnyInteractionTriggerAutoSave(object? sender, RoutedEventArgs e)
     {
+        if (_isProgrammaticChange) return;
+
         // 如果是失去焦点事件，只响应来自实际输入控件的事件，忽略点击空白处等无效的焦点转移
         if (e.RoutedEvent == Avalonia.Input.InputElement.LostFocusEvent)
         {
             if (e.Source is not Avalonia.Controls.TextBox && 
                 e.Source is not Avalonia.Controls.NumericUpDown &&
                 e.Source is not Avalonia.Controls.ComboBox)
+            {
+                return;
+            }
+        }
+
+        // 对于按键抬起事件，只响应来自实际输入控件的事件
+        if (e.RoutedEvent == Avalonia.Input.InputElement.KeyUpEvent)
+        {
+            if (e.Source is not Avalonia.Controls.TextBox && 
+                e.Source is not Avalonia.Controls.NumericUpDown &&
+                e.Source is not Avalonia.Controls.ComboBox)
+            {
+                return;
+            }
+        }
+
+        // 对于点击事件，只响应来自 CheckBox/RadioButton 等 ToggleButton 的事件
+        if (e.RoutedEvent == Avalonia.Controls.Button.ClickEvent)
+        {
+            if (e.Source is not Avalonia.Controls.Primitives.ToggleButton)
             {
                 return;
             }
@@ -461,9 +485,11 @@ public partial class MainWindow : Window
 
                     if (DataContext is MainWindowViewModel dc)
                     {
+                        _isProgrammaticChange = true;
                         dc.Network.Add(deviceView);
                         dc.SelectedDevice = deviceView;
                         dc.IsDirty = false; // Reset dirty flag after loading
+                        Avalonia.Threading.Dispatcher.UIThread.Post(() => { _isProgrammaticChange = false; }, Avalonia.Threading.DispatcherPriority.Background);
                     }
                 }
                 catch (Exception ex)
@@ -637,7 +663,10 @@ public partial class MainWindow : Window
                     }
                 }
             }
+            
+            _isProgrammaticChange = true;
             dc.CloseAllDevices();
+            _isProgrammaticChange = false;
         }
     }
 
@@ -690,6 +719,8 @@ public partial class MainWindow : Window
                 
                 if (edss != null && DataContext is MainWindowViewModel dc)
                 {
+                    _isProgrammaticChange = true;
+                    
                     dc.Network.Clear();
                     if (filePath.ToLower().EndsWith(".cpj"))
                     {
@@ -717,6 +748,9 @@ public partial class MainWindow : Window
                         dc.SelectedDevice = dc.Network[0];
                     }
                     dc.IsDirty = false;
+                    
+                    // Allow UI to settle before re-enabling interactions
+                    Avalonia.Threading.Dispatcher.UIThread.Post(() => { _isProgrammaticChange = false; }, Avalonia.Threading.DispatcherPriority.Background);
                 }
                 else
                 {
