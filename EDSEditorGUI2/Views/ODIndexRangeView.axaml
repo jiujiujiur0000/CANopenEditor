@@ -22,8 +22,12 @@
                 BorderThickness="0"
                 Background="Transparent" RowBackground="Transparent"
                 SelectionMode="Single"
-                SelectionChanged="DataGrid_SelectionChanged">
+                SelectionChanged="DataGrid_SelectionChanged"
+                LoadingRow="DataGrid_LoadingRow">
           <DataGrid.Styles>
+            <Style Selector="DataGridRow.disabled">
+              <Setter Property="Foreground" Value="{DynamicResource SystemControlForegroundBaseMediumLowBrush}"/>
+            </Style>
             <Style Selector="DataGridColumnHeader">
               <Setter Property="Background" Value="Transparent"/>
               <Setter Property="SeparatorBrush" Value="{DynamicResource SystemControlForegroundBaseMediumLowBrush}"/>

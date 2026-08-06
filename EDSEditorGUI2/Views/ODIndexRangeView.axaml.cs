@@ -104,7 +104,26 @@ public partial class ODIndexRangeView : UserControl
         await DialogHost.Show(Resources["NewIndexDialog"]!, "NoAnimationDialogHost");
     }
 
+    private void ContextMenuSubObjectRemoveClick(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    {
+    }
+
     private void DataGrid_SelectionChanged(object? sender, Avalonia.Controls.SelectionChangedEventArgs e)
     {
+    }
+
+    private void DataGrid_LoadingRow(object? sender, Avalonia.Controls.DataGridRowEventArgs e)
+    {
+        if (e.Row.DataContext is System.Collections.Generic.KeyValuePair<string, ViewModels.OdObject> pair)
+        {
+            if (pair.Value.Disabled)
+            {
+                e.Row.Classes.Add("disabled");
+            }
+            else
+            {
+                e.Row.Classes.Remove("disabled");
+            }
+        }
     }
 }
