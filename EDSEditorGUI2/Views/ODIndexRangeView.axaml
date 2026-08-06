@@ -13,7 +13,7 @@
   <Grid RowDefinitions="Auto, *" Margin="0,5,0,5">
     <TextBlock Grid.Row="0" Text="{Binding Heading, RelativeSource={RelativeSource AncestorType=view:ODIndexRangeView}}" 
                x:Name="HeadingText" FontWeight="Bold" FontSize="18" Margin="0,5,0,10"/>
-    <Border Grid.Row="1" BorderThickness="1" BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" CornerRadius="8" ClipToBounds="True">
+    <Border Grid.Row="1" Background="{DynamicResource SystemControlBackgroundAltHighBrush}" BorderThickness="1" BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" CornerRadius="8" ClipToBounds="True">
       <DataGrid x:Name="grid"
                 ItemsSource="{Binding FilteredItems, RelativeSource={RelativeSource AncestorType=UserControl}}"
                 x:CompileBindings="False"

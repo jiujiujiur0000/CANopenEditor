@@ -16,7 +16,7 @@
         <!-- Left panel: Modules List -->
         <Grid Grid.Row="1" Grid.Column="0" RowDefinitions="Auto,*" Margin="0,0,10,0">
             <TextBlock Grid.Row="0" Text="{DynamicResource str_module_list}" FontWeight="Bold" FontSize="18" Margin="0,5,0,10"/>
-            <Border Grid.Row="1"
+            <Border Grid.Row="1" Background="{DynamicResource SystemControlBackgroundAltHighBrush}"
                     BorderBrush="{DynamicResource SystemControlForegroundBaseMediumLowBrush}" 
                     BorderThickness="1" CornerRadius="8" ClipToBounds="True">
                 <DataGrid ItemsSource="{Binding Modules}" SelectedItem="{Binding SelectedModule}"

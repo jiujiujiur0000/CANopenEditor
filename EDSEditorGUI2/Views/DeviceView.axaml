@@ -87,7 +87,8 @@
       <Style Selector="TabItem:selected">
         <Setter Property="FontWeight" Value="SemiBold" />
         <Setter Property="Foreground" Value="{DynamicResource SystemControlForegroundBaseHighBrush}" />
-        <Setter Property="Background" Value="{DynamicResource SystemControlBackgroundAltHighBrush}" />
+        <!-- 选中时的背景色应当与下方主编辑区的底板颜色（#F3F4F6）完全一致，从而形成连通感 -->
+        <Setter Property="Background" Value="#F3F4F6" />
         <!-- 选中的标签关闭下方边框，保持左右边框（这里设置右边，左边由前一个标签提供） -->
         <Setter Property="BorderThickness" Value="0,0,1,0" />
       </Style>
