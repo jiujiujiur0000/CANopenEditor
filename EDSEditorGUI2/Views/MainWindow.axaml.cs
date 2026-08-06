@@ -605,14 +605,18 @@ public partial class MainWindow : Window
     {
         var topLevel = TopLevel.GetTopLevel(this) ?? throw new Exception("Internal GUI error");
 
-        var xpd = new FilePickerFileType("XML Project Description (*.xpd)") { Patterns = ["*.xpd"] };
-        var cpj = new FilePickerFileType("CANopen Project (*.cpj)") { Patterns = ["*.cpj"] };
+        var xpdFilter = new FilePickerFileType("XML Project Description (*.xpd)") { Patterns = ["*.xpd"] };
+        var cpjFilter = new FilePickerFileType("CANopen Project (*.cpj)") { Patterns = ["*.cpj"] };
+        var edsFilter = new FilePickerFileType("Electronic Data Sheet (*.eds)") { Patterns = ["*.eds"] };
+        var dcfFilter = new FilePickerFileType("Device Configuration File (*.dcf)") { Patterns = ["*.dcf"] };
+        
+        var allFilter = CombineFilePickerType("All supported files", [cpjFilter, xpdFilter, xdd, xdc, edsFilter, dcfFilter]);
 
         var files = await topLevel.StorageProvider.OpenFilePickerAsync(new FilePickerOpenOptions
         {
             Title = "Open CANopen Project",
             AllowMultiple = false,
-            FileTypeFilter = [xpd, cpj]
+            FileTypeFilter = [allFilter, cpjFilter, xpdFilter, xdd, xdc, edsFilter, dcfFilter]
         });
 
         if (files.Count > 0)
