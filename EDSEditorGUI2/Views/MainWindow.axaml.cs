@@ -46,6 +46,17 @@ public partial class MainWindow : Window
 
     private void OnAnyInteractionTriggerAutoSave(object? sender, RoutedEventArgs e)
     {
+        // 如果是失去焦点事件，只响应来自实际输入控件的事件，忽略点击空白处等无效的焦点转移
+        if (e.RoutedEvent == Avalonia.Input.InputElement.LostFocusEvent)
+        {
+            if (e.Source is not Avalonia.Controls.TextBox && 
+                e.Source is not Avalonia.Controls.NumericUpDown &&
+                e.Source is not Avalonia.Controls.ComboBox)
+            {
+                return;
+            }
+        }
+
         if (DataContext is MainWindowViewModel dc)
         {
             dc.IsDirty = true;
@@ -459,6 +470,7 @@ public partial class MainWindow : Window
                 {
                     System.IO.File.WriteAllText("crash.log", ex.ToString());
                     Debug.WriteLine($"Failed to open file {filePath}: {ex.Message}");
+                    _ = DialogHostAvalonia.DialogHost.Show(Resources["ErrorDialog"]!, "RootDialogHost");
                 }
             }
         }
@@ -601,6 +613,34 @@ public partial class MainWindow : Window
         }
     }
 
+    public async void CloseProjectClick(object? sender, RoutedEventArgs? args)
+    {
+        if (DataContext is MainWindowViewModel dc)
+        {
+            if (dc.IsDirty)
+            {
+                if (!string.IsNullOrEmpty(dc.CurrentProjectPath))
+                {
+                    DoSaveProject(dc.CurrentProjectPath);
+                }
+                else
+                {
+                    var result = await ShowSaveConfirmDialog();
+                    if (result == "Save")
+                    {
+                        SaveProjectAsClick(null, null);
+                        return; // Let them save, don't close yet
+                    }
+                    else if (result == "Cancel")
+                    {
+                        return;
+                    }
+                }
+            }
+            dc.CloseAllDevices();
+        }
+    }
+
     public async void OpenProjectClick(object sender, RoutedEventArgs args)
     {
         var topLevel = TopLevel.GetTopLevel(this) ?? throw new Exception("Internal GUI error");
@@ -678,10 +718,15 @@ public partial class MainWindow : Window
                     }
                     dc.IsDirty = false;
                 }
+                else
+                {
+                    _ = DialogHostAvalonia.DialogHost.Show(Resources["ErrorDialog"]!, "RootDialogHost");
+                }
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Failed to open project {filePath}: {ex.ToString()}");
+                _ = DialogHostAvalonia.DialogHost.Show(Resources["ErrorDialog"]!, "RootDialogHost");
             }
         }
     }
@@ -759,6 +804,7 @@ public partial class MainWindow : Window
         catch (Exception ex)
         {
             Debug.WriteLine($"Failed to save project {filePath}: {ex.Message}");
+            DialogHostAvalonia.DialogHost.Show(Resources["SaveErrorDialog"]!, "RootDialogHost");
         }
     }
 

@@ -79,6 +79,8 @@ public partial class MainWindowViewModel : ViewModelBase
     {
         Network.Clear();
         SelectedDevice = null;
+        CurrentProjectPath = null;
+        IsDirty = false;
     }
 
     [RelayCommand]

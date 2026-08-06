@@ -35,7 +35,7 @@
                     <MenuItem Header="{DynamicResource str_menu_open_project}" Click="OpenProjectClick"/>
                     <MenuItem Header="{DynamicResource str_menu_save_project}" Click="SaveProjectClick" IsEnabled="{Binding IsDirty}"/>
                     <MenuItem Header="{DynamicResource str_menu_save_project_as}" Click="SaveProjectAsClick" IsEnabled="{Binding HasDevice}"/>
-                    <MenuItem Header="{DynamicResource str_menu_close_project}" Command="{Binding CloseAllDevicesCommand}" IsEnabled="{Binding HasDevice}"/>
+                    <MenuItem Header="{DynamicResource str_menu_close_project}" Click="CloseProjectClick" IsEnabled="{Binding HasDevice}"/>
                     <Separator/>
                     <MenuItem Header="{DynamicResource str_menu_new_device}" Command="{Binding AddNewDevice}"/>
                     <MenuItem Header="{DynamicResource str_menu_import_device}" Click="OpenFileClick"/>
@@ -171,6 +171,22 @@
             <Button Content="保存 (Save)" Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=dialogHost:DialogHost}, Path=CloseDialogCommand}" CommandParameter="Save" Classes="accent"/>
             <Button Content="丢弃 (Discard)" Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=dialogHost:DialogHost}, Path=CloseDialogCommand}" CommandParameter="Discard"/>
             <Button Content="取消 (Cancel)" Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=dialogHost:DialogHost}, Path=CloseDialogCommand}" CommandParameter="Cancel"/>
+        </StackPanel>
+    </StackPanel>
+
+    <StackPanel x:Key="ErrorDialog" Margin="20" Spacing="15" MinWidth="300">
+        <TextBlock Text="无法打开文件" FontWeight="Bold" FontSize="18" Foreground="Red"/>
+        <TextBlock Text="文件格式可能已损坏，或保存时不完整（缺少设备信息）。" TextWrapping="Wrap"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="10" Margin="0,10,0,0">
+            <Button Content="确定 (OK)" Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=dialogHost:DialogHost}, Path=CloseDialogCommand}" CommandParameter="OK" Classes="accent"/>
+        </StackPanel>
+    </StackPanel>
+
+    <StackPanel x:Key="SaveErrorDialog" Margin="20" Spacing="15" MinWidth="300">
+        <TextBlock Text="保存失败" FontWeight="Bold" FontSize="18" Foreground="Red"/>
+        <TextBlock Text="保存项目时遇到错误。可能是工程中存在不兼容的特殊字符或内部数据损坏。请检查终端输出获取详情。" TextWrapping="Wrap"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="10" Margin="0,10,0,0">
+            <Button Content="确定 (OK)" Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=dialogHost:DialogHost}, Path=CloseDialogCommand}" CommandParameter="OK" Classes="accent"/>
         </StackPanel>
     </StackPanel>
 
