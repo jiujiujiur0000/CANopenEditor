@@ -113,7 +113,7 @@
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <!-- 根节点使用 Border，Background 设为 Transparent 以接收整个区域的鼠标右键事件，并使用 Padding 替代 Grid 不能使用的 Padding 属性 -->
-                                    <Border Background="Transparent" Padding="15,8">
+                                    <Border Background="Transparent" Padding="15,12">
                                         <Border.ContextMenu>
                                             <ContextMenu>
                                                 <MenuItem Header="新建设备" Command="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).AddNewDevice}"/>
