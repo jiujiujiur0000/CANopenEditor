@@ -48,7 +48,7 @@
     <sys:String x:Key="str_pref_language">语言选择：</sys:String>
     <sys:String x:Key="str_pref_theme">主题选择：</sys:String>
     <sys:String x:Key="str_pref_exporter">导出的CANopenNode版本：</sys:String>
-    <sys:String x:Key="str_pref_warnings">警报配置</sys:String>
+    <sys:String x:Key="str_pref_warnings">警报配置：</sys:String>
     <sys:String x:Key="str_pref_warn_generic">常规警告</sys:String>
     <sys:String x:Key="str_pref_warn_rename">变量重命名警告</sys:String>
     <sys:String x:Key="str_pref_warn_build">代码构建警告</sys:String>

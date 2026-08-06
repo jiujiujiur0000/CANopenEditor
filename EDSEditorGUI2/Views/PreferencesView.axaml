@@ -11,35 +11,32 @@
     <StackPanel Margin="20" Spacing="15" MinWidth="350">
         <TextBlock Text="{DynamicResource str_pref_title}" FontSize="20" FontWeight="Bold" Margin="0,0,0,10"/>
 
-        <!-- Language Settings -->
-        <TextBlock Text="{DynamicResource str_pref_language}" FontWeight="SemiBold"/>
-        <ComboBox ItemsSource="{Binding AvailableLanguages}" 
-                  SelectedItem="{Binding SelectedLanguageOption}" 
-                  HorizontalAlignment="Stretch"/>
+        <!-- Settings Grid -->
+        <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto">
+            <!-- Language Settings -->
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="{DynamicResource str_pref_language}" VerticalAlignment="Center" Margin="0,0,15,15"/>
+            <ComboBox Grid.Row="0" Grid.Column="1" ItemsSource="{Binding AvailableLanguages}" 
+                      SelectedItem="{Binding SelectedLanguageOption}" 
+                      HorizontalAlignment="Stretch" Margin="0,0,0,15"/>
 
-        <Separator Margin="0,5"/>
+            <!-- Theme Settings -->
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="{DynamicResource str_pref_theme}" VerticalAlignment="Center" Margin="0,0,15,15"/>
+            <ComboBox Grid.Row="1" Grid.Column="1" SelectedValue="{Binding SelectedTheme}" SelectedValueBinding="{Binding Path=Tag, x:DataType=ComboBoxItem}" HorizontalAlignment="Stretch" Margin="0,0,0,15">
+                <ComboBoxItem Tag="Default" Content="{DynamicResource str_theme_system}"/>
+                <ComboBoxItem Tag="Light" Content="{DynamicResource str_theme_light}"/>
+                <ComboBoxItem Tag="Dark" Content="{DynamicResource str_theme_dark}"/>
+            </ComboBox>
 
-        <!-- Theme Settings -->
-        <TextBlock Text="{DynamicResource str_pref_theme}" FontWeight="SemiBold"/>
-        <ComboBox SelectedValue="{Binding SelectedTheme}" SelectedValueBinding="{Binding Path=Tag, x:DataType=ComboBoxItem}" HorizontalAlignment="Stretch">
-            <ComboBoxItem Tag="Default" Content="{DynamicResource str_theme_system}"/>
-            <ComboBoxItem Tag="Light" Content="{DynamicResource str_theme_light}"/>
-            <ComboBoxItem Tag="Dark" Content="{DynamicResource str_theme_dark}"/>
-        </ComboBox>
-
-        <Separator Margin="0,5"/>
-
-        <!-- Exporter Settings -->
-        <TextBlock Text="{DynamicResource str_pref_exporter}" FontWeight="SemiBold"/>
-        <ComboBox ItemsSource="{Binding AvailableExporters}" 
-                  SelectedItem="{Binding SelectedExporterOption}" 
-                  HorizontalAlignment="Stretch"/>
-
-        <Separator Margin="0,5"/>
+            <!-- Exporter Settings -->
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="{DynamicResource str_pref_exporter}" VerticalAlignment="Center" Margin="0,0,15,15"/>
+            <ComboBox Grid.Row="2" Grid.Column="1" ItemsSource="{Binding AvailableExporters}" 
+                      SelectedItem="{Binding SelectedExporterOption}" 
+                      HorizontalAlignment="Stretch" Margin="0,0,0,15"/>
+        </Grid>
 
         <!-- Warnings -->
-        <TextBlock Text="{DynamicResource str_pref_warnings}" FontWeight="SemiBold"/>
-        <StackPanel Spacing="5">
+        <TextBlock Text="{DynamicResource str_pref_warnings}" Margin="0,5,0,5"/>
+        <StackPanel Spacing="5" Margin="20,0,0,0">
             <CheckBox Content="{DynamicResource str_pref_warn_generic}" IsChecked="{Binding GenericWarning}"/>
             <CheckBox Content="{DynamicResource str_pref_warn_rename}" IsChecked="{Binding RenameWarning}"/>
             <CheckBox Content="{DynamicResource str_pref_warn_build}" IsChecked="{Binding BuildWarning}"/>

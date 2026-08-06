@@ -48,7 +48,7 @@
     <sys:String x:Key="str_pref_language">Language:</sys:String>
     <sys:String x:Key="str_pref_theme">Theme:</sys:String>
     <sys:String x:Key="str_pref_exporter">Exported CANopenNode Version:</sys:String>
-    <sys:String x:Key="str_pref_warnings">Warnings</sys:String>
+    <sys:String x:Key="str_pref_warnings">Warnings:</sys:String>
     <sys:String x:Key="str_pref_warn_generic">Generic warnings</sys:String>
     <sys:String x:Key="str_pref_warn_rename">Variable rename warnings</sys:String>
     <sys:String x:Key="str_pref_warn_build">Builder warnings</sys:String>
