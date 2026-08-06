@@ -99,23 +99,21 @@
                         <TextBlock Grid.Row="0" Text="设备网络" FontWeight="Bold" Margin="15,15,10,10" Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}" />
                         
                         <ListBox Grid.Row="1" ItemsSource="{Binding Network}" SelectedItem="{Binding SelectedDevice}" 
-                                 Background="Transparent" BorderThickness="0" Padding="5,0">
+                                 Background="Transparent" BorderThickness="0,1,0,0" BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" Padding="0,0">
                             <ListBox.Styles>
                                 <Style Selector="ListBoxItem">
                                     <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                                     <!-- 关键：把 Padding 设为 0，让内部的 Grid 彻底占满蓝色的可选区域 -->
                                     <Setter Property="Padding" Value="0" />
-                                    <!-- 在可选区域（整行）加上上下边框 -->
-                                    <Setter Property="BorderThickness" Value="0,1,0,1" />
+                                    <!-- 在可选区域（整行）加上下边框，为防止双线，列表项只画下边框，上边框交由 ListBox 画 -->
+                                    <Setter Property="BorderThickness" Value="0,0,0,1" />
                                     <Setter Property="BorderBrush" Value="{DynamicResource SystemControlForegroundBaseLowBrush}" />
-                                    <!-- 防止相邻元素的边框叠加变粗 -->
-                                    <Setter Property="Margin" Value="0,-1,0,0" />
                                 </Style>
                             </ListBox.Styles>
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <!-- 根节点使用 Border，Background 设为 Transparent 以接收整个区域的鼠标右键事件，并使用 Padding 替代 Grid 不能使用的 Padding 属性 -->
-                                    <Border Background="Transparent" Padding="8,8">
+                                    <Border Background="Transparent" Padding="15,8">
                                         <Border.ContextMenu>
                                             <ContextMenu>
                                                 <MenuItem Header="新建设备" Command="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).AddNewDevice}"/>
