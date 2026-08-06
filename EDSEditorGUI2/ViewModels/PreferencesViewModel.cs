@@ -24,14 +24,35 @@ namespace EDSEditorGUI2.ViewModels
         [ObservableProperty]
         private bool _structWarning;
 
-        [ObservableProperty]
         private ExporterFactory.Exporter _selectedExporter;
 
         [ObservableProperty]
         private string _selectedLanguage;
 
-        public IEnumerable<ExporterFactory.Exporter> AvailableExporters =>
-            (IEnumerable<ExporterFactory.Exporter>)Enum.GetValues(typeof(ExporterFactory.Exporter));
+        public class ExporterOption
+        {
+            public ExporterFactory.Exporter Value { get; }
+            public string Display { get; }
+            public ExporterOption(ExporterFactory.Exporter value, string display) { Value = value; Display = display; }
+            public override string ToString() => Display;
+        }
+
+        public List<ExporterOption> AvailableExporters { get; } = new()
+        {
+            new(ExporterFactory.Exporter.CANOPENNODE_V4, "V4"),
+            new(ExporterFactory.Exporter.CANOPENNODE_LEGACY, "Legacy (V1)")
+        };
+
+        private ExporterOption _selectedExporterOption;
+        public ExporterOption SelectedExporterOption
+        {
+            get => _selectedExporterOption;
+            set
+            {
+                SetProperty(ref _selectedExporterOption, value);
+                _selectedExporter = value?.Value ?? ExporterFactory.Exporter.CANOPENNODE_V4;
+            }
+        }
 
         public class LanguageOption
         {
@@ -47,30 +68,8 @@ namespace EDSEditorGUI2.ViewModels
             new("zh-CN", "中文") 
         };
 
-        public class ThemeOption
-        {
-            public string Id { get; set; }
-            public string Display { get; set; }
-            public ThemeOption(string id, string display) { Id = id; Display = display; }
-            public override string ToString() => Display;
-        }
-
-        public List<ThemeOption> AvailableThemes { get; } = new()
-        {
-            new("Default", "🖥️ System / 系统"),
-            new("Light", "☀️ Light / 浅色"),
-            new("Dark", "🌙 Dark / 深色")
-        };
-
-        private ThemeOption _selectedThemeOption;
-        public ThemeOption SelectedThemeOption
-        {
-            get => _selectedThemeOption;
-            set
-            {
-                SetProperty(ref _selectedThemeOption, value);
-            }
-        }
+        [ObservableProperty]
+        private string _selectedTheme;
 
         private LanguageOption _selectedLanguageOption;
         public LanguageOption SelectedLanguageOption
@@ -92,12 +91,12 @@ namespace EDSEditorGUI2.ViewModels
             StringWarning = (mask & 0x08) == 0x08;
             StructWarning = (mask & 0x10) == 0x10;
 
-            SelectedExporter = ConfigurationManager.Settings.CurrentExporter;
+            _selectedExporter = ConfigurationManager.Settings.CurrentExporter;
+            _selectedExporterOption = AvailableExporters.FirstOrDefault(x => x.Value == _selectedExporter) ?? AvailableExporters[0];
             SelectedLanguage = ConfigurationManager.Settings.CurrentLanguage;
             _selectedLanguageOption = AvailableLanguages.FirstOrDefault(x => x.Code == SelectedLanguage) ?? AvailableLanguages[0];
 
-            var currentTheme = ConfigurationManager.Settings.CurrentTheme ?? "Default";
-            _selectedThemeOption = AvailableThemes.FirstOrDefault(x => x.Id == currentTheme) ?? AvailableThemes[0];
+            SelectedTheme = ConfigurationManager.Settings.CurrentTheme ?? "Default";
         }
 
         [RelayCommand]
@@ -112,9 +111,9 @@ namespace EDSEditorGUI2.ViewModels
             if (StructWarning) mask |= 0x10;
 
             Warnings.warning_mask = mask;
-            ConfigurationManager.Settings.CurrentExporter = SelectedExporter;
+            ConfigurationManager.Settings.CurrentExporter = _selectedExporter;
             ConfigurationManager.Settings.CurrentLanguage = SelectedLanguage;
-            ConfigurationManager.Settings.CurrentTheme = SelectedThemeOption?.Id ?? "Default";
+            ConfigurationManager.Settings.CurrentTheme = SelectedTheme ?? "Default";
 
             // Save to JSON
             ConfigurationManager.Save();

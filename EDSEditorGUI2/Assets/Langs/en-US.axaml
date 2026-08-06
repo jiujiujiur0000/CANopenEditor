@@ -34,9 +34,9 @@
     <sys:String x:Key="str_btn_new_project">📄 New Project</sys:String>
     <sys:String x:Key="str_btn_open_project">📂 Open Project</sys:String>
     
-    <sys:String x:Key="str_theme_light">☀️ Light</sys:String>
-    <sys:String x:Key="str_theme_dark">🌙 Dark</sys:String>
-    <sys:String x:Key="str_theme_system">🖥️ System</sys:String>
+    <sys:String x:Key="str_theme_light">Light</sys:String>
+    <sys:String x:Key="str_theme_dark">Dark</sys:String>
+    <sys:String x:Key="str_theme_system">System</sys:String>
 
     <sys:String x:Key="str_menu_insert_profile">_Insert Profile</sys:String>
     <sys:String x:Key="str_menu_reports">_Reports</sys:String>
@@ -47,7 +47,7 @@
     <sys:String x:Key="str_pref_title">Preferences</sys:String>
     <sys:String x:Key="str_pref_language">Language:</sys:String>
     <sys:String x:Key="str_pref_theme">Theme:</sys:String>
-    <sys:String x:Key="str_pref_exporter">Default Exporter Type</sys:String>
+    <sys:String x:Key="str_pref_exporter">Exported CANopenNode Version:</sys:String>
     <sys:String x:Key="str_pref_warnings">Warnings</sys:String>
     <sys:String x:Key="str_pref_warn_generic">Generic warnings</sys:String>
     <sys:String x:Key="str_pref_warn_rename">Variable rename warnings</sys:String>

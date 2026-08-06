@@ -34,9 +34,9 @@
     <sys:String x:Key="str_btn_new_project">📄 新建项目</sys:String>
     <sys:String x:Key="str_btn_open_project">📂 打开项目</sys:String>
     
-    <sys:String x:Key="str_theme_light">☀️ 浅色</sys:String>
-    <sys:String x:Key="str_theme_dark">🌙 深色</sys:String>
-    <sys:String x:Key="str_theme_system">🖥️ 跟随系统</sys:String>
+    <sys:String x:Key="str_theme_light">浅色</sys:String>
+    <sys:String x:Key="str_theme_dark">深色</sys:String>
+    <sys:String x:Key="str_theme_system">跟随系统</sys:String>
 
     <sys:String x:Key="str_menu_insert_profile">插入对象配置(_I)</sys:String>
     <sys:String x:Key="str_menu_reports">报告(_R)</sys:String>
@@ -47,7 +47,7 @@
     <sys:String x:Key="str_pref_title">偏好设置</sys:String>
     <sys:String x:Key="str_pref_language">语言选择：</sys:String>
     <sys:String x:Key="str_pref_theme">主题选择：</sys:String>
-    <sys:String x:Key="str_pref_exporter">默认导出代码版本</sys:String>
+    <sys:String x:Key="str_pref_exporter">导出的CANopenNode版本：</sys:String>
     <sys:String x:Key="str_pref_warnings">警报配置</sys:String>
     <sys:String x:Key="str_pref_warn_generic">常规警告</sys:String>
     <sys:String x:Key="str_pref_warn_rename">变量重命名警告</sys:String>

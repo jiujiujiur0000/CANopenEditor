@@ -21,16 +21,18 @@
 
         <!-- Theme Settings -->
         <TextBlock Text="{DynamicResource str_pref_theme}" FontWeight="SemiBold"/>
-        <ComboBox ItemsSource="{Binding AvailableThemes}" 
-                  SelectedItem="{Binding SelectedThemeOption}" 
-                  HorizontalAlignment="Stretch"/>
+        <ComboBox SelectedValue="{Binding SelectedTheme}" SelectedValueBinding="{Binding Path=Tag, x:DataType=ComboBoxItem}" HorizontalAlignment="Stretch">
+            <ComboBoxItem Tag="Default" Content="{DynamicResource str_theme_system}"/>
+            <ComboBoxItem Tag="Light" Content="{DynamicResource str_theme_light}"/>
+            <ComboBoxItem Tag="Dark" Content="{DynamicResource str_theme_dark}"/>
+        </ComboBox>
 
         <Separator Margin="0,5"/>
 
         <!-- Exporter Settings -->
         <TextBlock Text="{DynamicResource str_pref_exporter}" FontWeight="SemiBold"/>
         <ComboBox ItemsSource="{Binding AvailableExporters}" 
-                  SelectedItem="{Binding SelectedExporter}" 
+                  SelectedItem="{Binding SelectedExporterOption}" 
                   HorizontalAlignment="Stretch"/>
 
         <Separator Margin="0,5"/>
