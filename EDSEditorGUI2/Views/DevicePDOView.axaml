@@ -15,7 +15,7 @@
       <!-- Top Area: DataGrid & Properties -->
       <Grid ColumnDefinitions="*, 450" MinHeight="350">
         <!-- Left: DataGrid -->
-        <Border Grid.Column="0" Margin="0,0,25,0" Background="{DynamicResource SystemControlBackgroundAltHighBrush}" BorderThickness="1" BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" CornerRadius="8" ClipToBounds="True">
+        <Border Grid.Column="0" Margin="0,0,25,0" MaxHeight="600" Background="{DynamicResource SystemControlBackgroundAltHighBrush}" BorderThickness="1" BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" CornerRadius="8" ClipToBounds="True">
           <DataGrid ItemsSource="{Binding AvailableObjects}"
                     x:Name="subindexGrid"
                     GridLinesVisibility="Horizontal"
@@ -93,12 +93,6 @@
 
             <TextBlock Text="{DynamicResource str_pdo_event_timer}" Grid.Row="6" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,15,15"/>
             <TextBox Grid.Row="6" Grid.Column="1" Margin="0,0,15,15" Text="{Binding SelectedSlot.EventTimer, FallbackValue=''}" IsEnabled="{Binding IsSlotSelected}"/>
-            <Button Grid.Row="6" Grid.Column="3" Grid.RowSpan="2" Classes="accent" VerticalAlignment="Top" Padding="15,10" Height="70" Width="100">
-              <StackPanel Spacing="5" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <PathIcon Data="{StaticResource save_regular}" />
-                <TextBlock Text="{DynamicResource str_pdo_btn_save}" TextWrapping="Wrap" TextAlignment="Center" />
-              </StackPanel>
-            </Button>
 
             <TextBlock Text="{DynamicResource str_pdo_sync_start}" Grid.Row="7" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,15,15"/>
             <TextBox Grid.Row="7" Grid.Column="1" Margin="0,0,15,15" Text="{Binding SelectedSlot.SyncStart, FallbackValue=''}" IsEnabled="{Binding IsSlotSelected}"/>
