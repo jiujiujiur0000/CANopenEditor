@@ -16,6 +16,9 @@ public partial class MainWindowViewModel : ViewModelBase
     [ObservableProperty]
     private string? _currentProjectPath;
 
+    [ObservableProperty]
+    private bool _isDirty;
+
     public MainWindowViewModel()
     {
         Network.CollectionChanged += (s, e) => 

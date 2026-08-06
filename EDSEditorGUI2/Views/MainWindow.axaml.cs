@@ -37,17 +37,22 @@ public partial class MainWindow : Window
         InitializeComponent();
         ApplySavedTheme();
         
-        // Auto-save feature: trigger on lost focus or toggle changes
+        // Auto-save feature: trigger on lost focus, toggle changes, or text changes
         this.AddHandler(Avalonia.Input.InputElement.LostFocusEvent, OnAnyInteractionTriggerAutoSave, RoutingStrategies.Bubble);
         this.AddHandler(Avalonia.Controls.Primitives.ToggleButton.IsCheckedChangedEvent, OnAnyInteractionTriggerAutoSave, RoutingStrategies.Bubble);
+        this.AddHandler(Avalonia.Controls.TextBox.TextChangedEvent, OnAnyInteractionTriggerAutoSave, RoutingStrategies.Bubble);
         LoadProfileList();
     }
 
     private void OnAnyInteractionTriggerAutoSave(object? sender, RoutedEventArgs e)
     {
-        if (DataContext is MainWindowViewModel dc && string.IsNullOrEmpty(dc.CurrentProjectPath))
+        if (DataContext is MainWindowViewModel dc)
         {
-            return; // Don't auto-save if there's no project path
+            dc.IsDirty = true;
+            if (string.IsNullOrEmpty(dc.CurrentProjectPath))
+            {
+                return; // Don't auto-save if there's no project path
+            }
         }
 
         if (_autoSaveTimer == null)
@@ -67,17 +72,60 @@ public partial class MainWindow : Window
         _autoSaveTimer.Start();
     }
 
-    protected override void OnClosing(Avalonia.Controls.WindowClosingEventArgs e)
+    private bool _isForceClosing = false;
+
+    protected override async void OnClosing(Avalonia.Controls.WindowClosingEventArgs e)
     {
-        if (_autoSaveTimer != null && _autoSaveTimer.IsEnabled)
+        if (_isForceClosing)
         {
-            _autoSaveTimer.Stop();
-            if (DataContext is MainWindowViewModel dc && !string.IsNullOrEmpty(dc.CurrentProjectPath))
+            base.OnClosing(e);
+            return;
+        }
+
+        if (DataContext is MainWindowViewModel dc && dc.IsDirty)
+        {
+            // If AutoSave is ON and we have a path, we can save silently
+            if (!string.IsNullOrEmpty(dc.CurrentProjectPath))
             {
                 DoSaveProject(dc.CurrentProjectPath);
             }
+            else
+            {
+                // We have unsaved changes and cannot silently save.
+                e.Cancel = true;
+                var result = await ShowSaveConfirmDialog();
+                if (result == "Save")
+                {
+                    SaveProjectAsClick(null, null);
+                    // Do not close immediately, let them save first.
+                    // If they successfully save, IsDirty will become false.
+                }
+                else if (result == "Discard")
+                {
+                    _isForceClosing = true;
+                    Close();
+                }
+                // If Cancel, do nothing
+                return;
+            }
         }
+
+        if (_autoSaveTimer != null && _autoSaveTimer.IsEnabled)
+        {
+            _autoSaveTimer.Stop();
+        }
+        
         base.OnClosing(e);
+    }
+    
+    private async System.Threading.Tasks.Task<string> ShowSaveConfirmDialog()
+    {
+        if (Resources["SaveConfirmDialog"] is Avalonia.Controls.Control dialog)
+        {
+            var result = await DialogHostAvalonia.DialogHost.Show(dialog, "RootDialogHost");
+            return result?.ToString() ?? "Cancel";
+        }
+        return "Cancel";
     }
 
     private void ApplySavedTheme()
@@ -412,6 +460,7 @@ public partial class MainWindow : Window
                     {
                         dc.Network.Add(deviceView);
                         dc.SelectedDevice = deviceView;
+                        dc.IsDirty = false; // Reset dirty flag on new import
                     }
                 }
                 catch (Exception ex)
@@ -667,6 +716,8 @@ public partial class MainWindow : Window
                     // It's a single device .xpd or .xdd
                     coxml_1_1.WriteXML(filePath, edss[0], true, false);
                 }
+                
+                dc.IsDirty = false;
             }
         }
         catch (Exception ex)
