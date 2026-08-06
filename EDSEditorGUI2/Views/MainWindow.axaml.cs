@@ -770,5 +770,10 @@ public partial class MainWindow : Window
             ConfigurationManager.Save();
         }
     }
-}
-
+
+        private void Window_PointerPressed(object? sender, Avalonia.Input.PointerPressedEventArgs e)
+        {
+            // Clear focus from any TextBox when clicking on a blank area
+            this.Focus();
+        }
+    }

@@ -13,6 +13,7 @@
         Width="1280" Height="800"
         MinWidth="800" MinHeight="600"
         WindowStartupLocation="CenterScreen"
+        PointerPressed="Window_PointerPressed"
         Title="CANopen Editor 2">
 
     <Design.DataContext>

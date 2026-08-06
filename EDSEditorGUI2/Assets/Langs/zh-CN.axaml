@@ -17,8 +17,8 @@
 
     <sys:String x:Key="str_menu_new_project">新建项目</sys:String>
     <sys:String x:Key="str_menu_open_project">打开项目</sys:String>
-    <sys:String x:Key="str_menu_save_project">保存项目</sys:String>
-    <sys:String x:Key="str_menu_save_project_as">另存为项目</sys:String>
+    <sys:String x:Key="str_menu_save_project">保存</sys:String>
+    <sys:String x:Key="str_menu_save_project_as">另存为...</sys:String>
     <sys:String x:Key="str_menu_close_project">关闭项目</sys:String>
     <sys:String x:Key="str_menu_new_device">新建设备</sys:String>
     <sys:String x:Key="str_menu_import_device">导入设备</sys:String>
