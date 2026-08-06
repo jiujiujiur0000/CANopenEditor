@@ -774,6 +774,7 @@ public partial class MainWindow : Window
         private void Window_PointerPressed(object? sender, Avalonia.Input.PointerPressedEventArgs e)
         {
             // Clear focus from any TextBox when clicking on a blank area
-            this.Focus();
+            var topLevel = Avalonia.Controls.TopLevel.GetTopLevel(this);
+            topLevel?.FocusManager?.ClearFocus();
         }
     }
