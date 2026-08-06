@@ -90,7 +90,6 @@
             <Grid IsVisible="{Binding HasDevice}" Background="{DynamicResource SystemControlBackgroundAltHighBrush}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="200" MinWidth="150" />
-                    <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 
@@ -136,10 +135,10 @@
                         </ListBox>
                     </Grid>
                 </Border>
-                <!-- GridSplitter 设置为透明并且加宽，只作为鼠标拖拽区域，视觉上不可见 -->
-                <GridSplitter Grid.Column="1" Width="5" Background="Transparent" ResizeDirection="Columns" />
+                <!-- GridSplitter 设置为透明并放置在第一列最右侧悬浮，不占据额外宽度，从而让右侧紧挨着分割线 -->
+                <GridSplitter Grid.Column="0" HorizontalAlignment="Right" Width="5" Background="Transparent" ResizeDirection="Columns" />
                 
-                <ContentControl Grid.Column="2" Content="{Binding SelectedDevice}">
+                <ContentControl Grid.Column="1" Content="{Binding SelectedDevice}">
                     <ContentControl.ContentTemplate>
                         <DataTemplate>
                             <view:DeviceView />
