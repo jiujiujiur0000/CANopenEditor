@@ -17,7 +17,7 @@ public partial class DeviceInfo : ObservableObject
     string _productNumber = string.Empty;
 
     [ObservableProperty]
-    uint _revisionNumber;
+    string _revisionNumber = string.Empty;
 
     [ObservableProperty]
     uint _granularity = 8;

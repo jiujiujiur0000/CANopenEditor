@@ -1,4 +1,4 @@
-﻿/*
+/*
     This file is part of libEDSsharp.
 
     libEDSsharp is free software: you can redistribute it and/or modify
@@ -974,8 +974,22 @@ namespace libEDSsharp
                 {
                     new version { versionType = versionVersionType.SW, Value = "0" },
                     new version { versionType = versionVersionType.FW, Value = "0" },
-                    new version { versionType = versionVersionType.HW, Value = "0" }
+                    new version { versionType = versionVersionType.HW, Value = eds.di.RevisionNumber.ToString() }
                 };
+            }
+            else
+            {
+                var hwVersion = body_device.DeviceIdentity.version.FirstOrDefault(v => v.versionType == versionVersionType.HW);
+                if (hwVersion != null)
+                {
+                    hwVersion.Value = eds.di.RevisionNumber.ToString();
+                }
+                else
+                {
+                    var versionsList = body_device.DeviceIdentity.version.ToList();
+                    versionsList.Add(new version { versionType = versionVersionType.HW, Value = eds.di.RevisionNumber.ToString() });
+                    body_device.DeviceIdentity.version = versionsList.ToArray();
+                }
             }
 
             // DeviceFunction is required by schema, make a template if empty.
@@ -1262,6 +1276,14 @@ namespace libEDSsharp
                         eds.di.ProductNumber = body_device.DeviceIdentity.productID.Value ?? "";
                     if (body_device.DeviceIdentity.productText != null)
                         eds.fi.Description = G_label_getDescription(body_device.DeviceIdentity.productText.Items);
+                    if (body_device.DeviceIdentity.version != null && body_device.DeviceIdentity.version.Length > 0)
+                    {
+                        var hwVersion = body_device.DeviceIdentity.version.FirstOrDefault(v => v.versionType == versionVersionType.HW);
+                        if (hwVersion != null && uint.TryParse(hwVersion.Value, out uint rev))
+                            eds.di.RevisionNumber = rev;
+                        else if (uint.TryParse(body_device.DeviceIdentity.version[0].Value, out uint rev2))
+                            eds.di.RevisionNumber = rev2;
+                    }
                 }
 
                 if (body_device.ApplicationProcess != null
@@ -1626,6 +1648,14 @@ namespace libEDSsharp
                 {
                     if (body_device.DeviceIdentity.productText != null)
                         dev.FileInfo.Description = G_label_getDescription(body_device.DeviceIdentity.productText.Items);
+                    if (body_device.DeviceIdentity.version != null && body_device.DeviceIdentity.version.Length > 0)
+                    {
+                        var hwVersion = body_device.DeviceIdentity.version.FirstOrDefault(v => v.versionType == versionVersionType.HW);
+                        if (hwVersion != null && uint.TryParse(hwVersion.Value, out uint rev))
+                            dev.DeviceInfo.RevisionNumber = rev;
+                        else if (uint.TryParse(body_device.DeviceIdentity.version[0].Value, out uint rev2))
+                            dev.DeviceInfo.RevisionNumber = rev2;
+                    }
                     if (body_device.DeviceIdentity.vendorName != null)
                         dev.DeviceInfo.VendorName = body_device.DeviceIdentity.vendorName.Value ?? "";
                     if (body_device.DeviceIdentity.productName != null)
@@ -2192,8 +2222,22 @@ namespace libEDSsharp
                 {
                     new version { versionType = versionVersionType.SW, Value = "0" },
                     new version { versionType = versionVersionType.FW, Value = "0" },
-                    new version { versionType = versionVersionType.HW, Value = "0" }
+                    new version { versionType = versionVersionType.HW, Value = dev.DeviceInfo.RevisionNumber.ToString() }
                 };
+            }
+            else
+            {
+                var hwVersion = body_device.DeviceIdentity.version.FirstOrDefault(v => v.versionType == versionVersionType.HW);
+                if (hwVersion != null)
+                {
+                    hwVersion.Value = dev.DeviceInfo.RevisionNumber.ToString();
+                }
+                else
+                {
+                    var versionsList = body_device.DeviceIdentity.version.ToList();
+                    versionsList.Add(new version { versionType = versionVersionType.HW, Value = dev.DeviceInfo.RevisionNumber.ToString() });
+                    body_device.DeviceIdentity.version = versionsList.ToArray();
+                }
             }
 
             // DeviceFunction is required by schema, make a template if empty.

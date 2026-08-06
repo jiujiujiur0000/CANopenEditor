@@ -12,6 +12,9 @@ public partial class MainWindowViewModel : ViewModelBase
 {
     int Counter = 0;
     public bool HasNoDevice => Network.Count == 0;
+    
+    [ObservableProperty]
+    private string? _currentProjectPath;
 
     public MainWindowViewModel()
     {

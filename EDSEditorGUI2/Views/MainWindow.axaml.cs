@@ -30,11 +30,54 @@ public partial class MainWindow : Window
         Patterns = ["*.xdc"]
     };
 
+    private Avalonia.Threading.DispatcherTimer? _autoSaveTimer;
+
     public MainWindow()
     {
         InitializeComponent();
-        LoadProfileList();
         ApplySavedTheme();
+        
+        // Auto-save feature: trigger on lost focus or toggle changes
+        this.AddHandler(Avalonia.Input.InputElement.LostFocusEvent, OnAnyInteractionTriggerAutoSave, RoutingStrategies.Bubble);
+        this.AddHandler(Avalonia.Controls.Primitives.ToggleButton.IsCheckedChangedEvent, OnAnyInteractionTriggerAutoSave, RoutingStrategies.Bubble);
+        LoadProfileList();
+    }
+
+    private void OnAnyInteractionTriggerAutoSave(object? sender, RoutedEventArgs e)
+    {
+        if (DataContext is MainWindowViewModel dc && string.IsNullOrEmpty(dc.CurrentProjectPath))
+        {
+            return; // Don't auto-save if there's no project path
+        }
+
+        if (_autoSaveTimer == null)
+        {
+            _autoSaveTimer = new Avalonia.Threading.DispatcherTimer { Interval = TimeSpan.FromSeconds(1) };
+            _autoSaveTimer.Tick += (s, args) =>
+            {
+                _autoSaveTimer.Stop();
+                if (DataContext is MainWindowViewModel dc && !string.IsNullOrEmpty(dc.CurrentProjectPath))
+                {
+                    DoSaveProject(dc.CurrentProjectPath);
+                }
+            };
+        }
+        
+        _autoSaveTimer.Stop();
+        _autoSaveTimer.Start();
+    }
+
+    protected override void OnClosing(Avalonia.Controls.WindowClosingEventArgs e)
+    {
+        if (_autoSaveTimer != null && _autoSaveTimer.IsEnabled)
+        {
+            _autoSaveTimer.Stop();
+            if (DataContext is MainWindowViewModel dc && !string.IsNullOrEmpty(dc.CurrentProjectPath))
+            {
+                DoSaveProject(dc.CurrentProjectPath);
+            }
+        }
+        base.OnClosing(e);
     }
 
     private void ApplySavedTheme()
@@ -175,6 +218,7 @@ public partial class MainWindow : Window
             }
             CanOpenXDD_1_1 coxml_1_1 = new();
             var eds = coxml_1_1.ReadXML(filePath);
+            
             var proto = MappingEDS.MapToProtobuffer(eds);
             var viewModel = ProtobufferViewModelMapper.MapFromProtobuffer(proto);
 
@@ -303,11 +347,13 @@ public partial class MainWindow : Window
         var edsFilter = new FilePickerFileType("Electronic Data Sheet (*.eds)") { Patterns = ["*.eds"] };
         var dcfFilter = new FilePickerFileType("Device Configuration File (*.dcf)") { Patterns = ["*.dcf"] };
         
+        var xpdFilter = new FilePickerFileType("CANopen Project (*.xpd, *.json, *.binpb)") { Patterns = ["*.xpd", "*.json", "*.binpb"] };
+        
         var files = await topLevel.StorageProvider.OpenFilePickerAsync(new FilePickerOpenOptions
         {
             Title = "Open CANopen Device",
             AllowMultiple = true,
-            FileTypeFilter = [CombineFilePickerType("All supported files", [xdd, xdc, edsFilter, dcfFilter]), xdd, xdc, edsFilter, dcfFilter]
+            FileTypeFilter = [CombineFilePickerType("All supported files", [xdd, xdc, xpdFilter, edsFilter, dcfFilter]), xdd, xdc, xpdFilter, edsFilter, dcfFilter]
         });
 
         if (files.Count > 0)
@@ -329,6 +375,10 @@ public partial class MainWindow : Window
                         if (ext == ".xdd")
                         {
                             eds.xddfilename_1_1 = filePath;
+                        }
+                        if (ext == ".xpd" && DataContext is MainWindowViewModel mdc)
+                        {
+                            mdc.CurrentProjectPath = filePath;
                         }
                     }
                     else
@@ -438,8 +488,13 @@ public partial class MainWindow : Window
         if (file != null)
         {
             string filePath = file.TryGetLocalPath() ?? file.Path.ToString();
+            
+            // Update the UI/ViewModel directly so the user can see the exported version and file
+            targetDevice.ProjectInfo.CanopenNodeFile = System.IO.Path.GetFileName(filePath);
+            targetDevice.ProjectInfo.CanopenNodeFileVersion = version == libEDSsharp.ExporterFactory.Exporter.CANOPENNODE_V4 ? "V4" : "V1";
+            
+            // Get the updated EDS for exporting, which now includes the above changes
             var eds = targetDevice.GetUpdatedEds();
-            eds.ODfileVersion = version == libEDSsharp.ExporterFactory.Exporter.CANOPENNODE_V4 ? "V4" : "V1";
             
             try
             {
@@ -488,6 +543,7 @@ public partial class MainWindow : Window
                 if (edss != null && DataContext is MainWindowViewModel dc)
                 {
                     dc.Network.Clear();
+                    dc.CurrentProjectPath = filePath;
                     foreach (var eds in edss)
                     {
                         eds.projectFilename = filePath;
@@ -519,16 +575,9 @@ public partial class MainWindow : Window
         Close();
     }
 
-    public void SaveProjectAsClick(object sender, RoutedEventArgs args)
-    {
-        // For now, it maps to the same SaveProjectClick behavior which prompts for a file picker.
-        SaveProjectClick(sender, args);
-    }
-
-    public async void SaveProjectClick(object sender, RoutedEventArgs args)
+    public async void SaveProjectAsClick(object? sender, RoutedEventArgs? args)
     {
         var topLevel = TopLevel.GetTopLevel(this) ?? throw new Exception("Internal GUI error");
-
         var xpd = new FilePickerFileType("XML Project Description (*.xpd)") { Patterns = ["*.xpd"] };
 
         var file = await topLevel.StorageProvider.SaveFilePickerAsync(new FilePickerSaveOptions
@@ -541,24 +590,45 @@ public partial class MainWindow : Window
         if (file != null)
         {
             string filePath = file.TryGetLocalPath() ?? file.Path.ToString();
-            try
+            if (DataContext is MainWindowViewModel dc)
             {
-                if (DataContext is MainWindowViewModel dc)
-                {
-                    List<EDSsharp> edss = new List<EDSsharp>();
-                    foreach (var device in dc.Network)
-                    {
-                        edss.Add(device.Eds);
-                    }
+                dc.CurrentProjectPath = filePath;
+            }
+            DoSaveProject(filePath);
+        }
+    }
 
-                    CanOpenXDD_1_1 coxml_1_1 = new();
-                    coxml_1_1.WriteMultiXML(filePath, edss, true);
-                }
-            }
-            catch (Exception ex)
+    public void SaveProjectClick(object? sender, RoutedEventArgs? args)
+    {
+        if (DataContext is MainWindowViewModel dc && !string.IsNullOrEmpty(dc.CurrentProjectPath))
+        {
+            DoSaveProject(dc.CurrentProjectPath);
+        }
+        else
+        {
+            SaveProjectAsClick(sender, args);
+        }
+    }
+
+    private void DoSaveProject(string filePath)
+    {
+        try
+        {
+            if (DataContext is MainWindowViewModel dc)
             {
-                Debug.WriteLine($"Failed to save project {filePath}: {ex.Message}");
+                List<EDSsharp> edss = new List<EDSsharp>();
+                foreach (var device in dc.Network)
+                {
+                    edss.Add(device.GetUpdatedEds());
+                }
+
+                CanOpenXDD_1_1 coxml_1_1 = new();
+                coxml_1_1.WriteMultiXML(filePath, edss, true);
             }
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"Failed to save project {filePath}: {ex.Message}");
         }
     }
 

@@ -6,8 +6,14 @@ using System;
 
 namespace EDSEditorGUI2.Mapper
 {
-    public partial class ProtobufferViewModelMapper
+    public class ProtobufferViewModelMapper
     {
+        private static uint ParseRevisionNumber(string revStr)
+        {
+            if (string.IsNullOrEmpty(revStr)) return 0;
+            return uint.TryParse(revStr, out uint rev) ? rev : 0;
+        }
+
         public static ViewModels.Device MapFromProtobuffer(CanOpenDevice source)
         {
             var config = new MapperConfiguration(cfg =>
@@ -33,7 +39,8 @@ namespace EDSEditorGUI2.Mapper
                 .ForMember(dest => dest.Objects, opt => opt.MapFrom(src => src.Objects))
                 .ForPath(dest => dest.ModuleInfo.NrSupportedModules, opt => opt.MapFrom(src => src.NrSupportedModules))
                 .ForPath(dest => dest.ModuleInfo.Modules, opt => opt.MapFrom(src => src.Modules));
-                cfg.CreateMap<CanOpen_DeviceInfo, ViewModels.DeviceInfo>(MemberList.None);
+                cfg.CreateMap<CanOpen_DeviceInfo, ViewModels.DeviceInfo>()
+                    .ForMember(dest => dest.RevisionNumber, opt => opt.MapFrom(src => src.RevisionNumber.ToString()));
                 cfg.CreateMap<CanOpen_DeviceCommissioning, ViewModels.DeviceCommissioning>(MemberList.None);
             }, LoggerFactory.Create(builder => { builder.AddDebug(); }));
             config.AssertConfigurationIsValid();
@@ -168,7 +175,8 @@ namespace EDSEditorGUI2.Mapper
                 .ForMember(dest => dest.NrSupportedModules, opt => opt.MapFrom(src => src.ModuleInfo.NrSupportedModules))
                 .ForMember(dest => dest.Modules, opt => opt.Ignore());
 
-                cfg.CreateMap<ViewModels.DeviceInfo, CanOpen_DeviceInfo>(MemberList.None);
+                cfg.CreateMap<ViewModels.DeviceInfo, CanOpen_DeviceInfo>()
+                    .ForMember(dest => dest.RevisionNumber, opt => opt.MapFrom(src => ParseRevisionNumber(src.RevisionNumber)));
                 cfg.CreateMap<ViewModels.DeviceCommissioning, CanOpen_DeviceCommissioning>(MemberList.None);
             }, LoggerFactory.Create(builder => { builder.AddDebug(); }));
             config.AssertConfigurationIsValid();
