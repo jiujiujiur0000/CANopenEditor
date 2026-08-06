@@ -8,7 +8,8 @@
              x:Class="EDSEditorGUI2.Views.DeviceView"
              x:DataType="vm:Device">
 
-  <TabControl Margin="5" Padding="0,10,0,0">
+  <!-- 去除Margin，让TabItem的左右边框能直接连到上方的线条 -->
+  <TabControl Margin="0" Padding="0,10,0,0">
     <TabControl.Styles>
       <Style Selector="TabControl">
         <Setter Property="Template">
@@ -48,7 +49,8 @@
         <!-- 去掉Margin，让边框能够紧挨着 -->
         <Setter Property="Margin" Value="0" />
         <Setter Property="Foreground" Value="{DynamicResource SystemControlForegroundBaseMediumBrush}" />
-        <Setter Property="Background" Value="Transparent" />
+        <!-- 字段都加浅灰背景 -->
+        <Setter Property="Background" Value="#F3F3F3" />
         <Setter Property="BorderBrush" Value="{DynamicResource SystemControlForegroundBaseLowBrush}" />
         <!-- 巧妙使用 0,0,1,1 (右侧和下方边框)。
              这样第一个标签没有左边框。
