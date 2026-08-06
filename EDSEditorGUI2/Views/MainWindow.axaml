@@ -64,11 +64,8 @@
             </Menu>
             <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" Margin="5,0,10,0" Spacing="15">
                 <StackPanel Orientation="Horizontal" Spacing="8" IsVisible="{Binding HasDevice}">
-                    <Button Click="SaveProjectClick" IsEnabled="{Binding IsDirty}" Padding="8,4" Background="Transparent" BorderThickness="1" CornerRadius="4" Cursor="Hand" ToolTip.Tip="保存工程">
-                        <StackPanel Orientation="Horizontal" Spacing="4">
-                            <TextBlock Text="💾" />
-                            <TextBlock Text="{DynamicResource str_menu_save_project}" />
-                        </StackPanel>
+                    <Button Click="SaveProjectClick" IsEnabled="{Binding IsDirty}" Padding="8,6" Background="Transparent" BorderThickness="0" CornerRadius="4" Cursor="Hand" ToolTip.Tip="{DynamicResource str_menu_save_project}">
+                        <PathIcon Data="{StaticResource save_regular}" Width="20" Height="20" Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}" />
                     </Button>
                 </StackPanel>
             </StackPanel>
