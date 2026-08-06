@@ -20,12 +20,12 @@
                     HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
                     VerticalAlignment="{TemplateBinding VerticalAlignment}">
               <DockPanel>
-                <Border DockPanel.Dock="{TemplateBinding TabStripPlacement}" 
-                        BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" 
-                        BorderThickness="0,0,0,1" Margin="0,0,0,10">
-                  <ItemsPresenter Name="PART_ItemsPresenter"
-                                  ItemsPanel="{TemplateBinding ItemsPanel}" />
-                </Border>
+                <!-- 去掉了下方的灰色超长线条 -->
+                <ItemsPresenter Name="PART_ItemsPresenter"
+                                DockPanel.Dock="{TemplateBinding TabStripPlacement}" 
+                                Margin="0,0,0,10"
+                                ItemsPanel="{TemplateBinding ItemsPanel}" />
+                
                 <ContentPresenter Name="PART_SelectedContentHost"
                                   Margin="{TemplateBinding Padding}"
                                   HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
@@ -37,18 +37,54 @@
           </ControlTemplate>
         </Setter>
       </Style>
+      
       <Style Selector="TabItem">
         <Setter Property="FontSize" Value="16" />
-        <Setter Property="MinHeight" Value="48" />
-        <Setter Property="Padding" Value="16,0,16,6" />
-        <Setter Property="Margin" Value="0,0,4,0" />
+        <Setter Property="MinHeight" Value="40" />
+        <!-- 调整字段宽度一致 -->
+        <Setter Property="Width" Value="120" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="Padding" Value="0,8" />
+        <!-- 去掉Margin，让边框能够紧挨着 -->
+        <Setter Property="Margin" Value="0" />
         <Setter Property="Foreground" Value="{DynamicResource SystemControlForegroundBaseMediumBrush}" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="{DynamicResource SystemControlForegroundBaseLowBrush}" />
+        <!-- 巧妙使用 0,0,1,1 (右侧和下方边框)。
+             这样第一个标签没有左边框。
+             后面的标签的"左边框"实际上是前一个标签的"右边框"，实现了视觉上的左右边框但又不会重复变粗！-->
+        <Setter Property="BorderThickness" Value="0,0,1,1" />
+        <Setter Property="Template">
+          <ControlTemplate>
+            <!-- 自定义模板，彻底去掉了自带的蓝色线条 -->
+            <Border Name="PART_LayoutRoot"
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    Padding="{TemplateBinding Padding}">
+              <ContentPresenter Name="PART_ContentPresenter"
+                                ContentTemplate="{TemplateBinding HeaderTemplate}"
+                                Content="{TemplateBinding Header}"
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+            </Border>
+          </ControlTemplate>
+        </Setter>
       </Style>
+
+      <Style Selector="TabItem:pointerover /template/ Border#PART_LayoutRoot">
+        <Setter Property="Background" Value="{DynamicResource SystemControlHighlightListLowBrush}" />
+      </Style>
+
       <Style Selector="TabItem:selected">
         <Setter Property="FontWeight" Value="SemiBold" />
         <Setter Property="Foreground" Value="{DynamicResource SystemControlForegroundBaseHighBrush}" />
+        <Setter Property="Background" Value="{DynamicResource SystemControlBackgroundAltHighBrush}" />
+        <!-- 选中的标签关闭下方边框，保持左右边框（这里设置右边，左边由前一个标签提供） -->
+        <Setter Property="BorderThickness" Value="0,0,1,0" />
       </Style>
     </TabControl.Styles>
+
     <TabItem>
       <TabItem.Header>
         <TextBlock Text="{DynamicResource str_tab_device_info}" Margin="0,0,0,4"/>
