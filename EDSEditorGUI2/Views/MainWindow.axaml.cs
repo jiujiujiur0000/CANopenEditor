@@ -137,20 +137,14 @@ public partial class MainWindow : Window
             if (savedTheme == "Light")
             {
                 app.RequestedThemeVariant = Avalonia.Styling.ThemeVariant.Light;
-                app.TryGetResource("str_theme_light", app.ActualThemeVariant, out var val);
-                ThemeButton.Content = val ?? "☀️ Light";
             }
             else if (savedTheme == "Dark")
             {
                 app.RequestedThemeVariant = Avalonia.Styling.ThemeVariant.Dark;
-                app.TryGetResource("str_theme_dark", app.ActualThemeVariant, out var val);
-                ThemeButton.Content = val ?? "🌙 Dark";
             }
             else
             {
                 app.RequestedThemeVariant = Avalonia.Styling.ThemeVariant.Default;
-                app.TryGetResource("str_theme_system", app.ActualThemeVariant, out var val);
-                ThemeButton.Content = val ?? "🖥️ System";
             }
         }
     }
@@ -769,35 +763,6 @@ public partial class MainWindow : Window
         await DialogHostAvalonia.DialogHost.Show(Resources["PreferencesDialog"]!, "RootDialogHost");
     }
 
-    private void ToggleTheme_Click(object? sender, RoutedEventArgs e)
-    {
-        var app = Avalonia.Application.Current;
-        if (app is not null && sender is Button btn)
-        {
-            if (app.RequestedThemeVariant == Avalonia.Styling.ThemeVariant.Default)
-            {
-                app.RequestedThemeVariant = Avalonia.Styling.ThemeVariant.Light;
-                app.TryGetResource("str_theme_light", app.ActualThemeVariant, out var val);
-                btn.Content = val ?? "☀️ Light";
-                ConfigurationManager.Settings.CurrentTheme = "Light";
-            }
-            else if (app.RequestedThemeVariant == Avalonia.Styling.ThemeVariant.Light)
-            {
-                app.RequestedThemeVariant = Avalonia.Styling.ThemeVariant.Dark;
-                app.TryGetResource("str_theme_dark", app.ActualThemeVariant, out var val);
-                btn.Content = val ?? "🌙 Dark";
-                ConfigurationManager.Settings.CurrentTheme = "Dark";
-            }
-            else
-            {
-                app.RequestedThemeVariant = Avalonia.Styling.ThemeVariant.Default;
-                app.TryGetResource("str_theme_system", app.ActualThemeVariant, out var val);
-                btn.Content = val ?? "🖥️ System";
-                ConfigurationManager.Settings.CurrentTheme = "Default";
-            }
-            ConfigurationManager.Save();
-        }
-    }
 
         private void Window_PointerPressed(object? sender, Avalonia.Input.PointerPressedEventArgs e)
         {

@@ -59,9 +59,7 @@
                 <MenuItem Header="{DynamicResource str_menu_insert_profile}" x:Name="profileMenu" IsEnabled="{Binding SelectedDevice, Converter={x:Static ObjectConverters.IsNotNull}}"/>
                 <MenuItem Header="{DynamicResource str_menu_reports}">
                 </MenuItem>
-                <MenuItem Header="{DynamicResource str_menu_tools}">
-                    <MenuItem Header="{DynamicResource str_menu_preferences}" Click="OpenPreferences"/>
-                </MenuItem>
+                <MenuItem Header="{DynamicResource str_menu_preferences}" Click="OpenPreferences"/>
             </Menu>
             <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" Margin="5,0,10,0" Spacing="15">
                 <StackPanel Orientation="Horizontal" Spacing="8" IsVisible="{Binding HasDevice}">
@@ -72,7 +70,6 @@
                         </StackPanel>
                     </Button>
                 </StackPanel>
-                <Button x:Name="ThemeButton" Content="{DynamicResource str_theme_system}" Click="ToggleTheme_Click" Padding="8,4" Background="Transparent" BorderThickness="1" CornerRadius="4" Cursor="Hand" />
             </StackPanel>
         </Grid>
         <Grid>

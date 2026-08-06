@@ -41,11 +41,12 @@
     <sys:String x:Key="str_menu_insert_profile">插入对象配置(_I)</sys:String>
     <sys:String x:Key="str_menu_reports">报告(_R)</sys:String>
     <sys:String x:Key="str_menu_tools">工具</sys:String>
-    <sys:String x:Key="str_menu_preferences">偏好设置(_P)</sys:String>
+    <sys:String x:Key="str_menu_preferences">设置(_S)</sys:String>
 
     <!-- Preferences View -->
     <sys:String x:Key="str_pref_title">偏好设置</sys:String>
-    <sys:String x:Key="str_pref_language">语言</sys:String>
+    <sys:String x:Key="str_pref_language">语言选择：</sys:String>
+    <sys:String x:Key="str_pref_theme">主题选择：</sys:String>
     <sys:String x:Key="str_pref_exporter">默认导出代码版本</sys:String>
     <sys:String x:Key="str_pref_warnings">警报配置</sys:String>
     <sys:String x:Key="str_pref_warn_generic">常规警告</sys:String>

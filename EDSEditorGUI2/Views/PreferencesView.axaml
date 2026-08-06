@@ -14,7 +14,15 @@
         <!-- Language Settings -->
         <TextBlock Text="{DynamicResource str_pref_language}" FontWeight="SemiBold"/>
         <ComboBox ItemsSource="{Binding AvailableLanguages}" 
-                  SelectedItem="{Binding SelectedLanguage}" 
+                  SelectedItem="{Binding SelectedLanguageOption}" 
+                  HorizontalAlignment="Stretch"/>
+
+        <Separator Margin="0,5"/>
+
+        <!-- Theme Settings -->
+        <TextBlock Text="{DynamicResource str_pref_theme}" FontWeight="SemiBold"/>
+        <ComboBox ItemsSource="{Binding AvailableThemes}" 
+                  SelectedItem="{Binding SelectedThemeOption}" 
                   HorizontalAlignment="Stretch"/>
 
         <Separator Margin="0,5"/>

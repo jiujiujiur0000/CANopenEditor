@@ -41,11 +41,12 @@
     <sys:String x:Key="str_menu_insert_profile">_Insert Profile</sys:String>
     <sys:String x:Key="str_menu_reports">_Reports</sys:String>
     <sys:String x:Key="str_menu_tools">Tools</sys:String>
-    <sys:String x:Key="str_menu_preferences">_Preferences</sys:String>
+    <sys:String x:Key="str_menu_preferences">_Settings</sys:String>
 
     <!-- Preferences View -->
     <sys:String x:Key="str_pref_title">Preferences</sys:String>
-    <sys:String x:Key="str_pref_language">Language</sys:String>
+    <sys:String x:Key="str_pref_language">Language:</sys:String>
+    <sys:String x:Key="str_pref_theme">Theme:</sys:String>
     <sys:String x:Key="str_pref_exporter">Default Exporter Type</sys:String>
     <sys:String x:Key="str_pref_warnings">Warnings</sys:String>
     <sys:String x:Key="str_pref_warn_generic">Generic warnings</sys:String>

@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using libEDSsharp;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace EDSEditorGUI2.ViewModels
 {
@@ -32,7 +33,55 @@ namespace EDSEditorGUI2.ViewModels
         public IEnumerable<ExporterFactory.Exporter> AvailableExporters =>
             (IEnumerable<ExporterFactory.Exporter>)Enum.GetValues(typeof(ExporterFactory.Exporter));
 
-        public List<string> AvailableLanguages => new() { "en-US", "zh-CN" };
+        public class LanguageOption
+        {
+            public string Code { get; set; }
+            public string Display { get; set; }
+            public LanguageOption(string code, string display) { Code = code; Display = display; }
+            public override string ToString() => Display;
+        }
+
+        public List<LanguageOption> AvailableLanguages => new() 
+        { 
+            new("en-US", "English"), 
+            new("zh-CN", "中文") 
+        };
+
+        public class ThemeOption
+        {
+            public string Id { get; set; }
+            public string Display { get; set; }
+            public ThemeOption(string id, string display) { Id = id; Display = display; }
+            public override string ToString() => Display;
+        }
+
+        public List<ThemeOption> AvailableThemes => new()
+        {
+            new("Default", "🖥️ System / 系统"),
+            new("Light", "☀️ Light / 浅色"),
+            new("Dark", "🌙 Dark / 深色")
+        };
+
+        private ThemeOption _selectedThemeOption;
+        public ThemeOption SelectedThemeOption
+        {
+            get => _selectedThemeOption;
+            set
+            {
+                SetProperty(ref _selectedThemeOption, value);
+            }
+        }
+
+        private LanguageOption _selectedLanguageOption;
+        public LanguageOption SelectedLanguageOption
+        {
+            get => _selectedLanguageOption;
+            set
+            {
+                SetProperty(ref _selectedLanguageOption, value);
+                SelectedLanguage = value?.Code ?? "en-US";
+            }
+        }
 
         public PreferencesViewModel()
         {
@@ -45,6 +94,10 @@ namespace EDSEditorGUI2.ViewModels
 
             SelectedExporter = ConfigurationManager.Settings.CurrentExporter;
             SelectedLanguage = ConfigurationManager.Settings.CurrentLanguage;
+            _selectedLanguageOption = AvailableLanguages.FirstOrDefault(x => x.Code == SelectedLanguage) ?? AvailableLanguages[0];
+
+            var currentTheme = ConfigurationManager.Settings.CurrentTheme ?? "Default";
+            _selectedThemeOption = AvailableThemes.FirstOrDefault(x => x.Id == currentTheme) ?? AvailableThemes[0];
         }
 
         [RelayCommand]
@@ -61,12 +114,25 @@ namespace EDSEditorGUI2.ViewModels
             Warnings.warning_mask = mask;
             ConfigurationManager.Settings.CurrentExporter = SelectedExporter;
             ConfigurationManager.Settings.CurrentLanguage = SelectedLanguage;
+            ConfigurationManager.Settings.CurrentTheme = SelectedThemeOption?.Id ?? "Default";
 
             // Save to JSON
             ConfigurationManager.Save();
 
             // Apply language globally
             App.ChangeLanguage(SelectedLanguage);
+
+            // Apply theme globally
+            var app = Avalonia.Application.Current;
+            if (app != null)
+            {
+                app.RequestedThemeVariant = ConfigurationManager.Settings.CurrentTheme switch
+                {
+                    "Light" => Avalonia.Styling.ThemeVariant.Light,
+                    "Dark" => Avalonia.Styling.ThemeVariant.Dark,
+                    _ => Avalonia.Styling.ThemeVariant.Default
+                };
+            }
         }
     }
 }
