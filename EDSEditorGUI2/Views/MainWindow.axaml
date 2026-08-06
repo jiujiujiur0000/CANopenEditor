@@ -100,10 +100,23 @@
                         
                         <ListBox Grid.Row="1" ItemsSource="{Binding Network}" SelectedItem="{Binding SelectedDevice}" 
                                  Background="Transparent" BorderThickness="0" Padding="5,0">
+                            <ListBox.Styles>
+                                <Style Selector="ListBoxItem">
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                    <!-- 关键：把 Padding 设为 0，让内部的 Grid 彻底占满蓝色的可选区域 -->
+                                    <Setter Property="Padding" Value="0" />
+                                    <!-- 在可选区域（整行）加上上下边框 -->
+                                    <Setter Property="BorderThickness" Value="0,1,0,1" />
+                                    <Setter Property="BorderBrush" Value="{DynamicResource SystemControlForegroundBaseLowBrush}" />
+                                    <!-- 防止相邻元素的边框叠加变粗 -->
+                                    <Setter Property="Margin" Value="0,-1,0,0" />
+                                </Style>
+                            </ListBox.Styles>
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
-                                    <Grid ColumnDefinitions="Auto,*,Auto" Margin="0,4" Background="Transparent">
-                                        <Grid.ContextMenu>
+                                    <!-- 根节点使用 Border，Background 设为 Transparent 以接收整个区域的鼠标右键事件，并使用 Padding 替代 Grid 不能使用的 Padding 属性 -->
+                                    <Border Background="Transparent" Padding="8,8">
+                                        <Border.ContextMenu>
                                             <ContextMenu>
                                                 <MenuItem Header="新建设备" Command="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).AddNewDevice}"/>
                                                 <MenuItem Header="导入设备" Click="OpenFileClick"/>
@@ -120,16 +133,18 @@
                                                     </MenuItem>
                                                 </MenuItem>
                                             </ContextMenu>
-                                        </Grid.ContextMenu>
-                                        <TextBlock Grid.Column="0" Text="💻" VerticalAlignment="Center" FontSize="16" Margin="0,0,8,0"/>
-                                        <TextBlock Grid.Column="1" Text="{Binding DeviceInfo.ProductName}" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="14" TextTrimming="CharacterEllipsis"/>
-                                        <Button Grid.Column="2" Classes="icon" Padding="4" Background="Transparent" BorderThickness="0" 
-                                                Command="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).CloseDeviceCommand}" 
-                                                CommandParameter="{Binding}"
-                                                ToolTip.Tip="移除设备">
-                                            <PathIcon Data="{StaticResource dismiss_regular}" Width="12" Height="12"/>
-                                        </Button>
-                                    </Grid>
+                                        </Border.ContextMenu>
+                                        
+                                        <Grid ColumnDefinitions="*,Auto">
+                                            <!-- 设备名，靠左对齐 -->
+                                            <TextBlock Grid.Column="0" Text="{Binding DeviceInfo.ProductName}" VerticalAlignment="Center" FontSize="13" TextTrimming="CharacterEllipsis" HorizontalAlignment="Left" />
+                                            
+                                            <!-- 未保存提示绿点，靠右对齐 -->
+                                            <Ellipse Grid.Column="1" Width="6" Height="6" Fill="#00CC00" VerticalAlignment="Center" Margin="6,0,0,0" HorizontalAlignment="Right"
+                                                     IsVisible="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).IsDirty}" 
+                                                     ToolTip.Tip="有未保存的修改"/>
+                                        </Grid>
+                                    </Border>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                         </ListBox>
