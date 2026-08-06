@@ -50,8 +50,8 @@
         <!-- 去掉Margin，让边框能够紧挨着 -->
         <Setter Property="Margin" Value="0" />
         <Setter Property="Foreground" Value="{DynamicResource SystemControlForegroundBaseMediumBrush}" />
-        <!-- 字段都加浅灰背景 -->
-        <Setter Property="Background" Value="#F3F3F3" />
+        <!-- 未选中的标签稍微比主背景深一点点，以便区分 -->
+        <Setter Property="Background" Value="#E5E7EB" />
         <Setter Property="BorderBrush" Value="{DynamicResource SystemControlForegroundBaseLowBrush}" />
         <!-- 巧妙使用 0,0,1,1 (右侧和下方边框)。
              这样第一个标签没有左边框。
