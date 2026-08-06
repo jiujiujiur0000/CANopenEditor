@@ -39,7 +39,7 @@ namespace EDSEditorGUI2.Mapper
                 .ForMember(dest => dest.Objects, opt => opt.MapFrom(src => src.Objects))
                 .ForPath(dest => dest.ModuleInfo.NrSupportedModules, opt => opt.MapFrom(src => src.NrSupportedModules))
                 .ForPath(dest => dest.ModuleInfo.Modules, opt => opt.MapFrom(src => src.Modules));
-                cfg.CreateMap<CanOpen_DeviceInfo, ViewModels.DeviceInfo>()
+                cfg.CreateMap<CanOpen_DeviceInfo, ViewModels.DeviceInfo>(MemberList.None)
                     .ForMember(dest => dest.RevisionNumber, opt => opt.MapFrom(src => src.RevisionNumber.ToString()));
                 cfg.CreateMap<CanOpen_DeviceCommissioning, ViewModels.DeviceCommissioning>(MemberList.None);
             }, LoggerFactory.Create(builder => { builder.AddDebug(); }));
@@ -175,7 +175,7 @@ namespace EDSEditorGUI2.Mapper
                 .ForMember(dest => dest.NrSupportedModules, opt => opt.MapFrom(src => src.ModuleInfo.NrSupportedModules))
                 .ForMember(dest => dest.Modules, opt => opt.Ignore());
 
-                cfg.CreateMap<ViewModels.DeviceInfo, CanOpen_DeviceInfo>()
+                cfg.CreateMap<ViewModels.DeviceInfo, CanOpen_DeviceInfo>(MemberList.None)
                     .ForMember(dest => dest.RevisionNumber, opt => opt.MapFrom(src => ParseRevisionNumber(src.RevisionNumber)));
                 cfg.CreateMap<ViewModels.DeviceCommissioning, CanOpen_DeviceCommissioning>(MemberList.None);
             }, LoggerFactory.Create(builder => { builder.AddDebug(); }));

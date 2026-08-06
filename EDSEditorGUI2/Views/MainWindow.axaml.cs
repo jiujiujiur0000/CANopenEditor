@@ -365,20 +365,34 @@ public partial class MainWindow : Window
                 
                 try
                 {
-                    EDSsharp eds;
+                    EDSsharp eds = null;
                     string ext = Path.GetExtension(filePath).ToLower();
                     if (ext == ".xdd" || ext == ".xdc" || ext == ".xpd")
                     {
                         CanOpenXDD_1_1 coxml_1_1 = new();
                         eds = coxml_1_1.ReadXML(filePath);
-                        eds.projectFilename = filePath;
-                        if (ext == ".xdd")
+                        if (eds == null) // Fallback for corrupted extensions
                         {
-                            eds.xddfilename_1_1 = filePath;
+                            var edss = coxml_1_1.ReadMultiXML(filePath);
+                            if (edss != null && edss.Count > 0)
+                                eds = edss[0];
                         }
-                        if (ext == ".xpd" && DataContext is MainWindowViewModel mdc)
+                        
+                        if (eds != null)
                         {
-                            mdc.CurrentProjectPath = filePath;
+                            eds.projectFilename = filePath;
+                            if (ext == ".xdd")
+                            {
+                                eds.xddfilename_1_1 = filePath;
+                            }
+                            if (ext == ".xpd" && DataContext is MainWindowViewModel mdc)
+                            {
+                                mdc.CurrentProjectPath = filePath;
+                            }
+                        }
+                        else
+                        {
+                            continue; // Skip if completely failed
                         }
                     }
                     else
@@ -538,7 +552,28 @@ public partial class MainWindow : Window
             try
             {
                 CanOpenXDD_1_1 coxml_1_1 = new();
-                List<EDSsharp> edss = coxml_1_1.ReadMultiXML(filePath);
+                List<EDSsharp> edss = null;
+                if (filePath.ToLower().EndsWith(".cpj"))
+                {
+                    edss = coxml_1_1.ReadMultiXML(filePath);
+                    if (edss == null) // Fallback if extension is wrong
+                    {
+                        var singleEds = coxml_1_1.ReadXML(filePath);
+                        if (singleEds != null) edss = new List<EDSsharp> { singleEds };
+                    }
+                }
+                else
+                {
+                    var singleEds = coxml_1_1.ReadXML(filePath);
+                    if (singleEds != null)
+                    {
+                        edss = new List<EDSsharp> { singleEds };
+                    }
+                    else // Fallback if accidentally saved as multi-xml
+                    {
+                        edss = coxml_1_1.ReadMultiXML(filePath);
+                    }
+                }
                 
                 if (edss != null && DataContext is MainWindowViewModel dc)
                 {
@@ -623,7 +658,15 @@ public partial class MainWindow : Window
                 }
 
                 CanOpenXDD_1_1 coxml_1_1 = new();
-                coxml_1_1.WriteMultiXML(filePath, edss, true);
+                if (filePath.ToLower().EndsWith(".cpj"))
+                {
+                    coxml_1_1.WriteMultiXML(filePath, edss, true);
+                }
+                else if (edss.Count > 0)
+                {
+                    // It's a single device .xpd or .xdd
+                    coxml_1_1.WriteXML(filePath, edss[0], true, false);
+                }
             }
         }
         catch (Exception ex)

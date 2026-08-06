@@ -100,7 +100,7 @@ namespace libEDSsharp
                 dev = (ISO15745ProfileContainer)serializer.Deserialize(reader);
                 reader.Close();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return null;
             }
@@ -132,7 +132,7 @@ namespace libEDSsharp
 
                 return edss;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return null;
             }
@@ -979,7 +979,7 @@ namespace libEDSsharp
             }
             else
             {
-                var hwVersion = body_device.DeviceIdentity.version.FirstOrDefault(v => v.versionType == versionVersionType.HW);
+                var hwVersion = body_device.DeviceIdentity.version.FirstOrDefault(v => v != null && v.versionType == versionVersionType.HW);
                 if (hwVersion != null)
                 {
                     hwVersion.Value = eds.di.RevisionNumber.ToString();
@@ -1278,10 +1278,10 @@ namespace libEDSsharp
                         eds.fi.Description = G_label_getDescription(body_device.DeviceIdentity.productText.Items);
                     if (body_device.DeviceIdentity.version != null && body_device.DeviceIdentity.version.Length > 0)
                     {
-                        var hwVersion = body_device.DeviceIdentity.version.FirstOrDefault(v => v.versionType == versionVersionType.HW);
+                        var hwVersion = body_device.DeviceIdentity.version.FirstOrDefault(v => v != null && v.versionType == versionVersionType.HW);
                         if (hwVersion != null && uint.TryParse(hwVersion.Value, out uint rev))
                             eds.di.RevisionNumber = rev;
-                        else if (uint.TryParse(body_device.DeviceIdentity.version[0].Value, out uint rev2))
+                        else if (body_device.DeviceIdentity.version[0] != null && uint.TryParse(body_device.DeviceIdentity.version[0].Value, out uint rev2))
                             eds.di.RevisionNumber = rev2;
                     }
                 }
@@ -1650,10 +1650,10 @@ namespace libEDSsharp
                         dev.FileInfo.Description = G_label_getDescription(body_device.DeviceIdentity.productText.Items);
                     if (body_device.DeviceIdentity.version != null && body_device.DeviceIdentity.version.Length > 0)
                     {
-                        var hwVersion = body_device.DeviceIdentity.version.FirstOrDefault(v => v.versionType == versionVersionType.HW);
+                        var hwVersion = body_device.DeviceIdentity.version.FirstOrDefault(v => v != null && v.versionType == versionVersionType.HW);
                         if (hwVersion != null && uint.TryParse(hwVersion.Value, out uint rev))
                             dev.DeviceInfo.RevisionNumber = rev;
-                        else if (uint.TryParse(body_device.DeviceIdentity.version[0].Value, out uint rev2))
+                        else if (body_device.DeviceIdentity.version[0] != null && uint.TryParse(body_device.DeviceIdentity.version[0].Value, out uint rev2))
                             dev.DeviceInfo.RevisionNumber = rev2;
                     }
                     if (body_device.DeviceIdentity.vendorName != null)
@@ -2227,7 +2227,7 @@ namespace libEDSsharp
             }
             else
             {
-                var hwVersion = body_device.DeviceIdentity.version.FirstOrDefault(v => v.versionType == versionVersionType.HW);
+                var hwVersion = body_device.DeviceIdentity.version.FirstOrDefault(v => v != null && v.versionType == versionVersionType.HW);
                 if (hwVersion != null)
                 {
                     hwVersion.Value = dev.DeviceInfo.RevisionNumber.ToString();
