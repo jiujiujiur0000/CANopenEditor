@@ -433,10 +433,8 @@ public partial class MainWindow : Window
                             {
                                 eds.xddfilename_1_1 = filePath;
                             }
-                            if (ext == ".xpd" && DataContext is MainWindowViewModel mdc)
-                            {
-                                mdc.CurrentProjectPath = filePath;
-                            }
+                            // PER USER REQUEST: Treating xpd/xdd as pure templates. 
+                            // CurrentProjectPath is intentionally left null so the user is forced to Save As .cpj
                         }
                         else
                         {
@@ -460,7 +458,7 @@ public partial class MainWindow : Window
                     {
                         dc.Network.Add(deviceView);
                         dc.SelectedDevice = deviceView;
-                        dc.IsDirty = false; // Reset dirty flag on new import
+                        dc.IsDirty = false; // Reset dirty flag after loading
                     }
                 }
                 catch (Exception ex)
@@ -627,7 +625,14 @@ public partial class MainWindow : Window
                 if (edss != null && DataContext is MainWindowViewModel dc)
                 {
                     dc.Network.Clear();
-                    dc.CurrentProjectPath = filePath;
+                    if (filePath.ToLower().EndsWith(".cpj"))
+                    {
+                        dc.CurrentProjectPath = filePath;
+                    }
+                    else
+                    {
+                        dc.CurrentProjectPath = null; // Treat as an unsaved project template
+                    }
                     foreach (var eds in edss)
                     {
                         eds.projectFilename = filePath;
@@ -645,6 +650,7 @@ public partial class MainWindow : Window
                     {
                         dc.SelectedDevice = dc.Network[0];
                     }
+                    dc.IsDirty = false;
                 }
             }
             catch (Exception ex)
@@ -662,13 +668,14 @@ public partial class MainWindow : Window
     public async void SaveProjectAsClick(object? sender, RoutedEventArgs? args)
     {
         var topLevel = TopLevel.GetTopLevel(this) ?? throw new Exception("Internal GUI error");
-        var xpd = new FilePickerFileType("XML Project Description (*.xpd)") { Patterns = ["*.xpd"] };
+        var cpj = new FilePickerFileType("CANopen Project (Multi-Device) (*.cpj)") { Patterns = ["*.cpj"] };
+        var xpd = new FilePickerFileType("XML Project Description (Single Device) (*.xpd)") { Patterns = ["*.xpd"] };
 
         var file = await topLevel.StorageProvider.SaveFilePickerAsync(new FilePickerSaveOptions
         {
             Title = "Save CANopen Project",
-            DefaultExtension = "xpd",
-            FileTypeChoices = [xpd]
+            DefaultExtension = "cpj",
+            FileTypeChoices = [cpj, xpd]
         });
 
         if (file != null)
@@ -716,7 +723,6 @@ public partial class MainWindow : Window
                     // It's a single device .xpd or .xdd
                     coxml_1_1.WriteXML(filePath, edss[0], true, false);
                 }
-                
                 dc.IsDirty = false;
             }
         }
