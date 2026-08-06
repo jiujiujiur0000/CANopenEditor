@@ -86,14 +86,15 @@
                 </StackPanel>
             </Grid>
 
-            <!-- 主编辑器区域（有设备时显示） -->
-            <Grid IsVisible="{Binding HasDevice}">
+            <!-- 主编辑器区域（有设备时显示），统一底色防止缝隙漏出灰底 -->
+            <Grid IsVisible="{Binding HasDevice}" Background="{DynamicResource SystemControlBackgroundAltHighBrush}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="200" MinWidth="150" />
-                    <ColumnDefinition Width="1" />
+                    <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 
+                <!-- 恢复右边框作为视觉上的 1 像素细线 -->
                 <Border Grid.Column="0" BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" BorderThickness="0,0,1,0">
                     <Grid RowDefinitions="Auto,*">
                         <TextBlock Grid.Row="0" Text="设备网络" FontWeight="Bold" Margin="15,15,10,10" Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}" />
@@ -135,8 +136,8 @@
                         </ListBox>
                     </Grid>
                 </Border>
-                
-                <GridSplitter Grid.Column="1" Background="{DynamicResource SystemControlForegroundBaseLowBrush}" ResizeDirection="Columns" />
+                <!-- GridSplitter 设置为透明并且加宽，只作为鼠标拖拽区域，视觉上不可见 -->
+                <GridSplitter Grid.Column="1" Width="5" Background="Transparent" ResizeDirection="Columns" />
                 
                 <ContentControl Grid.Column="2" Content="{Binding SelectedDevice}">
                     <ContentControl.ContentTemplate>
