@@ -58,18 +58,26 @@
         <Setter Property="BorderThickness" Value="0,0,1,1" />
         <Setter Property="Template">
           <ControlTemplate>
-            <!-- 自定义模板，彻底去掉了自带的蓝色线条 -->
-            <Border Name="PART_LayoutRoot"
-                    Background="{TemplateBinding Background}"
-                    BorderBrush="{TemplateBinding BorderBrush}"
-                    BorderThickness="{TemplateBinding BorderThickness}"
-                    Padding="{TemplateBinding Padding}">
-              <ContentPresenter Name="PART_ContentPresenter"
-                                ContentTemplate="{TemplateBinding HeaderTemplate}"
-                                Content="{TemplateBinding Header}"
-                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
-            </Border>
+            <!-- 自定义模板，采用 Grid 叠加以实现独立的顶部蓝色线条 -->
+            <Grid>
+              <Border Name="PART_LayoutRoot"
+                      Background="{TemplateBinding Background}"
+                      BorderBrush="{TemplateBinding BorderBrush}"
+                      BorderThickness="{TemplateBinding BorderThickness}"
+                      Padding="{TemplateBinding Padding}">
+                <ContentPresenter Name="PART_ContentPresenter"
+                                  ContentTemplate="{TemplateBinding HeaderTemplate}"
+                                  Content="{TemplateBinding Header}"
+                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+              </Border>
+              <!-- 选中的蓝色上边框 -->
+              <Rectangle Name="PART_SelectedPipe"
+                         Fill="#0078D7"
+                         Height="2"
+                         VerticalAlignment="Top"
+                         IsVisible="False" />
+            </Grid>
           </ControlTemplate>
         </Setter>
       </Style>
@@ -84,6 +92,11 @@
         <Setter Property="Background" Value="{DynamicResource SystemControlBackgroundAltHighBrush}" />
         <!-- 选中的标签关闭下方边框，保持左右边框（这里设置右边，左边由前一个标签提供） -->
         <Setter Property="BorderThickness" Value="0,0,1,0" />
+      </Style>
+      
+      <!-- 当选中时，显示顶部的蓝色线条 -->
+      <Style Selector="TabItem:selected /template/ Rectangle#PART_SelectedPipe">
+        <Setter Property="IsVisible" Value="True" />
       </Style>
     </TabControl.Styles>
 
