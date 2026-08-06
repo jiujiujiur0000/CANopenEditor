@@ -31,7 +31,7 @@
                 <MenuItem Header="{DynamicResource str_menu_file}" x:Name="fileMenu" >
                     <MenuItem Header="{DynamicResource str_menu_new_project}" Command="{Binding NewProjectCommand}"/>
                     <MenuItem Header="{DynamicResource str_menu_open_project}" Click="OpenProjectClick"/>
-                    <MenuItem Header="{DynamicResource str_menu_save_project}" Click="SaveProjectClick" IsEnabled="{Binding HasDevice}"/>
+                    <MenuItem Header="{DynamicResource str_menu_save_project}" Click="SaveProjectClick" IsEnabled="{Binding IsDirty}"/>
                     <MenuItem Header="{DynamicResource str_menu_save_project_as}" Click="SaveProjectAsClick" IsEnabled="{Binding HasDevice}"/>
                     <MenuItem Header="{DynamicResource str_menu_close_project}" Command="{Binding CloseAllDevicesCommand}" IsEnabled="{Binding HasDevice}"/>
                     <Separator/>
