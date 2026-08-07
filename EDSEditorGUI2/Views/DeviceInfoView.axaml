@@ -12,7 +12,7 @@
     <Grid ColumnDefinitions="*, *" Margin="15,5,15,15" HorizontalAlignment="Stretch" VerticalAlignment="Top" MaxWidth="1200">
       
       <!-- Left Column -->
-      <Grid Grid.Column="0" RowDefinitions="Auto, *" Margin="0,0,7.5,0">
+      <Grid Grid.Column="0" RowDefinitions="Auto, Auto" Margin="0,0,7.5,0" VerticalAlignment="Top">
         <!-- Card 1: Device Info -->
         <Border Grid.Row="0" Margin="0,0,0,15" Background="{DynamicResource SystemControlBackgroundAltHighBrush}" 
                 BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" 
@@ -47,12 +47,12 @@
                 BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" 
                 BorderThickness="1" CornerRadius="8" Padding="25"
                 BoxShadow="0 4 10 0 #1A000000">
-          <Grid RowDefinitions="Auto, *" HorizontalAlignment="Stretch">
+          <Grid RowDefinitions="Auto, Auto" HorizontalAlignment="Stretch">
             <StackPanel Grid.Row="0" Spacing="5" Margin="0,0,0,25">
               <TextBlock Text="文件信息" FontWeight="Bold" FontSize="15"/>
             </StackPanel>
             
-            <Grid Grid.Row="1" ColumnDefinitions="120, *" RowDefinitions="Auto, Auto, Auto, *">
+            <Grid Grid.Row="1" ColumnDefinitions="120, *" RowDefinitions="Auto, Auto, Auto, Auto">
               <TextBlock Grid.Row="0" Grid.Column="0" Text="文件版本" VerticalAlignment="Center" Margin="0,0,0,15"/>
               <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding FileInfo.FileVersion}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
               
@@ -63,7 +63,7 @@
               <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding FileInfo.ModifiedBy}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
 
               <TextBlock Grid.Row="3" Grid.Column="0" Text="文件描述" VerticalAlignment="Top" Margin="0,5,0,0"/>
-              <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding FileInfo.Description}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" AcceptsReturn="True" TextWrapping="Wrap" Classes="clearButton"/>
+              <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding FileInfo.Description}" HorizontalAlignment="Stretch" Height="115" AcceptsReturn="True" TextWrapping="Wrap" Classes="clearButton"/>
             </Grid>
           </Grid>
         </Border>
