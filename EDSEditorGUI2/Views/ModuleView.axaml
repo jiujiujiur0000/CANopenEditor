@@ -6,16 +6,16 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
              x:Class="EDSEditorGUI2.Views.ModuleView"
              x:DataType="vm:ModuleViewModel">
-    <Grid RowDefinitions="Auto,*,Auto" ColumnDefinitions="*,*" Margin="10" MaxWidth="1200">
+    <Grid RowDefinitions="Auto,*,Auto" ColumnDefinitions="*,*" Margin="15,5,15,15" MaxWidth="1200">
         <!-- Top bar: Nr Supported Modules -->
-        <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="0,0,0,10">
-            <TextBlock Text="{DynamicResource str_module_connected_count}" VerticalAlignment="Center" Margin="0,0,10,0"/>
+        <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="0,0,0,15">
+            <TextBlock Text="{DynamicResource str_module_connected_count}" VerticalAlignment="Center" Margin="0,0,15,0"/>
             <TextBox Text="{Binding NrSupportedModules}" IsReadOnly="True" Width="80"/>
         </StackPanel>
         
         <!-- Left panel: Modules List -->
-        <Grid Grid.Row="1" Grid.Column="0" RowDefinitions="Auto,*" Margin="0,0,10,0">
-            <TextBlock Grid.Row="0" Text="{DynamicResource str_module_list}" FontWeight="Bold" FontSize="18" Margin="0,5,0,10"/>
+        <Grid Grid.Row="1" Grid.Column="0" RowDefinitions="Auto,*" Margin="0,0,7.5,0">
+            <TextBlock Grid.Row="0" Text="{DynamicResource str_module_list}" FontWeight="Bold" FontSize="18" Margin="0,5,0,15"/>
             <Border Grid.Row="1" Background="{DynamicResource SystemControlBackgroundAltHighBrush}"
                     BorderBrush="{DynamicResource SystemControlForegroundBaseMediumLowBrush}" 
                     BorderThickness="1" CornerRadius="8" ClipToBounds="True">
@@ -56,8 +56,8 @@
         </Grid>
 
         <!-- Right panel: Extended Objects and Comments -->
-        <Grid Grid.Row="1" Grid.Column="1" RowDefinitions="Auto,*,Auto" Margin="10,0,0,0">
-            <TextBlock Grid.Row="0" Text="{DynamicResource str_module_extended_objects}" FontWeight="Bold" FontSize="18" Margin="0,5,0,10"/>
+        <Grid Grid.Row="1" Grid.Column="1" RowDefinitions="Auto,*,Auto" Margin="7.5,0,0,0">
+            <TextBlock Grid.Row="0" Text="{DynamicResource str_module_extended_objects}" FontWeight="Bold" FontSize="18" Margin="0,5,0,15"/>
             <Border Grid.Row="1" Margin="0,0,0,10"
                     BorderBrush="{DynamicResource SystemControlForegroundBaseMediumLowBrush}" 
                     BorderThickness="1" CornerRadius="8" ClipToBounds="True">

@@ -10,12 +10,12 @@
              x:DataType="vm:DevicePDOViewModel">
 
   <ScrollViewer>
-    <StackPanel Spacing="25" Margin="25" MaxWidth="1200">
+    <StackPanel Spacing="15" Margin="15,5,15,15" MaxWidth="1200">
       
       <!-- Top Area: DataGrid & Properties -->
       <Grid ColumnDefinitions="*, 450" MinHeight="350">
         <!-- Left: DataGrid -->
-        <Border Grid.Column="0" Margin="0,0,25,0" MaxHeight="600" Background="{DynamicResource SystemControlBackgroundAltHighBrush}" BorderThickness="1" BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" CornerRadius="8" ClipToBounds="True">
+        <Border Grid.Column="0" Margin="0,0,15,0" MaxHeight="600" Background="{DynamicResource SystemControlBackgroundAltHighBrush}" BorderThickness="1" BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" CornerRadius="8" ClipToBounds="True">
           <DataGrid ItemsSource="{Binding AvailableObjects}"
                     x:Name="subindexGrid"
                     GridLinesVisibility="Horizontal"
