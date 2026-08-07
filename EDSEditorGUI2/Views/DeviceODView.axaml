@@ -14,32 +14,32 @@
       <Setter Property="Background" Value="Transparent"/>
     </Style>
     <Style Selector="GridSplitter.Horizontal">
-      <Setter Property="Height" Value="6"/>
-      <Setter Property="Margin" Value="0,2"/>
+      <Setter Property="Height" Value="15"/>
+      <Setter Property="Margin" Value="0,0"/>
     </Style>
     <Style Selector="GridSplitter.Vertical">
-      <Setter Property="Width" Value="6"/>
-      <Setter Property="Margin" Value="2,0"/>
+      <Setter Property="Width" Value="15"/>
+      <Setter Property="Margin" Value="0,0"/>
     </Style>
   </UserControl.Styles>
 
   <dialogHost:DialogHost Identifier="NoAnimationDialogHost" MaxWidth="1400">
     <Grid ColumnDefinitions="350, Auto, *">
       <!-- Left Panel: OD Indexes -->
-      <Grid RowDefinitions="*, Auto, *, Auto, *" Grid.Column="0" Margin="15,5,7.5,15">
+      <Grid RowDefinitions="*, Auto, *, Auto, *" Grid.Column="0" Margin="15,5,0,15">
         <view:ODIndexRangeView Grid.Row="0" DataContext="{Binding}"
                                x:Name="ODView_Com"
                                Heading="{DynamicResource str_od_comm_params}"
                                MinIndex="0x1000"
                                MaxIndex="0x1FFF"/>
-        <GridSplitter Grid.Row="1" Classes="Horizontal" ResizeDirection="Rows" Background="Transparent" Height="8"/>
+        <GridSplitter Grid.Row="1" Classes="Horizontal" ResizeDirection="Rows" Background="Transparent"/>
         
         <view:ODIndexRangeView Grid.Row="2" DataContext="{Binding}"
                                x:Name="ODView_Manufacture"
                                Heading="{DynamicResource str_od_mfg_params}"
                                MinIndex="0x2000"
                                MaxIndex="0x5FFF"/>
-        <GridSplitter Grid.Row="3" Classes="Horizontal" ResizeDirection="Rows" Background="Transparent" Height="8"/>
+        <GridSplitter Grid.Row="3" Classes="Horizontal" ResizeDirection="Rows" Background="Transparent"/>
         
         <view:ODIndexRangeView Grid.Row="4" DataContext="{Binding}"
                                x:Name="ODView_Device"
@@ -48,10 +48,10 @@
                                MaxIndex="0x9FFF"/>
       </Grid>
 
-      <GridSplitter Grid.Column="1" Classes="Vertical" ResizeDirection="Columns" Background="Transparent" Width="8"/>
+      <GridSplitter Grid.Column="1" Classes="Vertical" ResizeDirection="Columns" Background="Transparent"/>
       
       <!-- Right Panel: DataGrid and Property Editor -->
-      <Grid RowDefinitions="Auto, *, Auto, *" Grid.Column="2" Margin="7.5,5,15,15">
+      <Grid RowDefinitions="Auto, *, Auto, *" Grid.Column="2" Margin="0,5,15,15">
         <!-- SubObjects Heading -->
         <TextBlock Grid.Row="0" Text="子对象列表" FontWeight="Bold" FontSize="18" Margin="0,5,0,10"/>
         
