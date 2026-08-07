@@ -605,14 +605,9 @@ public partial class MainWindow : Window
         }
     }
 
-    public void ExportCurrentDeviceSourceV4Click(object? sender, RoutedEventArgs args)
+    public void ExportCurrentDeviceSourceClick(object? sender, RoutedEventArgs args)
     {
-        ExportCurrentDeviceSource(args, libEDSsharp.ExporterFactory.Exporter.CANOPENNODE_V4);
-    }
-
-    public void ExportCurrentDeviceSourceLegacyClick(object? sender, RoutedEventArgs args)
-    {
-        ExportCurrentDeviceSource(args, libEDSsharp.ExporterFactory.Exporter.CANOPENNODE_LEGACY);
+        ExportCurrentDeviceSource(args, ConfigurationManager.Settings.CurrentExporter);
     }
 
     public async void NewProjectClick(object sender, RoutedEventArgs args)

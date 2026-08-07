@@ -79,10 +79,7 @@
                     <Separator/>
                     <MenuItem Header="{DynamicResource str_menu_export_device}" IsEnabled="{Binding SelectedDevice, Converter={x:Static ObjectConverters.IsNotNull}}">
                         <MenuItem Header="{DynamicResource str_menu_export_eds}" Click="ExportCurrentDeviceEdsClick"/>
-                        <MenuItem Header="{DynamicResource str_menu_export_source}">
-                            <MenuItem Header="{DynamicResource str_menu_export_source_v4}" Click="ExportCurrentDeviceSourceV4Click"/>
-                            <MenuItem Header="{DynamicResource str_menu_export_source_legacy}" Click="ExportCurrentDeviceSourceLegacyClick"/>
-                        </MenuItem>
+                        <MenuItem Header="{DynamicResource str_menu_export_source}" Click="ExportCurrentDeviceSourceClick"/>
                     </MenuItem>
                     <MenuItem Header="{DynamicResource str_menu_export_all}" IsEnabled="{Binding HasDevice}">
                         <MenuItem Header="{DynamicResource str_menu_export_eds}"/>
@@ -151,10 +148,7 @@
                                                 <Separator/>
                                                 <MenuItem Header="导出当前设备">
                                                     <MenuItem Header="EDS / XDD 格式" Click="ExportCurrentDeviceEdsClick"/>
-                                                    <MenuItem Header="CANopenNode 源码">
-                                                        <MenuItem Header="导出为 V4 最新版" Click="ExportCurrentDeviceSourceV4Click"/>
-                                                        <MenuItem Header="导出为 V1-V3 兼容版" Click="ExportCurrentDeviceSourceLegacyClick"/>
-                                                    </MenuItem>
+                                                    <MenuItem Header="CANopenNode 源码" Click="ExportCurrentDeviceSourceClick"/>
                                                 </MenuItem>
                                             </ContextMenu>
                                         </Border.ContextMenu>
