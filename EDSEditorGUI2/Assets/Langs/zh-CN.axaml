@@ -28,7 +28,7 @@
     <sys:String x:Key="str_menu_import_device">导入设备</sys:String>
     <sys:String x:Key="str_menu_remove_device">移除当前设备</sys:String>
     <sys:String x:Key="str_menu_export_device">导出当前设备</sys:String>
-    <sys:String x:Key="str_menu_export_eds">EDS / XDD 格式</sys:String>
+    <sys:String x:Key="str_menu_export_eds">XDD / EDS / DCF 格式</sys:String>
     <sys:String x:Key="str_menu_export_source">CANopenNode 源码</sys:String>
     <sys:String x:Key="str_menu_export_source_v4">导出为 V4 最新版</sys:String>
     <sys:String x:Key="str_menu_export_source_legacy">导出为 V1-V3 兼容版</sys:String>

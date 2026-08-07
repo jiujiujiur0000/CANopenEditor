@@ -28,7 +28,7 @@
     <sys:String x:Key="str_menu_import_device">Import Device</sys:String>
     <sys:String x:Key="str_menu_remove_device">Remove Current Device</sys:String>
     <sys:String x:Key="str_menu_export_device">Export Current Device</sys:String>
-    <sys:String x:Key="str_menu_export_eds">EDS / XDD Format</sys:String>
+    <sys:String x:Key="str_menu_export_eds">XDD / EDS / DCF Format</sys:String>
     <sys:String x:Key="str_menu_export_source">CANopenNode Source</sys:String>
     <sys:String x:Key="str_menu_export_source_v4">Export as V4 (Latest)</sys:String>
     <sys:String x:Key="str_menu_export_source_legacy">Export as V1-V3 Compatible</sys:String>
