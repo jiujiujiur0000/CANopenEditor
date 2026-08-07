@@ -81,6 +81,11 @@ public partial class MainWindow : Window
             }
         }
 
+        TriggerAutoSave();
+    }
+
+    public void TriggerAutoSave()
+    {
         if (DataContext is MainWindowViewModel dc)
         {
             dc.IsDirty = true;

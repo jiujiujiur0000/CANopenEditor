@@ -315,9 +315,9 @@ public partial class DevicePDOView : UserControl
     {
         if (Avalonia.Application.Current?.ApplicationLifetime is Avalonia.Controls.ApplicationLifetimes.IClassicDesktopStyleApplicationLifetime desktop)
         {
-            if (desktop.MainWindow?.DataContext is EDSEditorGUI2.ViewModels.MainWindowViewModel dc)
+            if (desktop.MainWindow is MainWindow mw)
             {
-                dc.IsDirty = true;
+                mw.TriggerAutoSave();
             }
         }
     }
