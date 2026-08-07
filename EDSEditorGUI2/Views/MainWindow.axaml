@@ -42,6 +42,15 @@
                     <MenuItem Header="{DynamicResource str_menu_remove_device}" Command="{Binding CloseDeviceCommand}" CommandParameter="{Binding SelectedDevice}" IsEnabled="{Binding CanRemoveDevice}"/>
                     <Separator/>
                     <MenuItem Header="{DynamicResource str_menu_recent}">
+                        <MenuItem.Styles>
+                            <Style Selector="MenuItem > MenuItem:nth-child(2)">
+                                <Setter Property="Template">
+                                    <ControlTemplate>
+                                        <ContentPresenter Content="{TemplateBinding Header}" />
+                                    </ControlTemplate>
+                                </Setter>
+                            </Style>
+                        </MenuItem.Styles>
                         <MenuItem Header="{DynamicResource str_menu_recent_empty}" IsVisible="{Binding !HasRecentFiles}" IsEnabled="False"/>
                         <ItemsControl ItemsSource="{Binding RecentFiles}" HorizontalAlignment="Stretch">
                             <ItemsControl.ItemTemplate>
@@ -49,7 +58,7 @@
                                     <MenuItem Click="OpenRecentFileClick">
                                         <MenuItem.Template>
                                             <ControlTemplate>
-                                                <Border Background="{TemplateBinding Background}" Padding="4,6">
+                                                <Border Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}">
                                                     <Grid ColumnDefinitions="*,Auto" HorizontalAlignment="Stretch">
                                                         <TextBlock Text="{Binding}" VerticalAlignment="Center" Margin="0,0,10,0" TextTrimming="CharacterEllipsis"/>
                                                         <Button Grid.Column="1" Content="✕" Background="Transparent" BorderThickness="0" Padding="0" Margin="0"
