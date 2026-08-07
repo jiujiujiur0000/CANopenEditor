@@ -43,14 +43,23 @@
                     <Separator/>
                     <MenuItem Header="{DynamicResource str_menu_recent}">
                         <MenuItem Header="{DynamicResource str_menu_recent_empty}" IsVisible="{Binding !HasRecentFiles}" IsEnabled="False"/>
-                        <ItemsControl ItemsSource="{Binding RecentFiles}">
+                        <ItemsControl ItemsSource="{Binding RecentFiles}" HorizontalAlignment="Stretch">
+                            <ItemsControl.Styles>
+                                <Style Selector="ContentPresenter">
+                                    <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                                </Style>
+                                <Style Selector="MenuItem">
+                                    <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                                </Style>
+                            </ItemsControl.Styles>
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate x:CompileBindings="False">
-                                    <MenuItem Click="OpenRecentFileClick">
+                                    <MenuItem Click="OpenRecentFileClick" HorizontalAlignment="Stretch">
                                         <MenuItem.Header>
-                                            <Grid ColumnDefinitions="*,Auto">
-                                                <TextBlock Text="{Binding}" VerticalAlignment="Center" Margin="0,0,20,0"/>
-                                                <Button Grid.Column="1" Content="❌" Background="Transparent" BorderThickness="0" Padding="5,0"
+                                            <Grid ColumnDefinitions="*,Auto" HorizontalAlignment="Stretch">
+                                                <TextBlock Text="{Binding}" VerticalAlignment="Center" Margin="0,0,20,0" TextTrimming="CharacterEllipsis"/>
+                                                <Button Grid.Column="1" Content="✕" Background="Transparent" BorderThickness="0" Padding="5,0"
+                                                        Foreground="Gray" Cursor="Hand"
                                                         Command="{Binding $parent[Window].DataContext.RemoveRecentFileCommand}" 
                                                         CommandParameter="{Binding}"/>
                                             </Grid>
