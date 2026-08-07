@@ -59,13 +59,15 @@
         <Grid Grid.Row="1" Grid.Column="1" RowDefinitions="Auto,*,Auto" Margin="7.5,0,0,0">
             <TextBlock Grid.Row="0" Text="{DynamicResource str_module_extended_objects}" FontWeight="Bold" FontSize="18" Margin="0,5,0,15"/>
             <Border Grid.Row="1" Margin="0,0,0,10"
+                    Background="{DynamicResource SystemControlBackgroundAltHighBrush}"
                     BorderBrush="{DynamicResource SystemControlForegroundBaseMediumLowBrush}" 
                     BorderThickness="1" CornerRadius="8" ClipToBounds="True">
                 <DataGrid ItemsSource="{Binding SelectedModule.ExtendedObjects}"
                           AutoGenerateColumns="False" CanUserReorderColumns="False" 
                           CanUserResizeColumns="True" CanUserSortColumns="True"
                           HeadersVisibility="Column"
-                          GridLinesVisibility="Horizontal" BorderThickness="0" CornerRadius="8">
+                          GridLinesVisibility="Horizontal" BorderThickness="0" CornerRadius="8"
+                          RowBackground="Transparent">
                     <DataGrid.Styles>
                         <Style Selector="DataGridColumnHeader">
                             <Setter Property="Background" Value="Transparent"/>
