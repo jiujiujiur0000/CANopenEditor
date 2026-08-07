@@ -181,6 +181,18 @@ namespace EDSEditorGUI2.ViewModels
             OnPropertyChanged(nameof(SelectedSlot));
         }
 
+        public void RemoveMapping(PDOSlotViewModel slotViewModel, PDOMappingEntry entryToRemove)
+        {
+            if (slotViewModel == null || slotViewModel.Slot == null) return;
+            
+            slotViewModel.Slot.Mapping.Remove(entryToRemove);
+            _helper.buildmappingsfromlists(false);
+            
+            UpdateMappings();
+            OnPropertyChanged(nameof(Mappings));
+            OnPropertyChanged(nameof(SelectedSlot));
+        }
+
         public void UpdatePDOList()
         {
             Slots.Clear();

@@ -159,6 +159,18 @@ public partial class DevicePDOView : UserControl
                             }
                         };
                         
+                        if (isAvailable && _vm != null)
+                        {
+                            var menu = new ContextMenu();
+                            var menuItem = new MenuItem { Header = "Remove Item" };
+                            menuItem.Click += (s, e) => {
+                                _vm.RemoveMapping(slot, mapping);
+                                Dispatcher.UIThread.InvokeAsync(UpdateGraphicalMappings);
+                            };
+                            menu.ItemsSource = new[] { menuItem };
+                            border.ContextMenu = menu;
+                        }
+                        
                         SetupDropTarget(border, slot, currentOrdinal);
 
                         AddToMappingGrid(border, row, 3 + currentBit, width);
