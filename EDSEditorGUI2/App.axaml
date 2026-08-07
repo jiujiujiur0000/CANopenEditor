@@ -37,6 +37,10 @@
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="FontWeight" Value="Medium"/>
         </Style>
+        <Style Selector="DataGridCell TextBlock">
+            <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
         
         <!-- Global override for TextBox -->
         <Style Selector="TextBox">
