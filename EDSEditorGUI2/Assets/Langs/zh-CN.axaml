@@ -9,7 +9,11 @@
     <sys:String x:Key="str_menu_save_as">另存为(_A)...</sys:String>
     <sys:String x:Key="str_menu_open_network">打开网络配置(_N)</sys:String>
     <sys:String x:Key="str_menu_save_network">保存网络配置(_K)</sys:String>
-    <sys:String x:Key="str_menu_recent">最近项目(_R)</sys:String>
+    <sys:String x:Key="str_menu_recent">最近项目(R)</sys:String>
+    <sys:String x:Key="str_menu_recent_empty">(空)</sys:String>
+    <sys:String x:Key="str_menu_clear_recent">清除最近打开的</sys:String>
+    <sys:String x:Key="str_msg_file_not_found">文件路径已失效或被移动：</sys:String>
+    <sys:String x:Key="str_msg_confirm_clear">确定要清除所有最近打开的记录吗？</sys:String>
     <sys:String x:Key="str_menu_export">导出(_E)</sys:String>
     <sys:String x:Key="str_menu_export_canopennode">导出CanOpenNode代码(_C)...</sys:String>
     <sys:String x:Key="str_menu_save_all">全部保存(_A)</sys:String>

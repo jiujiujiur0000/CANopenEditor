@@ -41,7 +41,27 @@
                     <MenuItem Header="{DynamicResource str_menu_import_device}" Click="OpenFileClick" IsEnabled="{Binding IsProjectMode}"/>
                     <MenuItem Header="{DynamicResource str_menu_remove_device}" Command="{Binding CloseDeviceCommand}" CommandParameter="{Binding SelectedDevice}" IsEnabled="{Binding CanRemoveDevice}"/>
                     <Separator/>
-                    <MenuItem Header="{DynamicResource str_menu_recent}"/>
+                    <MenuItem Header="{DynamicResource str_menu_recent}">
+                        <MenuItem Header="{DynamicResource str_menu_recent_empty}" IsVisible="{Binding !HasRecentFiles}" IsEnabled="False"/>
+                        <ItemsControl ItemsSource="{Binding RecentFiles}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate x:CompileBindings="False">
+                                    <MenuItem Click="OpenRecentFileClick">
+                                        <MenuItem.Header>
+                                            <Grid ColumnDefinitions="*,Auto">
+                                                <TextBlock Text="{Binding}" VerticalAlignment="Center" Margin="0,0,20,0"/>
+                                                <Button Grid.Column="1" Content="❌" Background="Transparent" BorderThickness="0" Padding="5,0"
+                                                        Command="{Binding $parent[Window].DataContext.RemoveRecentFileCommand}" 
+                                                        CommandParameter="{Binding}"/>
+                                            </Grid>
+                                        </MenuItem.Header>
+                                    </MenuItem>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                        <Separator IsVisible="{Binding HasRecentFiles}"/>
+                        <MenuItem Header="{DynamicResource str_menu_clear_recent}" Click="ClearRecentFilesClick" IsVisible="{Binding HasRecentFiles}"/>
+                    </MenuItem>
                     <Separator/>
                     <MenuItem Header="{DynamicResource str_menu_export_device}" IsEnabled="{Binding SelectedDevice, Converter={x:Static ObjectConverters.IsNotNull}}">
                         <MenuItem Header="{DynamicResource str_menu_export_eds}" Click="ExportCurrentDeviceEdsClick"/>
@@ -178,6 +198,23 @@
     <StackPanel x:Key="SaveErrorDialog" Margin="20" Spacing="15" MinWidth="300">
         <TextBlock Text="保存失败" FontWeight="Bold" FontSize="18" Foreground="Red"/>
         <TextBlock Text="保存项目时遇到错误。可能是工程中存在不兼容的特殊字符或内部数据损坏。请检查终端输出获取详情。" TextWrapping="Wrap"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="10" Margin="0,10,0,0">
+            <Button Content="确定 (OK)" Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=dialogHost:DialogHost}, Path=CloseDialogCommand}" CommandParameter="OK" Classes="accent"/>
+        </StackPanel>
+    </StackPanel>
+
+    <StackPanel x:Key="ClearRecentConfirmDialog" Margin="20" Spacing="15" MinWidth="300">
+        <TextBlock Text="{DynamicResource str_menu_clear_recent}" FontWeight="Bold" FontSize="18"/>
+        <TextBlock Text="{DynamicResource str_msg_confirm_clear}" TextWrapping="Wrap"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="10" Margin="0,10,0,0">
+            <Button Content="确定 (OK)" Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=dialogHost:DialogHost}, Path=CloseDialogCommand}" CommandParameter="OK" Classes="accent"/>
+            <Button Content="取消 (Cancel)" Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=dialogHost:DialogHost}, Path=CloseDialogCommand}" CommandParameter="Cancel"/>
+        </StackPanel>
+    </StackPanel>
+
+    <StackPanel x:Key="FileNotFoundDialog" Margin="20" Spacing="15" MinWidth="300" MaxWidth="500">
+        <TextBlock Text="文件不存在" FontWeight="Bold" FontSize="18" Foreground="Red"/>
+        <TextBlock Text="{Binding}" TextWrapping="Wrap"/>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="10" Margin="0,10,0,0">
             <Button Content="确定 (OK)" Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=dialogHost:DialogHost}, Path=CloseDialogCommand}" CommandParameter="OK" Classes="accent"/>
         </StackPanel>

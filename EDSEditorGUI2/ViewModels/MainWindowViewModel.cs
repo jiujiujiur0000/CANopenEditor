@@ -13,6 +13,59 @@ public partial class MainWindowViewModel : ViewModelBase
     int Counter = 0;
     public bool HasNoDevice => Network.Count == 0;
     
+    public ObservableCollection<string> RecentFiles { get; } = new();
+    
+    public bool HasRecentFiles => RecentFiles.Count > 0;
+    
+    public void LoadRecentFiles()
+    {
+        RecentFiles.Clear();
+        foreach (var file in ConfigurationManager.Settings.RecentFiles)
+        {
+            RecentFiles.Add(file);
+        }
+        OnPropertyChanged(nameof(HasRecentFiles));
+    }
+
+    public void AddRecentFile(string path)
+    {
+        if (RecentFiles.Contains(path))
+        {
+            RecentFiles.Remove(path);
+        }
+        RecentFiles.Insert(0, path);
+        if (RecentFiles.Count > 10)
+        {
+            RecentFiles.RemoveAt(RecentFiles.Count - 1);
+        }
+        ConfigurationManager.Settings.RecentFiles.Clear();
+        ConfigurationManager.Settings.RecentFiles.AddRange(RecentFiles);
+        ConfigurationManager.Save();
+        OnPropertyChanged(nameof(HasRecentFiles));
+    }
+
+    [RelayCommand]
+    public void RemoveRecentFile(string path)
+    {
+        if (RecentFiles.Contains(path))
+        {
+            RecentFiles.Remove(path);
+            ConfigurationManager.Settings.RecentFiles.Clear();
+            ConfigurationManager.Settings.RecentFiles.AddRange(RecentFiles);
+            ConfigurationManager.Save();
+            OnPropertyChanged(nameof(HasRecentFiles));
+        }
+    }
+
+    [RelayCommand]
+    public void ClearRecentFiles()
+    {
+        RecentFiles.Clear();
+        ConfigurationManager.Settings.RecentFiles.Clear();
+        ConfigurationManager.Save();
+        OnPropertyChanged(nameof(HasRecentFiles));
+    }
+
     [ObservableProperty]
     private string? _currentProjectPath;
 
@@ -44,6 +97,8 @@ public partial class MainWindowViewModel : ViewModelBase
 
     public MainWindowViewModel()
     {
+        LoadRecentFiles();
+        
         Network.CollectionChanged += (s, e) => 
         {
             OnPropertyChanged(nameof(HasNoDevice));

@@ -12,6 +12,7 @@ namespace EDSEditorGUI2
         public string CurrentLanguage { get; set; } = "";
         public string CurrentTheme { get; set; } = "Default";
         public uint WarningMask { get; set; } = 0xFFFF; // default all warnings
+        public System.Collections.Generic.List<string> RecentFiles { get; set; } = new();
     }
 
     public static class ConfigurationManager

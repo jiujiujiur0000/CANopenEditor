@@ -492,6 +492,7 @@ public partial class MainWindow : Window
                         dc.Network.Add(deviceView);
                         dc.SelectedDevice = deviceView;
                         dc.IsDirty = false; // Reset dirty flag after loading
+                        dc.AddRecentFile(filePath);
                         Avalonia.Threading.Dispatcher.UIThread.Post(() => { _isProgrammaticChange = false; }, Avalonia.Threading.DispatcherPriority.Background);
                     }
                 }
@@ -753,6 +754,7 @@ public partial class MainWindow : Window
                         dc.SelectedDevice = dc.Network[0];
                     }
                     dc.IsDirty = false;
+                    dc.AddRecentFile(filePath);
                     
                     // Allow UI to settle before re-enabling interactions
                     Avalonia.Threading.Dispatcher.UIThread.Post(() => { _isProgrammaticChange = false; }, Avalonia.Threading.DispatcherPriority.Background);
@@ -835,16 +837,141 @@ public partial class MainWindow : Window
                 }
                 else if (edss.Count > 0)
                 {
-                    // It's a single device .xpd or .xdd
                     coxml_1_1.WriteXML(filePath, edss[0], true, false);
                 }
                 dc.IsDirty = false;
+                dc.AddRecentFile(filePath);
             }
         }
         catch (Exception ex)
         {
             Debug.WriteLine($"Failed to save project {filePath}: {ex.Message}");
             DialogHostAvalonia.DialogHost.Show(Resources["SaveErrorDialog"]!, "RootDialogHost");
+        }
+    }
+
+    private async void OpenRecentFileClick(object? sender, RoutedEventArgs e)
+    {
+        if (sender is MenuItem menuItem && menuItem.DataContext is string filePath)
+        {
+            if (File.Exists(filePath))
+            {
+                // Simulate opening the file by doing what OpenProjectClick/OpenFileClick does
+                try
+                {
+                    CanOpenXDD_1_1 coxml_1_1 = new();
+                    List<EDSsharp>? edss = null;
+                    if (filePath.ToLower().EndsWith(".cpj"))
+                    {
+                        edss = coxml_1_1.ReadMultiXML(filePath);
+                        if (edss == null) // Fallback if extension is wrong
+                        {
+                            var singleEds = coxml_1_1.ReadXML(filePath);
+                            if (singleEds != null) edss = new List<EDSsharp> { singleEds };
+                        }
+                    }
+                    else
+                    {
+                        var singleEds = coxml_1_1.ReadXML(filePath);
+                        if (singleEds != null)
+                        {
+                            edss = new List<EDSsharp> { singleEds };
+                        }
+                        else // Fallback if accidentally saved as multi-xml
+                        {
+                            edss = coxml_1_1.ReadMultiXML(filePath);
+                        }
+                    }
+                    
+                    if (edss != null && DataContext is MainWindowViewModel dc)
+                    {
+                        _isProgrammaticChange = true;
+                        
+                        // Wait if there's a device we need to save? 
+                        // To keep it simple, if IsDirty, we should prompt, but let's assume it behaves like OpenProjectClick
+                        // To properly reuse logic, we can just call DoLoadProject if we factor it out, but inline is fine for now
+                        
+                        if (dc.IsDirty)
+                        {
+                            var result = await ShowSaveConfirmDialog();
+                            if (result == "Save")
+                            {
+                                SaveProjectAsClick(null, null);
+                                return;
+                            }
+                            else if (result == "Cancel")
+                            {
+                                return;
+                            }
+                        }
+
+                        dc.Network.Clear();
+                        if (filePath.ToLower().EndsWith(".cpj") || filePath.ToLower().EndsWith(".xdd") || filePath.ToLower().EndsWith(".xpd"))
+                        {
+                            dc.CurrentProjectPath = filePath;
+                        }
+                        else
+                        {
+                            dc.CurrentProjectPath = null; // Treat as an unsaved project template
+                        }
+
+                        foreach (var eds in edss)
+                        {
+                            eds.projectFilename = filePath;
+                            if (Path.GetExtension(filePath).ToLower() == ".xdd" || Path.GetExtension(filePath).ToLower() == ".xpd") 
+                            {
+                                eds.xddfilename_1_1 = filePath;
+                            }
+                            
+                            var proto = MappingEDS.MapToProtobuffer(eds);
+                            var deviceView = ProtobufferViewModelMapper.MapFromProtobuffer(proto);
+                            deviceView.Eds = eds;
+                            dc.Network.Add(deviceView);
+                        }
+
+                        if (dc.Network.Count > 0)
+                        {
+                            dc.SelectedDevice = dc.Network[0];
+                        }
+                        dc.IsDirty = false;
+                        dc.AddRecentFile(filePath);
+                        
+                        Avalonia.Threading.Dispatcher.UIThread.Post(() => { _isProgrammaticChange = false; }, Avalonia.Threading.DispatcherPriority.Background);
+                    }
+                    else
+                    {
+                        _ = DialogHostAvalonia.DialogHost.Show(Resources["ErrorDialog"]!, "RootDialogHost");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Failed to open project {filePath}: {ex.ToString()}");
+                    _ = DialogHostAvalonia.DialogHost.Show(Resources["ErrorDialog"]!, "RootDialogHost");
+                }
+            }
+            else
+            {
+                if (DataContext is MainWindowViewModel dc)
+                {
+                    dc.RemoveRecentFile(filePath);
+                }
+                var dialog = (Control)Resources["FileNotFoundDialog"]!;
+                dialog.DataContext = Avalonia.Application.Current?.FindResource("str_msg_file_not_found")?.ToString() + filePath;
+                _ = DialogHostAvalonia.DialogHost.Show(dialog, "RootDialogHost");
+            }
+        }
+    }
+
+    private async void ClearRecentFilesClick(object? sender, RoutedEventArgs e)
+    {
+        var dialog = (Control)Resources["ClearRecentConfirmDialog"]!;
+        var result = await DialogHostAvalonia.DialogHost.Show(dialog, "RootDialogHost");
+        if (result?.ToString() == "OK")
+        {
+            if (DataContext is MainWindowViewModel dc)
+            {
+                dc.ClearRecentFiles();
+            }
         }
     }
 
