@@ -120,6 +120,10 @@ public partial class MainWindowViewModel : ViewModelBase
             },
             DeviceCommissioning = new(),
             FileInfo = new()
+            {
+                CreationTime = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(DateTime.UtcNow),
+                ModificationTime = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(DateTime.UtcNow)
+            }
         };
 
         Counter++;
