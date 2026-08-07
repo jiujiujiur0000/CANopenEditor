@@ -46,6 +46,7 @@
         <Style Selector="DataGridCell TextBlock">
             <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="ToolTip.Tip" Value="{Binding $self.Text}"/>
         </Style>
         
         <!-- Global override for TextBox -->
