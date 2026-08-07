@@ -164,6 +164,29 @@ namespace libEDSsharp
                     }
                 });
                 cfg.CreateMap<OdSubObject, EDSsharp.AccessType>().ConvertUsing<ODAccessTypeResolver>();
+
+                cfg.CreateMap<Google.Protobuf.Collections.MapField<string, OdObject>, SortedDictionary<ushort, ODentry>>()
+                    .ConvertUsing((src, dest, ctx) => {
+                        var dict = new SortedDictionary<ushort, ODentry>();
+                        foreach (var kvp in src) {
+                            if (ushort.TryParse(kvp.Key, System.Globalization.NumberStyles.HexNumber, null, out ushort key)) {
+                                dict.Add(key, ctx.Mapper.Map<ODentry>(kvp.Value));
+                            }
+                        }
+                        return dict;
+                    });
+                
+                cfg.CreateMap<Google.Protobuf.Collections.MapField<string, OdSubObject>, SortedDictionary<ushort, ODentry>>()
+                    .ConvertUsing((src, dest, ctx) => {
+                        var dict = new SortedDictionary<ushort, ODentry>();
+                        foreach (var kvp in src) {
+                            if (ushort.TryParse(kvp.Key, System.Globalization.NumberStyles.HexNumber, null, out ushort key)) {
+                                dict.Add(key, ctx.Mapper.Map<ODentry>(kvp.Value));
+                            }
+                        }
+                        return dict;
+                    });
+
                 cfg.CreateMap<OdSubObject, ODentry>()
                 .ForMember(dest => dest.parameter_name, opt => opt.MapFrom(src => src.Name))
                 .ForMember(dest => dest.Index, opt => opt.Ignore())
@@ -216,10 +239,15 @@ namespace libEDSsharp
                 .ForMember(dest => dest.FileInfo, opt => opt.MapFrom(src => src.fi))
                 .ForMember(dest => dest.DeviceInfo, opt => opt.MapFrom(src => src.di))
                 .ForMember(dest => dest.DeviceCommissioning, opt => opt.MapFrom(src => src.dc))
-                .ForMember(dest => dest.Objects, opt => opt.MapFrom(src => src.ods))
+                .ForMember(dest => dest.Objects, opt => opt.Ignore())
                 .ForMember(dest => dest.NrSupportedModules, opt => opt.MapFrom(src => src.sm.NrOfEntries))
                 .ForMember(dest => dest.Modules, opt => opt.MapFrom(src => src.modules))
-                .AfterMap((src, dest) => {
+                .AfterMap((src, dest, ctx) => {
+                    if (src.ods != null) {
+                        foreach (var kvp in src.ods) {
+                            dest.Objects.Add(kvp.Key.ToString("X4"), ctx.Mapper.Map<OdObject>(kvp.Value));
+                        }
+                    }
                     if (src.cm?.connectedmodulelist != null)
                     {
                         foreach (var kvp in src.cm.connectedmodulelist)
@@ -265,13 +293,19 @@ namespace libEDSsharp
                 .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.parameter_name))
                 .ForMember(dest => dest.ObjectType, opt => opt.MapFrom(src => src.objecttype))
                 .ForMember(dest => dest.CountLabel, opt => opt.MapFrom(src => src.prop.CO_countLabel))
+                .ForMember(dest => dest.SubObjects, opt => opt.Ignore())
                 .AfterMap((src, dest, ctx) => {
+                    if (src.subobjects != null) {
+                        foreach (var kvp in src.subobjects) {
+                            dest.SubObjects.Add(kvp.Key.ToString("X2"), ctx.Mapper.Map<OdSubObject>(kvp.Value));
+                        }
+                    }
                     if (src.objecttype == ObjectType.VAR) {
                         var subObj = ctx.Mapper.Map<OdSubObject>(src);
-                        if (!dest.SubObjects.ContainsKey("0"))
-                            dest.SubObjects.Add("0", subObj);
+                        if (!dest.SubObjects.ContainsKey("00"))
+                            dest.SubObjects.Add("00", subObj);
                         else
-                            dest.SubObjects["0"] = subObj;
+                            dest.SubObjects["00"] = subObj;
                     }
                 });
                 cfg.CreateMap<ObjectType, OdObject.Types.ObjectType>().ConvertUsing<ODTypeResolver>();

@@ -64,15 +64,8 @@ namespace EDSEditorGUI2.Mapper
                 destination = [];
                 foreach (var item in source)
                 {
-                    // Convert Protobuf decimal string key to ViewModel hex string key
-                    if (int.TryParse(item.Key, out int decKey))
-                    {
-                        destination.Add(decKey.ToString("X4"), mapper.Map<ViewModels.OdObject>(item.Value));
-                    }
-                    else
-                    {
-                        destination.Add(item.Key, mapper.Map<ViewModels.OdObject>(item.Value));
-                    }
+                    // Both Protobuf and ViewModel use Hex string keys now
+                    destination.Add(item.Key, mapper.Map<ViewModels.OdObject>(item.Value));
                 }
                 return destination;
             }
@@ -90,14 +83,7 @@ namespace EDSEditorGUI2.Mapper
                                 foreach (var subItem in src.SubObjects)
                                 {
                                     var mappedSub = ctx.Mapper.Map<OdSubObject>(subItem.Value);
-                                    if (int.TryParse(subItem.Key, System.Globalization.NumberStyles.HexNumber, null, out int decSubKey))
-                                    {
-                                        dest.SubObjects.Add(decSubKey.ToString(), mappedSub);
-                                    }
-                                    else
-                                    {
-                                        dest.SubObjects.Add(subItem.Key, mappedSub);
-                                    }
+                                    dest.SubObjects.Add(subItem.Key, mappedSub);
                                 }
                             }
                         });
@@ -111,16 +97,8 @@ namespace EDSEditorGUI2.Mapper
                 
                 foreach (var item in source)
                 {
-                    // Convert ViewModel hex string key to Protobuf decimal string key
-                    try
-                    {
-                        int decKey = System.Convert.ToInt32(item.Key, 16);
-                        destination.Add(decKey.ToString(), mapper.Map<OdObject>(item.Value));
-                    }
-                    catch
-                    {
-                        destination.Add(item.Key, mapper.Map<OdObject>(item.Value));
-                    }
+                    // Both Protobuf and ViewModel use Hex string keys now
+                    destination.Add(item.Key, mapper.Map<OdObject>(item.Value));
                 }
                 return destination;
             }

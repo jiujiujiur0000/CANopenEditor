@@ -246,7 +246,7 @@ public class ObjectDictionary : IDictionary<string, OdObject>, INotifyCollection
                 Srdo = LibCanOpen.OdSubObject.Types.AccessSRDO.No,
                 DefaultValue = "0"
             };
-            newObj.SubObjects.Add(new KeyValuePair<string, OdSubObject>("0x0", newSub));
+            newObj.SubObjects.Add(new KeyValuePair<string, OdSubObject>("00", newSub));
         }
         else
         {
@@ -268,9 +268,8 @@ public class ObjectDictionary : IDictionary<string, OdObject>, INotifyCollection
                 Srdo = LibCanOpen.OdSubObject.Types.AccessSRDO.No,
                 DefaultValue = "0"
             };
-
-            newObj.SubObjects.Add(new KeyValuePair<string, OdSubObject>("0x0", CountSub));
-            newObj.SubObjects.Add(new KeyValuePair<string, OdSubObject>("0x1", Sub1));
+            newObj.SubObjects.Add(new KeyValuePair<string, OdSubObject>("00", CountSub));
+            newObj.SubObjects.Add(new KeyValuePair<string, OdSubObject>("01", Sub1));
         }
         Add(new KeyValuePair<string, OdObject>(strIndex, newObj));
     }

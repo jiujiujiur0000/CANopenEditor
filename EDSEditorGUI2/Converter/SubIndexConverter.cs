@@ -21,7 +21,7 @@ namespace EDSEditorGUI2.Converter
                         }
                     }
                     
-                    if (byte.TryParse(keyString, out byte key))
+                    if (byte.TryParse(keyString, NumberStyles.HexNumber, CultureInfo.InvariantCulture, out byte key))
                     {
                         return $"0x{key:X1}";
                     }
@@ -29,7 +29,7 @@ namespace EDSEditorGUI2.Converter
                     {
                         return keyString;
                     }
-                    else if (int.TryParse(keyString, out int intKey))
+                    else if (int.TryParse(keyString, NumberStyles.HexNumber, CultureInfo.InvariantCulture, out int intKey))
                     {
                         return $"0x{intKey:X1}";
                     }

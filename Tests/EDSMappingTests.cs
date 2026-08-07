@@ -152,8 +152,8 @@ namespace Tests
             };
             eds.ods.Add(od.Index, od);
             var tmp = MappingEDS.MapToProtobuffer(eds);
-            Assert.Equal(objTypeProto, tmp.Objects[od.Index.ToString()].ObjectType);
-            Assert.Equal(od.denotation, tmp.Objects[od.Index.ToString()].Alias);
+            Assert.Equal(objTypeProto, tmp.Objects[od.Index.ToString("X4")].ObjectType);
+            Assert.Equal(od.denotation, tmp.Objects[od.Index.ToString("X4")].Alias);
         }
 
         [Theory]
@@ -203,7 +203,7 @@ namespace Tests
             od.subobjects.Add(0x00, sub);
             eds.ods.Add(od.Index, od);
             var tmp = MappingEDS.MapToProtobuffer(eds);
-            Assert.Equal(datatypeProto, tmp.Objects[od.Index.ToString()].SubObjects["0"].DataType);
+            Assert.Equal(datatypeProto, tmp.Objects[od.Index.ToString("X4")].SubObjects["00"].DataType);
         }
 
         [Theory]
@@ -235,8 +235,8 @@ namespace Tests
             od.subobjects.Add(0x00, sub);
             eds.ods.Add(od.Index, od);
             var tmp = MappingEDS.MapToProtobuffer(eds);
-            Assert.Equal(accessPDOProto, tmp.Objects[od.Index.ToString()].SubObjects["0"].Pdo);
-            Assert.Equal(accessSDOProto, tmp.Objects[od.Index.ToString()].SubObjects["0"].Sdo);
+            Assert.Equal(accessPDOProto, tmp.Objects[od.Index.ToString("X4")].SubObjects["00"].Pdo);
+            Assert.Equal(accessSDOProto, tmp.Objects[od.Index.ToString("X4")].SubObjects["00"].Sdo);
         }
         [Fact]
         public void Test_ToProtobufferSubODObjectMembers()
@@ -263,11 +263,11 @@ namespace Tests
             od.subobjects.Add(0x00, sub);
             eds.ods.Add(od.Index, od);
             var tmp = MappingEDS.MapToProtobuffer(eds);
-            Assert.Equal(sub.actualvalue, tmp.Objects[od.Index.ToString()].SubObjects["0"].ActualValue);
-            Assert.Equal(sub.parameter_name, tmp.Objects[od.Index.ToString()].SubObjects["0"].Name);
-            Assert.Equal(sub.HighLimit, tmp.Objects[od.Index.ToString()].SubObjects["0"].HighLimit);
-            Assert.Equal(sub.LowLimit, tmp.Objects[od.Index.ToString()].SubObjects["0"].LowLimit);
-            Assert.Equal(sub.defaultvalue, tmp.Objects[od.Index.ToString()].SubObjects["0"].DefaultValue);
+            Assert.Equal(sub.actualvalue, tmp.Objects[od.Index.ToString("X4")].SubObjects["00"].ActualValue);
+            Assert.Equal(sub.parameter_name, tmp.Objects[od.Index.ToString("X4")].SubObjects["00"].Name);
+            Assert.Equal(sub.HighLimit, tmp.Objects[od.Index.ToString("X4")].SubObjects["00"].HighLimit);
+            Assert.Equal(sub.LowLimit, tmp.Objects[od.Index.ToString("X4")].SubObjects["00"].LowLimit);
+            Assert.Equal(sub.defaultvalue, tmp.Objects[od.Index.ToString("X4")].SubObjects["00"].DefaultValue);
         }
         [Fact]
         public void Test_ToProtobufferODObject_CustomProperties()
@@ -289,10 +289,10 @@ namespace Tests
             eds.ods.Add(od.Index, od);
             var tmp = MappingEDS.MapToProtobuffer(eds);
 
-            Assert.Equal(od.prop.CO_disabled, tmp.Objects[od.Index.ToString()].Disabled);
-            Assert.Equal(od.prop.CO_countLabel, tmp.Objects[od.Index.ToString()].CountLabel);
-            Assert.Equal(od.prop.CO_storageGroup, tmp.Objects[od.Index.ToString()].StorageGroup);
-            Assert.Equal(od.prop.CO_flagsPDO, tmp.Objects[od.Index.ToString()].FlagsPDO);
+            Assert.Equal(od.prop.CO_disabled, tmp.Objects[od.Index.ToString("X4")].Disabled);
+            Assert.Equal(od.prop.CO_countLabel, tmp.Objects[od.Index.ToString("X4")].CountLabel);
+            Assert.Equal(od.prop.CO_storageGroup, tmp.Objects[od.Index.ToString("X4")].StorageGroup);
+            Assert.Equal(od.prop.CO_flagsPDO, tmp.Objects[od.Index.ToString("X4")].FlagsPDO);
         }
         [Theory]
         [InlineData(OdSubObject.Types.AccessSRDO.No, AccessSRDO.no)]
@@ -321,8 +321,8 @@ namespace Tests
             eds.ods.Add(od.Index, od);
             var tmp = MappingEDS.MapToProtobuffer(eds);
 
-            Assert.Equal(accessSRDO, tmp.Objects[od.Index.ToString()].SubObjects["0"].Srdo);
-            Assert.Equal(sub.prop.CO_stringLengthMin, tmp.Objects[od.Index.ToString()].SubObjects["0"].StringLengthMin);
+            Assert.Equal(accessSRDO, tmp.Objects[od.Index.ToString("X4")].SubObjects["00"].Srdo);
+            Assert.Equal(sub.prop.CO_stringLengthMin, tmp.Objects[od.Index.ToString("X4")].SubObjects["00"].StringLengthMin);
         }
 
         [Fact]
