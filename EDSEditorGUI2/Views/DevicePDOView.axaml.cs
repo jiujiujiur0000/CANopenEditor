@@ -174,6 +174,7 @@ public partial class DevicePDOView : UserControl
                                 removeMenuItem.Click += (s, e) => {
                                     _vm.RemoveMapping(slot, mapping);
                                     Dispatcher.UIThread.InvokeAsync(UpdateGraphicalMappings);
+                                    MarkDirty();
                                 };
                                 items.Add(removeMenuItem);
                             }
@@ -185,6 +186,7 @@ public partial class DevicePDOView : UserControl
                             insertMenuItem.Click += (s, e) => {
                                 _vm.InsertDummyMapping(slot, captureOrdinal);
                                 Dispatcher.UIThread.InvokeAsync(UpdateGraphicalMappings);
+                                MarkDirty();
                             };
                             items.Add(insertMenuItem);
                             
@@ -240,6 +242,7 @@ public partial class DevicePDOView : UserControl
                     insertMenuItem.Click += (s, e) => {
                         _vm.InsertDummyMapping(slot, captureOrdinal);
                         Dispatcher.UIThread.InvokeAsync(UpdateGraphicalMappings);
+                        MarkDirty();
                     };
                     items.Add(insertMenuItem);
                     
@@ -302,9 +305,21 @@ public partial class DevicePDOView : UserControl
             {
                 _vm.InsertMapping(slot, ordinal, vmItem);
                 Dispatcher.UIThread.InvokeAsync(UpdateGraphicalMappings);
+                MarkDirty();
             }
             e.Handled = true;
         }, Avalonia.Interactivity.RoutingStrategies.Bubble);
+    }
+
+    private void MarkDirty()
+    {
+        if (Avalonia.Application.Current?.ApplicationLifetime is Avalonia.Controls.ApplicationLifetimes.IClassicDesktopStyleApplicationLifetime desktop)
+        {
+            if (desktop.MainWindow?.DataContext is EDSEditorGUI2.ViewModels.MainWindowViewModel dc)
+            {
+                dc.IsDirty = true;
+            }
+        }
     }
 
     void CreateMappingBitsAndBytesIndication()
