@@ -44,6 +44,8 @@
 
     <sys:String x:Key="str_menu_insert_profile">插入对象配置(_I)</sys:String>
     <sys:String x:Key="str_menu_reports">报告(_R)</sys:String>
+    <sys:String x:Key="str_menu_report_doc">设备文档 (HTML/Markdown)...</sys:String>
+    <sys:String x:Key="str_menu_report_network">网络 PDO 报告 (HTML)...</sys:String>
     <sys:String x:Key="str_menu_tools">工具</sys:String>
     <sys:String x:Key="str_menu_preferences">设置(_S)</sys:String>
 

@@ -987,4 +987,105 @@ public partial class MainWindow : Window
             var topLevel = Avalonia.Controls.TopLevel.GetTopLevel(this);
             topLevel?.FocusManager?.ClearFocus();
         }
+
+        public void ReportDocumentationClick(object? sender, RoutedEventArgs args)
+        {
+            if (DataContext is MainWindowViewModel dc && dc.SelectedDevice != null)
+            {
+                try
+                {
+                    string dir = GetTemporaryDirectory();
+                    CopyStyleCss(dir);
+
+                    string tempHtml = Path.Combine(dir, "documentation.html");
+                    string tempMd = Path.Combine(dir, "documentation.md");
+
+                    var eds = dc.SelectedDevice.GetUpdatedEds();
+
+                    DocumentationGenHtml docgenHtml = new DocumentationGenHtml();
+                    docgenHtml.genhtmldoc(tempHtml, eds);
+
+                    DocumentationGenMarkup docgenMarkup = new DocumentationGenMarkup();
+                    docgenMarkup.genmddoc(tempMd, eds);
+
+                    OpenUrlInBrowser(tempHtml);
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine($"Failed to generate documentation: {ex}");
+                }
+            }
+        }
+
+        public void ReportNetworkPDOClick(object? sender, RoutedEventArgs args)
+        {
+            if (DataContext is MainWindowViewModel dc && dc.Network != null)
+            {
+                try
+                {
+                    string dir = GetTemporaryDirectory();
+                    CopyStyleCss(dir);
+
+                    string tempHtml = Path.Combine(dir, "network.html");
+
+                    var networkFiles = new List<libEDSsharp.EDSsharp>();
+                    foreach (var device in dc.Network)
+                    {
+                        networkFiles.Add(device.GetUpdatedEds());
+                    }
+
+                    NetworkPDOreport npr = new NetworkPDOreport();
+                    npr.gennetpdodoc(tempHtml, networkFiles);
+
+                    OpenUrlInBrowser(tempHtml);
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine($"Failed to generate network PDO report: {ex}");
+                }
+            }
+        }
+
+        private string GetTemporaryDirectory()
+        {
+            string tempDirectory;
+            do
+            {
+                tempDirectory = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+            } while (Directory.Exists(tempDirectory));
+            Directory.CreateDirectory(tempDirectory);
+            return tempDirectory;
+        }
+
+        private void CopyStyleCss(string targetDir)
+        {
+            string cssPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "style.css");
+            if (File.Exists(cssPath))
+            {
+                File.Copy(cssPath, Path.Combine(targetDir, "style.css"), true);
+            }
+        }
+
+        private void OpenUrlInBrowser(string url)
+        {
+            try
+            {
+                if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.Windows))
+                {
+                    Process.Start(new ProcessStartInfo(url) { UseShellExecute = true });
+                }
+                else if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.Linux))
+                {
+                    Process.Start("xdg-open", url);
+                }
+                else if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.OSX))
+                {
+                    Process.Start("open", url);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Failed to open URL in browser: {ex}");
+            }
+        }
     }
