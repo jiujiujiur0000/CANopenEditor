@@ -51,7 +51,7 @@
                                 </Setter>
                             </Style>
                         </MenuItem.Styles>
-                        <MenuItem Header="{DynamicResource str_menu_recent_empty}" IsVisible="{Binding !HasRecentFiles}" IsEnabled="False"/>
+                        <MenuItem Header="{DynamicResource str_menu_recent_empty}" IsVisible="{Binding !HasRecentFiles}" IsEnabled="False" MinWidth="180"/>
                         <ItemsControl ItemsSource="{Binding RecentFiles}" HorizontalAlignment="Stretch">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate x:CompileBindings="False">
