@@ -92,7 +92,7 @@
                     <MenuItem Header="{DynamicResource str_menu_quit}" Click="QuitClick"/>
                 </MenuItem>
                 <MenuItem Header="{DynamicResource str_menu_insert_profile}" x:Name="profileMenu" IsEnabled="{Binding SelectedDevice, Converter={x:Static ObjectConverters.IsNotNull}}"/>
-                <MenuItem Header="{DynamicResource str_menu_reports}">
+                <MenuItem Header="{DynamicResource str_menu_reports}" IsEnabled="{Binding HasDevice}">
                     <MenuItem Header="{DynamicResource str_menu_report_doc}" Click="ReportDocumentationClick" IsEnabled="{Binding SelectedDevice, Converter={x:Static ObjectConverters.IsNotNull}}"/>
                     <MenuItem Header="{DynamicResource str_menu_report_network}" Click="ReportNetworkPDOClick" IsEnabled="{Binding HasDevice}"/>
                 </MenuItem>
