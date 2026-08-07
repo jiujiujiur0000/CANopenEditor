@@ -162,7 +162,11 @@ public partial class DevicePDOView : UserControl
                         if (isAvailable && _vm != null)
                         {
                             var menu = new ContextMenu();
-                            var menuItem = new MenuItem { Header = "Remove Item" };
+                            
+                            object? headerObj = null;
+                            this.TryFindResource("str_pdo_remove_item", out headerObj);
+                            
+                            var menuItem = new MenuItem { Header = headerObj?.ToString() ?? "Remove Item" };
                             menuItem.Click += (s, e) => {
                                 _vm.RemoveMapping(slot, mapping);
                                 Dispatcher.UIThread.InvokeAsync(UpdateGraphicalMappings);
