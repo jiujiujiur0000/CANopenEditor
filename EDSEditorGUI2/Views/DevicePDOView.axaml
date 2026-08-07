@@ -21,7 +21,8 @@
                     GridLinesVisibility="Horizontal"
                     BorderThickness="0"
                     Background="Transparent" RowBackground="Transparent"
-                    FocusAdorner="{x:Null}">
+                    FocusAdorner="{x:Null}"
+                    CanUserSortColumns="False">
             <DataGrid.Styles>
               <Style Selector="DataGridColumnHeader">
                 <Setter Property="Background" Value="Transparent"/>
@@ -32,11 +33,11 @@
               </Style>
             </DataGrid.Styles>
             <DataGrid.Columns>
-              <DataGridTextColumn Header="{DynamicResource str_pdo_col_index}" Width="*" Binding="{Binding IndexString}"/>
-              <DataGridTextColumn Header="{DynamicResource str_pdo_col_sub}" Width="*" Binding="{Binding SubIndexString}"/>
+              <DataGridTextColumn Header="{DynamicResource str_pdo_col_index}" Width="Auto" Binding="{Binding IndexString}"/>
+              <DataGridTextColumn Header="{DynamicResource str_pdo_col_sub}" Width="Auto" Binding="{Binding SubIndexString}"/>
               <DataGridTextColumn Header="{DynamicResource str_pdo_col_name}" Width="2*" Binding="{Binding Name}"/>
-              <DataGridTextColumn Header="{DynamicResource str_pdo_col_datatype}" Width="1.5*" Binding="{Binding ObjectTypeString}"/>
-              <DataGridTextColumn Header="{DynamicResource str_pdo_col_bits}" Width="*" Binding="{Binding TypeSize}"/>
+              <DataGridTextColumn Header="{DynamicResource str_pdo_col_datatype}" Width="Auto" Binding="{Binding ObjectTypeString}"/>
+              <DataGridTextColumn Header="{DynamicResource str_pdo_col_bits}" Width="Auto" Binding="{Binding TypeSize}"/>
             </DataGrid.Columns>
           </DataGrid>
         </Border>

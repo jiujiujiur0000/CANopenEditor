@@ -23,7 +23,8 @@
                 Background="Transparent" RowBackground="Transparent"
                 SelectionMode="Single"
                 SelectionChanged="DataGrid_SelectionChanged"
-                LoadingRow="DataGrid_LoadingRow">
+                LoadingRow="DataGrid_LoadingRow"
+                CanUserSortColumns="False">
           <DataGrid.Styles>
             <Style Selector="DataGridRow.disabled">
               <Setter Property="Foreground" Value="{DynamicResource SystemControlForegroundBaseMediumLowBrush}"/>
@@ -37,7 +38,7 @@
             </Style>
           </DataGrid.Styles>
       <DataGrid.Columns>
-        <DataGridTextColumn Header="{DynamicResource str_pdo_col_index}" Width="*" Binding="{Binding Key, StringFormat='0x\{0\}'}"/>
+        <DataGridTextColumn Header="{DynamicResource str_pdo_col_index}" Width="Auto" Binding="{Binding Key, StringFormat='0x\{0\}'}"/>
         <DataGridTextColumn Header="{DynamicResource str_od_col_name}" Width="*" Binding="{Binding Value.Name}" />
       </DataGrid.Columns>
       <DataGrid.ContextMenu>

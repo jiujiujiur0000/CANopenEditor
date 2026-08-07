@@ -63,7 +63,8 @@
                     GridLinesVisibility="Horizontal"
                     BorderThickness="0"
                     Background="Transparent" RowBackground="Transparent"
-                    FocusAdorner="{x:Null}">
+                    FocusAdorner="{x:Null}"
+                    CanUserSortColumns="False">
           <DataGrid.Styles>
             <Style Selector="DataGridColumnHeader">
               <Setter Property="Background" Value="Transparent"/>
@@ -74,13 +75,13 @@
             </Style>
           </DataGrid.Styles>
           <DataGrid.Columns>
-            <DataGridTextColumn Header="{DynamicResource str_od_col_sub}" Binding="{Binding Key, StringFormat='0x{0:X2}'}" />
-            <DataGridTextColumn Header="{DynamicResource str_od_col_name}" Width="2*" Binding="{Binding Value.Name}" />
-            <DataGridTextColumn Header="{DynamicResource str_od_col_datatype}" Width="*" Binding="{Binding Value.DataType}" />
-            <DataGridTextColumn Header="{DynamicResource str_od_col_sdo}" Width="*" Binding="{Binding Value.Sdo}" />
-            <DataGridTextColumn Header="{DynamicResource str_od_col_pdo}" Width="*" Binding="{Binding Value.Pdo}" />
-            <DataGridTextColumn Header="{DynamicResource str_od_col_srdo}" Width="*" Binding="{Binding Value.Srdo}" />
-            <DataGridTextColumn Header="{DynamicResource str_od_col_default}" Width="*" Binding="{Binding Value.DefaultValue}" />
+            <DataGridTextColumn Header="{DynamicResource str_od_col_sub}" Width="Auto" Binding="{Binding Key, StringFormat='0x{0:X2}'}" />
+            <DataGridTextColumn Header="{DynamicResource str_od_col_name}" Width="3*" Binding="{Binding Value.Name}" />
+            <DataGridTextColumn Header="{DynamicResource str_od_col_datatype}" Width="Auto" Binding="{Binding Value.DataType}" />
+            <DataGridTextColumn Header="{DynamicResource str_od_col_sdo}" Width="Auto" Binding="{Binding Value.Sdo}" />
+            <DataGridTextColumn Header="{DynamicResource str_od_col_pdo}" Width="Auto" Binding="{Binding Value.Pdo}" />
+            <DataGridTextColumn Header="{DynamicResource str_od_col_srdo}" Width="Auto" Binding="{Binding Value.Srdo}" />
+            <DataGridTextColumn Header="{DynamicResource str_od_col_default}" Width="2*" Binding="{Binding Value.DefaultValue}" />
           </DataGrid.Columns>
           <DataGrid.ContextMenu>
             <ContextMenu>
