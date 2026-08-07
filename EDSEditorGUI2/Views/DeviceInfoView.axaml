@@ -104,7 +104,7 @@
                 BoxShadow="0 4 10 0 #1A000000">
           <StackPanel Spacing="15" HorizontalAlignment="Stretch">
             <StackPanel Spacing="5">
-              <TextBlock Text="通用及主站特性" FontWeight="Bold" FontSize="15"/>
+              <TextBlock Text="高级特性" FontWeight="Bold" FontSize="15"/>
             </StackPanel>
             
             <Grid ColumnDefinitions="160, *" RowDefinitions="Auto, Auto, Auto">
@@ -132,38 +132,33 @@
               <TextBlock Grid.Column="0" Text="{DynamicResource str_device_info_monitored_nodes}" VerticalAlignment="Center"/>
               <TextBox Grid.Column="1" Text="{Binding DeviceInfo.NumberOfMonitoredNodes}" HorizontalAlignment="Stretch" Classes="clearButton"/>
             </Grid>
+
+            <!-- Advanced DCF Config (Merged) -->
+            <Expander Header="{DynamicResource str_device_info_advanced_dcf}" HorizontalAlignment="Stretch" Margin="0,10,0,0">
+              <Grid ColumnDefinitions="160, *" RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto" Margin="0,15,0,0">
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="节点 ID" VerticalAlignment="Center" Margin="0,0,0,15"/>
+                <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding DeviceCommissioning.NodeId}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
+                
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="节点名称" VerticalAlignment="Center" Margin="0,0,0,15"/>
+                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding DeviceCommissioning.NodeName}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
+                
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="通信波特率" VerticalAlignment="Center" Margin="0,0,0,15"/>
+                <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding DeviceCommissioning.Baudrate}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
+
+                <TextBlock Grid.Row="3" Grid.Column="0" Text="{DynamicResource str_device_info_net_number}" VerticalAlignment="Center" Margin="0,0,0,15"/>
+                <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding DeviceCommissioning.NetNumber}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
+
+                <TextBlock Grid.Row="4" Grid.Column="0" Text="{DynamicResource str_device_info_net_name}" VerticalAlignment="Center" Margin="0,0,0,15"/>
+                <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding DeviceCommissioning.NetName}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
+
+                <TextBlock Grid.Row="5" Grid.Column="0" Text="{DynamicResource str_device_info_canopen_manager}" VerticalAlignment="Center" Margin="0,0,0,15"/>
+                <CheckBox Grid.Row="5" Grid.Column="1" IsChecked="{Binding DeviceCommissioning.CanopenManager}" Margin="0,0,0,15"/>
+
+                <TextBlock Grid.Row="6" Grid.Column="0" Text="{DynamicResource str_device_info_lss_serial}" VerticalAlignment="Center"/>
+                <TextBox Grid.Row="6" Grid.Column="1" Text="{Binding DeviceCommissioning.LssSerialNo}" HorizontalAlignment="Stretch" Classes="clearButton"/>
+              </Grid>
+            </Expander>
           </StackPanel>
-        </Border>
-
-        <!-- Card 5: Device Commissioning -->
-        <Border Background="{DynamicResource SystemControlBackgroundAltHighBrush}" 
-                BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" 
-                BorderThickness="1" CornerRadius="8" Padding="15,5,15,15"
-                BoxShadow="0 4 10 0 #1A000000">
-          <Expander Header="{DynamicResource str_device_info_advanced_dcf}" HorizontalAlignment="Stretch">
-            <Grid ColumnDefinitions="160, *" RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto" Margin="0,15,0,0">
-              <TextBlock Grid.Row="0" Grid.Column="0" Text="节点 ID" VerticalAlignment="Center" Margin="0,0,0,15"/>
-              <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding DeviceCommissioning.NodeId}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
-              
-              <TextBlock Grid.Row="1" Grid.Column="0" Text="节点名称" VerticalAlignment="Center" Margin="0,0,0,15"/>
-              <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding DeviceCommissioning.NodeName}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
-              
-              <TextBlock Grid.Row="2" Grid.Column="0" Text="通信波特率" VerticalAlignment="Center" Margin="0,0,0,15"/>
-              <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding DeviceCommissioning.Baudrate}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
-
-              <TextBlock Grid.Row="3" Grid.Column="0" Text="{DynamicResource str_device_info_net_number}" VerticalAlignment="Center" Margin="0,0,0,15"/>
-              <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding DeviceCommissioning.NetNumber}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
-
-              <TextBlock Grid.Row="4" Grid.Column="0" Text="{DynamicResource str_device_info_net_name}" VerticalAlignment="Center" Margin="0,0,0,15"/>
-              <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding DeviceCommissioning.NetName}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
-
-              <TextBlock Grid.Row="5" Grid.Column="0" Text="{DynamicResource str_device_info_canopen_manager}" VerticalAlignment="Center" Margin="0,0,0,15"/>
-              <CheckBox Grid.Row="5" Grid.Column="1" IsChecked="{Binding DeviceCommissioning.CanopenManager}" Margin="0,0,0,15"/>
-
-              <TextBlock Grid.Row="6" Grid.Column="0" Text="{DynamicResource str_device_info_lss_serial}" VerticalAlignment="Center"/>
-              <TextBox Grid.Row="6" Grid.Column="1" Text="{Binding DeviceCommissioning.LssSerialNo}" HorizontalAlignment="Stretch" Classes="clearButton"/>
-            </Grid>
-          </Expander>
         </Border>
       </StackPanel>
 
