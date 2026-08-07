@@ -52,61 +52,23 @@
               <TextBlock Text="文件信息" FontWeight="Bold" FontSize="15"/>
             </StackPanel>
             
-            <Grid ColumnDefinitions="120, *" RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto">
+            <Grid ColumnDefinitions="120, *" RowDefinitions="Auto, Auto, Auto, Auto">
               <TextBlock Grid.Row="0" Grid.Column="0" Text="文件版本" VerticalAlignment="Center" Margin="0,0,0,15"/>
               <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding FileInfo.FileVersion}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
               
               <TextBlock Grid.Row="1" Grid.Column="0" Text="文件描述" VerticalAlignment="Center" Margin="0,0,0,15"/>
               <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding FileInfo.Description}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
               
-              <TextBlock Grid.Row="2" Grid.Column="0" Text="创建时间" VerticalAlignment="Center" Margin="0,0,0,15"/>
-              <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding FileInfo.CreationTime}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
+              <TextBlock Grid.Row="2" Grid.Column="0" Text="创建者" VerticalAlignment="Center" Margin="0,0,0,15"/>
+              <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding FileInfo.CreatedBy}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
               
-              <TextBlock Grid.Row="3" Grid.Column="0" Text="创建者" VerticalAlignment="Center" Margin="0,0,0,15"/>
-              <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding FileInfo.CreatedBy}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
-              
-              <TextBlock Grid.Row="4" Grid.Column="0" Text="修改时间" VerticalAlignment="Center" Margin="0,0,0,15"/>
-              <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding FileInfo.ModificationTime}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
-              
-              <TextBlock Grid.Row="5" Grid.Column="0" Text="修改者" VerticalAlignment="Center"/>
-              <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding FileInfo.ModifiedBy}" HorizontalAlignment="Stretch" Classes="clearButton"/>
+              <TextBlock Grid.Row="3" Grid.Column="0" Text="修改者" VerticalAlignment="Center"/>
+              <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding FileInfo.ModifiedBy}" HorizontalAlignment="Stretch" Classes="clearButton"/>
             </Grid>
           </StackPanel>
         </Border>
 
-        <!-- Card 3: Project Info -->
-        <Border Background="{DynamicResource SystemControlBackgroundAltHighBrush}" 
-                BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" 
-                BorderThickness="1" CornerRadius="8" Padding="25"
-                BoxShadow="0 4 10 0 #1A000000">
-          <StackPanel Spacing="25" HorizontalAlignment="Stretch">
-            <StackPanel Spacing="5">
-              <TextBlock Text="{DynamicResource str_device_info_project_title}" FontWeight="Bold" FontSize="15"/>
-            </StackPanel>
-            
-            <Grid ColumnDefinitions="200, *, 60" RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto">
-              <TextBlock Grid.Row="0" Grid.Column="0" Text="{DynamicResource str_device_info_project_file}" VerticalAlignment="Center" Margin="0,0,0,15"/>
-              <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding ProjectInfo.ProjectFile}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,10,15"/>
-              <TextBox Grid.Row="0" Grid.Column="2" Text="{Binding ProjectInfo.ProjectFileVersion}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
-              
-              <TextBlock Grid.Row="1" Grid.Column="0" Text="{DynamicResource str_device_info_xdd_file}" VerticalAlignment="Center" Margin="0,0,0,15"/>
-              <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding ProjectInfo.XddFileStripped}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
-              
-              <TextBlock Grid.Row="2" Grid.Column="0" Text="{DynamicResource str_device_info_eds_file}" VerticalAlignment="Center" Margin="0,0,0,15"/>
-              <TextBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding ProjectInfo.EdsFile}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
-              
-              <TextBlock Grid.Row="3" Grid.Column="0" Text="{DynamicResource str_device_info_dcf_file}" VerticalAlignment="Center" Margin="0,0,0,15"/>
-              <TextBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding ProjectInfo.DcfFile}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
-              
-              <TextBlock Grid.Row="4" Grid.Column="0" Text="{DynamicResource str_device_info_canopennode_file}" VerticalAlignment="Center" Margin="0,0,0,15"/>
-              <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding ProjectInfo.CanopenNodeFile}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,10,15"/>
-              <TextBox Grid.Row="4" Grid.Column="2" Text="{Binding ProjectInfo.CanopenNodeFileVersion}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
-              
-              <TextBlock Grid.Row="5" Grid.Column="0" Text="{DynamicResource str_device_info_doc_file}" VerticalAlignment="Center"/>
-              <TextBox Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding ProjectInfo.DocumentationFile}" HorizontalAlignment="Stretch" Classes="clearButton"/>
-            </Grid>
-          </StackPanel>
-        </Border>
+
       </StackPanel>
 
       <!-- Right Column -->
@@ -176,14 +138,10 @@
         <!-- Card 5: Device Commissioning -->
         <Border Background="{DynamicResource SystemControlBackgroundAltHighBrush}" 
                 BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" 
-                BorderThickness="1" CornerRadius="8" Padding="25"
+                BorderThickness="1" CornerRadius="8" Padding="15,5,15,15"
                 BoxShadow="0 4 10 0 #1A000000">
-          <StackPanel Spacing="15" HorizontalAlignment="Stretch">
-            <StackPanel Spacing="5">
-              <TextBlock Text="设备部署信息" FontWeight="Bold" FontSize="15"/>
-            </StackPanel>
-            
-            <Grid ColumnDefinitions="160, *" RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto">
+          <Expander Header="{DynamicResource str_device_info_advanced_dcf}" HorizontalAlignment="Stretch">
+            <Grid ColumnDefinitions="160, *" RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto" Margin="0,15,0,0">
               <TextBlock Grid.Row="0" Grid.Column="0" Text="节点 ID" VerticalAlignment="Center" Margin="0,0,0,15"/>
               <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding DeviceCommissioning.NodeId}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
               
@@ -205,7 +163,7 @@
               <TextBlock Grid.Row="6" Grid.Column="0" Text="{DynamicResource str_device_info_lss_serial}" VerticalAlignment="Center"/>
               <TextBox Grid.Row="6" Grid.Column="1" Text="{Binding DeviceCommissioning.LssSerialNo}" HorizontalAlignment="Stretch" Classes="clearButton"/>
             </Grid>
-          </StackPanel>
+          </Expander>
         </Border>
       </StackPanel>
 
