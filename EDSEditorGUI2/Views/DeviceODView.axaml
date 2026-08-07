@@ -185,31 +185,22 @@
                   <TextBlock Text="{DynamicResource str_od_prop_actual}" Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" Margin="0,0,10,15"/>
                   <TextBox Text="" Grid.Row="2" Grid.Column="3" Margin="0,0,20,15"/>
                   
-                  <TextBlock Text="{DynamicResource str_od_prop_disabled}" Grid.Row="2" Grid.Column="4" VerticalAlignment="Center" Margin="0,0,10,15"/>
-                  <CheckBox IsChecked="{Binding SelectedObject.Value.Disabled}" Grid.Row="2" Grid.Column="5" Margin="0,0,0,15"/>
+                  <TextBlock Text="{DynamicResource str_od_prop_enabled}" Grid.Row="2" Grid.Column="4" VerticalAlignment="Center" Margin="0,0,10,15"/>
+                  <CheckBox IsChecked="{Binding !SelectedObject.Value.Disabled}" Grid.Row="2" Grid.Column="5" Margin="0,0,0,15"/>
 
                   <!-- Row 3 -->
                   <TextBlock Text="{DynamicResource str_od_prop_acc_pdo}" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,15"/>
                   <ComboBox x:Name="combo_pdo" HorizontalAlignment="Stretch" SelectedIndex="{Binding SelectedSubObject.Value.Pdo}" Grid.Row="3" Grid.Column="1" Margin="0,0,20,15"/>
                   
                   <TextBlock Text="{DynamicResource str_od_prop_str_len}" Grid.Row="3" Grid.Column="2" VerticalAlignment="Center" Margin="0,0,10,15"/>
-                  <NumericUpDown Value="{Binding SelectedSubObject.Value.StringLengthMin}" Grid.Row="3" Grid.Column="3" Margin="0,0,20,15"/>
-                  
-                  <TextBlock Text="{DynamicResource str_od_prop_tpdo_cos}" Grid.Row="3" Grid.Column="4" VerticalAlignment="Center" Margin="0,0,10,15"/>
-                  <CheckBox Grid.Row="3" Grid.Column="5" Margin="0,0,0,15"/>
+                  <TextBox Text="{Binding SelectedSubObject.Value.StringLengthMin}" Grid.Row="3" Grid.Column="3" Margin="0,0,20,15"/>
+
+                  <TextBlock Text="{DynamicResource str_od_col_default}" Grid.Row="3" Grid.Column="4" VerticalAlignment="Center" Margin="0,0,10,15"/>
+                  <TextBox Text="{Binding SelectedSubObject.Value.DefaultValue}" Grid.Row="3" Grid.Column="5" Margin="0,0,0,15"/>
 
                   <!-- Row 4 -->
                   <TextBlock Text="{DynamicResource str_od_prop_acc_srdo}" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,15"/>
                   <ComboBox x:Name="combo_srdo" HorizontalAlignment="Stretch" SelectedIndex="{Binding SelectedSubObject.Value.Srdo}" Grid.Row="4" Grid.Column="1" Margin="0,0,20,15"/>
-
-                  <!-- Row 5 (Default Value and Actions) -->
-                  <TextBlock Text="{DynamicResource str_od_col_default}" Grid.Row="5" Grid.Column="0" VerticalAlignment="Center"/>
-                  <TextBox Text="{Binding SelectedSubObject.Value.DefaultValue}" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,20,0"/>
-                  
-                  <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="4" Grid.ColumnSpan="2" Spacing="20" HorizontalAlignment="Left">
-                    <Button Content="{DynamicResource str_od_btn_save}" Classes="accent" Padding="20,8" FontWeight="SemiBold"/>
-                    <CheckBox Content="{DynamicResource str_od_chk_autosave}" VerticalAlignment="Center"/>
-                  </StackPanel>
                 </Grid>
               </StackPanel>
             </Border>

@@ -131,6 +131,7 @@
     <sys:String x:Key="str_od_prop_acc_sdo">Access SDO</sys:String>
     <sys:String x:Key="str_od_prop_actual">Actual Value</sys:String>
     <sys:String x:Key="str_od_prop_disabled">Disabled</sys:String>
+    <sys:String x:Key="str_od_prop_enabled">Enabled</sys:String>
     <sys:String x:Key="str_od_prop_acc_pdo">Access PDO</sys:String>
     <sys:String x:Key="str_od_prop_str_len">String Len Min</sys:String>
     <sys:String x:Key="str_od_prop_tpdo_cos">Count TPDO COS</sys:String>

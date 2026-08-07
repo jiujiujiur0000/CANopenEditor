@@ -131,6 +131,7 @@
     <sys:String x:Key="str_od_prop_acc_sdo">SDO 访问</sys:String>
     <sys:String x:Key="str_od_prop_actual">当前值</sys:String>
     <sys:String x:Key="str_od_prop_disabled">已禁用</sys:String>
+    <sys:String x:Key="str_od_prop_enabled">已启用</sys:String>
     <sys:String x:Key="str_od_prop_acc_pdo">PDO 访问</sys:String>
     <sys:String x:Key="str_od_prop_str_len">字符串最小长度</sys:String>
     <sys:String x:Key="str_od_prop_tpdo_cos">TPDO COS计数</sys:String>
