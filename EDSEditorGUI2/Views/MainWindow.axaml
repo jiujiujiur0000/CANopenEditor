@@ -49,10 +49,10 @@
                                     <MenuItem Click="OpenRecentFileClick">
                                         <MenuItem.Template>
                                             <ControlTemplate>
-                                                <Border Background="{TemplateBinding Background}" Padding="10,6,0,6">
+                                                <Border Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}">
                                                     <Grid ColumnDefinitions="*,Auto" HorizontalAlignment="Stretch">
                                                         <TextBlock Text="{Binding}" VerticalAlignment="Center" Margin="0,0,10,0" TextTrimming="CharacterEllipsis"/>
-                                                        <Button Grid.Column="1" Content="✕" Background="Transparent" BorderThickness="0" Padding="5,0,0,0" Margin="0,0,2,0"
+                                                        <Button Grid.Column="1" Content="✕" Background="Transparent" BorderThickness="0" Padding="2,0" Margin="0"
                                                                 Foreground="Gray" Cursor="Hand" HorizontalAlignment="Right"
                                                                 Command="{Binding $parent[Window].DataContext.RemoveRecentFileCommand}" 
                                                                 CommandParameter="{Binding}"/>
