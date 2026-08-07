@@ -56,171 +56,167 @@
 
       <GridSplitter Grid.Column="1" Grid.Row="0" Grid.RowSpan="5" Classes="Vertical" ResizeDirection="Columns" Background="Transparent"/>
       
-      <!-- Right Panel Top: DataGrid -->
-      <Grid Grid.Column="2" Grid.Row="0" RowDefinitions="Auto, *" Margin="0,5,15,0">
-        <!-- SubObjects Heading -->
-        <TextBlock Grid.Row="0" Text="子对象列表" FontWeight="Bold" FontSize="15" Margin="0,5,0,10"/>
+      <!-- Right Panel -->
+      <Grid Grid.Column="2" Grid.Row="0" Grid.RowSpan="5" RowDefinitions="Auto, *, 8, *" Margin="0,5,15,0">
         
-        <!-- Top: SubObjects DataGrid -->
-        <Border Grid.Row="1" Margin="0" Background="{DynamicResource SystemControlBackgroundAltHighBrush}" BorderThickness="1" BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" CornerRadius="8" ClipToBounds="True">
-          <DataGrid ItemsSource="{Binding SelectedObject.Value.SubObjects}"
-                    x:Name="subindexGrid"
-                    ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                    GridLinesVisibility="Horizontal"
-                    BorderThickness="0"
-                    Background="Transparent" RowBackground="Transparent"
-                    FocusAdorner="{x:Null}">
-          <DataGrid.Styles>
-            <Style Selector="DataGridColumnHeader">
-              <Setter Property="Background" Value="Transparent"/>
-              <Setter Property="SeparatorBrush" Value="{DynamicResource SystemControlForegroundBaseMediumLowBrush}"/>
-            </Style>
-            <Style Selector="DataGridColumnHeader:nth-last-child(1)">
-              <Setter Property="SeparatorBrush" Value="Transparent"/>
-            </Style>
-          </DataGrid.Styles>
-          <DataGrid.Columns>
-            <DataGridTemplateColumn Header="{DynamicResource str_od_col_sub}" Width="Auto">
-              <DataGridTemplateColumn.CellTemplate>
-                <DataTemplate>
-                  <TextBlock Margin="12,0" VerticalAlignment="Center">
-                    <TextBlock.Text>
-                      <MultiBinding Converter="{StaticResource SubIndexConverter}">
-                        <Binding Path="Key" />
-                        <Binding Path="$parent[DataGrid].DataContext" />
-                      </MultiBinding>
-                    </TextBlock.Text>
-                  </TextBlock>
-                </DataTemplate>
-              </DataGridTemplateColumn.CellTemplate>
-            </DataGridTemplateColumn>
-            <DataGridTextColumn Header="{DynamicResource str_od_col_name}" Width="3*" Binding="{Binding Value.Name}" />
-            <DataGridTextColumn Header="{DynamicResource str_od_col_datatype}" Width="Auto" Binding="{Binding Value.DataType}" />
-            <DataGridTextColumn Header="{DynamicResource str_od_col_sdo}" Width="Auto" Binding="{Binding Value.Sdo}" />
-            <DataGridTextColumn Header="{DynamicResource str_od_col_pdo}" Width="Auto" Binding="{Binding Value.Pdo}" />
-            <DataGridTextColumn Header="{DynamicResource str_od_col_srdo}" Width="Auto" Binding="{Binding Value.Srdo}" />
-            <DataGridTextColumn Header="{DynamicResource str_od_col_default}" Width="2*" Binding="{Binding Value.DefaultValue}" />
-          </DataGrid.Columns>
-          <DataGrid.ContextMenu>
-            <ContextMenu>
-              <MenuItem Header="{DynamicResource str_od_menu_add}" Click="ContextMenuSubObjectAddClick">
-                <MenuItem.Icon>
-                  <PathIcon Data="{StaticResource add_regular}" />
-                </MenuItem.Icon>
-              </MenuItem>
-              <MenuItem Header="{DynamicResource str_od_menu_remove_shift}" Click="ContextMenuSubObjectRemoveClick" x:Name="contextMenu_subObject_removeSubItemToolStripMenuItem">
-                <MenuItem.Icon>
-                  <PathIcon Data="{StaticResource remove_regular}" />
-                </MenuItem.Icon>
-              </MenuItem>
-              <MenuItem Header="{DynamicResource str_od_menu_remove_gap}" Click="ContextMenuSubObjectRemoveClick">
-                <MenuItem.Icon>
-                  <PathIcon Data="{StaticResource remove_regular}" />
-                </MenuItem.Icon>
-              </MenuItem>
-            </ContextMenu>
-          </DataGrid.ContextMenu>
-          </DataGrid>
+        <!-- Top: Index Properties (Row 0) -->
+        <Border Grid.Row="0" Background="{DynamicResource SystemControlBackgroundAltHighBrush}" CornerRadius="8" Padding="20"
+                BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" BorderThickness="1"
+                BoxShadow="0 2 6 0 #1A000000" Margin="0,0,0,15">
+          <StackPanel Spacing="15">
+            <TextBlock Text="主对象属性" FontWeight="Bold" FontSize="15" Margin="0,0,0,5"/>
+            <Border BorderBrush="{DynamicResource SystemControlForegroundBaseMediumBrush}" BorderThickness="0,0,0,1" Margin="0,-15,0,0" Opacity="0.3"/>
+            <Grid RowDefinitions="Auto,Auto,Auto,Auto" ColumnDefinitions="80,*, 80,*">
+              <TextBlock Text="{DynamicResource str_od_prop_index}" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,15"/>
+              <TextBox Text="{Binding SelectedObject.Key}" Grid.Row="0" Grid.Column="1" IsEnabled="False" Margin="0,0,20,15"/>
+              
+              <TextBlock Text="{DynamicResource str_od_prop_obj_type}" Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" Margin="0,0,10,15"/>
+              <TextBox Text="{Binding SelectedObjectType}" Grid.Row="0" Grid.Column="3" Margin="0,0,0,15" IsEnabled="False"/>
+              
+              <TextBlock Text="{DynamicResource str_od_prop_name}" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,15"/>
+              <TextBox Text="{Binding SelectedObject.Value.Name}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,0,15"/>
+
+              <TextBlock Text="{DynamicResource str_od_prop_denotation}" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,15"/>
+              <TextBox Text="{Binding SelectedObject.Value.Alias}" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,0,15"/>
+
+              <TextBlock Text="{DynamicResource str_od_prop_desc}" Grid.Row="3" Grid.Column="0" VerticalAlignment="Top"/>
+              <TextBox Text="{Binding SelectedObject.Value.Description}" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Height="70" TextWrapping="Wrap" AcceptsReturn="True" Margin="0,0,0,0"/>
+            </Grid>
+          </StackPanel>
         </Border>
-      </Grid>
-      
-      <GridSplitter Grid.Column="2" Grid.Row="1" Classes="Horizontal" ResizeDirection="Rows" Margin="0,3,15,4" Background="Transparent" Height="8"/>
-      
-      <!-- Bottom: Property Editor Forms -->
-      <ScrollViewer Grid.Column="2" Grid.Row="2" Grid.RowSpan="3" Padding="0,0,0,0" Margin="0,0,15,15">
-          <StackPanel Spacing="15" Margin="0,0,0,0">
-            <!-- Card 1: Index Properties -->
+
+        <!-- Middle: SubObjects DataGrid (Row 1) -->
+        <Grid Grid.Row="1" RowDefinitions="Auto, *">
+          <TextBlock Grid.Row="0" Text="子对象列表" FontWeight="Bold" FontSize="15" Margin="0,0,0,10"/>
+          
+          <Border Grid.Row="1" Background="{DynamicResource SystemControlBackgroundAltHighBrush}" BorderThickness="1" BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" CornerRadius="8" ClipToBounds="True">
+            <DataGrid ItemsSource="{Binding SelectedObject.Value.SubObjects}"
+                      x:Name="subindexGrid"
+                      ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                      GridLinesVisibility="Horizontal"
+                      BorderThickness="0"
+                      Background="Transparent" RowBackground="Transparent"
+                      FocusAdorner="{x:Null}">
+            <DataGrid.Styles>
+              <Style Selector="DataGridColumnHeader">
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="SeparatorBrush" Value="{DynamicResource SystemControlForegroundBaseMediumLowBrush}"/>
+              </Style>
+              <Style Selector="DataGridColumnHeader:nth-last-child(1)">
+                <Setter Property="SeparatorBrush" Value="Transparent"/>
+              </Style>
+            </DataGrid.Styles>
+            <DataGrid.Columns>
+              <DataGridTemplateColumn Header="{DynamicResource str_od_col_sub}" Width="Auto">
+                <DataGridTemplateColumn.CellTemplate>
+                  <DataTemplate>
+                    <TextBlock Margin="12,0" VerticalAlignment="Center">
+                      <TextBlock.Text>
+                        <MultiBinding Converter="{StaticResource SubIndexConverter}">
+                          <Binding Path="Key" />
+                          <Binding Path="$parent[DataGrid].DataContext" />
+                        </MultiBinding>
+                      </TextBlock.Text>
+                    </TextBlock>
+                  </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+              </DataGridTemplateColumn>
+              <DataGridTextColumn Header="{DynamicResource str_od_col_name}" Width="3*" Binding="{Binding Value.Name}" />
+              <DataGridTextColumn Header="{DynamicResource str_od_col_datatype}" Width="Auto" Binding="{Binding Value.DataType}" />
+              <DataGridTextColumn Header="{DynamicResource str_od_col_sdo}" Width="Auto" Binding="{Binding Value.Sdo}" />
+              <DataGridTextColumn Header="{DynamicResource str_od_col_pdo}" Width="Auto" Binding="{Binding Value.Pdo}" />
+              <DataGridTextColumn Header="{DynamicResource str_od_col_srdo}" Width="Auto" Binding="{Binding Value.Srdo}" />
+              <DataGridTextColumn Header="{DynamicResource str_od_col_default}" Width="2*" Binding="{Binding Value.DefaultValue}" />
+            </DataGrid.Columns>
+            <DataGrid.ContextMenu>
+              <ContextMenu>
+                <MenuItem Header="{DynamicResource str_od_menu_add}" Click="ContextMenuSubObjectAddClick">
+                  <MenuItem.Icon>
+                    <PathIcon Data="{StaticResource add_regular}" />
+                  </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="{DynamicResource str_od_menu_remove_shift}" Click="ContextMenuSubObjectRemoveClick" x:Name="contextMenu_subObject_removeSubItemToolStripMenuItem">
+                  <MenuItem.Icon>
+                    <PathIcon Data="{StaticResource remove_regular}" />
+                  </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="{DynamicResource str_od_menu_remove_gap}" Click="ContextMenuSubObjectRemoveClick">
+                  <MenuItem.Icon>
+                    <PathIcon Data="{StaticResource remove_regular}" />
+                  </MenuItem.Icon>
+                </MenuItem>
+              </ContextMenu>
+            </DataGrid.ContextMenu>
+            </DataGrid>
+          </Border>
+        </Grid>
+
+        <GridSplitter Grid.Row="2" Classes="Horizontal" ResizeDirection="Rows" Margin="0,3,0,4" Background="Transparent" Height="8"/>
+
+        <!-- Bottom: Sub-Index Properties (Row 3) -->
+        <ScrollViewer Grid.Row="3" Padding="0" Margin="0,0,0,15">
+          <StackPanel Spacing="15">
             <Border Background="{DynamicResource SystemControlBackgroundAltHighBrush}" CornerRadius="8" Padding="20"
                     BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" BorderThickness="1"
-                    BoxShadow="0 2 6 0 #1A000000">
-              <StackPanel Spacing="15">
-                <TextBlock Text="主对象属性 (Index Properties)" FontWeight="Bold" FontSize="15" Margin="0,0,0,5"/>
-                <Border BorderBrush="{DynamicResource SystemControlForegroundBaseMediumBrush}" BorderThickness="0,0,0,1" Margin="0,-15,0,0" Opacity="0.3"/>
-                <Grid RowDefinitions="Auto,Auto,Auto,Auto" ColumnDefinitions="80,*, 80,*">
-                  <TextBlock Text="{DynamicResource str_od_prop_index}" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,15"/>
-                  <TextBox Text="{Binding SelectedObject.Key}" Grid.Row="0" Grid.Column="1" IsEnabled="False" Margin="0,0,20,15"/>
-                  
-                  <TextBlock Text="{DynamicResource str_od_prop_obj_type}" Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" Margin="0,0,10,15"/>
-                  <TextBox Text="{Binding SelectedObjectType}" Grid.Row="0" Grid.Column="3" Margin="0,0,0,15" IsEnabled="False"/>
-                  
-                  <TextBlock Text="{DynamicResource str_od_prop_name}" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,15"/>
-                  <TextBox Text="{Binding SelectedObject.Value.Name}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,0,15"/>
+                    BoxShadow="0 2 6 0 #1A000000" Margin="0,5,0,0">
+          <StackPanel Spacing="15">
+            <TextBlock Text="子对象属性" FontWeight="Bold" FontSize="15" Margin="0,0,0,5"/>
+            <Border BorderBrush="{DynamicResource SystemControlForegroundBaseMediumBrush}" BorderThickness="0,0,0,1" Margin="0,-15,0,0" Opacity="0.3"/>
+            <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" ColumnDefinitions="80,*, 100,*">
+              
+              <!-- Row 0: SubIndex & Name -->
+              <TextBlock Text="{DynamicResource str_od_prop_subindex}" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,15"/>
+              <TextBox Text="{Binding SelectedSubObject.Key}" Grid.Row="0" Grid.Column="1" IsEnabled="False" Margin="0,0,20,15"/>
+              
+              <TextBlock Text="{DynamicResource str_od_prop_name}" Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" Margin="0,0,10,15"/>
+              <TextBox Text="{Binding SelectedSubObject.Value.Name}" Grid.Row="0" Grid.Column="3" Margin="0,0,0,15"/>
 
-                  <TextBlock Text="{DynamicResource str_od_prop_denotation}" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,15"/>
-                  <TextBox Text="{Binding SelectedObject.Value.Alias}" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,0,15"/>
+              <!-- Row 1: DataType & String Length -->
+              <TextBlock Text="{DynamicResource str_od_prop_datatype}" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,15"/>
+              <ComboBox x:Name="combo_datatype" HorizontalAlignment="Stretch" SelectedIndex="{Binding SelectedSubObject.Value.DataType}" Grid.Row="1" Grid.Column="1" Margin="0,0,20,15"/>
+              
+              <TextBlock Text="{DynamicResource str_od_prop_str_len}" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Margin="0,0,10,15"/>
+              <TextBox Text="{Binding SelectedSubObject.Value.StringLengthMin}" Grid.Row="1" Grid.Column="3" Margin="0,0,0,15"/>
+              <TextBlock Text="{DynamicResource str_od_col_default}" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,15"/>
+              <TextBox Text="{Binding SelectedSubObject.Value.DefaultValue}" Grid.Row="2" Grid.Column="1" Margin="0,0,20,15"/>
+              
+              <TextBlock Text="{DynamicResource str_od_prop_actual}" Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" Margin="0,0,10,15"/>
+              <TextBox Text="{Binding SelectedSubObject.Value.ActualValue}" Grid.Row="2" Grid.Column="3" Margin="0,0,0,15"/>
 
-                  <TextBlock Text="{DynamicResource str_od_prop_desc}" Grid.Row="3" Grid.Column="0" VerticalAlignment="Top"/>
-                  <TextBox Text="{Binding SelectedObject.Value.Description}" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Height="70" TextWrapping="Wrap" AcceptsReturn="True" Margin="0,0,0,0"/>
-                </Grid>
-              </StackPanel>
-            </Border>
+              <TextBlock Text="{DynamicResource str_od_prop_highlimit}" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,15"/>
+              <TextBox Text="{Binding SelectedSubObject.Value.HighLimit}" Grid.Row="3" Grid.Column="1" Margin="0,0,20,15"/>
+              
+              <TextBlock Text="{DynamicResource str_od_prop_lowlimit}" Grid.Row="3" Grid.Column="2" VerticalAlignment="Center" Margin="0,0,10,15"/>
+              <TextBox Text="{Binding SelectedSubObject.Value.LowLimit}" Grid.Row="3" Grid.Column="3" Margin="0,0,0,15"/>
 
-            <!-- Card 2: Sub-Index Properties -->
-            <Border Background="{DynamicResource SystemControlBackgroundAltHighBrush}" CornerRadius="8" Padding="20"
-                    BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" BorderThickness="1"
-                    BoxShadow="0 2 6 0 #1A000000">
-              <StackPanel Spacing="15">
-                <TextBlock Text="子对象属性 (Sub-Index Properties)" FontWeight="Bold" FontSize="15" Margin="0,0,0,5"/>
-                <Border BorderBrush="{DynamicResource SystemControlForegroundBaseMediumBrush}" BorderThickness="0,0,0,1" Margin="0,-15,0,0" Opacity="0.3"/>
-                <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" ColumnDefinitions="80,*, 100,*">
-                  
-                  <!-- Row 0: SubIndex & Name -->
-                  <TextBlock Text="{DynamicResource str_od_prop_subindex}" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,15"/>
-                  <TextBox Text="{Binding SelectedSubObject.Key}" Grid.Row="0" Grid.Column="1" IsEnabled="False" Margin="0,0,20,15"/>
-                  
-                  <TextBlock Text="{DynamicResource str_od_prop_name}" Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" Margin="0,0,10,15"/>
-                  <TextBox Text="{Binding SelectedSubObject.Value.Name}" Grid.Row="0" Grid.Column="3" Margin="0,0,0,15"/>
+              <TextBlock Text="{DynamicResource str_od_prop_acc_sdo}" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,15"/>
+              <ComboBox x:Name="combo_sdo" HorizontalAlignment="Stretch" SelectedIndex="{Binding SelectedSubObject.Value.Sdo}" Grid.Row="4" Grid.Column="1" Margin="0,0,20,15"/>
+              
+              <TextBlock Text="{DynamicResource str_od_prop_acc_pdo}" Grid.Row="4" Grid.Column="2" VerticalAlignment="Center" Margin="0,0,10,15"/>
+              <ComboBox x:Name="combo_pdo" HorizontalAlignment="Stretch" SelectedIndex="{Binding SelectedSubObject.Value.Pdo}" Grid.Row="4" Grid.Column="3" Margin="0,0,0,15"/>
 
-                  <!-- Row 1: DataType & String Length -->
-                  <TextBlock Text="{DynamicResource str_od_prop_datatype}" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,15"/>
-                  <ComboBox x:Name="combo_datatype" HorizontalAlignment="Stretch" SelectedIndex="{Binding SelectedSubObject.Value.DataType}" Grid.Row="1" Grid.Column="1" Margin="0,0,20,15"/>
-                  
-                  <TextBlock Text="{DynamicResource str_od_prop_str_len}" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Margin="0,0,10,15"/>
-                  <TextBox Text="{Binding SelectedSubObject.Value.StringLengthMin}" Grid.Row="1" Grid.Column="3" Margin="0,0,0,15"/>
+              <TextBlock Text="{DynamicResource str_od_prop_acc_srdo}" Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,0"/>
+              <ComboBox x:Name="combo_srdo" HorizontalAlignment="Stretch" SelectedIndex="{Binding SelectedSubObject.Value.Srdo}" Grid.Row="5" Grid.Column="1" Margin="0,0,20,0"/>
 
-                  <!-- Row 2: Default Value & Actual Value -->
-                  <TextBlock Text="{DynamicResource str_od_col_default}" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,15"/>
-                  <TextBox Text="{Binding SelectedSubObject.Value.DefaultValue}" Grid.Row="2" Grid.Column="1" Margin="0,0,20,15"/>
-                  
-                  <TextBlock Text="{DynamicResource str_od_prop_actual}" Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" Margin="0,0,10,15"/>
-                  <TextBox Text="{Binding SelectedSubObject.Value.ActualValue}" Grid.Row="2" Grid.Column="3" Margin="0,0,0,15"/>
-
-                  <!-- Row 3: High Limit & Low Limit -->
-                  <TextBlock Text="{DynamicResource str_od_prop_highlimit}" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,15"/>
-                  <TextBox Text="{Binding SelectedSubObject.Value.HighLimit}" Grid.Row="3" Grid.Column="1" Margin="0,0,20,15"/>
-                  
-                  <TextBlock Text="{DynamicResource str_od_prop_lowlimit}" Grid.Row="3" Grid.Column="2" VerticalAlignment="Center" Margin="0,0,10,15"/>
-                  <TextBox Text="{Binding SelectedSubObject.Value.LowLimit}" Grid.Row="3" Grid.Column="3" Margin="0,0,0,15"/>
-
-                  <!-- Row 4: SDO & PDO Access -->
-                  <TextBlock Text="{DynamicResource str_od_prop_acc_sdo}" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,15"/>
-                  <ComboBox x:Name="combo_sdo" HorizontalAlignment="Stretch" SelectedIndex="{Binding SelectedSubObject.Value.Sdo}" Grid.Row="4" Grid.Column="1" Margin="0,0,20,15"/>
-                  
-                  <TextBlock Text="{DynamicResource str_od_prop_acc_pdo}" Grid.Row="4" Grid.Column="2" VerticalAlignment="Center" Margin="0,0,10,15"/>
-                  <ComboBox x:Name="combo_pdo" HorizontalAlignment="Stretch" SelectedIndex="{Binding SelectedSubObject.Value.Pdo}" Grid.Row="4" Grid.Column="3" Margin="0,0,0,15"/>
-
-                  <!-- Row 5: SRDO Access & Enabled -->
-                  <TextBlock Text="{DynamicResource str_od_prop_acc_srdo}" Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,0"/>
-                  <ComboBox x:Name="combo_srdo" HorizontalAlignment="Stretch" SelectedIndex="{Binding SelectedSubObject.Value.Srdo}" Grid.Row="5" Grid.Column="1" Margin="0,0,20,0"/>
-
-                  <TextBlock Text="{DynamicResource str_od_prop_enabled}" Grid.Row="5" Grid.Column="2" VerticalAlignment="Center" Margin="0,0,10,0"/>
-                  <CheckBox IsChecked="{Binding !SelectedObject.Value.Disabled}" Grid.Row="5" Grid.Column="3" Margin="0,0,0,0"/>
-                </Grid>
-              </StackPanel>
-            </Border>
-
-            <!-- Card 3: Advanced CANopenNode Settings (Expander) -->
-            <Expander Header="高级扩展配置 (CANopenNode 专属)" HorizontalAlignment="Stretch">
-              <Grid RowDefinitions="Auto" ColumnDefinitions="80,*, 100,*">
-                  <TextBlock Text="{DynamicResource str_od_prop_storage}" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,0"/>
-                  <TextBox Text="{Binding SelectedObject.Value.StorageGroup}" Grid.Row="0" Grid.Column="1" Margin="0,0,20,0"/>
-
-                  <TextBlock Text="{DynamicResource str_od_prop_count_label}" Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" Margin="0,0,10,0"/>
-                  <TextBox Text="{Binding SelectedObject.Value.CountLabel}" Grid.Row="0" Grid.Column="3" Margin="0,0,0,0"/>
+              <TextBlock Text="{DynamicResource str_od_prop_enabled}" Grid.Row="5" Grid.Column="2" VerticalAlignment="Center" Margin="0,0,10,0"/>
+              <CheckBox IsChecked="{Binding !SelectedObject.Value.Disabled}" Grid.Row="5" Grid.Column="3" Margin="0,0,0,0"/>
               </Grid>
-            </Expander>
+            </StackPanel>
+          </Border>
+
+          <!-- Card 3: Advanced CANopenNode Settings (Expander) -->
+          <Expander Header="高级扩展配置 (CANopenNode 专属)" HorizontalAlignment="Stretch" Margin="0,0,0,0">
+            <Grid RowDefinitions="Auto" ColumnDefinitions="80,*, 100,*">
+                <TextBlock Text="{DynamicResource str_od_prop_storage}" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                <TextBox Text="{Binding SelectedObject.Value.StorageGroup}" Grid.Row="0" Grid.Column="1" Margin="0,0,20,0"/>
+
+                <TextBlock Text="{DynamicResource str_od_prop_count_label}" Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                <TextBox Text="{Binding SelectedObject.Value.CountLabel}" Grid.Row="0" Grid.Column="3" Margin="0,0,0,0"/>
+            </Grid>
+          </Expander>
           </StackPanel>
         </ScrollViewer>
+      </Grid>
     </Grid>
   </dialogHost:DialogHost>
 </UserControl>
