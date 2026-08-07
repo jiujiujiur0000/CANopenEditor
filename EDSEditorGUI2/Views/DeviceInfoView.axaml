@@ -12,9 +12,9 @@
     <Grid ColumnDefinitions="*, *" Margin="15,5,15,15" HorizontalAlignment="Stretch" VerticalAlignment="Top" MaxWidth="1200">
       
       <!-- Left Column -->
-      <StackPanel Grid.Column="0" Spacing="15" Margin="0,0,7.5,0">
+      <Grid Grid.Column="0" RowDefinitions="Auto, *" Margin="0,0,7.5,0">
         <!-- Card 1: Device Info -->
-        <Border Background="{DynamicResource SystemControlBackgroundAltHighBrush}" 
+        <Border Grid.Row="0" Margin="0,0,0,15" Background="{DynamicResource SystemControlBackgroundAltHighBrush}" 
                 BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" 
                 BorderThickness="1" CornerRadius="8" Padding="25"
                 BoxShadow="0 4 10 0 #1A000000">
@@ -43,33 +43,32 @@
         </Border>
 
         <!-- Card 2: File Info -->
-        <Border Background="{DynamicResource SystemControlBackgroundAltHighBrush}" 
+        <Border Grid.Row="1" Background="{DynamicResource SystemControlBackgroundAltHighBrush}" 
                 BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" 
                 BorderThickness="1" CornerRadius="8" Padding="25"
                 BoxShadow="0 4 10 0 #1A000000">
-          <StackPanel Spacing="25" HorizontalAlignment="Stretch">
-            <StackPanel Spacing="5">
+          <Grid RowDefinitions="Auto, *" HorizontalAlignment="Stretch">
+            <StackPanel Grid.Row="0" Spacing="5" Margin="0,0,0,25">
               <TextBlock Text="文件信息" FontWeight="Bold" FontSize="15"/>
             </StackPanel>
             
-            <Grid ColumnDefinitions="120, *" RowDefinitions="Auto, Auto, Auto, Auto">
+            <Grid Grid.Row="1" ColumnDefinitions="120, *" RowDefinitions="Auto, Auto, Auto, *">
               <TextBlock Grid.Row="0" Grid.Column="0" Text="文件版本" VerticalAlignment="Center" Margin="0,0,0,15"/>
               <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding FileInfo.FileVersion}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
               
-              <TextBlock Grid.Row="1" Grid.Column="0" Text="文件描述" VerticalAlignment="Center" Margin="0,0,0,15"/>
-              <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding FileInfo.Description}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
+              <TextBlock Grid.Row="1" Grid.Column="0" Text="创建者" VerticalAlignment="Center" Margin="0,0,0,15"/>
+              <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding FileInfo.CreatedBy}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
               
-              <TextBlock Grid.Row="2" Grid.Column="0" Text="创建者" VerticalAlignment="Center" Margin="0,0,0,15"/>
-              <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding FileInfo.CreatedBy}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
-              
-              <TextBlock Grid.Row="3" Grid.Column="0" Text="修改者" VerticalAlignment="Center"/>
-              <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding FileInfo.ModifiedBy}" HorizontalAlignment="Stretch" Classes="clearButton"/>
+              <TextBlock Grid.Row="2" Grid.Column="0" Text="修改者" VerticalAlignment="Center" Margin="0,0,0,15"/>
+              <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding FileInfo.ModifiedBy}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
+
+              <TextBlock Grid.Row="3" Grid.Column="0" Text="文件描述" VerticalAlignment="Top" Margin="0,5,0,0"/>
+              <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding FileInfo.Description}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" AcceptsReturn="True" TextWrapping="Wrap" Classes="clearButton"/>
             </Grid>
-          </StackPanel>
+          </Grid>
         </Border>
 
-
-      </StackPanel>
+      </Grid>
 
       <!-- Right Column -->
       <StackPanel Grid.Column="1" Spacing="15" Margin="7.5,0,0,0">
@@ -121,13 +120,19 @@
               <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding DeviceInfo.NumberOfMonitoredNodes}" HorizontalAlignment="Stretch" Classes="clearButton"/>
             </Grid>
 
-            <UniformGrid Columns="2" Margin="10,0,0,0">
-              <CheckBox IsChecked="{Binding DeviceInfo.LssSlave}" Content="{DynamicResource str_device_info_lss_slave}" Margin="0,0,0,10"/>
-              <CheckBox IsChecked="{Binding DeviceInfo.LssMaster}" Content="{DynamicResource str_device_info_lss_master}" Margin="0,0,0,10"/>
+            <Grid ColumnDefinitions="160, Auto, 160, Auto" RowDefinitions="Auto, Auto" Margin="0,15,0,0">
+              <TextBlock Grid.Row="0" Grid.Column="0" Text="{DynamicResource str_device_info_lss_slave}" VerticalAlignment="Center" Margin="0,0,0,15"/>
+              <CheckBox Grid.Row="0" Grid.Column="1" IsChecked="{Binding DeviceInfo.LssSlave}" Margin="0,0,15,15"/>
+
+              <TextBlock Grid.Row="0" Grid.Column="2" Text="{DynamicResource str_device_info_lss_master}" VerticalAlignment="Center" Margin="0,0,0,15"/>
+              <CheckBox Grid.Row="0" Grid.Column="3" IsChecked="{Binding DeviceInfo.LssMaster}" Margin="0,0,0,15"/>
               
-              <CheckBox IsChecked="{Binding DeviceInfo.NodeGuardingSlave}" Content="{DynamicResource str_device_info_node_guarding_slave}" />
-              <CheckBox IsChecked="{Binding DeviceInfo.NodeGuardingMaster}" Content="{DynamicResource str_device_info_node_guarding_master}" />
-            </UniformGrid>
+              <TextBlock Grid.Row="1" Grid.Column="0" Text="{DynamicResource str_device_info_node_guarding_slave}" VerticalAlignment="Center"/>
+              <CheckBox Grid.Row="1" Grid.Column="1" IsChecked="{Binding DeviceInfo.NodeGuardingSlave}" Margin="0,0,15,0"/>
+
+              <TextBlock Grid.Row="1" Grid.Column="2" Text="{DynamicResource str_device_info_node_guarding_master}" VerticalAlignment="Center"/>
+              <CheckBox Grid.Row="1" Grid.Column="3" IsChecked="{Binding DeviceInfo.NodeGuardingMaster}"/>
+            </Grid>
 
             <!-- Advanced DCF Config (Merged) -->
             <Expander Header="{DynamicResource str_device_info_advanced_dcf}" HorizontalAlignment="Stretch" Margin="0,10,0,0">
