@@ -28,34 +28,36 @@
   </UserControl.Resources>
 
   <dialogHost:DialogHost Identifier="NoAnimationDialogHost" MaxWidth="1400">
-    <Grid ColumnDefinitions="350, Auto, *">
-      <!-- Left Panel: OD Indexes -->
-      <Grid RowDefinitions="*, Auto, *, Auto, *" Grid.Column="0" Margin="15,5,0,15">
-        <view:ODIndexRangeView Grid.Row="0" DataContext="{Binding}"
-                               x:Name="ODView_Com"
-                               Heading="{DynamicResource str_od_comm_params}"
-                               MinIndex="0x1000"
-                               MaxIndex="0x1FFF"/>
-        <GridSplitter Grid.Row="1" Classes="Horizontal" ResizeDirection="Rows" Background="Transparent"/>
-        
-        <view:ODIndexRangeView Grid.Row="2" DataContext="{Binding}"
-                               x:Name="ODView_Manufacture"
-                               Heading="{DynamicResource str_od_mfg_params}"
-                               MinIndex="0x2000"
-                               MaxIndex="0x5FFF"/>
-        <GridSplitter Grid.Row="3" Classes="Horizontal" ResizeDirection="Rows" Background="Transparent"/>
-        
-        <view:ODIndexRangeView Grid.Row="4" DataContext="{Binding}"
-                               x:Name="ODView_Device"
-                               Heading="{DynamicResource str_od_dev_params}"
-                               MinIndex="0x6000"
-                               MaxIndex="0x9FFF"/>
-      </Grid>
-
-      <GridSplitter Grid.Column="1" Classes="Vertical" ResizeDirection="Columns" Background="Transparent"/>
+    <Grid ColumnDefinitions="350, Auto, *" RowDefinitions="*, Auto, *, Auto, *">
       
-      <!-- Right Panel: DataGrid and Property Editor -->
-      <Grid RowDefinitions="Auto, *, Auto, 1.5*" Grid.Column="2" Margin="0,5,15,15">
+      <!-- Left Panel: OD Indexes -->
+      <view:ODIndexRangeView Grid.Row="0" Grid.Column="0" DataContext="{Binding}"
+                             Margin="15,5,0,0"
+                             x:Name="ODView_Com"
+                             Heading="{DynamicResource str_od_comm_params}"
+                             MinIndex="0x1000"
+                             MaxIndex="0x1FFF"/>
+      <GridSplitter Grid.Row="1" Grid.Column="0" Classes="Horizontal" ResizeDirection="Rows" Background="Transparent" Margin="15,0,0,0"/>
+      
+      <view:ODIndexRangeView Grid.Row="2" Grid.Column="0" DataContext="{Binding}"
+                             Margin="15,0,0,0"
+                             x:Name="ODView_Manufacture"
+                             Heading="{DynamicResource str_od_mfg_params}"
+                             MinIndex="0x2000"
+                             MaxIndex="0x5FFF"/>
+      <GridSplitter Grid.Row="3" Grid.Column="0" Classes="Horizontal" ResizeDirection="Rows" Background="Transparent" Margin="15,0,0,0"/>
+      
+      <view:ODIndexRangeView Grid.Row="4" Grid.Column="0" DataContext="{Binding}"
+                             Margin="15,0,0,15"
+                             x:Name="ODView_Device"
+                             Heading="{DynamicResource str_od_dev_params}"
+                             MinIndex="0x6000"
+                             MaxIndex="0x9FFF"/>
+
+      <GridSplitter Grid.Column="1" Grid.Row="0" Grid.RowSpan="5" Classes="Vertical" ResizeDirection="Columns" Background="Transparent"/>
+      
+      <!-- Right Panel Top: DataGrid -->
+      <Grid Grid.Column="2" Grid.Row="0" RowDefinitions="Auto, *" Margin="0,5,15,0">
         <!-- SubObjects Heading -->
         <TextBlock Grid.Row="0" Text="子对象列表" FontWeight="Bold" FontSize="15" Margin="0,5,0,10"/>
         
@@ -120,11 +122,12 @@
           </DataGrid.ContextMenu>
           </DataGrid>
         </Border>
-        
-        <GridSplitter Grid.Row="2" Classes="Horizontal" ResizeDirection="Rows" Margin="0,3,0,4" Background="Transparent" Height="8"/>
-        
-        <!-- Bottom: Property Editor Forms -->
-        <ScrollViewer Grid.Row="3" Padding="0,0,0,0">
+      </Grid>
+      
+      <GridSplitter Grid.Column="2" Grid.Row="1" Classes="Horizontal" ResizeDirection="Rows" Margin="0,3,15,4" Background="Transparent" Height="8"/>
+      
+      <!-- Bottom: Property Editor Forms -->
+      <ScrollViewer Grid.Column="2" Grid.Row="2" Grid.RowSpan="3" Padding="0,0,0,0" Margin="0,0,15,15">
           <StackPanel Spacing="15" Margin="0,0,0,0">
             <!-- Basic Properties -->
             <Border Background="{DynamicResource SystemControlBackgroundAltHighBrush}" CornerRadius="8" Padding="20"
@@ -207,7 +210,6 @@
             </Border>
           </StackPanel>
         </ScrollViewer>
-      </Grid>
     </Grid>
   </dialogHost:DialogHost>
 </UserControl>
