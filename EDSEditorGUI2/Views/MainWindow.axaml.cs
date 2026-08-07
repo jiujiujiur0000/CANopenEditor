@@ -462,8 +462,6 @@ public partial class MainWindow : Window
                             {
                                 eds.xddfilename_1_1 = filePath;
                             }
-                            // PER USER REQUEST: Treating xpd/xdd as pure templates. 
-                            // CurrentProjectPath is intentionally left null so the user is forced to Save As .cpj
                         }
                         else
                         {
@@ -615,6 +613,8 @@ public partial class MainWindow : Window
     {
         var topLevel = TopLevel.GetTopLevel(this) ?? throw new Exception("Internal GUI error");
         var cpj = new FilePickerFileType("CANopen Project (*.cpj)") { Patterns = ["*.cpj"] };
+        var xdd = new FilePickerFileType("XML Device Description (*.xdd)") { Patterns = ["*.xdd"] };
+        var xpd = new FilePickerFileType("XML Project Description (*.xpd)") { Patterns = ["*.xpd"] };
 
         var docsFolder = await topLevel.StorageProvider.TryGetWellKnownFolderAsync(Avalonia.Platform.Storage.WellKnownFolder.Documents);
 
@@ -622,7 +622,7 @@ public partial class MainWindow : Window
         {
             Title = "Create New CANopen Project",
             DefaultExtension = "cpj",
-            FileTypeChoices = [cpj],
+            FileTypeChoices = [cpj, xdd, xpd],
             SuggestedFileName = "NewCANopenProject",
             SuggestedStartLocation = docsFolder
         });
@@ -722,7 +722,7 @@ public partial class MainWindow : Window
                     _isProgrammaticChange = true;
                     
                     dc.Network.Clear();
-                    if (filePath.ToLower().EndsWith(".cpj"))
+                    if (filePath.ToLower().EndsWith(".cpj") || filePath.ToLower().EndsWith(".xdd") || filePath.ToLower().EndsWith(".xpd"))
                     {
                         dc.CurrentProjectPath = filePath;
                     }
@@ -775,6 +775,7 @@ public partial class MainWindow : Window
         var topLevel = TopLevel.GetTopLevel(this) ?? throw new Exception("Internal GUI error");
         var cpj = new FilePickerFileType("CANopen Project (Multi-Device) (*.cpj)") { Patterns = ["*.cpj"] };
         var xpd = new FilePickerFileType("XML Project Description (Single Device) (*.xpd)") { Patterns = ["*.xpd"] };
+        var xdd = new FilePickerFileType("XML Device Description (*.xdd)") { Patterns = ["*.xdd"] };
 
         var docsFolder = await topLevel.StorageProvider.TryGetWellKnownFolderAsync(Avalonia.Platform.Storage.WellKnownFolder.Documents);
 
@@ -782,7 +783,7 @@ public partial class MainWindow : Window
         {
             Title = "Save CANopen Project",
             DefaultExtension = "cpj",
-            FileTypeChoices = [cpj, xpd],
+            FileTypeChoices = [cpj, xpd, xdd],
             SuggestedFileName = "NewCANopenProject",
             SuggestedStartLocation = docsFolder
         });
