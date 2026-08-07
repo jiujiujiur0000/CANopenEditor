@@ -31,10 +31,10 @@
             </Grid.ColumnDefinitions>
             <Menu Grid.Column="0" x:Name="menu">
                 <MenuItem Header="{DynamicResource str_menu_file}" x:Name="fileMenu" >
-                    <MenuItem Header="{DynamicResource str_menu_new_project}" Click="NewProjectClick"/>
-                    <MenuItem Header="{DynamicResource str_menu_open_project}" Click="OpenProjectClick"/>
-                    <MenuItem Header="{DynamicResource str_menu_save_project}" Click="SaveProjectClick" IsEnabled="{Binding IsDirty}"/>
-                    <MenuItem Header="{DynamicResource str_menu_save_project_as}" Click="SaveProjectAsClick" IsEnabled="{Binding HasDevice}"/>
+                    <MenuItem Header="{DynamicResource str_menu_new_project}" Click="NewProjectClick" HotKey="Ctrl+N" InputGesture="Ctrl+N"/>
+                    <MenuItem Header="{DynamicResource str_menu_open_project}" Click="OpenProjectClick" HotKey="Ctrl+O" InputGesture="Ctrl+O"/>
+                    <MenuItem Header="{DynamicResource str_menu_save_project}" Click="SaveProjectClick" IsEnabled="{Binding IsDirty}" HotKey="Ctrl+S" InputGesture="Ctrl+S"/>
+                    <MenuItem Header="{DynamicResource str_menu_save_project_as}" Click="SaveProjectAsClick" IsEnabled="{Binding HasDevice}" HotKey="Ctrl+Shift+S" InputGesture="Ctrl+Shift+S"/>
                     <MenuItem Header="{DynamicResource str_menu_close_project}" Click="CloseProjectClick" IsEnabled="{Binding HasDevice}"/>
                     <Separator/>
                     <MenuItem Header="{DynamicResource str_menu_new_device}" Command="{Binding AddNewDevice}" IsEnabled="{Binding IsProjectMode}"/>
@@ -93,8 +93,8 @@
                 </MenuItem>
                 <MenuItem Header="{DynamicResource str_menu_insert_profile}" x:Name="profileMenu" IsEnabled="{Binding SelectedDevice, Converter={x:Static ObjectConverters.IsNotNull}}"/>
                 <MenuItem Header="{DynamicResource str_menu_reports}" IsEnabled="{Binding HasDevice}">
-                    <MenuItem Header="{DynamicResource str_menu_report_doc}" Click="ReportDocumentationClick" IsEnabled="{Binding SelectedDevice, Converter={x:Static ObjectConverters.IsNotNull}}"/>
-                    <MenuItem Header="{DynamicResource str_menu_report_network}" Click="ReportNetworkPDOClick" IsEnabled="{Binding HasDevice}"/>
+                    <MenuItem Header="{DynamicResource str_menu_report_doc}" Click="ReportDocumentationClick" IsEnabled="{Binding SelectedDevice, Converter={x:Static ObjectConverters.IsNotNull}}" HotKey="Ctrl+P" InputGesture="Ctrl+P"/>
+                    <MenuItem Header="{DynamicResource str_menu_report_network}" Click="ReportNetworkPDOClick" IsEnabled="{Binding HasDevice}" HotKey="Ctrl+Shift+P" InputGesture="Ctrl+Shift+P"/>
                 </MenuItem>
                 <MenuItem Header="{DynamicResource str_menu_preferences}" Click="OpenPreferences"/>
             </Menu>
