@@ -60,13 +60,13 @@
       <Grid Grid.Column="2" Grid.Row="0" Grid.RowSpan="5" RowDefinitions="Auto, *, 8, *" Margin="0,5,15,0">
         
         <!-- Top: Index Properties (Row 0) -->
-        <Border Grid.Row="0" Background="{DynamicResource SystemControlBackgroundAltHighBrush}" CornerRadius="8" Padding="20"
-                BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" BorderThickness="1"
-                BoxShadow="0 2 6 0 #1A000000" Margin="0,0,0,15">
-          <StackPanel Spacing="15">
-            <TextBlock Text="主对象属性" FontWeight="Bold" FontSize="15" Margin="0,0,0,5"/>
-            <Border BorderBrush="{DynamicResource SystemControlForegroundBaseMediumBrush}" BorderThickness="0,0,0,1" Margin="0,-15,0,0" Opacity="0.3"/>
-            <Grid RowDefinitions="Auto,Auto,Auto,Auto" ColumnDefinitions="80,*, 80,*">
+        <Grid Grid.Row="0" RowDefinitions="Auto, *">
+          <TextBlock Grid.Row="0" Text="主对象属性" FontWeight="Bold" FontSize="15" Margin="0,0,0,10"/>
+          <Border Grid.Row="1" Background="{DynamicResource SystemControlBackgroundAltHighBrush}" CornerRadius="8" Padding="20"
+                  BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" BorderThickness="1"
+                  BoxShadow="0 2 6 0 #1A000000" Margin="0,0,0,15">
+            <StackPanel Spacing="15">
+              <Grid RowDefinitions="Auto,Auto,Auto,Auto" ColumnDefinitions="80,*, 80,*">
               <TextBlock Text="{DynamicResource str_od_prop_index}" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,15"/>
               <TextBox Text="{Binding SelectedObject.Key}" Grid.Row="0" Grid.Column="1" IsEnabled="False" Margin="0,0,20,15"/>
               
@@ -81,9 +81,10 @@
 
               <TextBlock Text="{DynamicResource str_od_prop_desc}" Grid.Row="3" Grid.Column="0" VerticalAlignment="Top"/>
               <TextBox Text="{Binding SelectedObject.Value.Description}" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Height="70" TextWrapping="Wrap" AcceptsReturn="True" Margin="0,0,0,0"/>
-            </Grid>
-          </StackPanel>
-        </Border>
+              </Grid>
+            </StackPanel>
+          </Border>
+        </Grid>
 
         <!-- Middle: SubObjects DataGrid (Row 1) -->
         <Grid Grid.Row="1" RowDefinitions="Auto, *">
@@ -156,12 +157,11 @@
         <!-- Bottom: Sub-Index Properties (Row 3) -->
         <ScrollViewer Grid.Row="3" Padding="0" Margin="0,0,0,15">
           <StackPanel Spacing="15">
+            <TextBlock Text="子对象属性" FontWeight="Bold" FontSize="15" Margin="0,0,0,0"/>
             <Border Background="{DynamicResource SystemControlBackgroundAltHighBrush}" CornerRadius="8" Padding="20"
                     BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" BorderThickness="1"
-                    BoxShadow="0 2 6 0 #1A000000" Margin="0,5,0,0">
+                    BoxShadow="0 2 6 0 #1A000000" Margin="0,0,0,0">
           <StackPanel Spacing="15">
-            <TextBlock Text="子对象属性" FontWeight="Bold" FontSize="15" Margin="0,0,0,5"/>
-            <Border BorderBrush="{DynamicResource SystemControlForegroundBaseMediumBrush}" BorderThickness="0,0,0,1" Margin="0,-15,0,0" Opacity="0.3"/>
             <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" ColumnDefinitions="80,*, 100,*">
               
               <!-- Row 0: SubIndex & Name -->
