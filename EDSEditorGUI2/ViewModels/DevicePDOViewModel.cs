@@ -158,13 +158,27 @@ namespace EDSEditorGUI2.ViewModels
         private void UpdateMappings()
         {
             Mappings.Clear();
-            if (SelectedSlot != null && SelectedSlot.Slot != null)
+            if (SelectedSlot != null && SelectedSlot.Slot != null && SelectedSlot.Slot.Mapping != null)
             {
                 foreach (var mapping in SelectedSlot.Slot.Mapping)
                 {
                     Mappings.Add(new MappingEntryViewModel(mapping));
                 }
             }
+        }
+
+        public void InsertMapping(PDOSlotViewModel slotViewModel, int ordinal, AvailableObjectViewModel item)
+        {
+            if (slotViewModel == null || slotViewModel.Slot == null || item == null) return;
+            
+            slotViewModel.Slot.insertMapping(ordinal, new PDOMappingEntry(item.Entry, item.Entry.Sizeofdatatype()));
+            _helper.buildmappingsfromlists(false);
+            
+            UpdateMappings();
+            // Fire CollectionChanged to trigger redraw
+            OnPropertyChanged(nameof(Mappings));
+            // Trigger property changed on SelectedSlot so the View refreshes bindings
+            OnPropertyChanged(nameof(SelectedSlot));
         }
 
         public void UpdatePDOList()

@@ -23,6 +23,42 @@ public partial class DevicePDOView : UserControl
 
         CreateMappingBitsAndBytesIndication();
         Zoom.Value = 100;
+        
+        subindexGrid.AddHandler(Avalonia.Input.InputElement.PointerPressedEvent, SubindexGrid_PointerPressed, Avalonia.Interactivity.RoutingStrategies.Tunnel);
+        subindexGrid.AddHandler(Avalonia.Input.InputElement.PointerMovedEvent, SubindexGrid_PointerMoved, Avalonia.Interactivity.RoutingStrategies.Tunnel);
+    }
+    
+    private Avalonia.Point? _dragStartPoint;
+
+    private void SubindexGrid_PointerPressed(object? sender, Avalonia.Input.PointerPressedEventArgs e)
+    {
+        if (e.GetCurrentPoint(this).Properties.IsLeftButtonPressed)
+        {
+            _dragStartPoint = e.GetCurrentPoint(this).Position;
+        }
+        else
+        {
+            _dragStartPoint = null;
+        }
+    }
+
+    private async void SubindexGrid_PointerMoved(object? sender, Avalonia.Input.PointerEventArgs e)
+    {
+        if (_dragStartPoint == null || !e.GetCurrentPoint(this).Properties.IsLeftButtonPressed)
+            return;
+
+        var point = e.GetCurrentPoint(this);
+        var distance = Math.Sqrt(Math.Pow(point.Position.X - _dragStartPoint.Value.X, 2) + Math.Pow(point.Position.Y - _dragStartPoint.Value.Y, 2));
+
+        if (distance > 5 && subindexGrid.SelectedItem is DevicePDOViewModel.AvailableObjectViewModel draggedItem)
+        {
+            _dragStartPoint = null;
+
+            var dragData = new Avalonia.Input.DataObject();
+            dragData.Set("AvailableObjectViewModel", draggedItem);
+
+            await Avalonia.Input.DragDrop.DoDragDrop(e, dragData, Avalonia.Input.DragDropEffects.Copy);
+        }
     }
 
     protected override void OnDataContextChanged(EventArgs e)
@@ -95,6 +131,7 @@ public partial class DevicePDOView : UserControl
             AddToMappingGrid(indexBorder, row, 2);
 
             int currentBit = 0;
+            int currentOrdinal = 0;
             if (slot.Slot != null && slot.Slot.Mapping != null)
             {
                 foreach (var mapping in slot.Slot.Mapping)
@@ -111,7 +148,7 @@ public partial class DevicePDOView : UserControl
                             Background = bgBrush,
                             BorderBrush = Brushes.Gray,
                             BorderThickness = new Avalonia.Thickness(0, 0, 1, 1),
-                            IsHitTestVisible = false,
+                            IsHitTestVisible = true,
                             Child = new TextBlock 
                             { 
                                 Text = isAvailable ? (entry.IndexString + "/" + entry.SubIndexString + "/" + entry.Name) : "Empty", 
@@ -121,13 +158,17 @@ public partial class DevicePDOView : UserControl
                                 ClipToBounds = true
                             }
                         };
+                        
+                        SetupDropTarget(border, slot, currentOrdinal);
 
                         AddToMappingGrid(border, row, 3 + currentBit, width);
                         currentBit += width;
+                        currentOrdinal++;
                     }
                     else
                     {
                         currentBit += width;
+                        currentOrdinal++;
                     }
                 }
             }
@@ -141,7 +182,7 @@ public partial class DevicePDOView : UserControl
                     Background = Brushes.LightGray,
                     BorderBrush = Brushes.Gray,
                     BorderThickness = new Avalonia.Thickness(0, 0, 1, 1),
-                    IsHitTestVisible = false,
+                    IsHitTestVisible = true,
                     Child = new TextBlock 
                     { 
                         Text = "Empty", 
@@ -151,6 +192,8 @@ public partial class DevicePDOView : UserControl
                         ClipToBounds = true
                     }
                 };
+                
+                SetupDropTarget(border, slot, currentOrdinal);
                 AddToMappingGrid(border, row, 3 + currentBit, remaining);
             }
 
@@ -181,6 +224,33 @@ public partial class DevicePDOView : UserControl
             row++;
             mappingIndex++;
         }
+    }
+
+    private void SetupDropTarget(Control target, DevicePDOViewModel.PDOSlotViewModel slot, int ordinal)
+    {
+        Avalonia.Input.DragDrop.SetAllowDrop(target, true);
+        target.AddHandler(Avalonia.Input.DragDrop.DragOverEvent, (s, e) =>
+        {
+            if (e.Data.Contains("AvailableObjectViewModel"))
+            {
+                e.DragEffects = Avalonia.Input.DragDropEffects.Copy;
+            }
+            else
+            {
+                e.DragEffects = Avalonia.Input.DragDropEffects.None;
+            }
+            e.Handled = true;
+        }, Avalonia.Interactivity.RoutingStrategies.Bubble);
+
+        target.AddHandler(Avalonia.Input.DragDrop.DropEvent, (s, e) =>
+        {
+            if (e.Data.Get("AvailableObjectViewModel") is DevicePDOViewModel.AvailableObjectViewModel vmItem && _vm != null)
+            {
+                _vm.InsertMapping(slot, ordinal, vmItem);
+                Dispatcher.UIThread.InvokeAsync(UpdateGraphicalMappings);
+            }
+            e.Handled = true;
+        }, Avalonia.Interactivity.RoutingStrategies.Bubble);
     }
 
     void CreateMappingBitsAndBytesIndication()
