@@ -333,15 +333,10 @@ namespace libEDSsharp
                 return OdSubObject.Types.AccessPDO.T;
             if (source.PDOtype == PDOMappingType.RPDO)
                 return OdSubObject.Types.AccessPDO.R;
-
-            if (source.accesstype == EDSsharp.AccessType.rww)
-                return OdSubObject.Types.AccessPDO.R;
-            else if (source.accesstype == EDSsharp.AccessType.rwr)
-                return OdSubObject.Types.AccessPDO.T;
-            else if (source.accesstype == EDSsharp.AccessType.@const)
-                return OdSubObject.Types.AccessPDO.R;
-            else if (source.accesstype == EDSsharp.AccessType.rw)
+            if (source.PDOtype == PDOMappingType.optional)
                 return OdSubObject.Types.AccessPDO.Tr;
+            if (source.PDOtype == PDOMappingType.no)
+                return OdSubObject.Types.AccessPDO.No;
 
             return OdSubObject.Types.AccessPDO.No;
         }
@@ -586,7 +581,9 @@ namespace libEDSsharp
     {
         public PDOMappingType Convert(OdSubObject source, PDOMappingType destination, ResolutionContext context)
         {
-            if (source.Pdo == OdSubObject.Types.AccessPDO.T || source.Pdo == OdSubObject.Types.AccessPDO.Tr)
+            if (source.Pdo == OdSubObject.Types.AccessPDO.Tr)
+                return PDOMappingType.optional;
+            else if (source.Pdo == OdSubObject.Types.AccessPDO.T)
                 return PDOMappingType.TPDO;
             else if (source.Pdo == OdSubObject.Types.AccessPDO.R)
                 return PDOMappingType.RPDO;
@@ -602,13 +599,10 @@ namespace libEDSsharp
                 return OdSubObject.Types.AccessPDO.T;
             if (source.PDOtype == PDOMappingType.RPDO)
                 return OdSubObject.Types.AccessPDO.R;
-
-            if (source.accesstype == EDSsharp.AccessType.rww)
-                return OdSubObject.Types.AccessPDO.T;
-            if (source.accesstype == EDSsharp.AccessType.rwr)
-                return OdSubObject.Types.AccessPDO.R;
-            if (source.accesstype == EDSsharp.AccessType.rw)
+            if (source.PDOtype == PDOMappingType.optional)
                 return OdSubObject.Types.AccessPDO.Tr;
+            if (source.PDOtype == PDOMappingType.no)
+                return OdSubObject.Types.AccessPDO.No;
 
             return OdSubObject.Types.AccessPDO.No;
         }
