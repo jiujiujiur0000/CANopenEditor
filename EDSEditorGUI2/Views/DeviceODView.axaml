@@ -124,7 +124,7 @@
         <GridSplitter Grid.Row="2" Classes="Horizontal" ResizeDirection="Rows" Margin="0,3,0,4" Background="Transparent" Height="8"/>
         
         <!-- Bottom: Property Editor Forms -->
-        <ScrollViewer Grid.Row="3" MaxHeight="500" Padding="0,0,0,0">
+        <ScrollViewer Grid.Row="3" Padding="0,0,0,0">
           <StackPanel Spacing="15" Margin="0,0,0,0">
             <!-- Basic Properties -->
             <Border Background="{DynamicResource SystemControlBackgroundAltHighBrush}" CornerRadius="8" Padding="20"
