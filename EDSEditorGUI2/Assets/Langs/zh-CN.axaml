@@ -160,8 +160,8 @@
     <sys:String x:Key="str_pdo_chk_invalid">失效</sys:String>
     <sys:String x:Key="str_pdo_id">ID</sys:String>
     <sys:String x:Key="str_pdo_zoom">缩放:</sys:String>
-    <sys:String x:Key="str_pdo_remove_item">删除映射</sys:String>
-    <sys:String x:Key="str_pdo_insert_item">插入占位</sys:String>
+    <sys:String x:Key="str_pdo_remove_item">删除项</sys:String>
+    <sys:String x:Key="str_pdo_insert_item">插入项</sys:String>
 
     <!-- OD Index Range View -->
     <sys:String x:Key="str_od_menu_clone">克隆...</sys:String>

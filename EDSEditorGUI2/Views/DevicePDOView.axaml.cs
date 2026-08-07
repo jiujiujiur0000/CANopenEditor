@@ -159,6 +159,8 @@ public partial class DevicePDOView : UserControl
                             }
                         };
                         
+                        ToolTip.SetTip(border, isAvailable ? (entry.IndexString + "/" + entry.SubIndexString + "/" + entry.Name) : "Empty");
+                        
                         if (_vm != null)
                         {
                             var menu = new ContextMenu();
@@ -223,6 +225,8 @@ public partial class DevicePDOView : UserControl
                         ClipToBounds = true
                     }
                 };
+
+                ToolTip.SetTip(border, "Empty");
 
                 if (_vm != null)
                 {
