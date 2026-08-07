@@ -21,7 +21,7 @@
                     BorderThickness="1" CornerRadius="8" ClipToBounds="True">
                 <DataGrid ItemsSource="{Binding Modules}" SelectedItem="{Binding SelectedModule}"
                           AutoGenerateColumns="False" CanUserReorderColumns="False" 
-                          CanUserResizeColumns="True" CanUserSortColumns="False"
+                          CanUserResizeColumns="True" CanUserSortColumns="True"
                           HeadersVisibility="Column"
                           GridLinesVisibility="Horizontal" BorderThickness="0" CornerRadius="8"
                           RowBackground="Transparent">

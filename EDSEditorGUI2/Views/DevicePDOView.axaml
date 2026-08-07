@@ -21,8 +21,7 @@
                     GridLinesVisibility="Horizontal"
                     BorderThickness="0"
                     Background="Transparent" RowBackground="Transparent"
-                    FocusAdorner="{x:Null}"
-                    CanUserSortColumns="False">
+                    FocusAdorner="{x:Null}">
             <DataGrid.Styles>
               <Style Selector="DataGridColumnHeader">
                 <Setter Property="Background" Value="Transparent"/>
