@@ -15,7 +15,7 @@
       <!-- Top Area: DataGrid & Properties -->
       <Grid ColumnDefinitions="*, 450" MinHeight="350">
         <!-- Left: DataGrid -->
-        <Border Grid.Column="0" Margin="0,0,15,0" MaxHeight="600" Background="{DynamicResource SystemControlBackgroundAltHighBrush}" BorderThickness="1" BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" CornerRadius="8" ClipToBounds="True">
+        <Border Grid.Column="0" Margin="0,0,15,0" Height="{Binding #RightPropertiesCard.Bounds.Height}" Background="{DynamicResource SystemControlBackgroundAltHighBrush}" BorderThickness="1" BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" CornerRadius="8" ClipToBounds="True">
           <DataGrid ItemsSource="{Binding AvailableObjects}"
                     x:Name="subindexGrid"
                     GridLinesVisibility="Horizontal"
@@ -42,7 +42,7 @@
         </Border>
 
         <!-- Right: Properties Card -->
-        <Border Grid.Column="1" Background="{DynamicResource SystemControlBackgroundAltHighBrush}" CornerRadius="8" Padding="25"
+        <Border x:Name="RightPropertiesCard" Grid.Column="1" Background="{DynamicResource SystemControlBackgroundAltHighBrush}" CornerRadius="8" Padding="25"
                 BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" BorderThickness="1"
                 BoxShadow="0 2 6 0 #1A000000" VerticalAlignment="Top">
           <StackPanel Spacing="15">
