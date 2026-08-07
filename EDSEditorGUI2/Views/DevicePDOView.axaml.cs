@@ -159,19 +159,34 @@ public partial class DevicePDOView : UserControl
                             }
                         };
                         
-                        if (isAvailable && _vm != null)
+                        if (_vm != null)
                         {
                             var menu = new ContextMenu();
+                            var items = new System.Collections.Generic.List<MenuItem>();
                             
-                            object? headerObj = null;
-                            this.TryFindResource("str_pdo_remove_item", out headerObj);
-                            
-                            var menuItem = new MenuItem { Header = headerObj?.ToString() ?? "Remove Item" };
-                            menuItem.Click += (s, e) => {
-                                _vm.RemoveMapping(slot, mapping);
+                            if (isAvailable)
+                            {
+                                object? removeHeaderObj = null;
+                                this.TryFindResource("str_pdo_remove_item", out removeHeaderObj);
+                                var removeMenuItem = new MenuItem { Header = removeHeaderObj?.ToString() ?? "Remove Item" };
+                                removeMenuItem.Click += (s, e) => {
+                                    _vm.RemoveMapping(slot, mapping);
+                                    Dispatcher.UIThread.InvokeAsync(UpdateGraphicalMappings);
+                                };
+                                items.Add(removeMenuItem);
+                            }
+
+                            object? insertHeaderObj = null;
+                            this.TryFindResource("str_pdo_insert_item", out insertHeaderObj);
+                            var insertMenuItem = new MenuItem { Header = insertHeaderObj?.ToString() ?? "Insert Padding" };
+                            int captureOrdinal = currentOrdinal;
+                            insertMenuItem.Click += (s, e) => {
+                                _vm.InsertDummyMapping(slot, captureOrdinal);
                                 Dispatcher.UIThread.InvokeAsync(UpdateGraphicalMappings);
                             };
-                            menu.ItemsSource = new[] { menuItem };
+                            items.Add(insertMenuItem);
+                            
+                            menu.ItemsSource = items;
                             border.ContextMenu = menu;
                         }
                         
@@ -208,6 +223,25 @@ public partial class DevicePDOView : UserControl
                         ClipToBounds = true
                     }
                 };
+
+                if (_vm != null)
+                {
+                    var menu = new ContextMenu();
+                    var items = new System.Collections.Generic.List<MenuItem>();
+
+                    object? insertHeaderObj = null;
+                    this.TryFindResource("str_pdo_insert_item", out insertHeaderObj);
+                    var insertMenuItem = new MenuItem { Header = insertHeaderObj?.ToString() ?? "Insert Padding" };
+                    int captureOrdinal = currentOrdinal;
+                    insertMenuItem.Click += (s, e) => {
+                        _vm.InsertDummyMapping(slot, captureOrdinal);
+                        Dispatcher.UIThread.InvokeAsync(UpdateGraphicalMappings);
+                    };
+                    items.Add(insertMenuItem);
+                    
+                    menu.ItemsSource = items;
+                    border.ContextMenu = menu;
+                }
                 
                 SetupDropTarget(border, slot, currentOrdinal);
                 AddToMappingGrid(border, row, 3 + currentBit, remaining);

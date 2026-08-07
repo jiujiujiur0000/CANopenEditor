@@ -1,5 +1,6 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using libEDSsharp;
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 
@@ -186,6 +187,26 @@ namespace EDSEditorGUI2.ViewModels
             if (slotViewModel == null || slotViewModel.Slot == null) return;
             
             slotViewModel.Slot.Mapping.Remove(entryToRemove);
+            _helper.buildmappingsfromlists(false);
+            
+            UpdateMappings();
+            OnPropertyChanged(nameof(Mappings));
+            OnPropertyChanged(nameof(SelectedSlot));
+        }
+
+        public void InsertDummyMapping(PDOSlotViewModel slotViewModel, int ordinal)
+        {
+            if (slotViewModel == null || slotViewModel.Slot == null) return;
+            
+            int width_limit = 64;
+            foreach (var m in slotViewModel.Slot.Mapping) width_limit -= m.width;
+            if (width_limit <= 0) return;
+
+            libEDSsharp.PDOMappingEntry od = new libEDSsharp.PDOMappingEntry();
+            od.entry = _eds.dummy_ods[0x002];
+            od.width = System.Math.Min(od.entry.Sizeofdatatype(), width_limit);
+            
+            slotViewModel.Slot.Mapping.Insert(ordinal, od);
             _helper.buildmappingsfromlists(false);
             
             UpdateMappings();

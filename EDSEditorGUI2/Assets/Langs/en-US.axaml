@@ -161,6 +161,7 @@
     <sys:String x:Key="str_pdo_id">ID</sys:String>
     <sys:String x:Key="str_pdo_zoom">Zoom:</sys:String>
     <sys:String x:Key="str_pdo_remove_item">Remove Item</sys:String>
+    <sys:String x:Key="str_pdo_insert_item">Insert Padding</sys:String>
 
     <!-- OD Index Range View -->
     <sys:String x:Key="str_od_menu_clone">Clone...</sys:String>
