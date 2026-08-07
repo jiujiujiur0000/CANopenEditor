@@ -29,9 +29,10 @@
 
             <!-- Exporter Settings -->
             <TextBlock Grid.Row="2" Grid.Column="0" Text="{DynamicResource str_pref_exporter}" VerticalAlignment="Center" Margin="0,0,15,15"/>
-            <ComboBox Grid.Row="2" Grid.Column="1" ItemsSource="{Binding AvailableExporters}" 
-                      SelectedItem="{Binding SelectedExporterOption}" 
-                      HorizontalAlignment="Stretch" Margin="0,0,0,15"/>
+            <ComboBox Grid.Row="2" Grid.Column="1" SelectedValue="{Binding SelectedExporterString}" SelectedValueBinding="{Binding Path=Tag, x:DataType=ComboBoxItem}" HorizontalAlignment="Stretch" Margin="0,0,0,15">
+                <ComboBoxItem Tag="CANOPENNODE_V4" Content="{DynamicResource str_pref_export_v4}"/>
+                <ComboBoxItem Tag="CANOPENNODE_LEGACY" Content="{DynamicResource str_pref_export_legacy}"/>
+            </ComboBox>
         </Grid>
 
         <!-- Warnings -->

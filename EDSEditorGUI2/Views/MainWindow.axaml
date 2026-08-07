@@ -119,7 +119,7 @@
                 <!-- 恢复右边框作为视觉上的 1 像素细线，并单独设置极浅灰底色 -->
                 <Border Grid.Column="0" Background="#FAFAFA" BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" BorderThickness="0,0,1,0">
                     <Grid RowDefinitions="Auto,*">
-                        <TextBlock Grid.Row="0" Text="设备网络" FontWeight="Bold" Margin="15,15,10,10" Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}" />
+                        <TextBlock Grid.Row="0" Text="{DynamicResource str_main_device_list}" FontWeight="Bold" Margin="15,15,10,10" Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}" />
                         
                         <ListBox Grid.Row="1" ItemsSource="{Binding Network}" SelectedItem="{Binding SelectedDevice}" 
                                  Background="Transparent" BorderThickness="0,1,0,0" BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" Padding="0,0">

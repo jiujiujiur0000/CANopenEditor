@@ -30,9 +30,9 @@
     <sys:String x:Key="str_menu_export_device">导出当前设备</sys:String>
     <sys:String x:Key="str_menu_export_eds">XDD / EDS / DCF 格式</sys:String>
     <sys:String x:Key="str_menu_export_source">CANopenNode 源码</sys:String>
-    <sys:String x:Key="str_menu_export_source_v4">导出为 V4 最新版</sys:String>
-    <sys:String x:Key="str_menu_export_source_legacy">导出为 V1-V3 兼容版</sys:String>
+
     <sys:String x:Key="str_menu_export_all">导出所有设备</sys:String>
+    <sys:String x:Key="str_main_device_list">设备</sys:String>
     
     <sys:String x:Key="str_welcome_title">欢迎使用 CANopen Editor 2</sys:String>
     <sys:String x:Key="str_btn_new_project">📄 新建项目</sys:String>
@@ -54,6 +54,8 @@
     <sys:String x:Key="str_pref_language">语言选择：</sys:String>
     <sys:String x:Key="str_pref_theme">主题选择：</sys:String>
     <sys:String x:Key="str_pref_exporter">导出的CANopenNode版本：</sys:String>
+    <sys:String x:Key="str_pref_export_v4">V4 最新版</sys:String>
+    <sys:String x:Key="str_pref_export_legacy">V1-V3 兼容版</sys:String>
     <sys:String x:Key="str_pref_warnings">警报配置：</sys:String>
     <sys:String x:Key="str_pref_warn_generic">常规警告</sys:String>
     <sys:String x:Key="str_pref_warn_rename">变量重命名警告</sys:String>

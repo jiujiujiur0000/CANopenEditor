@@ -30,9 +30,9 @@
     <sys:String x:Key="str_menu_export_device">Export Current Device</sys:String>
     <sys:String x:Key="str_menu_export_eds">XDD / EDS / DCF Format</sys:String>
     <sys:String x:Key="str_menu_export_source">CANopenNode Source</sys:String>
-    <sys:String x:Key="str_menu_export_source_v4">Export as V4 (Latest)</sys:String>
-    <sys:String x:Key="str_menu_export_source_legacy">Export as V1-V3 Compatible</sys:String>
+
     <sys:String x:Key="str_menu_export_all">Export All Devices</sys:String>
+    <sys:String x:Key="str_main_device_list">Devices</sys:String>
     
     <sys:String x:Key="str_welcome_title">Welcome to CANopen Editor 2</sys:String>
     <sys:String x:Key="str_btn_new_project">📄 New Project</sys:String>
@@ -52,6 +52,8 @@
     <sys:String x:Key="str_pref_language">Language:</sys:String>
     <sys:String x:Key="str_pref_theme">Theme:</sys:String>
     <sys:String x:Key="str_pref_exporter">Exported CANopenNode Version:</sys:String>
+    <sys:String x:Key="str_pref_export_v4">V4 (Latest)</sys:String>
+    <sys:String x:Key="str_pref_export_legacy">Legacy (V1-V3)</sys:String>
     <sys:String x:Key="str_pref_warnings">Warnings:</sys:String>
     <sys:String x:Key="str_pref_warn_generic">Generic warnings</sys:String>
     <sys:String x:Key="str_pref_warn_rename">Variable rename warnings</sys:String>

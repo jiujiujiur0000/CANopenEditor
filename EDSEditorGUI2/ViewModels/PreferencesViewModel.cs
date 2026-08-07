@@ -24,35 +24,11 @@ namespace EDSEditorGUI2.ViewModels
         [ObservableProperty]
         private bool _structWarning;
 
-        private ExporterFactory.Exporter _selectedExporter;
+        [ObservableProperty]
+        private string _selectedExporterString;
 
         [ObservableProperty]
         private string _selectedLanguage;
-
-        public class ExporterOption
-        {
-            public ExporterFactory.Exporter Value { get; }
-            public string Display { get; }
-            public ExporterOption(ExporterFactory.Exporter value, string display) { Value = value; Display = display; }
-            public override string ToString() => Display;
-        }
-
-        public List<ExporterOption> AvailableExporters { get; } = new()
-        {
-            new(ExporterFactory.Exporter.CANOPENNODE_V4, "V4"),
-            new(ExporterFactory.Exporter.CANOPENNODE_LEGACY, "Legacy (V1)")
-        };
-
-        private ExporterOption _selectedExporterOption;
-        public ExporterOption SelectedExporterOption
-        {
-            get => _selectedExporterOption;
-            set
-            {
-                SetProperty(ref _selectedExporterOption, value);
-                _selectedExporter = value?.Value ?? ExporterFactory.Exporter.CANOPENNODE_V4;
-            }
-        }
 
         public class LanguageOption
         {
@@ -91,8 +67,7 @@ namespace EDSEditorGUI2.ViewModels
             StringWarning = (mask & 0x08) == 0x08;
             StructWarning = (mask & 0x10) == 0x10;
 
-            _selectedExporter = ConfigurationManager.Settings.CurrentExporter;
-            _selectedExporterOption = AvailableExporters.FirstOrDefault(x => x.Value == _selectedExporter) ?? AvailableExporters[0];
+            SelectedExporterString = ConfigurationManager.Settings.CurrentExporter.ToString();
             SelectedLanguage = ConfigurationManager.Settings.CurrentLanguage;
             _selectedLanguageOption = AvailableLanguages.FirstOrDefault(x => x.Code == SelectedLanguage) ?? AvailableLanguages[0];
 
@@ -111,7 +86,14 @@ namespace EDSEditorGUI2.ViewModels
             if (StructWarning) mask |= 0x10;
 
             Warnings.warning_mask = mask;
-            ConfigurationManager.Settings.CurrentExporter = _selectedExporter;
+            if (Enum.TryParse<ExporterFactory.Exporter>(SelectedExporterString, out var parsedExporter))
+            {
+                ConfigurationManager.Settings.CurrentExporter = parsedExporter;
+            }
+            else
+            {
+                ConfigurationManager.Settings.CurrentExporter = ExporterFactory.Exporter.CANOPENNODE_V4;
+            }
             ConfigurationManager.Settings.CurrentLanguage = SelectedLanguage;
             ConfigurationManager.Settings.CurrentTheme = SelectedTheme ?? "Default";
 
