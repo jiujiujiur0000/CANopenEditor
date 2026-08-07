@@ -1211,16 +1211,16 @@ namespace libEDSsharp
                     if (obj.fileCreationTimeSpecified)
                     {
                         eds.fi.CreationDateTime = obj.fileCreationDate.Add(obj.fileCreationTime.TimeOfDay);
-                        eds.fi.CreationDate = eds.fi.CreationDateTime.ToString("MM-dd-yyyy");
-                        eds.fi.CreationTime = eds.fi.CreationDateTime.ToString("h:mmtt");
+                        eds.fi.CreationDate = eds.fi.CreationDateTime.ToString("MM-dd-yyyy", System.Globalization.CultureInfo.InvariantCulture);
+                        eds.fi.CreationTime = eds.fi.CreationDateTime.ToString("h:mmtt", System.Globalization.CultureInfo.InvariantCulture);
 
                     }
 
                     if (obj.fileModificationDateSpecified)
                     {
                         eds.fi.ModificationDateTime = obj.fileModificationDate.Add(obj.fileCreationTime.TimeOfDay);
-                        eds.fi.ModificationDate = eds.fi.ModificationDateTime.ToString("MM-dd-yyyy");
-                        eds.fi.ModificationTime = eds.fi.ModificationDateTime.ToString("h:mmtt");
+                        eds.fi.ModificationDate = eds.fi.ModificationDateTime.ToString("MM-dd-yyyy", System.Globalization.CultureInfo.InvariantCulture);
+                        eds.fi.ModificationTime = eds.fi.ModificationDateTime.ToString("h:mmtt", System.Globalization.CultureInfo.InvariantCulture);
 
                     }
 

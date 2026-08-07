@@ -1253,15 +1253,15 @@ namespace libEDSsharp
                 if (body_device.fileCreationTimeSpecified)
                 {
                     eds.fi.CreationDateTime = body_device.fileCreationDate.Add(body_device.fileCreationTime.TimeOfDay);
-                    eds.fi.CreationDate = eds.fi.CreationDateTime.ToString("MM-dd-yyyy");
-                    eds.fi.CreationTime = eds.fi.CreationDateTime.ToString("h:mmtt");
+                    eds.fi.CreationDate = eds.fi.CreationDateTime.ToString("MM-dd-yyyy", System.Globalization.CultureInfo.InvariantCulture);
+                    eds.fi.CreationTime = eds.fi.CreationDateTime.ToString("h:mmtt", System.Globalization.CultureInfo.InvariantCulture);
 
                 }
                 if (body_device.fileModificationDateSpecified)
                 {
                     eds.fi.ModificationDateTime = body_device.fileModificationDate.Add(body_device.fileModificationTime.TimeOfDay);
-                    eds.fi.ModificationDate = eds.fi.ModificationDateTime.ToString("MM-dd-yyyy");
-                    eds.fi.ModificationTime = eds.fi.ModificationDateTime.ToString("h:mmtt");
+                    eds.fi.ModificationDate = eds.fi.ModificationDateTime.ToString("MM-dd-yyyy", System.Globalization.CultureInfo.InvariantCulture);
+                    eds.fi.ModificationTime = eds.fi.ModificationDateTime.ToString("h:mmtt", System.Globalization.CultureInfo.InvariantCulture);
                 }
 
                 if (body_device.DeviceIdentity != null)

@@ -85,11 +85,11 @@ namespace libEDSsharp
                 .ForMember(dest => dest.exportFolder, opt => opt.Ignore())
                 .ForMember(dest => dest.FileRevision, opt => opt.MapFrom(src => (byte)src.FileVersion.ElementAtOrDefault(0)))
                 .ForMember(dest => dest.CreationDateTime, opt => opt.MapFrom(src => src.CreationTime.ToDateTime()))
-                .ForMember(dest => dest.CreationDate, opt => opt.MapFrom(src => src.CreationTime.ToDateTime().ToString("MM-dd-yyyy")))
-                .ForMember(dest => dest.CreationTime, opt => opt.MapFrom(src => src.CreationTime.ToDateTime().ToString("h:mmtt")))
+                .ForMember(dest => dest.CreationDate, opt => opt.MapFrom(src => src.CreationTime.ToDateTime().ToString("MM-dd-yyyy", System.Globalization.CultureInfo.InvariantCulture)))
+                .ForMember(dest => dest.CreationTime, opt => opt.MapFrom(src => src.CreationTime.ToDateTime().ToString("h:mmtt", System.Globalization.CultureInfo.InvariantCulture)))
                 .ForMember(dest => dest.ModificationDateTime, opt => opt.MapFrom(src => src.ModificationTime.ToDateTime()))
-                .ForMember(dest => dest.ModificationDate, opt => opt.MapFrom(src => src.ModificationTime.ToDateTime().ToString("MM-dd-yyyy")))
-                .ForMember(dest => dest.ModificationTime, opt => opt.MapFrom(src => src.ModificationTime.ToDateTime().ToString("h:mmtt")));
+                .ForMember(dest => dest.ModificationDate, opt => opt.MapFrom(src => src.ModificationTime.ToDateTime().ToString("MM-dd-yyyy", System.Globalization.CultureInfo.InvariantCulture)))
+                .ForMember(dest => dest.ModificationTime, opt => opt.MapFrom(src => src.ModificationTime.ToDateTime().ToString("h:mmtt", System.Globalization.CultureInfo.InvariantCulture)));
                 cfg.CreateMap<CanOpen_DeviceInfo, DeviceInfo>()
                 .ForMember(dest => dest.BaudRate_10, opt => opt.MapFrom(src => src.BaudRate10))
                 .ForMember(dest => dest.BaudRate_20, opt => opt.MapFrom(src => src.BaudRate20))
@@ -362,6 +362,12 @@ namespace libEDSsharp
         /// <returns>result </returns>
         public Timestamp Resolve(FileInfo source, CanOpen_FileInfo destination, Timestamp member, ResolutionContext context)
         {
+            DateTime dt = _type == "creation" ? source.CreationDateTime : source.ModificationDateTime;
+            if (dt.Year > 1)
+            {
+                return Timestamp.FromDateTime(dt.Kind == DateTimeKind.Utc ? dt : dt.ToUniversalTime());
+            }
+
             string strTime;
             string strDate;
             if (_type == "creation")
