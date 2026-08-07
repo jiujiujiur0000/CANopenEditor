@@ -9,7 +9,7 @@
              x:Class="EDSEditorGUI2.Views.DevicePDOView"
              x:DataType="vm:DevicePDOViewModel">
 
-  <ScrollViewer>
+  <ScrollViewer BringIntoViewOnFocusChange="False">
     <StackPanel Spacing="15" Margin="15,5,15,15" MaxWidth="1200">
       
       <!-- Top Area: DataGrid & Properties -->
