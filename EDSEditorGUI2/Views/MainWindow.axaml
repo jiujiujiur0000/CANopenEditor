@@ -37,9 +37,9 @@
                     <MenuItem Header="{DynamicResource str_menu_save_project_as}" Click="SaveProjectAsClick" IsEnabled="{Binding HasDevice}"/>
                     <MenuItem Header="{DynamicResource str_menu_close_project}" Click="CloseProjectClick" IsEnabled="{Binding HasDevice}"/>
                     <Separator/>
-                    <MenuItem Header="{DynamicResource str_menu_new_device}" Command="{Binding AddNewDevice}"/>
-                    <MenuItem Header="{DynamicResource str_menu_import_device}" Click="OpenFileClick"/>
-                    <MenuItem Header="{DynamicResource str_menu_remove_device}" Command="{Binding CloseDeviceCommand}" CommandParameter="{Binding SelectedDevice}" IsEnabled="{Binding SelectedDevice, Converter={x:Static ObjectConverters.IsNotNull}}"/>
+                    <MenuItem Header="{DynamicResource str_menu_new_device}" Command="{Binding AddNewDevice}" IsEnabled="{Binding IsProjectMode}"/>
+                    <MenuItem Header="{DynamicResource str_menu_import_device}" Click="OpenFileClick" IsEnabled="{Binding IsProjectMode}"/>
+                    <MenuItem Header="{DynamicResource str_menu_remove_device}" Command="{Binding CloseDeviceCommand}" CommandParameter="{Binding SelectedDevice}" IsEnabled="{Binding CanRemoveDevice}"/>
                     <Separator/>
                     <MenuItem Header="{DynamicResource str_menu_recent}"/>
                     <Separator/>

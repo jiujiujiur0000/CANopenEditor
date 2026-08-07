@@ -16,6 +16,29 @@ public partial class MainWindowViewModel : ViewModelBase
     [ObservableProperty]
     private string? _currentProjectPath;
 
+    partial void OnCurrentProjectPathChanged(string? value)
+    {
+        OnPropertyChanged(nameof(IsProjectMode));
+        OnPropertyChanged(nameof(CanRemoveDevice));
+    }
+
+    public bool IsProjectMode
+    {
+        get
+        {
+            if (string.IsNullOrEmpty(CurrentProjectPath)) return Network.Count > 0;
+            string ext = System.IO.Path.GetExtension(CurrentProjectPath).ToLower();
+            return ext == ".cpj" || ext == ".xpd" || ext == ".rpj"; // Assuming .rpj is a typo for cpj, but just in case
+        }
+    }
+
+    public bool CanRemoveDevice => IsProjectMode && SelectedDevice != null;
+
+    partial void OnSelectedDeviceChanged(Device? value)
+    {
+        OnPropertyChanged(nameof(CanRemoveDevice));
+    }
+
     [ObservableProperty]
     private bool _isDirty;
 
@@ -25,6 +48,8 @@ public partial class MainWindowViewModel : ViewModelBase
         {
             OnPropertyChanged(nameof(HasNoDevice));
             OnPropertyChanged(nameof(HasDevice));
+            OnPropertyChanged(nameof(IsProjectMode));
+            OnPropertyChanged(nameof(CanRemoveDevice));
         };
     }
 

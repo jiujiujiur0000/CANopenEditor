@@ -15,11 +15,11 @@
     <sys:String x:Key="str_menu_save_all">Save _All</sys:String>
     <sys:String x:Key="str_menu_quit">_Quit</sys:String>
 
-    <sys:String x:Key="str_menu_new_project">New Project</sys:String>
-    <sys:String x:Key="str_menu_open_project">Open Project</sys:String>
+    <sys:String x:Key="str_menu_new_project">New</sys:String>
+    <sys:String x:Key="str_menu_open_project">Open</sys:String>
     <sys:String x:Key="str_menu_save_project">Save</sys:String>
     <sys:String x:Key="str_menu_save_project_as">Save As...</sys:String>
-    <sys:String x:Key="str_menu_close_project">Close Project</sys:String>
+    <sys:String x:Key="str_menu_close_project">Close</sys:String>
     <sys:String x:Key="str_menu_new_device">New Device</sys:String>
     <sys:String x:Key="str_menu_import_device">Import Device</sys:String>
     <sys:String x:Key="str_menu_remove_device">Remove Current Device</sys:String>
