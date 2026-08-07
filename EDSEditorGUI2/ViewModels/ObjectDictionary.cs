@@ -298,6 +298,7 @@ public class ObjectDictionary : IDictionary<string, OdObject>, INotifyCollection
                 NotifyPropertyChanged();
                 NotifyPropertyChanged(nameof(ActiveName));
                 NotifyPropertyChanged(nameof(ActiveAlias));
+                NotifyPropertyChanged(nameof(SelectedObjectType));
                 
                 if (value.Value != null && value.Value.ObjectType == LibCanOpen.OdObject.Types.ObjectType.Var && value.Value.SubObjects != null && value.Value.SubObjects.Count > 0)
                 {
@@ -308,6 +309,14 @@ public class ObjectDictionary : IDictionary<string, OdObject>, INotifyCollection
                     SelectedSubObject = default;
                 }
             }
+        }
+    }
+
+    public LibCanOpen.OdObject.Types.ObjectType SelectedObjectType
+    {
+        get
+        {
+            return _selectedObject.Value?.ObjectType ?? LibCanOpen.OdObject.Types.ObjectType.Var;
         }
     }
 

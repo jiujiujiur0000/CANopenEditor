@@ -23,6 +23,10 @@
     </Style>
   </UserControl.Styles>
 
+  <UserControl.Resources>
+    <converter:SubIndexConverter x:Key="SubIndexConverter"/>
+  </UserControl.Resources>
+
   <dialogHost:DialogHost Identifier="NoAnimationDialogHost" MaxWidth="1400">
     <Grid ColumnDefinitions="350, Auto, *">
       <!-- Left Panel: OD Indexes -->
@@ -74,7 +78,20 @@
             </Style>
           </DataGrid.Styles>
           <DataGrid.Columns>
-            <DataGridTextColumn Header="{DynamicResource str_od_col_sub}" Width="Auto" Binding="{Binding Key, StringFormat='0x{0:X2}'}" />
+            <DataGridTemplateColumn Header="{DynamicResource str_od_col_sub}" Width="Auto">
+              <DataGridTemplateColumn.CellTemplate>
+                <DataTemplate>
+                  <TextBlock>
+                    <TextBlock.Text>
+                      <MultiBinding Converter="{StaticResource SubIndexConverter}">
+                        <Binding Path="Key" />
+                        <Binding Path="$parent[DataGrid].DataContext" />
+                      </MultiBinding>
+                    </TextBlock.Text>
+                  </TextBlock>
+                </DataTemplate>
+              </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
             <DataGridTextColumn Header="{DynamicResource str_od_col_name}" Width="3*" Binding="{Binding Value.Name}" />
             <DataGridTextColumn Header="{DynamicResource str_od_col_datatype}" Width="Auto" Binding="{Binding Value.DataType}" />
             <DataGridTextColumn Header="{DynamicResource str_od_col_sdo}" Width="Auto" Binding="{Binding Value.Sdo}" />
