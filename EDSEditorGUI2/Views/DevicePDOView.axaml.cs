@@ -116,8 +116,6 @@ public partial class DevicePDOView : UserControl
             MappingGrid.RowDefinitions.Add(new RowDefinition(GridLength.Auto));
 
             string cobHex = slot.COB ?? "";
-            if (cobHex.Length > 6) cobHex = cobHex.Substring(0, 6) + "..."; // Shorten if too long
-
             var idBorder = new Border { BorderBrush = Brushes.LightGray, BorderThickness = new Avalonia.Thickness(0, 0, 1, 1), Padding = new Avalonia.Thickness(10, 0, 10, 0), IsHitTestVisible = false };
             idBorder.Child = new TextBlock { Text = mappingIndex.ToString(), VerticalAlignment = VerticalAlignment.Center };
             AddToMappingGrid(idBorder, row, 0);
