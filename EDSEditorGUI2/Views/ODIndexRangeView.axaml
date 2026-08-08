@@ -15,6 +15,7 @@
                x:Name="HeadingText" FontWeight="Bold" FontSize="15" Margin="0,5,0,10"/>
     <Border Grid.Row="1" Background="{DynamicResource SystemControlBackgroundAltHighBrush}" BorderThickness="1" BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" CornerRadius="8" ClipToBounds="True">
       <DataGrid x:Name="grid"
+                CanUserResizeColumns="True"
                 ItemsSource="{Binding FilteredItems, RelativeSource={RelativeSource AncestorType=UserControl}}"
                 x:CompileBindings="False"
                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
