@@ -20,15 +20,19 @@ public partial class InsertObjectsWindow : Window
     {
         if (DataContext is MainWindowViewModel dc && null != InsertObjects_Offsets.Text)
         {
-            // look for "words" containing numbers
-            string pattern = @"\b\d+\b";
+            // look for hex numbers, optionally prefixed with 0x
+            string pattern = @"\b(?:0[xX])?[0-9a-fA-F]+\b";
             List<int> offsets = [];
 
             foreach (Match match in Regex.Matches(InsertObjects_Offsets.Text, pattern,
-                                    RegexOptions.None,
-                                    TimeSpan.FromSeconds(1)))
+                                      RegexOptions.None,
+                                      TimeSpan.FromSeconds(1)))
             {
-                if (int.TryParse(match.Value, out int result))
+                string val = match.Value.StartsWith("0x", StringComparison.OrdinalIgnoreCase) 
+                    ? match.Value.Substring(2) 
+                    : match.Value;
+
+                if (int.TryParse(val, System.Globalization.NumberStyles.HexNumber, null, out int result))
                 {
                     offsets.Add(result);
                 }
