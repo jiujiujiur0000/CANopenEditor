@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using DialogHostAvalonia;
@@ -13,17 +14,37 @@ public enum CollisionDialogResult
     Cancel
 }
 
+public class CollisionTask
+{
+    public int Index { get; set; }
+    public CollisionDialogResult Result { get; set; }
+}
+
 public partial class CollisionDialog : UserControl
 {
+    private List<CollisionTask> _tasks = new();
+    private int _currentIndex = 0;
+
     public CollisionDialog()
     {
         InitializeComponent();
     }
 
-    public CollisionDialog(string index)
+    public CollisionDialog(List<CollisionTask> tasks)
     {
         InitializeComponent();
-        MessageText.Text = $"对象字典中已存在索引 {index}，您希望如何处理？";
+        _tasks = tasks;
+        _currentIndex = 0;
+        UpdateUI();
+    }
+
+    private void UpdateUI()
+    {
+        if (_currentIndex < _tasks.Count)
+        {
+            string indexHex = $"0x{_tasks[_currentIndex].Index:X4}";
+            MessageText.Text = $"对象字典中已存在索引 {indexHex}，您希望如何处理？\n(当前进度: {_currentIndex + 1} / {_tasks.Count})";
+        }
     }
 
     private void Button_Click(object? sender, RoutedEventArgs e)
@@ -32,7 +53,34 @@ public partial class CollisionDialog : UserControl
         {
             if (System.Enum.TryParse<CollisionDialogResult>(tag, out var result))
             {
-                DialogHost.Close("RootDialogHost", result);
+                if (result == CollisionDialogResult.Cancel)
+                {
+                    DialogHost.Close("RootDialogHost", "Cancel");
+                    return;
+                }
+
+                if (result == CollisionDialogResult.OverwriteAll || result == CollisionDialogResult.SkipAll)
+                {
+                    CollisionDialogResult applyResult = result == CollisionDialogResult.OverwriteAll ? CollisionDialogResult.Overwrite : CollisionDialogResult.Skip;
+                    for (int i = _currentIndex; i < _tasks.Count; i++)
+                    {
+                        _tasks[i].Result = applyResult;
+                    }
+                    DialogHost.Close("RootDialogHost", "OK");
+                    return;
+                }
+
+                _tasks[_currentIndex].Result = result;
+                _currentIndex++;
+
+                if (_currentIndex >= _tasks.Count)
+                {
+                    DialogHost.Close("RootDialogHost", "OK");
+                }
+                else
+                {
+                    UpdateUI();
+                }
             }
         }
     }

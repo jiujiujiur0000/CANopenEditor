@@ -323,10 +323,33 @@ public partial class MainWindow : Window
                 
                 if (result == "insert" && dc.SelectedDevice != null)
                 {
-                    //Merging MergeStatus into SelectedDevice.Objects.Data
-                    CollisionDialogResult globalResolution = CollisionDialogResult.Skip;
-                    bool hasGlobalResolution = false;
+                    // Gathering all collision tasks first
+                    List<CollisionTask> tasks = new List<CollisionTask>();
+                    foreach (var insertObj in dc.MergeStatus)
+                    {
+                        if (insertObj.Insert)
+                        {
+                            foreach (var offset in insertObj.Offsets)
+                            {
+                                if (offset.Collision)
+                                {
+                                    tasks.Add(new CollisionTask { Index = Math.Abs(offset.Index) });
+                                }
+                            }
+                        }
+                    }
 
+                    if (tasks.Count > 0)
+                    {
+                        var collisionDialog = new CollisionDialog(tasks);
+                        var dialogResult = await DialogHostAvalonia.DialogHost.Show(collisionDialog, "RootDialogHost");
+                        if (dialogResult as string == "Cancel")
+                        {
+                            goto EndInsertion;
+                        }
+                    }
+
+                    int conflictIndex = 0;
                     foreach (var insertObj in dc.MergeStatus)
                     {
                         if (insertObj.Insert)
@@ -343,37 +366,9 @@ public partial class MainWindow : Window
 
                                 if (offset.Collision)
                                 {
-                                    CollisionDialogResult resolution;
-                                    if (hasGlobalResolution)
-                                    {
-                                        resolution = globalResolution;
-                                    }
-                                    else
-                                    {
-                                        var collisionDialog = new CollisionDialog($"0x{finalIndex:X4}");
-                                        var dialogResult = await DialogHostAvalonia.DialogHost.Show(collisionDialog, "RootDialogHost");
-                                        
-                                        if (dialogResult is CollisionDialogResult cdr)
-                                        {
-                                            resolution = cdr;
-                                        }
-                                        else
-                                        {
-                                            resolution = CollisionDialogResult.Cancel;
-                                        }
-
-                                        if (resolution == CollisionDialogResult.OverwriteAll || resolution == CollisionDialogResult.SkipAll)
-                                        {
-                                            hasGlobalResolution = true;
-                                            globalResolution = resolution;
-                                        }
-                                    }
-
-                                    if (resolution == CollisionDialogResult.Cancel)
-                                    {
-                                        goto EndInsertion;
-                                    }
-                                    else if (resolution == CollisionDialogResult.Overwrite || resolution == CollisionDialogResult.OverwriteAll)
+                                    var decision = tasks[conflictIndex].Result;
+                                    conflictIndex++;
+                                    if (decision == CollisionDialogResult.Overwrite)
                                     {
                                         dc.SelectedDevice.Objects[strIndex] = insertObj.Object;
                                     }
