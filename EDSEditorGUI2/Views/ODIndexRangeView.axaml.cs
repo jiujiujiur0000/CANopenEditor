@@ -37,6 +37,8 @@ public partial class ODIndexRangeView : UserControl
 
         if (DataContext is System.Collections.IEnumerable collection)
         {
+            int min = Convert.ToInt32(MinIndex, 16);
+            int max = Convert.ToInt32(MaxIndex, 16);
             _collectionView = new Avalonia.Collections.DataGridCollectionView(collection);
             _collectionView.Filter = item =>
             {
@@ -44,8 +46,6 @@ public partial class ODIndexRangeView : UserControl
                 {
                     if (int.TryParse(dc.Key, System.Globalization.NumberStyles.HexNumber, null, out int index))
                     {
-                        int min = Convert.ToInt32(MinIndex, 16);
-                        int max = Convert.ToInt32(MaxIndex, 16);
                         return min <= index && index <= max;
                     }
                 }
