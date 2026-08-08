@@ -104,6 +104,11 @@ public partial class DeviceODView : UserControl
                     subindexGrid.ScrollIntoView(kvpToSelect, null);
                 }
             }
+
+            if (TopLevel.GetTopLevel(this) is MainWindow mainWindow)
+            {
+                mainWindow.TriggerAutoSave();
+            }
         }
     }
     private void ContextMenuSubObjectRemoveClick(object? sender, RoutedEventArgs e)
@@ -119,6 +124,11 @@ public partial class DeviceODView : UserControl
             foreach (var item in selectedObj)
             {
                 selectedObject.RemoveSubEntry(item, renumber);
+            }
+
+            if (TopLevel.GetTopLevel(this) is MainWindow mainWindow)
+            {
+                mainWindow.TriggerAutoSave();
             }
         }
     }
