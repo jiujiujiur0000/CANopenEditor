@@ -47,7 +47,8 @@ namespace EDSEditorGUI2
                 {
                     if (col.ActualWidth > 0 && !_processedColumns.TryGetValue(col, out _))
                     {
-                        col.MinWidth = col.ActualWidth;
+                        // Convert any auto/star sizing to absolute pixel width so it never changes
+                        col.Width = new DataGridLength(col.ActualWidth, DataGridLengthUnitType.Pixel);
                         _processedColumns.Add(col, new object());
                     }
                 }
