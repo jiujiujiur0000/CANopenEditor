@@ -170,14 +170,9 @@
                 </Border>
                 <!-- GridSplitter 设置为透明并放置在第一列最右侧悬浮，不占据额外宽度，从而让右侧紧挨着分割线 -->
                 <GridSplitter Grid.Column="0" HorizontalAlignment="Right" Width="5" Background="Transparent" ResizeDirection="Columns" />
-                
-                <ContentControl Grid.Column="1" Content="{Binding SelectedDevice}">
-                    <ContentControl.ContentTemplate>
-                        <DataTemplate>
-                            <view:DeviceView />
-                        </DataTemplate>
-                    </ContentControl.ContentTemplate>
-                </ContentControl>
+                                <view:DeviceView Grid.Column="1" 
+                                   DataContext="{Binding DisplayedDevice}" 
+                                   IsVisible="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).DisplayedDevice, Converter={x:Static ObjectConverters.IsNotNull}}" />
             </Grid>
         </Grid>
     </DockPanel>

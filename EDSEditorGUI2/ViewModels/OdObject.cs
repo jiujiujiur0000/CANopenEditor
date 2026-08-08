@@ -1,4 +1,4 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.ComponentModel;
 using libEDSsharp;
 using System;
 using System.Collections.Generic;
@@ -101,10 +101,10 @@ namespace EDSEditorGUI2.ViewModels
                 if (sub.Key.ToInteger() > newSubIndex)
                     newSubIndex = sub.Key.ToInteger();
 
-                newSubObjects.Add(new KeyValuePair<string, OdSubObject>((newSubIndex++).ToHexString(), subOd));
+                newSubObjects.Add(new KeyValuePair<string, OdSubObject>((newSubIndex++).ToString("X2"), subOd));
 
                 if (selected.Value == subOd)
-                    newSubObjects.Add(new KeyValuePair<string, OdSubObject>((newSubIndex++).ToHexString(), newOd));
+                    newSubObjects.Add(new KeyValuePair<string, OdSubObject>((newSubIndex++).ToString("X2"), newOd));
             }
 
             SubObjects = newSubObjects;
@@ -137,7 +137,7 @@ namespace EDSEditorGUI2.ViewModels
                     ObservableCollection<KeyValuePair<string, OdSubObject>> newSubObjects = [];
                     UInt16 subIndex = 0;
                     foreach (var subOd in SubObjects)
-                        newSubObjects.Add(new KeyValuePair<string, OdSubObject>((subIndex++).ToHexString(), subOd.Value));
+                        newSubObjects.Add(new KeyValuePair<string, OdSubObject>((subIndex++).ToString("X2"), subOd.Value));
 
                     SubObjects = newSubObjects;
                 }

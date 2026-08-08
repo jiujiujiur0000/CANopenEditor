@@ -9,7 +9,7 @@
              x:DataType="vm:Device">
 
   <!-- 去除Margin，并确保自身没有边框导致叠加变粗 -->
-  <TabControl Margin="0" Padding="0,10,0,0" BorderThickness="0" SelectedIndex="{Binding SelectedTabIndex}">
+  <TabControl Name="MainTabControl" Margin="0" Padding="0,10,0,0" BorderThickness="0" SelectedIndex="{Binding SelectedTabIndex}">
     <TabControl.Styles>
       <Style Selector="TabControl">
         <Setter Property="Template">
@@ -99,35 +99,30 @@
       </Style>
     </TabControl.Styles>
 
-    <TabItem>
+    <TabItem x:Name="TabDeviceInfo">
       <TabItem.Header>
         <TextBlock Text="{DynamicResource str_tab_device_info}" Margin="0,0,0,4"/>
       </TabItem.Header>
-      <view:DeviceInfoView DataContext="{Binding}" />
     </TabItem>
-    <TabItem>
+    <TabItem x:Name="TabOD">
       <TabItem.Header>
         <TextBlock Text="{DynamicResource str_tab_object_dict}" Margin="0,0,0,4"/>
       </TabItem.Header>
-      <view:DeviceODView DataContext="{Binding Objects}" />
     </TabItem>
-    <TabItem>
+    <TabItem x:Name="TabTxPdo">
       <TabItem.Header>
         <TextBlock Text="{DynamicResource str_tab_tx_pdo}" Margin="0,0,0,4"/>
       </TabItem.Header>
-      <view:DevicePDOView DataContext="{Binding TxPdo}" />
     </TabItem>
-    <TabItem>
+    <TabItem x:Name="TabRxPdo">
       <TabItem.Header>
         <TextBlock Text="{DynamicResource str_tab_rx_pdo}" Margin="0,0,0,4"/>
       </TabItem.Header>
-      <view:DevicePDOView DataContext="{Binding RxPdo}" />
     </TabItem>
-    <TabItem>
+    <TabItem x:Name="TabModule">
       <TabItem.Header>
         <TextBlock Text="{DynamicResource str_tab_modules}" Margin="0,0,0,4"/>
       </TabItem.Header>
-      <view:ModuleView DataContext="{Binding ModuleInfo}"/>
     </TabItem>  
   </TabControl>
 

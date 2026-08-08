@@ -87,10 +87,7 @@ public partial class MainWindowViewModel : ViewModelBase
 
     public bool CanRemoveDevice => IsProjectMode && SelectedDevice != null;
 
-    partial void OnSelectedDeviceChanged(Device? value)
-    {
-        OnPropertyChanged(nameof(CanRemoveDevice));
-    }
+
 
     [ObservableProperty]
     private bool _isDirty;
@@ -282,6 +279,27 @@ public partial class MainWindowViewModel : ViewModelBase
     [ObservableProperty]
     public int _insertObjectsOffset;
 
+    private Device? _selectedDevice;
+    public Device? SelectedDevice
+    {
+        get => _selectedDevice;
+        set
+        {
+            if (SetProperty(ref _selectedDevice, value))
+            {
+                OnPropertyChanged(nameof(CanRemoveDevice));
+                
+                // Clear immediately to provide instant visual feedback on the right side if needed
+                // DisplayedDevice = null;
+
+                // Defer the heavy UI update so the ListBox selection highlight renders instantly
+                Avalonia.Threading.Dispatcher.UIThread.Post(() => {
+                    DisplayedDevice = value;
+                }, Avalonia.Threading.DispatcherPriority.Background);
+            }
+        }
+    }
+
     [ObservableProperty]
-    public Device? _selectedDevice;
+    private Device? _displayedDevice;
 }

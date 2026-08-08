@@ -89,6 +89,11 @@ public partial class MainWindow : Window
                     
                     if (dc.Network.Count > 0)
                     {
+                        var sw_inst = System.Diagnostics.Stopwatch.StartNew();
+                        var dummy = new DeviceView();
+                        sw_inst.Stop();
+                        Console.WriteLine($"[Perf] new DeviceView() took {sw_inst.ElapsedMilliseconds} ms");
+
                         Console.WriteLine($"[Perf] Before Setting SelectedDevice at {sw.ElapsedMilliseconds} ms");
                         var sw2 = System.Diagnostics.Stopwatch.StartNew();
                         dc.SelectedDevice = dc.Network[0];
@@ -98,10 +103,9 @@ public partial class MainWindow : Window
                     dc.IsDirty = false;
                     dc.AddRecentFile(filePath);
                     
-                    Console.WriteLine($"[Perf] Posting background settle at {sw.ElapsedMilliseconds} ms");
-                    // Allow UI to settle before re-enabling interactions
+                    var captureSw = sw.ElapsedMilliseconds;
                     Avalonia.Threading.Dispatcher.UIThread.Post(() => { 
-                        Console.WriteLine($"[Perf] UI Settle Background Task Executed at {sw.ElapsedMilliseconds} ms");
+                        Console.WriteLine($"[Perf] UI Settle Background Task Executed after {sw.ElapsedMilliseconds - captureSw} ms layout delay");
                         _isProgrammaticChange = false; 
                     }, Avalonia.Threading.DispatcherPriority.Background);
                 }
