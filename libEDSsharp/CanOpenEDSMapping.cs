@@ -33,14 +33,13 @@ namespace libEDSsharp
     /// </summary>
     public class MappingEDS
     {
-        /// <summary>
-        /// Converts from protobuffer to EDS
-        /// </summary>
-        /// <param name="source">protobuffer device</param>
-        /// <returns>new EDS device containing data from protobuffer device</returns>
-        public static EDSsharp MapFromProtobuffer(CanOpenDevice source)
+
+        private static readonly IMapper _fromProtoMapper;
+        private static readonly IMapper _toProtoMapper;
+
+        static MappingEDS()
         {
-            var config = new MapperConfiguration(cfg =>
+            var fromProtoConfig = new MapperConfiguration(cfg =>
             {
                 // workaround for https://github.com/AutoMapper/AutoMapper/issues/2959
                 // Cant update untill after .net framwork is gone
@@ -207,30 +206,10 @@ namespace libEDSsharp
                 .ForMember(dest => dest.Description, opt => opt.Ignore())
                 .ForMember(dest => dest.subobjects, opt => opt.Ignore());
             }, LoggerFactory.Create(builder => { builder.AddDebug(); }));
-            config.AssertConfigurationIsValid();
-            var mapper = config.CreateMapper();
+            fromProtoConfig.AssertConfigurationIsValid();
+            _fromProtoMapper = fromProtoConfig.CreateMapper();
 
-            var result = mapper.Map<EDSsharp>(source);
-
-            //Post processing, add index / subindex
-            foreach (KeyValuePair<ushort, ODentry> obj in result.ods)
-            {
-                obj.Value.Index = obj.Key;
-                foreach (KeyValuePair<ushort, ODentry> subObj in obj.Value.subobjects)
-                {
-                    subObj.Value.parent = obj.Value;
-                }
-            }
-            return result;
-        }
-        /// <summary>
-        /// Converts from EDS to protobuffer
-        /// </summary>
-        /// <param name="source">EDS device</param>
-        /// <returns>protobuffer device containing data from EDS</returns>
-        public static CanOpenDevice MapToProtobuffer(EDSsharp source)
-        {
-            var config = new MapperConfiguration(cfg =>
+            var toProtoConfig = new MapperConfiguration(cfg =>
             {
                 // workaround for https://github.com/AutoMapper/AutoMapper/issues/2959
                 // Cant update untill after .net framwork is gone
@@ -322,9 +301,37 @@ namespace libEDSsharp
                 .ForMember(dest => dest.StringLengthMin, opt => opt.MapFrom(src => src.prop.CO_stringLengthMin));
             }, LoggerFactory.Create(builder => { builder.AddDebug(); }));
 
-            // config.AssertConfigurationIsValid();
-            var mapper = config.CreateMapper();
-            return mapper.Map<CanOpenDevice>(source);
+            _toProtoMapper = toProtoConfig.CreateMapper();
+        }
+
+        /// <summary>
+        /// Converts from protobuffer to EDS
+        /// </summary>
+        /// <param name="source">protobuffer device</param>
+        /// <returns>new EDS device containing data from protobuffer device</returns>
+        public static EDSsharp MapFromProtobuffer(CanOpenDevice source)
+        {
+            var result = _fromProtoMapper.Map<EDSsharp>(source);
+
+            //Post processing, add index / subindex
+            foreach (KeyValuePair<ushort, ODentry> obj in result.ods)
+            {
+                obj.Value.Index = obj.Key;
+                foreach (KeyValuePair<ushort, ODentry> subObj in obj.Value.subobjects)
+                {
+                    subObj.Value.parent = obj.Value;
+                }
+            }
+            return result;
+        }
+        /// <summary>
+        /// Converts from EDS to protobuffer
+        /// </summary>
+        /// <param name="source">EDS device</param>
+        /// <returns>protobuffer device containing data from EDS</returns>
+        public static CanOpenDevice MapToProtobuffer(EDSsharp source)
+        {
+            return _toProtoMapper.Map<CanOpenDevice>(source);
         }
 
         public static OdSubObject.Types.AccessPDO GetPdo(ODentry source)
