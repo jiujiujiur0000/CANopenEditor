@@ -3,8 +3,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="using:EDSEditorGUI2.ViewModels"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
-        Width="800" Height="650"
+        mc:Ignorable="d" d:DesignWidth="650" d:DesignHeight="600"
+        Width="650" Height="650"
         WindowStartupLocation="CenterOwner"
         x:Class="EDSEditorGUI2.Views.InsertObjectsWindow"
         x:DataType="vm:MainWindowViewModel"
@@ -19,13 +19,13 @@
                 <!-- Target Device -->
                 <StackPanel Spacing="8">
                     <TextBlock Text="{DynamicResource str_insert_target}" FontWeight="Medium"/>
-                    <ComboBox x:Name="InsertObjects_target" ItemsSource="{Binding Network}" SelectedItem="{Binding SelectedDevice}" MaxDropDownHeight="200" HorizontalAlignment="Left" Width="400" />
+                    <ComboBox x:Name="InsertObjects_target" ItemsSource="{Binding Network}" SelectedItem="{Binding SelectedDevice}" MaxDropDownHeight="200" HorizontalAlignment="Stretch" />
                 </StackPanel>
                 
                 <!-- Offset -->
                 <StackPanel Spacing="8">
                     <TextBlock Text="{DynamicResource str_insert_offset}" FontWeight="Medium" TextWrapping="Wrap"/>
-                    <TextBox x:Name="InsertObjects_Offsets" Watermark="例如：0 100 500" Text="0" TextChanged="OnOffsetTextChanged" HorizontalAlignment="Left" Width="400" />
+                    <TextBox x:Name="InsertObjects_Offsets" Watermark="例如：0 100 500" Text="0" TextChanged="OnOffsetTextChanged" HorizontalAlignment="Stretch" />
                 </StackPanel>
             </StackPanel>
         </StackPanel>
@@ -33,7 +33,7 @@
         <!-- Data Grid -->
         <Border Grid.Row="1" Margin="0,16,0,16" BorderThickness="1" BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" CornerRadius="6" ClipToBounds="True" Background="{DynamicResource SystemControlBackgroundAltHighBrush}">
             <DataGrid ItemsSource="{Binding MergeStatus}"
-                      GridLinesVisibility="Horizontal"
+                      GridLinesVisibility="All"
                       BorderThickness="0"
                       Background="Transparent" RowBackground="Transparent"
                       x:Name="grid"
