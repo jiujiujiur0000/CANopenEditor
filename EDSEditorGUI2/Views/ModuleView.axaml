@@ -36,7 +36,7 @@
                     </DataGrid.Styles>
                     <DataGrid.Columns>
                         <!-- Connection Status Icon -->
-                        <DataGridTemplateColumn Header="{DynamicResource str_module_col_status}" Width="80">
+                        <DataGridTemplateColumn Header="{DynamicResource str_module_col_status}" Width="80" MinWidth="80">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <Ellipse Width="12" Height="12" 
@@ -45,11 +45,11 @@
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
-                        <DataGridTextColumn Header="{DynamicResource str_module_col_index}" Binding="{Binding Index}" IsReadOnly="True" Width="Auto"/>
-                        <DataGridTextColumn Header="{DynamicResource str_module_col_product_name}" Binding="{Binding ProductName}" IsReadOnly="True" Width="*"/>
-                        <DataGridTextColumn Header="{DynamicResource str_module_col_version}" Binding="{Binding ProductVersion}" IsReadOnly="True" Width="Auto"/>
-                        <DataGridTextColumn Header="{DynamicResource str_module_col_revision}" Binding="{Binding ProductRevision}" IsReadOnly="True" Width="Auto"/>
-                        <DataGridTextColumn Header="{DynamicResource str_module_col_order_code}" Binding="{Binding OrderCode}" IsReadOnly="True" Width="Auto"/>
+                        <DataGridTextColumn Header="{DynamicResource str_module_col_index}" Binding="{Binding Index}" IsReadOnly="True" Width="Auto" MinWidth="60"/>
+                        <DataGridTextColumn Header="{DynamicResource str_module_col_product_name}" Binding="{Binding ProductName}" IsReadOnly="True" Width="*" MinWidth="150"/>
+                        <DataGridTextColumn Header="{DynamicResource str_module_col_version}" Binding="{Binding ProductVersion}" IsReadOnly="True" Width="Auto" MinWidth="80"/>
+                        <DataGridTextColumn Header="{DynamicResource str_module_col_revision}" Binding="{Binding ProductRevision}" IsReadOnly="True" Width="Auto" MinWidth="80"/>
+                        <DataGridTextColumn Header="{DynamicResource str_module_col_order_code}" Binding="{Binding OrderCode}" IsReadOnly="True" Width="Auto" MinWidth="80"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </Border>
@@ -78,8 +78,8 @@
                         </Style>
                     </DataGrid.Styles>
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="{DynamicResource str_module_col_index}" Binding="{Binding IndexHex}" IsReadOnly="True" Width="100"/>
-                        <DataGridTextColumn Header="{DynamicResource str_module_col_name}" Binding="{Binding Name}" IsReadOnly="True" Width="*"/>
+                        <DataGridTextColumn Header="{DynamicResource str_module_col_index}" Binding="{Binding IndexHex}" IsReadOnly="True" Width="100" MinWidth="100"/>
+                        <DataGridTextColumn Header="{DynamicResource str_module_col_name}" Binding="{Binding Name}" IsReadOnly="True" Width="*" MinWidth="150"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </Border>

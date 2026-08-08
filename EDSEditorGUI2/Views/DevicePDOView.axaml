@@ -33,11 +33,11 @@
               </Style>
             </DataGrid.Styles>
             <DataGrid.Columns>
-              <DataGridTextColumn Header="{DynamicResource str_pdo_col_index}" Width="Auto" Binding="{Binding IndexString}"/>
-              <DataGridTextColumn Header="{DynamicResource str_pdo_col_sub}" Width="Auto" Binding="{Binding SubIndexString}"/>
-              <DataGridTextColumn Header="{DynamicResource str_pdo_col_name}" Width="2*" Binding="{Binding Name}"/>
-              <DataGridTextColumn Header="{DynamicResource str_pdo_col_datatype}" Width="Auto" Binding="{Binding ObjectTypeString}"/>
-              <DataGridTextColumn Header="{DynamicResource str_pdo_col_bits}" Width="Auto" Binding="{Binding TypeSize}"/>
+              <DataGridTextColumn Header="{DynamicResource str_pdo_col_index}" Width="Auto" MinWidth="60" Binding="{Binding IndexString}"/>
+              <DataGridTextColumn Header="{DynamicResource str_pdo_col_sub}" Width="Auto" MinWidth="60" Binding="{Binding SubIndexString}"/>
+              <DataGridTextColumn Header="{DynamicResource str_pdo_col_name}" Width="2*" MinWidth="150" Binding="{Binding Name}"/>
+              <DataGridTextColumn Header="{DynamicResource str_pdo_col_datatype}" Width="Auto" MinWidth="100" Binding="{Binding ObjectTypeString}"/>
+              <DataGridTextColumn Header="{DynamicResource str_pdo_col_bits}" Width="Auto" MinWidth="60" Binding="{Binding TypeSize}"/>
             </DataGrid.Columns>
           </DataGrid>
         </Border>

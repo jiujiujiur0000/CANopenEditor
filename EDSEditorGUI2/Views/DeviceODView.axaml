@@ -110,7 +110,7 @@
               </Style>
             </DataGrid.Styles>
             <DataGrid.Columns>
-              <DataGridTemplateColumn Header="{DynamicResource str_od_col_sub}" Width="Auto">
+              <DataGridTemplateColumn Header="{DynamicResource str_od_col_sub}" Width="Auto" MinWidth="60">
                 <DataGridTemplateColumn.CellTemplate>
                   <DataTemplate>
                     <TextBlock Margin="12,0" VerticalAlignment="Center">
@@ -124,12 +124,12 @@
                   </DataTemplate>
                 </DataGridTemplateColumn.CellTemplate>
               </DataGridTemplateColumn>
-              <DataGridTextColumn Header="{DynamicResource str_od_col_name}" Width="3*" Binding="{Binding Value.Name}" />
-              <DataGridTextColumn Header="{DynamicResource str_od_col_datatype}" Width="Auto" Binding="{Binding Value.DataType}" />
-              <DataGridTextColumn Header="{DynamicResource str_od_col_sdo}" Width="Auto" Binding="{Binding Value.Sdo}" />
-              <DataGridTextColumn Header="{DynamicResource str_od_col_pdo}" Width="Auto" Binding="{Binding Value.Pdo}" />
-              <DataGridTextColumn Header="{DynamicResource str_od_col_srdo}" Width="Auto" Binding="{Binding Value.Srdo}" />
-              <DataGridTextColumn Header="{DynamicResource str_od_col_default}" Width="2*" Binding="{Binding Value.DefaultValue}" />
+              <DataGridTextColumn Header="{DynamicResource str_od_col_name}" Width="3*" MinWidth="150" Binding="{Binding Value.Name}" />
+              <DataGridTextColumn Header="{DynamicResource str_od_col_datatype}" Width="Auto" MinWidth="100" Binding="{Binding Value.DataType}" />
+              <DataGridTextColumn Header="{DynamicResource str_od_col_sdo}" Width="Auto" MinWidth="60" Binding="{Binding Value.Sdo}" />
+              <DataGridTextColumn Header="{DynamicResource str_od_col_pdo}" Width="Auto" MinWidth="60" Binding="{Binding Value.Pdo}" />
+              <DataGridTextColumn Header="{DynamicResource str_od_col_srdo}" Width="Auto" MinWidth="60" Binding="{Binding Value.Srdo}" />
+              <DataGridTextColumn Header="{DynamicResource str_od_col_default}" Width="2*" MinWidth="100" Binding="{Binding Value.DefaultValue}" />
             </DataGrid.Columns>
             <DataGrid.ContextMenu>
               <ContextMenu>

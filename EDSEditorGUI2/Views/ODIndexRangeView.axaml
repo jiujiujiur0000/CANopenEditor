@@ -38,8 +38,8 @@
             </Style>
           </DataGrid.Styles>
       <DataGrid.Columns>
-        <DataGridTextColumn Header="{DynamicResource str_pdo_col_index}" Width="Auto" Binding="{Binding Key, StringFormat='0x\{0\}'}"/>
-        <DataGridTextColumn Header="{DynamicResource str_od_col_name}" Width="*" Binding="{Binding Value.Name}" />
+        <DataGridTextColumn Header="{DynamicResource str_pdo_col_index}" Width="Auto" MinWidth="80" Binding="{Binding Key, StringFormat='0x\{0\}'}"/>
+        <DataGridTextColumn Header="{DynamicResource str_od_col_name}" Width="*" MinWidth="150" Binding="{Binding Value.Name}" />
       </DataGrid.Columns>
       <DataGrid.ContextMenu>
         <ContextMenu>
