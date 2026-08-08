@@ -44,6 +44,7 @@ public partial class CollisionDialog : UserControl
         {
             string indexHex = $"0x{_tasks[_currentIndex].Index:X4}";
             MessageText.Text = $"对象字典中已存在索引 {indexHex}，您希望如何处理？\n(当前进度: {_currentIndex + 1} / {_tasks.Count})";
+            ApplyToAllCheckBox.IsChecked = false;
         }
     }
 
@@ -59,9 +60,11 @@ public partial class CollisionDialog : UserControl
                     return;
                 }
 
-                if (result == CollisionDialogResult.OverwriteAll || result == CollisionDialogResult.SkipAll)
+                bool applyToAll = ApplyToAllCheckBox.IsChecked ?? false;
+
+                if (applyToAll)
                 {
-                    CollisionDialogResult applyResult = result == CollisionDialogResult.OverwriteAll ? CollisionDialogResult.Overwrite : CollisionDialogResult.Skip;
+                    CollisionDialogResult applyResult = result == CollisionDialogResult.Overwrite ? CollisionDialogResult.Overwrite : CollisionDialogResult.Skip;
                     for (int i = _currentIndex; i < _tasks.Count; i++)
                     {
                         _tasks[i].Result = applyResult;
