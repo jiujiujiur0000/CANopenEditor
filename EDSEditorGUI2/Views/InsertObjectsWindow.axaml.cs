@@ -56,7 +56,7 @@ public partial class InsertObjectsWindow : Window
                     {
                         var textBlock = new TextBlock
                         {
-                            [!TextBlock.TextProperty] = new Binding($"Offsets[{index}].Index") { StringFormat = @"0x{0:x}" },
+                            [!TextBlock.TextProperty] = new Binding($"Offsets[{index}].Index") { Converter = new Converter.AbsoluteHexConverter() },
                             [!TextBlock.ForegroundProperty] = new Binding($"Offsets[{index}].Collision") { Converter = new Converter.BrushConverter() },
                         };
                         return textBlock;
