@@ -8,15 +8,7 @@
     <ApplicationIcon>Assets\icon.ico</ApplicationIcon>
     <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
     
-    <!-- Linux DEB Packaging Properties -->
-    <LinuxPackageDependencies>libx11-6, libice6, libsm6, libfontconfig1, fonts-wqy-microhei, fonts-noto-color-emoji</LinuxPackageDependencies>
-    <Maintainer>CANopenEditor Developer</Maintainer>
-    <Description>CANopen Editor 2 GUI</Description>
   </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Packaging.Targets" Version="0.1.220" PrivateAssets="All" />
-  </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Models\" />
@@ -46,6 +38,7 @@
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.3.2" />
     <PackageReference Include="DialogHost.Avalonia" Version="0.8.1" />
     <PackageReference Include="AutoMapper" Version="16.2.0" />
+    <PackageReference Include="Velopack" Version="1.2.0" />
   </ItemGroup>
 
   <ItemGroup>

@@ -181,7 +181,7 @@ public partial class MainWindowViewModel : ViewModelBase
         {
             foreach (var obj in profile.Objects)
             {
-                int mergeIndex = Int32.Parse(obj.Key);
+                int mergeIndex = Convert.ToInt32(obj.Key, 16);
                 List<ODIndexMergeOffsetStatus> objectOffset = [];
                 foreach (var offset in offsets)
                 {

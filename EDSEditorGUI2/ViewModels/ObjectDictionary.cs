@@ -154,7 +154,7 @@ public class ObjectDictionary : IDictionary<string, OdObject>, INotifyCollection
             {
                 _Dictionary = new Dictionary<string, OdObject>(items);
             }
-            OnCollectionChanged(NotifyCollectionChangedAction.Add, items.ToArray());
+            OnCollectionChanged();
         }
     }
 
@@ -173,13 +173,12 @@ public class ObjectDictionary : IDictionary<string, OdObject>, INotifyCollection
                 return;
             }
             Dictionary[key] = value;
-
-            OnCollectionChanged(NotifyCollectionChangedAction.Replace, new KeyValuePair<string, OdObject>(key, value), new KeyValuePair<string, OdObject>(key, item));
+            OnCollectionChanged();
         }
         else
         {
             Dictionary[key] = value;
-            OnCollectionChanged(NotifyCollectionChangedAction.Add, new KeyValuePair<string, OdObject>(key, value));
+            OnCollectionChanged();
         }
     }
 
