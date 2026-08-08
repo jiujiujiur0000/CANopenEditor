@@ -43,6 +43,7 @@
     <sys:String x:Key="str_theme_system">跟随系统</sys:String>
 
     <sys:String x:Key="str_menu_insert_profile">插入对象配置(_I)</sys:String>
+    <sys:String x:Key="str_dialog_insert_profile_title">插入对象配置</sys:String>
     <sys:String x:Key="str_menu_reports">报告(_R)</sys:String>
     <sys:String x:Key="str_menu_report_doc">设备文档</sys:String>
     <sys:String x:Key="str_menu_report_network">网络 PDO 报告</sys:String>

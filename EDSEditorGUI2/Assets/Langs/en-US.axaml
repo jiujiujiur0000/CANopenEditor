@@ -43,6 +43,7 @@
     <sys:String x:Key="str_theme_system">System</sys:String>
 
     <sys:String x:Key="str_menu_insert_profile">_Insert Profile</sys:String>
+    <sys:String x:Key="str_dialog_insert_profile_title">Insert Profile</sys:String>
     <sys:String x:Key="str_menu_reports">_Reports</sys:String>
     <sys:String x:Key="str_menu_tools">Tools</sys:String>
     <sys:String x:Key="str_menu_preferences">_Settings</sys:String>
