@@ -43,7 +43,14 @@ public partial class CollisionDialog : UserControl
         if (_currentIndex < _tasks.Count)
         {
             string indexHex = $"0x{_tasks[_currentIndex].Index:X4}";
-            MessageText.Text = $"对象字典中已存在索引 {indexHex}，您希望如何处理？\n(当前进度: {_currentIndex + 1} / {_tasks.Count})";
+            if (Avalonia.Application.Current!.TryFindResource("str_collision_msg", out var resource) && resource is string msgFormat)
+            {
+                MessageText.Text = string.Format(msgFormat, indexHex, _currentIndex + 1, _tasks.Count);
+            }
+            else
+            {
+                MessageText.Text = $"对象字典中已存在索引 {indexHex}，您希望如何处理？\n(当前进度: {_currentIndex + 1} / {_tasks.Count})";
+            }
             ApplyToAllCheckBox.IsChecked = false;
         }
     }

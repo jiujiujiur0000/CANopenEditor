@@ -194,4 +194,12 @@
     <sys:String x:Key="str_module_col_revision">Revision</sys:String>
     <sys:String x:Key="str_module_col_order_code">Order Code</sys:String>
     <sys:String x:Key="str_module_col_name">Name</sys:String>
+
+    <!-- Collision Dialog -->
+    <sys:String x:Key="str_collision_title">Index Collision</sys:String>
+    <sys:String x:Key="str_collision_msg">Object dictionary already contains index {0}, how would you like to proceed?&#x0a;(Current progress: {1} / {2})</sys:String>
+    <sys:String x:Key="str_collision_apply_all">Do this for all subsequent conflicts</sys:String>
+    <sys:String x:Key="str_collision_overwrite">Overwrite</sys:String>
+    <sys:String x:Key="str_collision_skip">Skip</sys:String>
+    <sys:String x:Key="str_collision_cancel">Cancel</sys:String>
 </ResourceDictionary>

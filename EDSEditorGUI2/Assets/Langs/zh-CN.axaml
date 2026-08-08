@@ -196,4 +196,12 @@
     <sys:String x:Key="str_module_col_revision">修订号</sys:String>
     <sys:String x:Key="str_module_col_order_code">订货号</sys:String>
     <sys:String x:Key="str_module_col_name">名称</sys:String>
+
+    <!-- Collision Dialog -->
+    <sys:String x:Key="str_collision_title">发现索引冲突</sys:String>
+    <sys:String x:Key="str_collision_msg">对象字典中已存在索引 {0}，您希望如何处理？&#x0a;(当前进度: {1} / {2})</sys:String>
+    <sys:String x:Key="str_collision_apply_all">为之后的所有冲突项执行相同操作</sys:String>
+    <sys:String x:Key="str_collision_overwrite">覆盖</sys:String>
+    <sys:String x:Key="str_collision_skip">跳过</sys:String>
+    <sys:String x:Key="str_collision_cancel">取消</sys:String>
 </ResourceDictionary>
