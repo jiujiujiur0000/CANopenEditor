@@ -68,19 +68,31 @@ public partial class InsertObjectsWindow : Window
                         CellTemplate = cellTemplate,
                         Header = $"Offset {offset}",
                         IsReadOnly = true,
+                        Width = new DataGridLength(120)
                     };
                     grid.Columns.Add(colOffset);
                 }
             }
-            // Update column headers
+            // Update column headers and ensure widths
             for (var i = 0; i < offsets.Count; i++)
             {
                 int offset = offsets[i];
                 if (grid.Columns[2 + i].Header.ToString() != $"Offset {offset}")
                 {
                     grid.Columns[2 + i].Header = $"Offset {offset}";
-                    grid.Columns[2 + i].Width = DataGridLength.Auto;
                 }
+                grid.Columns[2 + i].Width = new DataGridLength(120);
+            }
+
+            // Auto-scroll to the rightmost column to ensure the user knows it's there
+            if (grid.Columns.Count > 2 && dc.MergeStatus.Count > 0)
+            {
+                var item = dc.MergeStatus[0];
+                var column = grid.Columns[grid.Columns.Count - 1];
+                Avalonia.Threading.Dispatcher.UIThread.Post(() => 
+                {
+                    grid.ScrollIntoView(item, column);
+                }, Avalonia.Threading.DispatcherPriority.Background);
             }
         }
     }
