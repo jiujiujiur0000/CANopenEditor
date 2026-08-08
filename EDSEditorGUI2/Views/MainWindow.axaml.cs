@@ -26,6 +26,7 @@ public partial class MainWindow : Window
         {
             if (DataContext is MainWindowViewModel dc)
             {
+                dc.IsLoading = true;
                 _isProgrammaticChange = true;
                 
                 Console.WriteLine($"[Perf] Starting Task.Run at {sw.ElapsedMilliseconds} ms");
@@ -106,12 +107,20 @@ public partial class MainWindow : Window
                     var captureSw = sw.ElapsedMilliseconds;
                     Avalonia.Threading.Dispatcher.UIThread.Post(() => { 
                         Console.WriteLine($"[Perf] UI Settle Background Task Executed after {sw.ElapsedMilliseconds - captureSw} ms layout delay");
+                        dc.IsLoading = false;
                         _isProgrammaticChange = false; 
                     }, Avalonia.Threading.DispatcherPriority.Background);
                 }
+                else
+                {
+                    dc.IsLoading = false;
+                }
             }
         }
-        catch(Exception e) { Console.WriteLine(e); }
+        catch(Exception e) { 
+            Console.WriteLine(e); 
+            if (DataContext is MainWindowViewModel dc) dc.IsLoading = false;
+        }
     }
 
     private static int _projectCounter = 1;
@@ -504,68 +513,82 @@ public partial class MainWindow : Window
 
         if (files.Count > 0)
         {
-            foreach (var file in files)
+            if (DataContext is MainWindowViewModel dc)
             {
-                // Use LocalPath if available to get standard filesystem paths
-                string filePath = file.TryGetLocalPath() ?? file.Path.ToString();
+                dc.IsLoading = true;
+                _isProgrammaticChange = true;
                 
-                try
+                var loadedDevices = await System.Threading.Tasks.Task.Run(() =>
                 {
-                    EDSsharp? eds = null;
-                    string ext = Path.GetExtension(filePath).ToLower();
-                    if (ext == ".xdd" || ext == ".xdc" || ext == ".xpd")
+                    var parsedDevices = new List<ViewModels.Device>();
+                    foreach (var file in files)
                     {
-                        CanOpenXDD_1_1 coxml_1_1 = new();
-                        eds = coxml_1_1.ReadXML(filePath);
-                        if (eds == null) // Fallback for corrupted extensions
-                        {
-                            var edss = coxml_1_1.ReadMultiXML(filePath);
-                            if (edss != null && edss.Count > 0)
-                                eds = edss[0];
-                        }
+                        string filePath = file.TryGetLocalPath() ?? file.Path.ToString();
                         
-                        if (eds != null)
+                        try
                         {
-                            eds.projectFilename = filePath;
-                            if (ext == ".xdd")
+                            EDSsharp? eds = null;
+                            string ext = Path.GetExtension(filePath).ToLower();
+                            if (ext == ".xdd" || ext == ".xdc" || ext == ".xpd")
                             {
-                                eds.xddfilename_1_1 = filePath;
+                                CanOpenXDD_1_1 coxml_1_1 = new();
+                                eds = coxml_1_1.ReadXML(filePath);
+                                if (eds == null) // Fallback for corrupted extensions
+                                {
+                                    var edss = coxml_1_1.ReadMultiXML(filePath);
+                                    if (edss != null && edss.Count > 0)
+                                        eds = edss[0];
+                                }
+                                
+                                if (eds != null)
+                                {
+                                    eds.projectFilename = filePath;
+                                    if (ext == ".xdd")
+                                    {
+                                        eds.xddfilename_1_1 = filePath;
+                                    }
+                                }
+                                else
+                                {
+                                    continue; // Skip if completely failed
+                                }
                             }
+                            else
+                            {
+                                eds = new EDSsharp();
+                                eds.Loadfile(filePath);
+                                if (ext == ".eds") eds.edsfilename = filePath;
+                                else if (ext == ".dcf") eds.dcffilename = filePath;
+                                else if (ext == ".md") eds.mdfilename = filePath;
+                            }
+
+                            var proto = MappingEDS.MapToProtobuffer(eds);
+                            var deviceView = ProtobufferViewModelMapper.MapFromProtobuffer(proto);
+                            deviceView.Eds = eds;
+                            parsedDevices.Add(deviceView);
                         }
-                        else
+                        catch (Exception ex)
                         {
-                            continue; // Skip if completely failed
+                            System.IO.File.WriteAllText("crash.log", ex.ToString());
+                            Debug.WriteLine($"Failed to open file {filePath}: {ex.Message}");
                         }
                     }
-                    else
-                    {
-                        eds = new EDSsharp();
-                        eds.Loadfile(filePath);
-                        if (ext == ".eds") eds.edsfilename = filePath;
-                        else if (ext == ".dcf") eds.dcffilename = filePath;
-                        else if (ext == ".md") eds.mdfilename = filePath;
-                    }
-
-                    var proto = MappingEDS.MapToProtobuffer(eds);
-                    var deviceView = ProtobufferViewModelMapper.MapFromProtobuffer(proto);
-                    deviceView.Eds = eds;
-
-                    if (DataContext is MainWindowViewModel dc)
-                    {
-                        _isProgrammaticChange = true;
-                        dc.Network.Add(deviceView);
-                        dc.SelectedDevice = deviceView;
-                        dc.IsDirty = false; // Reset dirty flag after loading
-                        dc.AddRecentFile(filePath);
-                        Avalonia.Threading.Dispatcher.UIThread.Post(() => { _isProgrammaticChange = false; }, Avalonia.Threading.DispatcherPriority.Background);
-                    }
-                }
-                catch (Exception ex)
+                    return parsedDevices;
+                });
+                
+                foreach (var deviceView in loadedDevices)
                 {
-                    System.IO.File.WriteAllText("crash.log", ex.ToString());
-                    Debug.WriteLine($"Failed to open file {filePath}: {ex.Message}");
-                    _ = DialogHostAvalonia.DialogHost.Show(Resources["ErrorDialog"]!, "RootDialogHost");
+                    dc.Network.Add(deviceView);
+                    dc.SelectedDevice = deviceView;
+                    dc.IsDirty = false; // Reset dirty flag after loading
+                    dc.AddRecentFile(deviceView.Eds.projectFilename ?? deviceView.Eds.edsfilename ?? "");
                 }
+                
+                Avalonia.Threading.Dispatcher.UIThread.Post(() => 
+                { 
+                    dc.IsLoading = false;
+                    _isProgrammaticChange = false; 
+                }, Avalonia.Threading.DispatcherPriority.Background);
             }
         }
     }
@@ -758,96 +781,23 @@ public partial class MainWindow : Window
         if (files.Count > 0)
         {
             string filePath = files[0].TryGetLocalPath() ?? files[0].Path.ToString();
-            try
+            if (DataContext is MainWindowViewModel dc)
             {
-                if (DataContext is MainWindowViewModel dc)
+                if (dc.IsDirty)
                 {
-                    _isProgrammaticChange = true;
-                    
-                    // Run heavy parsing and mapping in background task to avoid UI freeze
-                    var deviceViews = await System.Threading.Tasks.Task.Run(() =>
+                    var result = await ShowSaveConfirmDialog();
+                    if (result == "Save")
                     {
-                        CanOpenXDD_1_1 coxml_1_1 = new();
-                        List<EDSsharp>? edss = null;
-                        if (filePath.ToLower().EndsWith(".cpj"))
-                        {
-                            edss = coxml_1_1.ReadMultiXML(filePath);
-                            if (edss == null) // Fallback if extension is wrong
-                            {
-                                var singleEds = coxml_1_1.ReadXML(filePath);
-                                if (singleEds != null) edss = new List<EDSsharp> { singleEds };
-                            }
-                        }
-                        else
-                        {
-                            var singleEds = coxml_1_1.ReadXML(filePath);
-                            if (singleEds != null)
-                            {
-                                edss = new List<EDSsharp> { singleEds };
-                            }
-                            else // Fallback if accidentally saved as multi-xml
-                            {
-                                edss = coxml_1_1.ReadMultiXML(filePath);
-                            }
-                        }
-
-                        if (edss == null) return (List<ViewModels.Device>?)null;
-
-                        var parsedViews = new List<ViewModels.Device>();
-                        foreach (var eds in edss)
-                        {
-                            eds.projectFilename = filePath;
-                            if (Path.GetExtension(filePath).ToLower() == ".xdd" || Path.GetExtension(filePath).ToLower() == ".xpd") 
-                            {
-                                eds.xddfilename_1_1 = filePath;
-                            }
-                            
-                            var proto = MappingEDS.MapToProtobuffer(eds);
-                            var deviceView = ProtobufferViewModelMapper.MapFromProtobuffer(proto);
-                            deviceView.Eds = eds;
-                            parsedViews.Add(deviceView);
-                        }
-                        return parsedViews;
-                    });
-
-                    if (deviceViews != null)
-                    {
-                        dc.Network.Clear();
-                        if (filePath.ToLower().EndsWith(".cpj") || filePath.ToLower().EndsWith(".xdd") || filePath.ToLower().EndsWith(".xpd"))
-                        {
-                            dc.CurrentProjectPath = filePath;
-                        }
-                        else
-                        {
-                            dc.CurrentProjectPath = null; // Treat as an unsaved project template
-                        }
-
-                        foreach (var deviceView in deviceViews)
-                        {
-                            dc.Network.Add(deviceView);
-                        }
-                        
-                        if (dc.Network.Count > 0)
-                        {
-                            dc.SelectedDevice = dc.Network[0];
-                        }
-                        dc.IsDirty = false;
-                        dc.AddRecentFile(filePath);
-                        
-                        // Allow UI to settle before re-enabling interactions
-                        Avalonia.Threading.Dispatcher.UIThread.Post(() => { _isProgrammaticChange = false; }, Avalonia.Threading.DispatcherPriority.Background);
+                        SaveProjectAsClick(null, null);
+                        return;
                     }
-                    else
+                    else if (result == "Cancel")
                     {
-                        _isProgrammaticChange = false;
-                        _ = DialogHostAvalonia.DialogHost.Show(Resources["ErrorDialog"]!, "RootDialogHost");
+                        return;
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Failed to open project {filePath}: {ex.ToString()}");
-                _ = DialogHostAvalonia.DialogHost.Show(Resources["ErrorDialog"]!, "RootDialogHost");
+
+                OpenProjectProgrammatically(filePath);
             }
         }
     }
@@ -936,97 +886,23 @@ public partial class MainWindow : Window
         {
             if (File.Exists(filePath))
             {
-                // Simulate opening the file by doing what OpenProjectClick/OpenFileClick does
-                try
+                if (DataContext is MainWindowViewModel dc)
                 {
-                    CanOpenXDD_1_1 coxml_1_1 = new();
-                    List<EDSsharp>? edss = null;
-                    if (filePath.ToLower().EndsWith(".cpj"))
+                    if (dc.IsDirty)
                     {
-                        edss = coxml_1_1.ReadMultiXML(filePath);
-                        if (edss == null) // Fallback if extension is wrong
+                        var result = await ShowSaveConfirmDialog();
+                        if (result == "Save")
                         {
-                            var singleEds = coxml_1_1.ReadXML(filePath);
-                            if (singleEds != null) edss = new List<EDSsharp> { singleEds };
+                            SaveProjectAsClick(null, null);
+                            return;
+                        }
+                        else if (result == "Cancel")
+                        {
+                            return;
                         }
                     }
-                    else
-                    {
-                        var singleEds = coxml_1_1.ReadXML(filePath);
-                        if (singleEds != null)
-                        {
-                            edss = new List<EDSsharp> { singleEds };
-                        }
-                        else // Fallback if accidentally saved as multi-xml
-                        {
-                            edss = coxml_1_1.ReadMultiXML(filePath);
-                        }
-                    }
-                    
-                    if (edss != null && DataContext is MainWindowViewModel dc)
-                    {
-                        _isProgrammaticChange = true;
-                        
-                        // Wait if there's a device we need to save? 
-                        // To keep it simple, if IsDirty, we should prompt, but let's assume it behaves like OpenProjectClick
-                        // To properly reuse logic, we can just call DoLoadProject if we factor it out, but inline is fine for now
-                        
-                        if (dc.IsDirty)
-                        {
-                            var result = await ShowSaveConfirmDialog();
-                            if (result == "Save")
-                            {
-                                SaveProjectAsClick(null, null);
-                                return;
-                            }
-                            else if (result == "Cancel")
-                            {
-                                return;
-                            }
-                        }
 
-                        dc.Network.Clear();
-                        if (filePath.ToLower().EndsWith(".cpj") || filePath.ToLower().EndsWith(".xdd") || filePath.ToLower().EndsWith(".xpd"))
-                        {
-                            dc.CurrentProjectPath = filePath;
-                        }
-                        else
-                        {
-                            dc.CurrentProjectPath = null; // Treat as an unsaved project template
-                        }
-
-                        foreach (var eds in edss)
-                        {
-                            eds.projectFilename = filePath;
-                            if (Path.GetExtension(filePath).ToLower() == ".xdd" || Path.GetExtension(filePath).ToLower() == ".xpd") 
-                            {
-                                eds.xddfilename_1_1 = filePath;
-                            }
-                            
-                            var proto = MappingEDS.MapToProtobuffer(eds);
-                            var deviceView = ProtobufferViewModelMapper.MapFromProtobuffer(proto);
-                            deviceView.Eds = eds;
-                            dc.Network.Add(deviceView);
-                        }
-
-                        if (dc.Network.Count > 0)
-                        {
-                            dc.SelectedDevice = dc.Network[0];
-                        }
-                        dc.IsDirty = false;
-                        dc.AddRecentFile(filePath);
-                        
-                        Avalonia.Threading.Dispatcher.UIThread.Post(() => { _isProgrammaticChange = false; }, Avalonia.Threading.DispatcherPriority.Background);
-                    }
-                    else
-                    {
-                        _ = DialogHostAvalonia.DialogHost.Show(Resources["ErrorDialog"]!, "RootDialogHost");
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"Failed to open project {filePath}: {ex.ToString()}");
-                    _ = DialogHostAvalonia.DialogHost.Show(Resources["ErrorDialog"]!, "RootDialogHost");
+                    OpenProjectProgrammatically(filePath);
                 }
             }
             else

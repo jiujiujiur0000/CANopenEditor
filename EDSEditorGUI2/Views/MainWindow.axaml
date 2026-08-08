@@ -22,6 +22,7 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
     <dialogHost:DialogHost Identifier="RootDialogHost" >
+    <Grid>
     <DockPanel Background="Transparent">
         <Border DockPanel.Dock="Top" BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" BorderThickness="0,0,0,1">
             <Grid>
@@ -176,6 +177,19 @@
             </Grid>
         </Grid>
     </DockPanel>
+    
+    <Border Background="#40000000" IsVisible="{Binding IsLoading}" ZIndex="1000">
+        <Border Background="{DynamicResource SystemControlBackgroundAltHighBrush}" 
+                CornerRadius="8" Padding="30" HorizontalAlignment="Center" VerticalAlignment="Center"
+                BoxShadow="0 4 10 0 #33000000">
+            <StackPanel Spacing="15">
+                <ProgressBar IsIndeterminate="True" Width="150" Height="4" Foreground="#0078D7"/>
+                <TextBlock Text="正在加载..." FontSize="16" FontWeight="SemiBold" HorizontalAlignment="Center"/>
+            </StackPanel>
+        </Border>
+    </Border>
+    
+    </Grid>
   </dialogHost:DialogHost>
 
   <Window.Resources>

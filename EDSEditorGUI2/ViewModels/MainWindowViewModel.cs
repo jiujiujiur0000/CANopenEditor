@@ -92,6 +92,9 @@ public partial class MainWindowViewModel : ViewModelBase
     [ObservableProperty]
     private bool _isDirty;
 
+    [ObservableProperty]
+    private bool _isLoading;
+
     public MainWindowViewModel()
     {
         LoadRecentFiles();
