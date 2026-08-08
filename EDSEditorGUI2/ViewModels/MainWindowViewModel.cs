@@ -291,14 +291,7 @@ public partial class MainWindowViewModel : ViewModelBase
             if (SetProperty(ref _selectedDevice, value))
             {
                 OnPropertyChanged(nameof(CanRemoveDevice));
-                
-                // Clear immediately to provide instant visual feedback on the right side if needed
-                // DisplayedDevice = null;
-
-                // Defer the heavy UI update so the ListBox selection highlight renders instantly
-                Avalonia.Threading.Dispatcher.UIThread.Post(() => {
-                    DisplayedDevice = value;
-                }, Avalonia.Threading.DispatcherPriority.Background);
+                DisplayedDevice = value;
             }
         }
     }

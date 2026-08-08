@@ -150,6 +150,28 @@ public partial class MainWindow : Window
         this.AddHandler(Avalonia.Controls.Button.ClickEvent, OnAnyInteractionTriggerAutoSave, RoutingStrategies.Bubble);
         this.AddHandler(Avalonia.Input.InputElement.KeyUpEvent, OnAnyInteractionTriggerAutoSave, RoutingStrategies.Bubble);
         LoadProfileList();
+        
+        // Start background warmup to improve first-time load performance
+        _ = System.Threading.Tasks.Task.Run(() =>
+        {
+            try
+            {
+                // Pre-JIT XmlSerializers (slow first time)
+                _ = new System.Xml.Serialization.XmlSerializer(typeof(CanOpenXSD_1_1.ISO15745ProfileContainer));
+                _ = new System.Xml.Serialization.XmlSerializer(typeof(CanOpenProject_1_1));
+            }
+            catch { }
+        });
+        
+        // Warm up heavy UI controls on UI thread during idle time
+        Avalonia.Threading.Dispatcher.UIThread.Post(() =>
+        {
+            try
+            {
+                _ = new DeviceView();
+            }
+            catch { }
+        }, Avalonia.Threading.DispatcherPriority.Background);
     }
 
     private bool _isProgrammaticChange = false;
