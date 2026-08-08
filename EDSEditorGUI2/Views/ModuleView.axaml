@@ -30,7 +30,7 @@
                     <DataGrid.Styles>
                         <Style Selector="DataGridColumnHeader">
                             <Setter Property="Background" Value="Transparent"/>
-                            <Setter Property="SeparatorBrush" Value="{DynamicResource SystemControlForegroundBaseMediumLowBrush}"/>
+                            <Setter Property="SeparatorBrush" Value="{DynamicResource SystemControlForegroundBaseLowBrush}"/>
                         </Style>
                         <Style Selector="DataGridColumnHeader:nth-last-child(1)">
                             <Setter Property="SeparatorBrush" Value="Transparent"/>
@@ -74,7 +74,7 @@
                     <DataGrid.Styles>
                         <Style Selector="DataGridColumnHeader">
                             <Setter Property="Background" Value="Transparent"/>
-                            <Setter Property="SeparatorBrush" Value="{DynamicResource SystemControlForegroundBaseMediumLowBrush}"/>
+                            <Setter Property="SeparatorBrush" Value="{DynamicResource SystemControlForegroundBaseLowBrush}"/>
                         </Style>
                         <Style Selector="DataGridColumnHeader:nth-last-child(1)">
                             <Setter Property="SeparatorBrush" Value="Transparent"/>

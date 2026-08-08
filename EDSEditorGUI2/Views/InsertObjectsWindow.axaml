@@ -38,7 +38,7 @@
                       CanUserReorderColumns="False"
                       CanUserResizeColumns="False"
                       CanUserSortColumns="False"
-                      GridLinesVisibility="All"
+                      GridLinesVisibility="Horizontal"
                       HeadersVisibility="Column"
                       BorderThickness="0"
                       ScrollViewer.HorizontalScrollBarVisibility="Auto"
@@ -50,7 +50,7 @@
                 <DataGrid.Styles>
                     <Style Selector="DataGridColumnHeader">
                         <Setter Property="Background" Value="Transparent"/>
-                        <Setter Property="SeparatorBrush" Value="{DynamicResource SystemControlForegroundBaseMediumLowBrush}"/>
+                        <Setter Property="SeparatorBrush" Value="{DynamicResource SystemControlForegroundBaseLowBrush}"/>
                     </Style>
                     <Style Selector="DataGridCell.insert-conflict">
                         <Setter Property="Background" Value="{DynamicResource SystemControlErrorTextForegroundBrush}" />
