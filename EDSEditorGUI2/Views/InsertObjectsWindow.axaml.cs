@@ -72,7 +72,8 @@ public partial class InsertObjectsWindow : Window
                         CellTemplate = cellTemplate,
                         Header = $"Offset {offset}",
                         IsReadOnly = true,
-                        Width = new DataGridLength(120)
+                        MinWidth = 95,
+                        Width = new DataGridLength(1, DataGridLengthUnitType.Star)
                     };
                     grid.Columns.Add(colOffset);
                 }
@@ -85,7 +86,8 @@ public partial class InsertObjectsWindow : Window
                 {
                     grid.Columns[2 + i].Header = $"Offset {offset}";
                 }
-                grid.Columns[2 + i].Width = new DataGridLength(120);
+                grid.Columns[2 + i].MinWidth = 95;
+                grid.Columns[2 + i].Width = new DataGridLength(1, DataGridLengthUnitType.Star);
             }
         }
     }
