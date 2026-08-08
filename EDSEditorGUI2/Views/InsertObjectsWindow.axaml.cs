@@ -68,7 +68,6 @@ public partial class InsertObjectsWindow : Window
                         CellTemplate = cellTemplate,
                         Header = $"Offset {offset}",
                         IsReadOnly = true,
-                        MinWidth = 80,
                     };
                     grid.Columns.Add(colOffset);
                 }

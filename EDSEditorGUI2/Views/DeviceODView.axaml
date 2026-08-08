@@ -6,6 +6,7 @@
              xmlns:converter="using:EDSEditorGUI2.Converter"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="using:EDSEditorGUI2"
              mc:Ignorable="d" d:DesignWidth="1200" d:DesignHeight="800"
              x:Class="EDSEditorGUI2.Views.DeviceODView"
              x:DataType="vm:ObjectDictionary">
@@ -95,6 +96,7 @@
             <DataGrid ItemsSource="{Binding SelectedObject.Value.SubObjects}"
                       x:Name="subindexGrid"
                       CanUserResizeColumns="True"
+                      local:DataGridBehavior.LockAutoMinWidth="True"
                       ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                       GridLinesVisibility="Horizontal"
                       BorderThickness="0"
@@ -110,7 +112,7 @@
               </Style>
             </DataGrid.Styles>
             <DataGrid.Columns>
-              <DataGridTemplateColumn Header="{DynamicResource str_od_col_sub}" Width="Auto" MinWidth="60">
+              <DataGridTemplateColumn Header="{DynamicResource str_od_col_sub}" Width="Auto">
                 <DataGridTemplateColumn.CellTemplate>
                   <DataTemplate>
                     <TextBlock Margin="12,0" VerticalAlignment="Center">
@@ -124,12 +126,12 @@
                   </DataTemplate>
                 </DataGridTemplateColumn.CellTemplate>
               </DataGridTemplateColumn>
-              <DataGridTextColumn Header="{DynamicResource str_od_col_name}" Width="3*" MinWidth="150" Binding="{Binding Value.Name}" />
-              <DataGridTextColumn Header="{DynamicResource str_od_col_datatype}" Width="Auto" MinWidth="100" Binding="{Binding Value.DataType}" />
-              <DataGridTextColumn Header="{DynamicResource str_od_col_sdo}" Width="Auto" MinWidth="60" Binding="{Binding Value.Sdo}" />
-              <DataGridTextColumn Header="{DynamicResource str_od_col_pdo}" Width="Auto" MinWidth="60" Binding="{Binding Value.Pdo}" />
-              <DataGridTextColumn Header="{DynamicResource str_od_col_srdo}" Width="Auto" MinWidth="60" Binding="{Binding Value.Srdo}" />
-              <DataGridTextColumn Header="{DynamicResource str_od_col_default}" Width="2*" MinWidth="100" Binding="{Binding Value.DefaultValue}" />
+              <DataGridTextColumn Header="{DynamicResource str_od_col_name}" Width="3*" Binding="{Binding Value.Name}" />
+              <DataGridTextColumn Header="{DynamicResource str_od_col_datatype}" Width="Auto" Binding="{Binding Value.DataType}" />
+              <DataGridTextColumn Header="{DynamicResource str_od_col_sdo}" Width="Auto" Binding="{Binding Value.Sdo}" />
+              <DataGridTextColumn Header="{DynamicResource str_od_col_pdo}" Width="Auto" Binding="{Binding Value.Pdo}" />
+              <DataGridTextColumn Header="{DynamicResource str_od_col_srdo}" Width="Auto" Binding="{Binding Value.Srdo}" />
+              <DataGridTextColumn Header="{DynamicResource str_od_col_default}" Width="2*" Binding="{Binding Value.DefaultValue}" />
             </DataGrid.Columns>
             <DataGrid.ContextMenu>
               <ContextMenu>

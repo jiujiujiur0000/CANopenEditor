@@ -6,6 +6,7 @@
              xmlns:converter="using:EDSEditorGUI2.Converter"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="using:EDSEditorGUI2"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="EDSEditorGUI2.Views.ODIndexRangeView"
              x:DataType="vm:ObjectDictionary">
@@ -16,6 +17,7 @@
     <Border Grid.Row="1" Background="{DynamicResource SystemControlBackgroundAltHighBrush}" BorderThickness="1" BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" CornerRadius="8" ClipToBounds="True">
       <DataGrid x:Name="grid"
                 CanUserResizeColumns="True"
+                local:DataGridBehavior.LockAutoMinWidth="True"
                 ItemsSource="{Binding FilteredItems, RelativeSource={RelativeSource AncestorType=UserControl}}"
                 x:CompileBindings="False"
                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
@@ -38,8 +40,8 @@
             </Style>
           </DataGrid.Styles>
       <DataGrid.Columns>
-        <DataGridTextColumn Header="{DynamicResource str_pdo_col_index}" Width="Auto" MinWidth="80" Binding="{Binding Key, StringFormat='0x\{0\}'}"/>
-        <DataGridTextColumn Header="{DynamicResource str_od_col_name}" Width="*" MinWidth="150" Binding="{Binding Value.Name}" />
+        <DataGridTextColumn Header="{DynamicResource str_pdo_col_index}" Width="Auto" Binding="{Binding Key, StringFormat='0x\{0\}'}"/>
+        <DataGridTextColumn Header="{DynamicResource str_od_col_name}" Width="*" Binding="{Binding Value.Name}" />
       </DataGrid.Columns>
       <DataGrid.ContextMenu>
         <ContextMenu>

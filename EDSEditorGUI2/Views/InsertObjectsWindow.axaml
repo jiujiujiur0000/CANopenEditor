@@ -3,6 +3,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="using:EDSEditorGUI2.ViewModels"
+        xmlns:local="using:EDSEditorGUI2"
         mc:Ignorable="d" d:DesignWidth="650" d:DesignHeight="600"
         Width="650" Height="650"
         WindowStartupLocation="CenterOwner"
@@ -36,6 +37,7 @@
                       GridLinesVisibility="All"
                       BorderThickness="0"
                       CanUserResizeColumns="True"
+                      local:DataGridBehavior.LockAutoMinWidth="True"
                       ScrollViewer.HorizontalScrollBarVisibility="Auto"
                       ScrollViewer.VerticalScrollBarVisibility="Auto"
                       Background="Transparent" RowBackground="Transparent"
@@ -48,14 +50,14 @@
                     </Style>
                 </DataGrid.Styles>
                 <DataGrid.Columns>
-                    <DataGridTemplateColumn Header="{DynamicResource str_insert_col_insert}" Width="Auto" MinWidth="100">
+                    <DataGridTemplateColumn Header="{DynamicResource str_insert_col_insert}" Width="Auto">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate DataType="vm:ODIndexMergeStatus">
                                 <CheckBox IsChecked="{Binding Insert}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTextColumn Header="{DynamicResource str_insert_col_original}" Width="*" MinWidth="300" IsReadOnly="True" Binding="{Binding OriginalObject}" x:DataType="vm:ODIndexMergeStatus"/>
+                    <DataGridTextColumn Header="{DynamicResource str_insert_col_original}" Width="*" IsReadOnly="True" Binding="{Binding OriginalObject}" x:DataType="vm:ODIndexMergeStatus"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Border>
