@@ -1,4 +1,11 @@
-using AutoMapper;
+import re
+
+filepath = r'c:\Users\14588\workspace\CANopenEditor\EDSEditorGUI2\Mapper\ProtobufferViewModelMapper.cs'
+with open(filepath, 'r', encoding='utf-8') as f:
+    code = f.read()
+
+# We will just write the code out completely, it's safer.
+new_code = """using AutoMapper;
 using Google.Protobuf.WellKnownTypes;
 using LibCanOpen;
 using Microsoft.Extensions.Logging;
@@ -154,14 +161,14 @@ namespace EDSEditorGUI2.Mapper
                         ProductRevision = item.Value.Info?.ProductRevision ?? string.Empty,
                         OrderCode = item.Value.Info?.OrderCode ?? string.Empty,
                         IsConnected = item.Value.IsConnected,
-                        Comments = string.Join("\r\n", item.Value.Comments)
+                        Comments = string.Join(\"\\r\\n\", item.Value.Comments)
                     };
                     foreach (var extObj in item.Value.ExtendedObjects)
                     {
                         vm.ExtendedObjects.Add(new ViewModels.ModuleObjectViewModel
                         {
-                            IndexHex = $"0x{extObj:X4}",
-                            Name = $"Index {extObj:X4}"
+                            IndexHex = $\"0x{extObj:X4}\",
+                            Name = $\"Index {extObj:X4}\"
                         });
                     }
                     destination.Add(vm);
@@ -176,3 +183,7 @@ namespace EDSEditorGUI2.Mapper
         }
     }
 }
+"""
+
+with open(filepath, 'w', encoding='utf-8') as f:
+    f.write(new_code)
