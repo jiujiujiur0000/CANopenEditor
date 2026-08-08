@@ -292,7 +292,7 @@ public partial class MainWindow : Window
 
                 if (files.Count >= 1)
                 {
-                    filePath = files[0].Path.ToString();
+                    filePath = files[0].TryGetLocalPath() ?? files[0].Path.ToString();
                 }
                 else
                 {
