@@ -61,6 +61,14 @@ public partial class DevicePDOView : UserControl
         }
     }
 
+    private bool _isLoaded = false;
+    protected override void OnAttachedToVisualTree(Avalonia.VisualTreeAttachmentEventArgs e)
+    {
+        base.OnAttachedToVisualTree(e);
+        _isLoaded = true;
+        Dispatcher.UIThread.InvokeAsync(UpdateGraphicalMappings);
+    }
+
     protected override void OnDataContextChanged(EventArgs e)
     {
         base.OnDataContextChanged(e);
@@ -75,13 +83,19 @@ public partial class DevicePDOView : UserControl
         if (_vm != null)
         {
             _vm.Mappings.CollectionChanged += Mappings_CollectionChanged;
-            Dispatcher.UIThread.InvokeAsync(UpdateGraphicalMappings);
+            if (this.VisualRoot != null && _isLoaded)
+            {
+                Dispatcher.UIThread.InvokeAsync(UpdateGraphicalMappings);
+            }
         }
     }
 
     private void Mappings_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
     {
-        Dispatcher.UIThread.InvokeAsync(UpdateGraphicalMappings);
+        if (this.VisualRoot != null && _isLoaded)
+        {
+            Dispatcher.UIThread.InvokeAsync(UpdateGraphicalMappings);
+        }
     }
 
     private void UpdateGraphicalMappings()
@@ -171,7 +185,7 @@ public partial class DevicePDOView : UserControl
                                 var removeMenuItem = new MenuItem { Header = removeHeaderObj?.ToString() ?? "Remove Item" };
                                 removeMenuItem.Click += (s, e) => {
                                     _vm.RemoveMapping(slot, mapping);
-                                    Dispatcher.UIThread.InvokeAsync(UpdateGraphicalMappings);
+                                    Dispatcher.UIThread.InvokeAsync(UpdateGraphicalMappings, Avalonia.Threading.DispatcherPriority.Background);
                                     MarkDirty();
                                 };
                                 items.Add(removeMenuItem);

@@ -21,6 +21,7 @@ public partial class ODIndexRangeView : UserControl
     }
 
     private Avalonia.Collections.DataGridCollectionView? _collectionView;
+    private bool _isDataLoaded = false;
     
     public static readonly StyledProperty<Avalonia.Collections.DataGridCollectionView?> FilteredItemsProperty =
         AvaloniaProperty.Register<ODIndexRangeView, Avalonia.Collections.DataGridCollectionView?>(nameof(FilteredItems));
@@ -30,15 +31,44 @@ public partial class ODIndexRangeView : UserControl
         get { return GetValue(FilteredItemsProperty); }
         set { SetValue(FilteredItemsProperty, value); }
     }
+    
+    protected override void OnAttachedToVisualTree(Avalonia.VisualTreeAttachmentEventArgs e)
+    {
+        base.OnAttachedToVisualTree(e);
+        if (!_isDataLoaded)
+        {
+            LoadData();
+        }
+    }
 
     protected override void OnDataContextChanged(EventArgs e)
     {
         base.OnDataContextChanged(e);
+        _isDataLoaded = false;
+        
+        if (this.IsEffectivelyVisible || this.Parent == null) // Parent check is tricky, but IsEffectivelyVisible is safe
+        {
+             // wait, if we are in TabControl, we might be attached when switched
+        }
+        
+        if (this.VisualRoot != null)
+        {
+            LoadData();
+        }
+        else
+        {
+            FilteredItems = null; // Clear to free memory
+        }
+    }
 
+    private void LoadData()
+    {
+        if (_isDataLoaded) return;
         if (DataContext is System.Collections.IEnumerable collection)
         {
             int min = Convert.ToInt32(MinIndex, 16);
             int max = Convert.ToInt32(MaxIndex, 16);
+            
             _collectionView = new Avalonia.Collections.DataGridCollectionView(collection);
             _collectionView.Filter = item =>
             {
@@ -52,10 +82,7 @@ public partial class ODIndexRangeView : UserControl
                 return false;
             };
             FilteredItems = _collectionView;
-        }
-        else
-        {
-            FilteredItems = null;
+            _isDataLoaded = true;
         }
     }
 

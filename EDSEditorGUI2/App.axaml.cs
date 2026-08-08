@@ -28,6 +28,12 @@ public partial class App : Application
             {
                 DataContext = new MainWindowViewModel(),
             };
+            
+            if (desktop.Args != null && desktop.Args.Length > 0)
+            {
+                var filePath = desktop.Args[0];
+                ((MainWindow)desktop.MainWindow).OpenProjectProgrammatically(filePath);
+            }
         }
 
         base.OnFrameworkInitializationCompleted();

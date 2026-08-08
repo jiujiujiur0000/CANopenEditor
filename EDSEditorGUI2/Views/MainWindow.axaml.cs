@@ -17,6 +17,99 @@ namespace EDSEditorGUI2.Views;
 
 public partial class MainWindow : Window
 {
+    public async void OpenProjectProgrammatically(string filePath)
+    {
+        var sw = System.Diagnostics.Stopwatch.StartNew();
+        Console.WriteLine($"[Perf] Started OpenProjectProgrammatically at {sw.ElapsedMilliseconds} ms");
+
+        try
+        {
+            if (DataContext is MainWindowViewModel dc)
+            {
+                _isProgrammaticChange = true;
+                
+                Console.WriteLine($"[Perf] Starting Task.Run at {sw.ElapsedMilliseconds} ms");
+                // Run heavy parsing and mapping in background task to avoid UI freeze
+                var deviceViews = await System.Threading.Tasks.Task.Run(() =>
+                {
+                    CanOpenXDD_1_1 coxml_1_1 = new();
+                    List<EDSsharp>? edss = null;
+                    if (filePath.ToLower().EndsWith(".cpj"))
+                    {
+                        edss = coxml_1_1.ReadMultiXML(filePath);
+                        if (edss == null) // Fallback if extension is wrong
+                        {
+                            var singleEds = coxml_1_1.ReadXML(filePath);
+                            if (singleEds != null) edss = new List<EDSsharp> { singleEds };
+                        }
+                    }
+                    else
+                    {
+                        var singleEds = coxml_1_1.ReadXML(filePath);
+                        if (singleEds != null)
+                        {
+                            edss = new List<EDSsharp> { singleEds };
+                        }
+                        else // Fallback if accidentally saved as multi-xml
+                        {
+                            edss = coxml_1_1.ReadMultiXML(filePath);
+                        }
+                    }
+
+                    if (edss == null) return (List<ViewModels.Device>?)null;
+
+                    var parsedViews = new List<ViewModels.Device>();
+                    foreach (var eds in edss)
+                    {
+                        eds.projectFilename = filePath;
+                        if (Path.GetExtension(filePath).ToLower() == ".xdd" || Path.GetExtension(filePath).ToLower() == ".xpd") 
+                        {
+                            eds.xddfilename_1_1 = filePath;
+                        }
+                        
+                        var proto = MappingEDS.MapToProtobuffer(eds);
+                        var deviceView = ProtobufferViewModelMapper.MapFromProtobuffer(proto);
+                        deviceView.Eds = eds;
+                        parsedViews.Add(deviceView);
+                    }
+                    return parsedViews;
+                });
+                
+                Console.WriteLine($"[Perf] Task.Run finished at {sw.ElapsedMilliseconds} ms");
+
+                if (deviceViews != null)
+                {
+                    dc.Network.Clear();
+                    dc.CurrentProjectPath = filePath;
+
+                    foreach (var deviceView in deviceViews)
+                    {
+                        dc.Network.Add(deviceView);
+                    }
+                    
+                    if (dc.Network.Count > 0)
+                    {
+                        Console.WriteLine($"[Perf] Before Setting SelectedDevice at {sw.ElapsedMilliseconds} ms");
+                        var sw2 = System.Diagnostics.Stopwatch.StartNew();
+                        dc.SelectedDevice = dc.Network[0];
+                        sw2.Stop();
+                        Console.WriteLine($"[Perf] After Setting SelectedDevice took {sw2.ElapsedMilliseconds} ms");
+                    }
+                    dc.IsDirty = false;
+                    dc.AddRecentFile(filePath);
+                    
+                    Console.WriteLine($"[Perf] Posting background settle at {sw.ElapsedMilliseconds} ms");
+                    // Allow UI to settle before re-enabling interactions
+                    Avalonia.Threading.Dispatcher.UIThread.Post(() => { 
+                        Console.WriteLine($"[Perf] UI Settle Background Task Executed at {sw.ElapsedMilliseconds} ms");
+                        _isProgrammaticChange = false; 
+                    }, Avalonia.Threading.DispatcherPriority.Background);
+                }
+            }
+        }
+        catch(Exception e) { Console.WriteLine(e); }
+    }
+
     private static int _projectCounter = 1;
 
     readonly FilePickerFileType xpd = new("CANopen XPD 1.1")
