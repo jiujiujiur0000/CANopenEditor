@@ -89,6 +89,11 @@ public partial class MainWindow : Window
         if (DataContext is MainWindowViewModel dc)
         {
             dc.IsDirty = true;
+            if (dc.SelectedDevice != null)
+            {
+                dc.SelectedDevice.FileInfo.ModificationTime = DateTime.Now;
+            }
+            
             if (string.IsNullOrEmpty(dc.CurrentProjectPath))
             {
                 return; // Don't auto-save if there's no project path
