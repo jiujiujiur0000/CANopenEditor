@@ -31,32 +31,29 @@
             </StackPanel>
         </StackPanel>
 
-        <!-- Data Grid -->
+        <!-- DataGrid -->
         <Border Grid.Row="1" Margin="0,16,0,16" BorderThickness="1" BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" CornerRadius="6" ClipToBounds="True" Background="{DynamicResource SystemControlBackgroundAltHighBrush}">
             <DataGrid ItemsSource="{Binding MergeStatus}"
                       AutoGenerateColumns="False"
                       CanUserReorderColumns="False"
                       CanUserResizeColumns="False"
                       CanUserSortColumns="False"
-                      GridLinesVisibility="None"
+                      GridLinesVisibility="Horizontal"
                       HeadersVisibility="Column"
                       BorderThickness="0"
                       ScrollViewer.HorizontalScrollBarVisibility="Auto"
                       ScrollViewer.VerticalScrollBarVisibility="Auto"
-                      Background="{DynamicResource SystemControlBackgroundAltHighBrush}" 
-                      RowBackground="{DynamicResource SystemControlBackgroundAltHighBrush}"
+                      Background="Transparent" 
+                      RowBackground="Transparent"
                       x:Name="grid"
                       RowHeight="40">
                 <DataGrid.Styles>
                     <Style Selector="DataGridColumnHeader">
-                        <Setter Property="Background" Value="{DynamicResource SystemControlBackgroundAltHighBrush}"/>
-                        <Setter Property="BorderThickness" Value="0,0,1,1"/>
-                        <Setter Property="BorderBrush" Value="{DynamicResource SystemControlForegroundBaseMediumLowBrush}"/>
-                        <Setter Property="SeparatorBrush" Value="Transparent"/>
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Setter Property="SeparatorBrush" Value="{DynamicResource SystemControlForegroundBaseMediumLowBrush}"/>
                     </Style>
-                    <Style Selector="DataGridCell">
-                        <Setter Property="BorderThickness" Value="0,0,1,1"/>
-                        <Setter Property="BorderBrush" Value="{DynamicResource SystemControlForegroundBaseMediumLowBrush}"/>
+                    <Style Selector="DataGridColumnHeader:nth-last-child(1)">
+                        <Setter Property="SeparatorBrush" Value="Transparent"/>
                     </Style>
                     <Style Selector="DataGridCell.insert-conflict">
                         <Setter Property="Background" Value="{DynamicResource SystemControlErrorTextForegroundBrush}" />
