@@ -86,11 +86,23 @@ public partial class DeviceODView : UserControl
         if (DataContext is ViewModels.ObjectDictionary dc)
         {
             var selectedObj = dc.SelectedObject.Value;
-            ObservableCollection<KeyValuePair<string, ViewModels.OdSubObject>> selection = [];
+            ViewModels.OdSubObject? lastAdded = null;
+            
+            var selectedRows = dc.SelectedSubObjects.ToList();
 
-            foreach (var row in dc.SelectedSubObjects)
+            foreach (var row in selectedRows)
             {
-                selectedObj.AddSubEntry(row);
+                lastAdded = selectedObj.AddSubEntry(row);
+            }
+            
+            if (lastAdded != null)
+            {
+                var kvpToSelect = selectedObj.SubObjects.FirstOrDefault(x => x.Value == lastAdded);
+                if (kvpToSelect.Value != null)
+                {
+                    subindexGrid.SelectedItem = kvpToSelect;
+                    subindexGrid.ScrollIntoView(kvpToSelect, null);
+                }
             }
         }
     }
