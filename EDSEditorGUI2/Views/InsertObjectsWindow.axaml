@@ -1,0 +1,68 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="using:EDSEditorGUI2.ViewModels"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
+        Width="800" Height="650"
+        WindowStartupLocation="CenterOwner"
+        x:Class="EDSEditorGUI2.Views.InsertObjectsWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Title="{DynamicResource str_dialog_insert_profile_title}">
+    <Grid Margin="24" RowDefinitions="Auto, *, Auto">
+        <StackPanel Grid.Row="0" Spacing="16">
+            <!-- Title -->
+            <TextBlock Text="{DynamicResource str_dialog_insert_profile_title}" FontSize="18" FontWeight="SemiBold" Margin="0,0,0,8" Foreground="{DynamicResource SystemControlForegroundBaseHighBrush}" />
+            
+            <!-- Controls area -->
+            <StackPanel Spacing="16" Margin="0,0,0,8">
+                <!-- Target Device -->
+                <StackPanel Spacing="8">
+                    <TextBlock Text="{DynamicResource str_insert_target}" FontWeight="Medium"/>
+                    <ComboBox x:Name="InsertObjects_target" ItemsSource="{Binding Network}" SelectedItem="{Binding SelectedDevice}" MaxDropDownHeight="200" HorizontalAlignment="Left" Width="400" />
+                </StackPanel>
+                
+                <!-- Offset -->
+                <StackPanel Spacing="8">
+                    <TextBlock Text="{DynamicResource str_insert_offset}" FontWeight="Medium" TextWrapping="Wrap"/>
+                    <TextBox x:Name="InsertObjects_Offsets" Watermark="例如：0 100 500" Text="0" TextChanged="OnOffsetTextChanged" HorizontalAlignment="Left" Width="400" />
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+
+        <!-- Data Grid -->
+        <Border Grid.Row="1" Margin="0,16,0,16" BorderThickness="1" BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" CornerRadius="6" ClipToBounds="True" Background="{DynamicResource SystemControlBackgroundAltHighBrush}">
+            <DataGrid ItemsSource="{Binding MergeStatus}"
+                      GridLinesVisibility="Horizontal"
+                      BorderThickness="0"
+                      Background="Transparent" RowBackground="Transparent"
+                      x:Name="grid"
+                      RowHeight="40">
+                <DataGrid.Styles>
+                    <Style Selector="DataGridColumnHeader">
+                        <Setter Property="Background" Value="#F8F9FA"/>
+                        <Setter Property="FontWeight" Value="SemiBold"/>
+                        <Setter Property="Padding" Value="12,8"/>
+                        <Setter Property="SeparatorBrush" Value="{DynamicResource SystemControlForegroundBaseLowBrush}"/>
+                    </Style>
+                    <Style Selector="DataGridColumnHeader:nth-last-child(1)">
+                        <Setter Property="SeparatorBrush" Value="Transparent"/>
+                    </Style>
+                    <Style Selector="DataGridCell">
+                        <Setter Property="Padding" Value="12,0"/>
+                    </Style>
+                </DataGrid.Styles>
+                <DataGrid.Columns>
+                    <DataGridCheckBoxColumn Header="{DynamicResource str_insert_col_insert}" Width="120" Binding="{Binding Insert}" x:DataType="vm:ODIndexMergeStatus"/>
+                    <DataGridTextColumn Header="{DynamicResource str_insert_col_original}" Width="*" IsReadOnly="True" Binding="{Binding OriginalObject}" x:DataType="vm:ODIndexMergeStatus"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Border>
+
+        <!-- Buttons -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Spacing="12">
+            <Button x:Name="InsertObjects_Cancel" IsCancel="True" Click="CancelClick" Content="{DynamicResource str_btn_cancel}" Padding="24,8" MinWidth="100" HorizontalContentAlignment="Center"/>
+            <Button x:Name="InsertObjects_Insert" IsDefault="True" Click="InsertClick" Content="{DynamicResource str_insert_btn_insert}" Classes="accent" Padding="24,8" MinWidth="100" HorizontalContentAlignment="Center"/>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -313,117 +313,47 @@ public partial class MainWindow : Window
             {
                 var selectedObjects = dc.SelectedDevice.Objects;
                 dc.InitMergeStatus(viewModel, [0]);
-                await DialogHost.Show(Resources["InsertObjectsDialog"]!, "RootDialogHost", OnDialogClosing);
-            }
-        }
-    }
-    /// <summary>
-    /// Event handler for the offset textbox in the profile import dialog
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    public void OnOffsetTextChanged(object? sender, TextChangedEventArgs e)
-    {
-        if (DataContext is MainWindowViewModel dc && null != InsertObjects_Offsets.Text)
-        {
-            // look for "words" containing numbers
-            string pattern = @"\b\d+\b";
-            List<int> offsets = [];
-
-            foreach (Match match in Regex.Matches(InsertObjects_Offsets.Text, pattern,
-                                    RegexOptions.None,
-                                    TimeSpan.FromSeconds(1)))
-            {
-                _ = int.TryParse(match.Value, out int result);
-                offsets.Add(result);
-            }
-
-            dc.UpdateMergeStatus(offsets);
-
-            int columnsNeeded = 2 + offsets.Count;
-            while (grid.Columns.Count != columnsNeeded)
-            {
-                // need to add or remove columns
-                if (grid.Columns.Count > columnsNeeded)
+                
+                var dialog = new InsertObjectsWindow()
                 {
-                    grid.Columns.RemoveAt(grid.Columns.Count - 1);
-                }
-                else
+                    DataContext = dc
+                };
+                
+                var result = await dialog.ShowDialog<string>(this);
+                
+                if (result == "insert" && dc.SelectedDevice != null)
                 {
-                    int offset = offsets[grid.Columns.Count - 2];
-                    int index = grid.Columns.Count - 2;
-                    var cellTemplate = new FuncDataTemplate<ODIndexMergeStatus>((item, scope) =>
+                    //Merging MergeStatus into SelectedDevice.Objects.Data
+                    foreach (var insertObj in dc.MergeStatus)
                     {
-                        var textBlock = new TextBlock
+                        if (insertObj.Insert)
                         {
-                            [!TextBlock.TextProperty] = new Binding($"Offsets[{index}].Index") { StringFormat = @"0x{0:x}" },
-                            [!TextBlock.ForegroundProperty] = new Binding($"Offsets[{index}].Collision") { Converter = new Converter.BrushConverter() },
-                        };
-                        return textBlock;
-                    });
-                    DataGridTemplateColumn colOffset = new()
-                    {
-                        CellTemplate = cellTemplate,
-                        Header = $"Offset {offset}",
-                        IsReadOnly = true,
-                    };
-                    grid.Columns.Add(colOffset);
-                }
-            }
-            // Update column headers
-            for (var i = 0; i < offsets.Count; i++)
-            {
-                int offset = offsets[i];
-                if (grid.Columns[2 + i].Header.ToString() != $"Offset {offset}")
-                {
-                    grid.Columns[2 + i].Header = $"Offset {offset}";
-                    grid.Columns[2 + i].Width = DataGridLength.Auto;
-                }
-            }
-        }
-    }
-    /// <summary>
-    /// Called when insert objects dialog is closed
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    private void OnDialogClosing(object? sender, DialogClosingEventArgs e)
-    {
-        if (DataContext is MainWindowViewModel dc)
-        {
-            if (e.Parameter is not null && (string)e.Parameter == "insert" && dc.SelectedDevice != null)
-            {
-                //Merging MergeStatus into SelectedDevice.Objects.Data
-                foreach (var insertObj in dc.MergeStatus)
-                {
-                    if (insertObj.Insert)
-                    {
-                        bool matched = false;
-                        foreach (var orgObj in dc.SelectedDevice.Objects)
-                        {
-                            var indexAsInteger = orgObj.Key.ToInteger();
-                            if (indexAsInteger == (insertObj.OriginalIndex + dc.InsertObjectsOffset))
+                            bool matched = false;
+                            foreach (var orgObj in dc.SelectedDevice.Objects)
                             {
-                                dc.SelectedDevice.Objects[orgObj.Key] = insertObj.Object;
-                                matched = true;
-                            }
-                        }
-                        if (!matched)
-                        {
-                            foreach (var offset in insertObj.Offsets)
-                            {
-                                if (offset.Collision == false)
+                                var indexAsInteger = orgObj.Key.ToInteger();
+                                if (indexAsInteger == (insertObj.OriginalIndex + dc.InsertObjectsOffset))
                                 {
-                                    string strIndex = offset.Index.ToString("X2");
-                                    dc.SelectedDevice.Objects[strIndex] = insertObj.Object;
+                                    dc.SelectedDevice.Objects[orgObj.Key] = insertObj.Object;
+                                    matched = true;
+                                }
+                            }
+                            if (!matched)
+                            {
+                                foreach (var offset in insertObj.Offsets)
+                                {
+                                    if (offset.Collision == false)
+                                    {
+                                        string strIndex = offset.Index.ToString("X2");
+                                        dc.SelectedDevice.Objects[strIndex] = insertObj.Object;
+                                    }
                                 }
                             }
                         }
                     }
                 }
+                dc.MergeStatus.Clear();
             }
-            dc.MergeStatus.Clear();
-            InsertObjects_Offsets.Text = "0";
         }
     }
 
