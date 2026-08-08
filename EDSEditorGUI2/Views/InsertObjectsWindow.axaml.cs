@@ -56,6 +56,8 @@ public partial class InsertObjectsWindow : Window
                     {
                         var textBlock = new TextBlock
                         {
+                            Margin = new Avalonia.Thickness(12, 0),
+                            VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center,
                             [!TextBlock.TextProperty] = new Binding($"Offsets[{index}].Index") { Converter = new Converter.AbsoluteHexConverter() },
                             [!TextBlock.ForegroundProperty] = new Binding($"Offsets[{index}].Collision") { Converter = new Converter.BrushConverter() },
                         };

@@ -51,7 +51,7 @@
                     </Style>
                 </DataGrid.Styles>
                 <DataGrid.Columns>
-                    <DataGridTemplateColumn Header="{DynamicResource str_insert_col_insert}" Width="80">
+                    <DataGridTemplateColumn Header="{DynamicResource str_insert_col_insert}" Width="Auto" MinWidth="100">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate DataType="vm:ODIndexMergeStatus">
                                 <CheckBox IsChecked="{Binding Insert}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
