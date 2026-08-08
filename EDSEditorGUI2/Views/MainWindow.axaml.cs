@@ -324,33 +324,68 @@ public partial class MainWindow : Window
                 if (result == "insert" && dc.SelectedDevice != null)
                 {
                     //Merging MergeStatus into SelectedDevice.Objects.Data
+                    CollisionDialogResult globalResolution = CollisionDialogResult.Skip;
+                    bool hasGlobalResolution = false;
+
                     foreach (var insertObj in dc.MergeStatus)
                     {
                         if (insertObj.Insert)
                         {
-                            bool matched = false;
-                            foreach (var orgObj in dc.SelectedDevice.Objects)
+                            foreach (var offset in insertObj.Offsets)
                             {
-                                var indexAsInteger = orgObj.Key.ToInteger();
-                                if (indexAsInteger == (insertObj.OriginalIndex + dc.InsertObjectsOffset))
+                                int finalIndex = offset.Index;
+                                if (offset.Collision)
                                 {
-                                    dc.SelectedDevice.Objects[orgObj.Key] = insertObj.Object;
-                                    matched = true;
+                                    finalIndex = Math.Abs(finalIndex);
                                 }
-                            }
-                            if (!matched)
-                            {
-                                foreach (var offset in insertObj.Offsets)
+
+                                string strIndex = finalIndex.ToString("X4");
+
+                                if (offset.Collision)
                                 {
-                                    if (offset.Collision == false)
+                                    CollisionDialogResult resolution;
+                                    if (hasGlobalResolution)
                                     {
-                                        string strIndex = offset.Index.ToString("X2");
+                                        resolution = globalResolution;
+                                    }
+                                    else
+                                    {
+                                        var collisionDialog = new CollisionDialog($"0x{finalIndex:X4}");
+                                        var dialogResult = await DialogHostAvalonia.DialogHost.Show(collisionDialog, "RootDialogHost");
+                                        
+                                        if (dialogResult is CollisionDialogResult cdr)
+                                        {
+                                            resolution = cdr;
+                                        }
+                                        else
+                                        {
+                                            resolution = CollisionDialogResult.Cancel;
+                                        }
+
+                                        if (resolution == CollisionDialogResult.OverwriteAll || resolution == CollisionDialogResult.SkipAll)
+                                        {
+                                            hasGlobalResolution = true;
+                                            globalResolution = resolution;
+                                        }
+                                    }
+
+                                    if (resolution == CollisionDialogResult.Cancel)
+                                    {
+                                        goto EndInsertion;
+                                    }
+                                    else if (resolution == CollisionDialogResult.Overwrite || resolution == CollisionDialogResult.OverwriteAll)
+                                    {
                                         dc.SelectedDevice.Objects[strIndex] = insertObj.Object;
                                     }
+                                }
+                                else
+                                {
+                                    dc.SelectedDevice.Objects[strIndex] = insertObj.Object;
                                 }
                             }
                         }
                     }
+                    EndInsertion:;
                 }
                 dc.MergeStatus.Clear();
             }

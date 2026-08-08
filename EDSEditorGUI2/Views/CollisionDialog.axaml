@@ -1,0 +1,19 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="250"
+             x:Class="EDSEditorGUI2.Views.CollisionDialog">
+    <StackPanel Margin="20" Spacing="20" MinWidth="350">
+        <TextBlock FontWeight="Bold" FontSize="18" Text="索引冲突" />
+        <TextBlock x:Name="MessageText" FontSize="14" TextWrapping="Wrap" />
+        
+        <StackPanel Spacing="10" Margin="0,10,0,0">
+            <Button Content="覆盖 (仅此项)" Tag="Overwrite" Click="Button_Click" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Classes="accent" />
+            <Button Content="跳过 (仅此项)" Tag="Skip" Click="Button_Click" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" />
+            <Button Content="全部覆盖 (此后所有冲突项)" Tag="OverwriteAll" Click="Button_Click" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Classes="accent" />
+            <Button Content="全部跳过 (此后所有冲突项)" Tag="SkipAll" Click="Button_Click" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" />
+            <Button Content="取消插入" Tag="Cancel" Click="Button_Click" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" />
+        </StackPanel>
+    </StackPanel>
+</UserControl>
