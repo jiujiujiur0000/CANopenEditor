@@ -67,7 +67,7 @@
     <!-- Insert Objects Dialog -->
     <sys:String x:Key="str_profile_open_file">Insert from specific file (*.xpd, *.xdd, *.xdc)</sys:String>
     <sys:String x:Key="str_insert_target">Target:</sys:String>
-    <sys:String x:Key="str_insert_offset">Index Offset (single or space separated list for multiple insert)</sys:String>
+    <sys:String x:Key="str_insert_offset">Index Offset (Hex, single or space separated list for multiple insert)</sys:String>
     <sys:String x:Key="str_insert_col_insert">Insert</sys:String>
     <sys:String x:Key="str_insert_col_original">Original Object</sys:String>
     <sys:String x:Key="str_insert_btn_insert">Insert</sys:String>

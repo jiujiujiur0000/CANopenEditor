@@ -69,7 +69,7 @@
     <!-- Insert Objects Dialog -->
     <sys:String x:Key="str_profile_open_file">从指定文件中插入 (*.xpd, *.xdd, *.xdc)</sys:String>
     <sys:String x:Key="str_insert_target">目标设备:</sys:String>
-    <sys:String x:Key="str_insert_offset">索引偏移 (填单个偏移，或用空格隔开以支持批量多份插入)</sys:String>
+    <sys:String x:Key="str_insert_offset">索引偏移 (十六进制，填单个或用空格隔开以支持批量插入)</sys:String>
     <sys:String x:Key="str_insert_col_insert">是否插入</sys:String>
     <sys:String x:Key="str_insert_col_original">原始对象字典</sys:String>
     <sys:String x:Key="str_insert_btn_insert">插入</sys:String>
