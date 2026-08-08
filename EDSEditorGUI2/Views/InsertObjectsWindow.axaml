@@ -34,10 +34,15 @@
         <!-- Data Grid -->
         <Border Grid.Row="1" Margin="0,16,0,16" BorderThickness="1" BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" CornerRadius="6" ClipToBounds="True" Background="{DynamicResource SystemControlBackgroundAltHighBrush}">
             <DataGrid ItemsSource="{Binding MergeStatus}"
-                      GridLinesVisibility="All"
-                      BorderThickness="0"
+                      HorizontalAlignment="Left"
+                      AutoGenerateColumns="False"
+                      CanUserReorderColumns="False"
                       CanUserResizeColumns="True"
                       FrozenColumnCount="2"
+                      CanUserSortColumns="False"
+                      GridLinesVisibility="All"
+                      HeadersVisibility="Column"
+                      BorderThickness="0"
                       ScrollViewer.HorizontalScrollBarVisibility="Auto"
                       ScrollViewer.VerticalScrollBarVisibility="Auto"
                       Background="Transparent" RowBackground="Transparent"
@@ -47,6 +52,9 @@
                     <Style Selector="DataGridColumnHeader">
                         <Setter Property="Background" Value="Transparent"/>
                         <Setter Property="SeparatorBrush" Value="{DynamicResource SystemControlForegroundBaseMediumLowBrush}"/>
+                    </Style>
+                    <Style Selector="DataGridCell.insert-conflict">
+                        <Setter Property="Background" Value="{DynamicResource SystemControlErrorTextForegroundBrush}" />
                     </Style>
                 </DataGrid.Styles>
                 <DataGrid.Columns>
