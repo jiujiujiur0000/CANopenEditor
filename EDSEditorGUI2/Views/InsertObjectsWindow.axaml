@@ -35,6 +35,8 @@
             <DataGrid ItemsSource="{Binding MergeStatus}"
                       GridLinesVisibility="All"
                       BorderThickness="0"
+                      ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                      ScrollViewer.VerticalScrollBarVisibility="Auto"
                       Background="Transparent" RowBackground="Transparent"
                       x:Name="grid"
                       RowHeight="40">
@@ -53,8 +55,8 @@
                     </Style>
                 </DataGrid.Styles>
                 <DataGrid.Columns>
-                    <DataGridCheckBoxColumn Header="{DynamicResource str_insert_col_insert}" Width="120" Binding="{Binding Insert}" x:DataType="vm:ODIndexMergeStatus"/>
-                    <DataGridTextColumn Header="{DynamicResource str_insert_col_original}" Width="*" IsReadOnly="True" Binding="{Binding OriginalObject}" x:DataType="vm:ODIndexMergeStatus"/>
+                    <DataGridCheckBoxColumn Header="{DynamicResource str_insert_col_insert}" Width="100" Binding="{Binding Insert}" x:DataType="vm:ODIndexMergeStatus"/>
+                    <DataGridTextColumn Header="{DynamicResource str_insert_col_original}" Width="*" MinWidth="300" IsReadOnly="True" Binding="{Binding OriginalObject}" x:DataType="vm:ODIndexMergeStatus"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Border>
