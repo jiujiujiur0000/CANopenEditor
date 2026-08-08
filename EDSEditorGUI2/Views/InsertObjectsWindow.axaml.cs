@@ -83,17 +83,6 @@ public partial class InsertObjectsWindow : Window
                 }
                 grid.Columns[2 + i].Width = new DataGridLength(120);
             }
-
-            // Auto-scroll to the rightmost column to ensure the user knows it's there
-            if (grid.Columns.Count > 2 && dc.MergeStatus.Count > 0)
-            {
-                var item = dc.MergeStatus[0];
-                var column = grid.Columns[grid.Columns.Count - 1];
-                Avalonia.Threading.Dispatcher.UIThread.Post(() => 
-                {
-                    grid.ScrollIntoView(item, column);
-                }, Avalonia.Threading.DispatcherPriority.Background);
-            }
         }
     }
 
