@@ -309,7 +309,7 @@ public partial class MainWindow : Window
             var proto = MappingEDS.MapToProtobuffer(eds);
             var viewModel = ProtobufferViewModelMapper.MapFromProtobuffer(proto);
 
-            if (DataContext is MainWindowViewModel dc && dc.SelectedDevice != null)
+            if (viewModel != null && DataContext is MainWindowViewModel dc && dc.SelectedDevice != null)
             {
                 var selectedObjects = dc.SelectedDevice.Objects;
                 dc.InitMergeStatus(viewModel, [0]);

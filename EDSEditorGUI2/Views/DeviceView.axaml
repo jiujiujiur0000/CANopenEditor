@@ -9,7 +9,7 @@
              x:DataType="vm:Device">
 
   <!-- 去除Margin，并确保自身没有边框导致叠加变粗 -->
-  <TabControl Margin="0" Padding="0,10,0,0" BorderThickness="0">
+  <TabControl Margin="0" Padding="0,10,0,0" BorderThickness="0" SelectedIndex="{Binding SelectedTabIndex}">
     <TabControl.Styles>
       <Style Selector="TabControl">
         <Setter Property="Template">

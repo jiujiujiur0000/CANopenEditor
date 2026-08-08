@@ -177,7 +177,7 @@ public partial class MainWindowViewModel : ViewModelBase
     public void InitMergeStatus(Device profile, List<int> offsets)
     {
         MergeStatus.Clear();
-        if (SelectedDevice is not null)
+        if (SelectedDevice is not null && profile is not null && profile.Objects is not null)
         {
             foreach (var obj in profile.Objects)
             {

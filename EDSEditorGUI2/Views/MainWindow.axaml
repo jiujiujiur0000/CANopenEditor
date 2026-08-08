@@ -88,7 +88,7 @@
                     <Separator/>
                     <MenuItem Header="{DynamicResource str_menu_quit}" Click="QuitClick"/>
                 </MenuItem>
-                <MenuItem Header="{DynamicResource str_menu_insert_profile}" x:Name="profileMenu" IsEnabled="{Binding SelectedDevice, Converter={x:Static ObjectConverters.IsNotNull}}"/>
+                <MenuItem Header="{DynamicResource str_menu_insert_profile}" x:Name="profileMenu" IsEnabled="{Binding SelectedDevice.IsObjectDictionaryTabSelected, FallbackValue=False}"/>
                 <MenuItem Header="{DynamicResource str_menu_reports}" IsEnabled="{Binding HasDevice}">
                     <MenuItem Header="{DynamicResource str_menu_report_doc}" Click="ReportDocumentationClick" IsEnabled="{Binding SelectedDevice, Converter={x:Static ObjectConverters.IsNotNull}}" HotKey="Ctrl+P" InputGesture="Ctrl+P"/>
                     <MenuItem Header="{DynamicResource str_menu_report_network}" Click="ReportNetworkPDOClick" IsEnabled="{Binding HasDevice}" HotKey="Ctrl+Shift+P" InputGesture="Ctrl+Shift+P"/>

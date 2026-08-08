@@ -84,6 +84,12 @@ namespace EDSEditorGUI2.ViewModels
         private ObjectDictionary _objects = new();
 
         [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(IsObjectDictionaryTabSelected))]
+        private int _selectedTabIndex = 0;
+
+        public bool IsObjectDictionaryTabSelected => SelectedTabIndex == 1;
+
+        [ObservableProperty]
         private ModuleViewModel _moduleInfo = new();
 
         public libEDSsharp.EDSsharp GetUpdatedEds()
