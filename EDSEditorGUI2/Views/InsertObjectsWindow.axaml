@@ -40,10 +40,10 @@
                       RowHeight="40">
                 <DataGrid.Styles>
                     <Style Selector="DataGridColumnHeader">
-                        <Setter Property="Background" Value="#F8F9FA"/>
+                        <Setter Property="Background" Value="Transparent"/>
                         <Setter Property="FontWeight" Value="SemiBold"/>
                         <Setter Property="Padding" Value="12,8"/>
-                        <Setter Property="SeparatorBrush" Value="{DynamicResource SystemControlForegroundBaseLowBrush}"/>
+                        <Setter Property="SeparatorBrush" Value="{DynamicResource SystemControlForegroundBaseMediumLowBrush}"/>
                     </Style>
                     <Style Selector="DataGridColumnHeader:nth-last-child(1)">
                         <Setter Property="SeparatorBrush" Value="Transparent"/>
