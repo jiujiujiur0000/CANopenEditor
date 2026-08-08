@@ -10,7 +10,7 @@ namespace EDSEditorGUI2.ViewModels;
 
 public partial class MainWindowViewModel : ViewModelBase
 {
-    int Counter = 0;
+    int Counter = 1;
     public bool HasNoDevice => Network.Count == 0;
     
     public ObservableCollection<string> RecentFiles { get; } = new();
@@ -116,7 +116,7 @@ public partial class MainWindowViewModel : ViewModelBase
         {
             DeviceInfo = new()
             {
-                ProductName = "New Product" + Counter.ToString()
+                ProductName = "NewDevice" + Counter.ToString()
             },
             DeviceCommissioning = new(),
             FileInfo = new()
