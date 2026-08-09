@@ -12,10 +12,10 @@
 !include "x64.nsh"                  ; Macros for x64 machines
 
 ; The name of the installer
-Name "OpenEdsEditor"
+Name "CANopenEditor"
 
 ; The file to write
-OutFile "edseditor-Setup.exe"
+OutFile "CANopenEditor-Setup.exe"
 
 ; Show install details
 ShowInstDetails show
@@ -57,24 +57,18 @@ Section "OpenEdsEditor" Secopeneds ;No components page, name is not important
   SetOutPath $INSTDIR
   
   ; Put file there
-  File EDSEditorGUI\bin\Release\EDSEditor.exe
-  File EDSEditorGUI\bin\Release\EDSEditor.exe.config
-  File EDSEditorGUI\bin\Release\*.dll
-  File EDSEditorGUI\bin\Release\style.css
+  File /r EDSEditorGUI2\bin\Release\net8.0\win-x64\publish\*
   File Index_8287_16x.ico
   File License-GPLv3.txt
-  
-  SetOutPath $INSTDIR\Profiles
-  File EDSEditorGUI\Profiles\*
    
   SetShellVarContext all
-  CreateDirectory "$SMPROGRAMS\OpenEDSEditor"
-  CreateShortCut "$SMPROGRAMS\OpenEDSEditor\OpenEDSEditor.lnk" $INSTDIR\EDSEditor.exe "" $INSTDIR\Index_8287_16x.ico 0
+  CreateDirectory "$SMPROGRAMS\CANopenEditor"
+  CreateShortCut "$SMPROGRAMS\CANopenEditor\CANopenEditor.lnk" $INSTDIR\EDSEditorGUI2.exe "" $INSTDIR\Index_8287_16x.ico 0
      
   ;Create uninstaller
   WriteUninstaller "$INSTDIR\Uninstall.exe"
   
-  CreateShortCut "$SMPROGRAMS\OpenEDSEditor\Uninstall.lnk" $INSTDIR\Uninstall.exe
+  CreateShortCut "$SMPROGRAMS\CANopenEditor\Uninstall.lnk" $INSTDIR\Uninstall.exe
   
 SectionEnd ; end the section
 

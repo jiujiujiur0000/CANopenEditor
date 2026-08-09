@@ -1,42 +1,107 @@
-name: make release
+name: Release
 
 on:
   push:
     tags:
       - "v*.*.*"
 
+permissions:
+  contents: write
+
 jobs:
   build:
-    runs-on: windows-latest
-    permissions:
-      contents: write
+    strategy:
+      matrix:
+        include:
+          - os: windows-latest
+            rid: win-x64
+            ext: .zip
+          - os: ubuntu-latest
+            rid: linux-x64
+            ext: .tar.gz
+          - os: macos-latest
+            rid: osx-x64
+            ext: .tar.gz
+          - os: macos-latest
+            rid: osx-arm64
+            ext: .tar.gz
+
+    runs-on: ${{ matrix.os }}
+
     steps:
     - name: Checkout
-      uses: actions/checkout@v7
+      uses: actions/checkout@v4
       with:
         fetch-depth: 0
+
     - name: Setup .NET
-      uses: microsoft/setup-msbuild@v3
-    - name: Add Packages
-      run: |
-        dotnet restore
-    - name: Build
-      run: |
-        msbuild /property:Configuration=Release
-    - name: Check for release tag
-      run: |
-        $release = "${{ github.ref_name }}" -match "v[\d]*[.][\d]*[.][\d]*$"
-        $prerelease = If ($release) {"false"} else {"true"}
-        echo "prerelease=$prerelease" >> $env:GITHUB_ENV
-    - name: Make release package
-      run: |
-        $tag = "${{ github.ref_name }}"
-        $filename = "CANopenEditor-$tag-binary.zip"
-        Compress-Archive -CompressionLevel Optimal -Path "EDSEditorGUI\bin\Release\*","EDSSharp\bin\Release\*" -DestinationPath $filename
-        echo "binary_name=$filename" >> $env:GITHUB_ENV
-    - name: make release
-      uses: softprops/action-gh-release@v3
+      uses: actions/setup-dotnet@v4
       with:
-        prerelease: ${{ env.prerelease }}
+        dotnet-version: '8.0.x'
+
+    - name: Publish App
+      run: |
+        dotnet publish EDSEditorGUI2/EDSEditorGUI2.csproj -c Release -r ${{ matrix.rid }} --self-contained true -p:PublishSingleFile=true
+
+    - name: Package Windows Zip
+      if: matrix.os == 'windows-latest'
+      run: |
+        Compress-Archive -Path "EDSEditorGUI2\bin\Release\net8.0\${{ matrix.rid }}\publish\*" -DestinationPath CANopenEditor-${{ github.ref_name }}-${{ matrix.rid }}${{ matrix.ext }}
+
+    - name: Build Windows NSIS Installer
+      if: matrix.os == 'windows-latest'
+      run: |
+        makensis setup.nsi
+        Move-Item CANopenEditor-Setup.exe CANopenEditor-Setup-${{ github.ref_name }}.exe
+
+    - name: Package Linux/Mac Tarball
+      if: matrix.os != 'windows-latest'
+      run: |
+        cd EDSEditorGUI2/bin/Release/net8.0/${{ matrix.rid }}/publish/
+        tar -czvf ../../../../../../../CANopenEditor-${{ github.ref_name }}-${{ matrix.rid }}${{ matrix.ext }} *
+        cd ../../../../../../../
+
+    - name: Package Linux deb
+      if: matrix.os == 'ubuntu-latest'
+      run: |
+        mkdir -p build_deb/DEBIAN
+        mkdir -p build_deb/opt/CANopenEditor
+        mkdir -p build_deb/usr/share/applications
+        
+        # Create control file
+        cat <<EOF > build_deb/DEBIAN/control
+        Package: canopeneditor
+        Version: ${GITHUB_REF_NAME#v}
+        Section: utils
+        Priority: optional
+        Architecture: amd64
+        Maintainer: Open Source Contributors
+        Description: CANopen Object Dictionary Editor
+        EOF
+        
+        # Copy binaries
+        cp -r EDSEditorGUI2/bin/Release/net8.0/linux-x64/publish/* build_deb/opt/CANopenEditor/
+        
+        # Create desktop file
+        cat <<EOF > build_deb/usr/share/applications/canopeneditor.desktop
+        [Desktop Entry]
+        Version=1.0
+        Name=CANopen Editor
+        Comment=CANopen Object Dictionary and PDO Editor
+        Exec=/opt/CANopenEditor/EDSEditorGUI2
+        Terminal=false
+        Type=Application
+        Categories=Development;Engineering;
+        EOF
+        
+        # Build deb
+        dpkg-deb --build build_deb CANopenEditor-${{ github.ref_name }}-linux-x64.deb
+
+    - name: Release Files
+      uses: softprops/action-gh-release@v2
+      with:
         files: |
-          ${{ env.binary_name }}
+          CANopenEditor-*.zip
+          CANopenEditor-*.tar.gz
+          CANopenEditor-*.exe
+          CANopenEditor-*.deb
