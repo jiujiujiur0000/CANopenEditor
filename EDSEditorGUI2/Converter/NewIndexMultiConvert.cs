@@ -1,4 +1,4 @@
-﻿using Avalonia.Data;
+using Avalonia.Data;
 using Avalonia.Data.Converters;
 using Avalonia.Media.Immutable;
 using System;
@@ -28,7 +28,8 @@ public sealed class NewIndexMultiConvert : IMultiValueConverter
             values[2] is not int typeIndex)
             return BindingOperations.DoNothing;
 
-        int index = int.Parse(rawindex, NumberStyles.HexNumber);
+        if (!int.TryParse(rawindex.StartsWith("0x", StringComparison.OrdinalIgnoreCase) ? rawindex.Substring(2) : rawindex, NumberStyles.HexNumber, CultureInfo.InvariantCulture, out int index))
+            return BindingOperations.DoNothing;
 
         var typeValues = Enum.GetNames(typeof(LibCanOpen.OdObject.Types.ObjectType)).Skip(1).ToArray();
         bool parseOk = Enum.TryParse(typeValues[typeIndex], out LibCanOpen.OdObject.Types.ObjectType type);

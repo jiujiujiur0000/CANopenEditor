@@ -100,10 +100,16 @@ public partial class DeviceODView : UserControl
             ViewModels.OdSubObject? lastAdded = null;
             
             var selectedRows = dc.SelectedSubObjects.ToList();
-
-            foreach (var row in selectedRows)
+            if (selectedRows.Count == 0)
             {
-                lastAdded = selectedObj.AddSubEntry(row);
+                lastAdded = selectedObj.AddSubEntry(new KeyValuePair<string, ViewModels.OdSubObject>());
+            }
+            else
+            {
+                foreach (var row in selectedRows)
+                {
+                    lastAdded = selectedObj.AddSubEntry(row);
+                }
             }
             
             if (lastAdded != null)

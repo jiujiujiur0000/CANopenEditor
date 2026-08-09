@@ -227,6 +227,10 @@ public class ObjectDictionary : IDictionary<string, OdObject>, INotifyCollection
     public void AddIndex(int index, string name, LibCanOpen.OdObject.Types.ObjectType type)
     {
         var strIndex = index.ToString("X4");
+        if (this.ContainsKey(strIndex))
+        {
+            return;
+        }
         var newObj = new OdObject
         {
             Name = name,

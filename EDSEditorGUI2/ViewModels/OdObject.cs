@@ -103,8 +103,13 @@ namespace EDSEditorGUI2.ViewModels
 
                 newSubObjects.Add(new KeyValuePair<string, OdSubObject>((newSubIndex++).ToString("X2"), subOd));
 
-                if (selected.Value == subOd)
+                if (selected.Value != null && selected.Value == subOd)
                     newSubObjects.Add(new KeyValuePair<string, OdSubObject>((newSubIndex++).ToString("X2"), newOd));
+            }
+
+            if (selected.Value == null)
+            {
+                newSubObjects.Add(new KeyValuePair<string, OdSubObject>((newSubIndex++).ToString("X2"), newOd));
             }
 
             SubObjects = newSubObjects;
