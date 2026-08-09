@@ -63,6 +63,17 @@ public partial class DeviceODView : UserControl
             }
         }
     }
+    private void SubObjectDataGrid_PointerPressed(object? sender, Avalonia.Input.PointerPressedEventArgs e)
+    {
+        if (e.GetCurrentPoint(this).Properties.IsRightButtonPressed)
+        {
+            if (sender is DataGrid dg && e.Source is Avalonia.Controls.Control control && control.DataContext is KeyValuePair<string, ViewModels.OdSubObject>)
+            {
+                dg.SelectedItem = control.DataContext;
+            }
+        }
+    }
+
     private void subindexGridSelectionChanged(object? sender, SelectionChangedEventArgs e)
     {
         if (sender is DataGrid s && DataContext is ViewModels.ObjectDictionary dc)

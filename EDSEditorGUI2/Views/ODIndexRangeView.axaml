@@ -26,7 +26,8 @@
                 Background="Transparent" RowBackground="Transparent"
                 SelectionMode="Single"
                 SelectionChanged="DataGrid_SelectionChanged"
-                LoadingRow="DataGrid_LoadingRow">
+                LoadingRow="DataGrid_LoadingRow"
+                PointerPressed="DataGrid_PointerPressed">
           <DataGrid.Styles>
             <Style Selector="DataGridRow.disabled">
               <Setter Property="Foreground" Value="{DynamicResource SystemControlForegroundBaseMediumLowBrush}"/>

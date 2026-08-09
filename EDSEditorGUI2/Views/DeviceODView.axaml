@@ -101,7 +101,8 @@
                       GridLinesVisibility="Horizontal"
                       BorderThickness="0"
                       Background="Transparent" RowBackground="Transparent"
-                      FocusAdorner="{x:Null}">
+                      FocusAdorner="{x:Null}"
+                      PointerPressed="SubObjectDataGrid_PointerPressed">
             <DataGrid.Styles>
               <Style Selector="DataGridColumnHeader">
                 <Setter Property="Background" Value="Transparent"/>

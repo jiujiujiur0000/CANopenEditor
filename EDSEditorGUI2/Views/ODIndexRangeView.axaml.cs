@@ -139,6 +139,17 @@ public partial class ODIndexRangeView : UserControl
     {
     }
 
+    private void DataGrid_PointerPressed(object? sender, Avalonia.Input.PointerPressedEventArgs e)
+    {
+        if (e.GetCurrentPoint(this).Properties.IsRightButtonPressed)
+        {
+            if (e.Source is Avalonia.Controls.Control control && control.DataContext is System.Collections.Generic.KeyValuePair<string, ViewModels.OdObject>)
+            {
+                grid.SelectedItem = control.DataContext;
+            }
+        }
+    }
+
     private void DataGrid_LoadingRow(object? sender, Avalonia.Controls.DataGridRowEventArgs e)
     {
         if (e.Row.DataContext is System.Collections.Generic.KeyValuePair<string, ViewModels.OdObject> pair)
