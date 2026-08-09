@@ -87,6 +87,51 @@ namespace EDSEditorGUI2.ViewModels
         [NotifyPropertyChangedFor(nameof(IsObjectDictionaryTabSelected))]
         private int _selectedTabIndex = 0;
 
+        partial void OnSelectedTabIndexChanged(int value)
+        {
+            if (value == 2 || value == 3)
+            {
+                SyncAvailableObjects();
+            }
+        }
+
+        private void SyncAvailableObjects()
+        {
+            if (_eds == null) return;
+            var updatedEds = GetUpdatedEds();
+            
+            var keysToRemove = new System.Collections.Generic.List<ushort>();
+            foreach(var k in _eds.ods.Keys)
+            {
+                if ((k < 0x1400 || k > 0x1BFF) && !updatedEds.ods.ContainsKey(k))
+                {
+                    keysToRemove.Add(k);
+                }
+            }
+            foreach (var k in keysToRemove)
+            {
+                _eds.ods.Remove(k);
+            }
+
+            foreach (var kvp in updatedEds.ods)
+            {
+                if (kvp.Key >= 0x1400 && kvp.Key <= 0x1BFF)
+                {
+                    if (!_eds.ods.ContainsKey(kvp.Key))
+                    {
+                        _eds.ods.Add(kvp.Key, kvp.Value);
+                    }
+                }
+                else
+                {
+                    _eds.ods[kvp.Key] = kvp.Value;
+                }
+            }
+
+            TxPdo?.UpdateAvailableObjects();
+            RxPdo?.UpdateAvailableObjects();
+        }
+
         public bool IsObjectDictionaryTabSelected => SelectedTabIndex == 1;
 
         [ObservableProperty]
@@ -117,6 +162,17 @@ namespace EDSEditorGUI2.ViewModels
             updatedEds.dc.NetworkName = this.DeviceCommissioning.NetName;
             updatedEds.dc.CANopenManager = this.DeviceCommissioning.CanopenManager;
             updatedEds.dc.LSS_SerialNumber = this.DeviceCommissioning.LssSerialNo;
+
+            if (_eds != null && _eds.ods != null)
+            {
+                foreach (var kvp in _eds.ods)
+                {
+                    if (kvp.Key >= 0x1400 && kvp.Key <= 0x1BFF)
+                    {
+                        updatedEds.ods[kvp.Key] = kvp.Value;
+                    }
+                }
+            }
 
             return updatedEds;
         }
