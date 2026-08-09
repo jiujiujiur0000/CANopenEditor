@@ -82,10 +82,10 @@
               <TextBlock Text="{DynamicResource str_od_prop_denotation}" Grid.Row="1" Grid.Column="3" VerticalAlignment="Center" Margin="0,0,10,15"/>
               <TextBox Text="{Binding SelectedObject.Value.Alias}" Grid.Row="1" Grid.Column="4" Margin="0,0,0,15"/>
 
-              <TextBlock Text="{DynamicResource str_od_prop_desc}" Grid.Row="2" Grid.Column="0" VerticalAlignment="Top" Margin="0,0,10,0"/>
+              <TextBlock Text="{DynamicResource str_od_prop_desc}" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,0"/>
               <TextBox Text="{Binding SelectedObject.Value.Description}" Grid.Row="2" Grid.Column="1" MinHeight="32" TextWrapping="Wrap" AcceptsReturn="True" Margin="0,0,20,0"/>
 
-              <TextBlock Text="{DynamicResource str_od_prop_status}" Grid.Row="2" Grid.Column="3" VerticalAlignment="Top" Margin="0,0,10,0"/>
+              <TextBlock Text="{DynamicResource str_od_prop_status}" Grid.Row="2" Grid.Column="3" VerticalAlignment="Center" Margin="0,0,10,0"/>
               <ComboBox SelectedIndex="{Binding SelectedObject.Value.Disabled, Converter={StaticResource BooleanToStatusConverter}}" Grid.Row="2" Grid.Column="4" Margin="0,0,0,0" HorizontalAlignment="Stretch">
                 <ComboBoxItem Content="{DynamicResource str_od_menu_enable}"/>
                 <ComboBoxItem Content="{DynamicResource str_od_menu_disable}"/>
