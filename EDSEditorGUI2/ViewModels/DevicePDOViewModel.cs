@@ -70,7 +70,7 @@ namespace EDSEditorGUI2.ViewModels
             public string COB
             {
                 get => "0x" + Slot.COB.ToString("X");
-                set { if (uint.TryParse(value.Replace("0x", ""), System.Globalization.NumberStyles.HexNumber, null, out uint val)) { Slot.COB = val; OnPropertyChanged(); } }
+                set { if (uint.TryParse(value.Replace("0x", ""), System.Globalization.NumberStyles.HexNumber, null, out uint val)) { Slot.COB = val; OnPropertyChanged(); OnPropertyChanged(nameof(Invalid)); } }
             }
             
             public string TransmissionType
@@ -100,7 +100,7 @@ namespace EDSEditorGUI2.ViewModels
             public bool Invalid
             {
                 get => Slot.invalid;
-                set { Slot.invalid = value; OnPropertyChanged(); }
+                set { Slot.invalid = value; OnPropertyChanged(); OnPropertyChanged(nameof(COB)); }
             }
         }
 
