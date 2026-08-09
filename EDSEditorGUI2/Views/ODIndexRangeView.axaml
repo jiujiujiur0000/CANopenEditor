@@ -74,6 +74,7 @@
       <TextBox Text="" x:Name="name"/>
       <TextBlock Text="{DynamicResource str_od_dlg_objtype}" />
       <ListBox SelectionMode="Single,AlwaysSelected" x:Name="type"/>
+      <TextBlock x:Name="errorText" Foreground="Red" IsVisible="False" Margin="0,5,0,0"/>
       <StackPanel Orientation="Horizontal">
         <Button IsDefault="True" Margin="10" Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=dialogHost:DialogHost}, Path=CloseDialogCommand}" Content="{DynamicResource str_od_btn_create}">
           <Button.CommandParameter>
