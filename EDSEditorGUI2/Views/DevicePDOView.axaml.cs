@@ -135,17 +135,20 @@ public partial class DevicePDOView : UserControl
         {
             MappingGrid.RowDefinitions.Add(new RowDefinition(GridLength.Auto));
 
-            string cobHex = slot.COB ?? "";
             var idBorder = new Border { BorderBrush = Brushes.LightGray, BorderThickness = new Avalonia.Thickness(0, 0, 1, 1), Padding = new Avalonia.Thickness(10, 0, 10, 0), IsHitTestVisible = false };
             idBorder.Child = new TextBlock { Text = mappingIndex.ToString(), VerticalAlignment = VerticalAlignment.Center };
             AddToMappingGrid(idBorder, row, 0);
 
             var indexBorder = new Border { BorderBrush = Brushes.LightGray, BorderThickness = new Avalonia.Thickness(0, 0, 1, 1), Padding = new Avalonia.Thickness(10, 0, 10, 0), IsHitTestVisible = false };
-            indexBorder.Child = new TextBlock { Text = slot.Communication, VerticalAlignment = VerticalAlignment.Center };
+            var indexTextBlock = new TextBlock { VerticalAlignment = VerticalAlignment.Center };
+            indexTextBlock.Bind(TextBlock.TextProperty, new Avalonia.Data.Binding("Communication") { Source = slot });
+            indexBorder.Child = indexTextBlock;
             AddToMappingGrid(indexBorder, row, 1);
 
             var cobBorder = new Border { BorderBrush = Brushes.LightGray, BorderThickness = new Avalonia.Thickness(0, 0, 1, 1), Padding = new Avalonia.Thickness(10, 0, 10, 0), IsHitTestVisible = false };
-            cobBorder.Child = new TextBlock { Text = cobHex, VerticalAlignment = VerticalAlignment.Center };
+            var cobTextBlock = new TextBlock { VerticalAlignment = VerticalAlignment.Center };
+            cobTextBlock.Bind(TextBlock.TextProperty, new Avalonia.Data.Binding("COB") { Source = slot });
+            cobBorder.Child = cobTextBlock;
             AddToMappingGrid(cobBorder, row, 2);
 
             int currentBit = 0;
