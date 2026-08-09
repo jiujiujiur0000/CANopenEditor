@@ -155,6 +155,7 @@
     <sys:String x:Key="str_pdo_col_bits">Bits</sys:String>
     
     <sys:String x:Key="str_pdo_comm_params">Communication parameters:</sys:String>
+    <sys:String x:Key="str_pdo_map_params">Mapping parameters:</sys:String>
     <sys:String x:Key="str_pdo_comm">Communication</sys:String>
     <sys:String x:Key="str_pdo_mapping">Mapping</sys:String>
     <sys:String x:Key="str_pdo_btn_add">Add new PDO</sys:String>

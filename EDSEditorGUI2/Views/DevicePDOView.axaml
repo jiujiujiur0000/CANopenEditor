@@ -105,6 +105,8 @@
               BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" BorderThickness="1"
               BoxShadow="0 2 6 0 #1A000000">
         <StackPanel Spacing="15">
+          <TextBlock Text="{DynamicResource str_pdo_map_params}" FontWeight="Bold" FontSize="15" Margin="0,0,0,5"/>
+          <Border BorderBrush="{DynamicResource SystemControlForegroundBaseMediumBrush}" BorderThickness="0,0,0,1" Margin="0,-15,0,5" Opacity="0.3"/>
           <StackPanel Orientation="Horizontal" Spacing="20">
             <TextBlock Text="{DynamicResource str_pdo_zoom}" VerticalAlignment="Center"/>
             <NumericUpDown x:Name="Zoom" Width="150" PropertyChanged="Zoom_PropertyChanged" Minimum="100" Increment="10"/>
