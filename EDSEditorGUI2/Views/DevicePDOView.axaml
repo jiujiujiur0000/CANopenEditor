@@ -52,9 +52,9 @@
             <TextBlock Text="{DynamicResource str_pdo_comm_params}" FontWeight="Bold" FontSize="15" Margin="0,0,0,5"/>
             <Border BorderBrush="{DynamicResource SystemControlForegroundBaseMediumBrush}" BorderThickness="0,0,0,1" Margin="0,-15,0,5" Opacity="0.3"/>
 
-            <Grid RowDefinitions="auto,auto,auto,auto,auto" ColumnDefinitions="auto,auto,40,auto,auto" Margin="0,0,25,0">
+            <Grid RowDefinitions="auto,auto,auto,auto,auto,auto,auto,auto" ColumnDefinitions="auto,auto" Margin="0,0,25,0">
             <!-- Header for Properties -->
-            <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Orientation="Horizontal" Margin="0,0,0,20" Spacing="10">
+            <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="0,0,0,20" Spacing="10">
               <ComboBox Width="200" HorizontalAlignment="Left"
                         ItemsSource="{Binding Slots}" SelectedItem="{Binding SelectedSlot}" SelectedIndex="0">
                 <ComboBox.ItemTemplate>
@@ -71,34 +71,30 @@
               </Button>
             </StackPanel>
 
-            <!-- Row 1 -->
-            <TextBlock Text="{DynamicResource str_pdo_comm}" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,15,15"/>
-            <TextBox Grid.Row="1" Grid.Column="1" Margin="0,0,0,15" Text="{Binding SelectedSlot.Communication, Mode=OneWay, FallbackValue=''}" IsEnabled="{Binding IsSlotSelected}" IsReadOnly="True" MinWidth="120" HorizontalAlignment="Left"/>
-            
-            <TextBlock Text="{DynamicResource str_pdo_inhibit}" Grid.Row="1" Grid.Column="3" VerticalAlignment="Center" Margin="0,0,15,15"/>
-            <TextBox Grid.Row="1" Grid.Column="4" Margin="0,0,0,15" Text="{Binding SelectedSlot.Inhibit, FallbackValue=''}" IsEnabled="{Binding IsSlotSelected}" MinWidth="120" HorizontalAlignment="Left"/>
-
-            <!-- Row 2 -->
-            <TextBlock Text="{DynamicResource str_pdo_mapping}" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,15,15"/>
-            <TextBox Grid.Row="2" Grid.Column="1" Margin="0,0,0,15" Text="{Binding SelectedSlot.Mapping, Mode=OneWay, FallbackValue=''}" IsEnabled="{Binding IsSlotSelected}" IsReadOnly="True" MinWidth="120" HorizontalAlignment="Left"/>
-
-            <TextBlock Text="{DynamicResource str_pdo_event_timer}" Grid.Row="2" Grid.Column="3" VerticalAlignment="Center" Margin="0,0,15,15"/>
-            <TextBox Grid.Row="2" Grid.Column="4" Margin="0,0,0,15" Text="{Binding SelectedSlot.EventTimer, FallbackValue=''}" IsEnabled="{Binding IsSlotSelected}" MinWidth="120" HorizontalAlignment="Left"/>
-
-            <!-- Row 3 -->
-            <TextBlock Text="{DynamicResource str_pdo_type}" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,15,15"/>
-            <TextBox Grid.Row="3" Grid.Column="1" Margin="0,0,0,15" Text="{Binding SelectedSlot.TransmissionType, FallbackValue=''}" IsEnabled="{Binding IsSlotSelected}" MinWidth="120" HorizontalAlignment="Left"/>
-
-            <TextBlock Text="{DynamicResource str_pdo_sync_start}" Grid.Row="3" Grid.Column="3" VerticalAlignment="Center" Margin="0,0,15,15"/>
-            <TextBox Grid.Row="3" Grid.Column="4" Margin="0,0,0,15" Text="{Binding SelectedSlot.SyncStart, FallbackValue=''}" IsEnabled="{Binding IsSlotSelected}" MinWidth="120" HorizontalAlignment="Left"/>
-
-            <!-- Row 4 (Single Column span for COB-ID) -->
-            <TextBlock Text="{DynamicResource str_pdo_cob}" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,15,15"/>
-            <TextBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="4" Margin="0,0,0,15" Text="{Binding SelectedSlot.COB, FallbackValue=''}" IsEnabled="{Binding IsSlotSelected}" MinWidth="200" HorizontalAlignment="Left">
+            <TextBlock Text="{DynamicResource str_pdo_cob}" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,15,15"/>
+            <TextBox Grid.Row="1" Grid.Column="1" Margin="0,0,0,15" Text="{Binding SelectedSlot.COB, FallbackValue=''}" IsEnabled="{Binding IsSlotSelected}" HorizontalAlignment="Stretch">
               <TextBox.InnerRightContent>
                 <CheckBox Content="{DynamicResource str_pdo_chk_invalid}" IsChecked="{Binding SelectedSlot.Invalid}" IsEnabled="{Binding IsSlotSelected}" Margin="10,0" VerticalAlignment="Center"/>
               </TextBox.InnerRightContent>
             </TextBox>
+
+            <TextBlock Text="{DynamicResource str_pdo_comm}" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,15,15"/>
+            <TextBox Grid.Row="2" Grid.Column="1" Margin="0,0,0,15" Text="{Binding SelectedSlot.Communication, Mode=OneWay, FallbackValue=''}" IsEnabled="{Binding IsSlotSelected}" IsReadOnly="True" MinWidth="150" HorizontalAlignment="Left"/>
+            
+            <TextBlock Text="{DynamicResource str_pdo_mapping}" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,15,15"/>
+            <TextBox Grid.Row="3" Grid.Column="1" Margin="0,0,0,15" Text="{Binding SelectedSlot.Mapping, Mode=OneWay, FallbackValue=''}" IsEnabled="{Binding IsSlotSelected}" IsReadOnly="True" MinWidth="150" HorizontalAlignment="Left"/>
+
+            <TextBlock Text="{DynamicResource str_pdo_type}" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,15,15"/>
+            <TextBox Grid.Row="4" Grid.Column="1" Margin="0,0,0,15" Text="{Binding SelectedSlot.TransmissionType, FallbackValue=''}" IsEnabled="{Binding IsSlotSelected}" MinWidth="150" HorizontalAlignment="Left"/>
+
+            <TextBlock Text="{DynamicResource str_pdo_inhibit}" Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,15,15"/>
+            <TextBox Grid.Row="5" Grid.Column="1" Margin="0,0,0,15" Text="{Binding SelectedSlot.Inhibit, FallbackValue=''}" IsEnabled="{Binding IsSlotSelected}" MinWidth="150" HorizontalAlignment="Left"/>
+
+            <TextBlock Text="{DynamicResource str_pdo_event_timer}" Grid.Row="6" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,15,15"/>
+            <TextBox Grid.Row="6" Grid.Column="1" Margin="0,0,0,15" Text="{Binding SelectedSlot.EventTimer, FallbackValue=''}" IsEnabled="{Binding IsSlotSelected}" MinWidth="150" HorizontalAlignment="Left"/>
+
+            <TextBlock Text="{DynamicResource str_pdo_sync_start}" Grid.Row="7" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,15,15"/>
+            <TextBox Grid.Row="7" Grid.Column="1" Margin="0,0,0,15" Text="{Binding SelectedSlot.SyncStart, FallbackValue=''}" IsEnabled="{Binding IsSlotSelected}" MinWidth="150" HorizontalAlignment="Left"/>
           </Grid>
           </StackPanel>
         </Border>
