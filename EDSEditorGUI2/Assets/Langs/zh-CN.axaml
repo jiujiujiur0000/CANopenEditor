@@ -168,7 +168,7 @@
     <sys:String x:Key="str_pdo_btn_save">保存</sys:String>
     <sys:String x:Key="str_pdo_sync_start">同步启动</sys:String>
     <sys:String x:Key="str_pdo_chk_invalid">失效</sys:String>
-    <sys:String x:Key="str_pdo_id">ID</sys:String>
+    <sys:String x:Key="str_pdo_id">序号</sys:String>
     <sys:String x:Key="str_pdo_zoom">缩放:</sys:String>
     <sys:String x:Key="str_pdo_remove_item">删除项</sys:String>
     <sys:String x:Key="str_pdo_insert_item">插入项</sys:String>
