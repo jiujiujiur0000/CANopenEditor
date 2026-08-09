@@ -176,7 +176,7 @@
     <!-- OD Index Range View -->
     <sys:String x:Key="str_od_menu_clone">Clone</sys:String>
     <sys:String x:Key="str_od_menu_delete">Delete</sys:String>
-    <sys:String x:Key="str_od_menu_toggle">Toggle</sys:String>
+    <sys:String x:Key="str_od_menu_toggle">Enable / Disable</sys:String>
     <sys:String x:Key="str_od_dlg_index">Index (hex)</sys:String>
     <sys:String x:Key="str_od_dlg_name">Name</sys:String>
     <sys:String x:Key="str_od_dlg_objtype">Object Type</sys:String>

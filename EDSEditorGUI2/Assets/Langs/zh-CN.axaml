@@ -178,7 +178,7 @@
     <!-- OD Index Range View -->
     <sys:String x:Key="str_od_menu_clone">克隆</sys:String>
     <sys:String x:Key="str_od_menu_delete">删除</sys:String>
-    <sys:String x:Key="str_od_menu_toggle">切换</sys:String>
+    <sys:String x:Key="str_od_menu_toggle">启用/禁用</sys:String>
     <sys:String x:Key="str_od_dlg_index">索引</sys:String>
     <sys:String x:Key="str_od_dlg_name">名称</sys:String>
     <sys:String x:Key="str_od_dlg_objtype">对象类型</sys:String>
