@@ -186,10 +186,10 @@
     <sys:String x:Key="str_od_btn_cancel">取消</sys:String>
 
     <!-- Modules Tab -->
-    <sys:String x:Key="str_module_connected_count">已连接模块数量：</sys:String>
+    <sys:String x:Key="str_module_connected_count">已连接模块数量</sys:String>
     <sys:String x:Key="str_module_list">模块列表</sys:String>
     <sys:String x:Key="str_module_extended_objects">扩展对象</sys:String>
-    <sys:String x:Key="str_module_comments">模块描述：</sys:String>
+    <sys:String x:Key="str_module_comments">模块描述</sys:String>
     
     <sys:String x:Key="str_module_col_status">状态</sys:String>
     <sys:String x:Key="str_module_col_index">索引</sys:String>
