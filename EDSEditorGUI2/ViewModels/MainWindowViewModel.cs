@@ -269,6 +269,12 @@ public partial class MainWindowViewModel : ViewModelBase
                     }
                 }
             }
+
+            // Update IndexCollision status for the entire row
+            foreach (var row in MergeStatus)
+            {
+                row.IndexCollision = row.Offsets.Exists(o => o.Collision);
+            }
         }
     }
 #pragma warning disable CA1822 // Mark members as static

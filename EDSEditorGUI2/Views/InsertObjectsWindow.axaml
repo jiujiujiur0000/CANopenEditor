@@ -52,8 +52,8 @@
                         <Setter Property="Background" Value="Transparent"/>
                         <Setter Property="SeparatorBrush" Value="{DynamicResource SystemControlForegroundBaseLowBrush}"/>
                     </Style>
-                    <Style Selector="DataGridCell.insert-conflict">
-                        <Setter Property="Background" Value="{DynamicResource SystemControlErrorTextForegroundBrush}" />
+                    <Style Selector="TextBlock.insert-conflict">
+                        <Setter Property="Foreground" Value="{DynamicResource SystemControlErrorTextForegroundBrush}" />
                     </Style>
                 </DataGrid.Styles>
                 <DataGrid.Columns>
@@ -64,7 +64,14 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTextColumn Header="{DynamicResource str_insert_col_original}" Width="350" IsReadOnly="True" Binding="{Binding OriginalObject}" x:DataType="vm:ODIndexMergeStatus"/>
+                    <DataGridTemplateColumn Header="{DynamicResource str_insert_col_original}" Width="350">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate DataType="vm:ODIndexMergeStatus">
+                                <TextBlock Text="{Binding OriginalObject}" VerticalAlignment="Center" Margin="12,0"
+                                           Classes.insert-conflict="{Binding IndexCollision}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
         </Border>
