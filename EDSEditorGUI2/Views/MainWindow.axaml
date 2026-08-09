@@ -10,8 +10,8 @@
         x:Class="EDSEditorGUI2.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/icon.ico"
-        Width="1280" Height="800"
-        MinWidth="1280" MinHeight="800"
+        Width="1400" Height="900"
+        MinWidth="1024" MinHeight="768"
         WindowStartupLocation="CenterScreen"
         PointerPressed="Window_PointerPressed"
         Title="CANopen Editor 2">
