@@ -24,7 +24,7 @@
                 GridLinesVisibility="Horizontal"
                 BorderThickness="0"
                 Background="Transparent" RowBackground="Transparent"
-                SelectionMode="Single"
+                SelectionMode="Extended"
                 SelectionChanged="DataGrid_SelectionChanged"
                 LoadingRow="DataGrid_LoadingRow"
                 PointerPressed="DataGrid_PointerPressed">
