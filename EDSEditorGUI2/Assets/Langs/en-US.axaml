@@ -130,12 +130,13 @@
     <sys:String x:Key="str_od_prop_desc">Description</sys:String>
     <sys:String x:Key="str_od_prop_obj_settings">Object settings</sys:String>
     <sys:String x:Key="str_od_prop_obj_type">Object Type</sys:String>
+    <sys:String x:Key="str_od_prop_status">Status</sys:String>
+    <sys:String x:Key="str_od_prop_storage">Storage Group</sys:String>
     <sys:String x:Key="str_od_prop_datatype">Data Type</sys:String>
     <sys:String x:Key="str_od_prop_default">Default value</sys:String>
     <sys:String x:Key="str_od_prop_highlimit">HighLimit</sys:String>
     <sys:String x:Key="str_od_prop_count_label">Count Label</sys:String>
     <sys:String x:Key="str_od_prop_lowlimit">LowLimit</sys:String>
-    <sys:String x:Key="str_od_prop_storage">Storage Group</sys:String>
     <sys:String x:Key="str_od_prop_acc_sdo">Access SDO</sys:String>
     <sys:String x:Key="str_od_prop_actual">Actual Value</sys:String>
     <sys:String x:Key="str_od_prop_disabled">Disabled</sys:String>

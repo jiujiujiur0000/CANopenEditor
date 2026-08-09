@@ -130,6 +130,7 @@
     <sys:String x:Key="str_od_prop_name">名称</sys:String>
     <sys:String x:Key="str_od_prop_denotation">表示符</sys:String>
     <sys:String x:Key="str_od_prop_desc">描述</sys:String>
+    <sys:String x:Key="str_od_prop_status">状态</sys:String>
     <sys:String x:Key="str_od_prop_obj_settings">对象设置</sys:String>
     <sys:String x:Key="str_od_prop_obj_type">对象类型</sys:String>
     <sys:String x:Key="str_od_prop_datatype">数据类型</sys:String>

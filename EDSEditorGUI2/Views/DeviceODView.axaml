@@ -26,6 +26,7 @@
 
   <UserControl.Resources>
     <converter:SubIndexConverter x:Key="SubIndexConverter"/>
+    <converter:BooleanToStatusConverter x:Key="BooleanToStatusConverter"/>
   </UserControl.Resources>
 
   <dialogHost:DialogHost Identifier="NoAnimationDialogHost" MaxWidth="1400">
@@ -68,7 +69,7 @@
                   BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" BorderThickness="1"
                   BoxShadow="0 2 6 0 #1A000000" Margin="0,0,0,0">
             <StackPanel Spacing="15">
-              <Grid RowDefinitions="Auto,Auto,Auto,Auto" ColumnDefinitions="80,1.5*, 0.5*, 80,1.5*">
+              <Grid RowDefinitions="Auto,Auto,Auto" ColumnDefinitions="80,1.5*, 0.5*, 80,1.5*">
               <TextBlock Text="{DynamicResource str_od_prop_index}" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,15"/>
               <TextBox Text="{Binding SelectedObject.Key}" Grid.Row="0" Grid.Column="1" IsEnabled="False" Margin="0,0,20,15"/>
               
@@ -81,11 +82,14 @@
               <TextBlock Text="{DynamicResource str_od_prop_denotation}" Grid.Row="1" Grid.Column="3" VerticalAlignment="Center" Margin="0,0,10,15"/>
               <TextBox Text="{Binding SelectedObject.Value.Alias}" Grid.Row="1" Grid.Column="4" Margin="0,0,0,15"/>
 
-              <TextBlock Text="{DynamicResource str_od_prop_desc}" Grid.Row="2" Grid.Column="0" VerticalAlignment="Top" Margin="0,0,10,15"/>
-              <TextBox Text="{Binding SelectedObject.Value.Description}" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4" MinHeight="32" TextWrapping="Wrap" AcceptsReturn="True" Margin="0,0,0,15"/>
+              <TextBlock Text="{DynamicResource str_od_prop_desc}" Grid.Row="2" Grid.Column="0" VerticalAlignment="Top" Margin="0,0,10,0"/>
+              <TextBox Text="{Binding SelectedObject.Value.Description}" Grid.Row="2" Grid.Column="1" MinHeight="32" TextWrapping="Wrap" AcceptsReturn="True" Margin="0,0,20,0"/>
 
-              <TextBlock Text="{DynamicResource str_od_prop_enabled}" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,0"/>
-              <CheckBox IsChecked="{Binding !SelectedObject.Value.Disabled}" Grid.Row="3" Grid.Column="1" Margin="0,0,20,0"/>
+              <TextBlock Text="{DynamicResource str_od_prop_status}" Grid.Row="2" Grid.Column="3" VerticalAlignment="Top" Margin="0,0,10,0"/>
+              <ComboBox SelectedIndex="{Binding SelectedObject.Value.Disabled, Converter={StaticResource BooleanToStatusConverter}}" Grid.Row="2" Grid.Column="4" Margin="0,0,0,0" HorizontalAlignment="Stretch">
+                <ComboBoxItem Content="{DynamicResource str_od_menu_enable}"/>
+                <ComboBoxItem Content="{DynamicResource str_od_menu_disable}"/>
+              </ComboBox>
               </Grid>
               
               <!-- Advanced CANopenNode Settings (Expander) -->
