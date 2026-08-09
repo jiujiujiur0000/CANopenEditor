@@ -107,11 +107,8 @@
         <StackPanel Spacing="15">
           <TextBlock Text="{DynamicResource str_pdo_map_params}" FontWeight="Bold" FontSize="15" Margin="0,0,0,5"/>
           <Border BorderBrush="{DynamicResource SystemControlForegroundBaseMediumBrush}" BorderThickness="0,0,0,1" Margin="0,-15,0,5" Opacity="0.3"/>
-          <StackPanel Orientation="Horizontal" Spacing="20">
-            <TextBlock Text="{DynamicResource str_pdo_zoom}" VerticalAlignment="Center"/>
-            <NumericUpDown x:Name="Zoom" Width="150" PropertyChanged="Zoom_PropertyChanged" Minimum="100" Increment="10"/>
-          </StackPanel>
-          <ScrollViewer x:Name="MapScrollViewer" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" AllowAutoHide="False" Height="250" Margin="0,10,0,0">
+
+          <ScrollViewer x:Name="MapScrollViewer" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" AllowAutoHide="False" MaxHeight="250" Margin="0,10,0,0">
             <Border BorderBrush="LightGray" BorderThickness="1,1,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
               <Grid x:Name="MappingGrid" ColumnDefinitions="50,70,110">
                 <Border Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" BorderBrush="LightGray" BorderThickness="0,0,1,1" Padding="10,5">
@@ -126,6 +123,10 @@
               </Grid>
             </Border>
           </ScrollViewer>
+          <StackPanel Orientation="Horizontal" Spacing="10" HorizontalAlignment="Right">
+            <TextBlock Text="{DynamicResource str_pdo_zoom}" VerticalAlignment="Center"/>
+            <NumericUpDown x:Name="Zoom" Width="120" PropertyChanged="Zoom_PropertyChanged" Minimum="100" Increment="10"/>
+          </StackPanel>
         </StackPanel>
       </Border>
 
