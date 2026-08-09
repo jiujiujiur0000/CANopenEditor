@@ -16,6 +16,7 @@ public partial class ODIndexRangeView : UserControl
         InitializeComponent();
         var values = Enum.GetNames(typeof(OdObject.Types.ObjectType)).Skip(1).ToArray();
         type.ItemsSource = values;
+        type.SelectedIndex = 0;
 
         // Grid loading row is no longer needed, using DataGridCollectionView instead
     }
