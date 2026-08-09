@@ -439,81 +439,88 @@ public partial class MainWindow : Window
             var proto = MappingEDS.MapToProtobuffer(eds);
             var viewModel = ProtobufferViewModelMapper.MapFromProtobuffer(proto);
 
-            if (viewModel != null && DataContext is MainWindowViewModel dc && dc.SelectedDevice != null)
+            if (viewModel != null)
             {
-                var selectedObjects = dc.SelectedDevice.Objects;
-                dc.InitMergeStatus(viewModel, [0]);
-                
-                var dialog = new InsertObjectsWindow()
+                await MergeObjectsIntoDeviceAsync(viewModel);
+            }
+        }
+    }
+
+    public async System.Threading.Tasks.Task MergeObjectsIntoDeviceAsync(ViewModels.Device sourceDevice)
+    {
+        if (sourceDevice != null && DataContext is MainWindowViewModel dc && dc.SelectedDevice != null)
+        {
+            dc.InitMergeStatus(sourceDevice, [0]);
+            
+            var dialog = new InsertObjectsWindow()
+            {
+                DataContext = dc
+            };
+            
+            var result = await dialog.ShowDialog<string>(this);
+            
+            if (result == "insert" && dc.SelectedDevice != null)
+            {
+                // Gathering all collision tasks first
+                List<CollisionTask> tasks = new List<CollisionTask>();
+                foreach (var insertObj in dc.MergeStatus)
                 {
-                    DataContext = dc
-                };
-                
-                var result = await dialog.ShowDialog<string>(this);
-                
-                if (result == "insert" && dc.SelectedDevice != null)
-                {
-                    // Gathering all collision tasks first
-                    List<CollisionTask> tasks = new List<CollisionTask>();
-                    foreach (var insertObj in dc.MergeStatus)
+                    if (insertObj.Insert)
                     {
-                        if (insertObj.Insert)
+                        foreach (var offset in insertObj.Offsets)
                         {
-                            foreach (var offset in insertObj.Offsets)
+                            if (offset.Collision)
                             {
-                                if (offset.Collision)
-                                {
-                                    tasks.Add(new CollisionTask { Index = Math.Abs(offset.Index) });
-                                }
+                                tasks.Add(new CollisionTask { Index = Math.Abs(offset.Index) });
                             }
                         }
                     }
+                }
 
-                    if (tasks.Count > 0)
+                if (tasks.Count > 0)
+                {
+                    var collisionDialog = new CollisionDialog(tasks);
+                    var dialogResult = await DialogHostAvalonia.DialogHost.Show(collisionDialog, "RootDialogHost");
+                    if (dialogResult as string == "Cancel")
                     {
-                        var collisionDialog = new CollisionDialog(tasks);
-                        var dialogResult = await DialogHostAvalonia.DialogHost.Show(collisionDialog, "RootDialogHost");
-                        if (dialogResult as string == "Cancel")
-                        {
-                            goto EndInsertion;
-                        }
+                        goto EndInsertion;
                     }
+                }
 
-                    int conflictIndex = 0;
-                    foreach (var insertObj in dc.MergeStatus)
+                int conflictIndex = 0;
+                foreach (var insertObj in dc.MergeStatus)
+                {
+                    if (insertObj.Insert)
                     {
-                        if (insertObj.Insert)
+                        foreach (var offset in insertObj.Offsets)
                         {
-                            foreach (var offset in insertObj.Offsets)
+                            int finalIndex = offset.Index;
+                            if (offset.Collision)
                             {
-                                int finalIndex = offset.Index;
-                                if (offset.Collision)
-                                {
-                                    finalIndex = Math.Abs(finalIndex);
-                                }
+                                finalIndex = Math.Abs(finalIndex);
+                            }
 
-                                string strIndex = finalIndex.ToString("X4");
+                            string strIndex = finalIndex.ToString("X4");
 
-                                if (offset.Collision)
-                                {
-                                    var decision = tasks[conflictIndex].Result;
-                                    conflictIndex++;
-                                    if (decision == CollisionDialogResult.Overwrite)
-                                    {
-                                        dc.SelectedDevice.Objects[strIndex] = insertObj.Object;
-                                    }
-                                }
-                                else
+                            if (offset.Collision)
+                            {
+                                var decision = tasks[conflictIndex].Result;
+                                conflictIndex++;
+                                if (decision == CollisionDialogResult.Overwrite)
                                 {
                                     dc.SelectedDevice.Objects[strIndex] = insertObj.Object;
                                 }
                             }
+                            else
+                            {
+                                dc.SelectedDevice.Objects[strIndex] = insertObj.Object;
+                            }
                         }
                     }
-                    EndInsertion:;
                 }
-                dc.MergeStatus.Clear();
+                EndInsertion:;
             }
+            dc.MergeStatus.Clear();
         }
     }
 

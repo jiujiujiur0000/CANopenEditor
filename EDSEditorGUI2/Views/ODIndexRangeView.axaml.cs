@@ -196,6 +196,32 @@ public partial class ODIndexRangeView : UserControl
         }
     }
 
+    private async void CloneIndex(object? sender, RoutedEventArgs e)
+    {
+        if (DataContext is ViewModels.ObjectDictionary dc && grid.SelectedItem is System.Collections.Generic.KeyValuePair<string, ViewModels.OdObject> selected)
+        {
+            var mainWindow = (Avalonia.Application.Current?.ApplicationLifetime as Avalonia.Controls.ApplicationLifetimes.IClassicDesktopStyleApplicationLifetime)?.MainWindow as MainWindow;
+            if (mainWindow != null)
+            {
+                var tempObjects = new ViewModels.ObjectDictionary();
+                if (grid.SelectedItems != null && grid.SelectedItems.Count > 0)
+                {
+                    foreach (System.Collections.Generic.KeyValuePair<string, ViewModels.OdObject> item in grid.SelectedItems)
+                    {
+                        tempObjects.Add(new System.Collections.Generic.KeyValuePair<string, ViewModels.OdObject>(item.Key, item.Value));
+                    }
+                }
+                else
+                {
+                    tempObjects.Add(new System.Collections.Generic.KeyValuePair<string, ViewModels.OdObject>(selected.Key, selected.Value));
+                }
+                var tempDevice = new ViewModels.Device { Objects = tempObjects };
+                
+                await mainWindow.MergeObjectsIntoDeviceAsync(tempDevice);
+            }
+        }
+    }
+
     private void ContextMenuSubObjectRemoveClick(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
     {
     }
