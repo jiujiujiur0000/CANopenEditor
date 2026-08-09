@@ -134,13 +134,13 @@ public partial class DevicePDOView : UserControl
             idBorder.Child = new TextBlock { Text = mappingIndex.ToString(), VerticalAlignment = VerticalAlignment.Center };
             AddToMappingGrid(idBorder, row, 0);
 
-            var cobBorder = new Border { BorderBrush = Brushes.LightGray, BorderThickness = new Avalonia.Thickness(0, 0, 1, 1), Padding = new Avalonia.Thickness(10, 0, 10, 0), IsHitTestVisible = false };
-            cobBorder.Child = new TextBlock { Text = cobHex, VerticalAlignment = VerticalAlignment.Center };
-            AddToMappingGrid(cobBorder, row, 1);
-
             var indexBorder = new Border { BorderBrush = Brushes.LightGray, BorderThickness = new Avalonia.Thickness(0, 0, 1, 1), Padding = new Avalonia.Thickness(10, 0, 10, 0), IsHitTestVisible = false };
             indexBorder.Child = new TextBlock { Text = slot.Communication, VerticalAlignment = VerticalAlignment.Center };
-            AddToMappingGrid(indexBorder, row, 2);
+            AddToMappingGrid(indexBorder, row, 1);
+
+            var cobBorder = new Border { BorderBrush = Brushes.LightGray, BorderThickness = new Avalonia.Thickness(0, 0, 1, 1), Padding = new Avalonia.Thickness(10, 0, 10, 0), IsHitTestVisible = false };
+            cobBorder.Child = new TextBlock { Text = cobHex, VerticalAlignment = VerticalAlignment.Center };
+            AddToMappingGrid(cobBorder, row, 2);
 
             int currentBit = 0;
             int currentOrdinal = 0;
