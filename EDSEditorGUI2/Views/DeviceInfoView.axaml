@@ -18,11 +18,8 @@
                 BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" 
                 BorderThickness="1" CornerRadius="8" Padding="25"
                 BoxShadow="0 4 10 0 #1A000000">
-          <StackPanel Spacing="25" HorizontalAlignment="Stretch">
-            <StackPanel Spacing="5">
-              <TextBlock Text="设备信息" FontWeight="Bold" FontSize="15"/>
-            </StackPanel>
-            
+          <StackPanel Spacing="15" HorizontalAlignment="Stretch">
+            <TextBlock Text="设备信息" FontWeight="Bold" FontSize="15"/>
             <Grid ColumnDefinitions="120, *" RowDefinitions="Auto, Auto, Auto, Auto, Auto">
               <TextBlock Grid.Row="0" Grid.Column="0" Text="产品名称" VerticalAlignment="Center" Margin="0,0,0,15"/>
               <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding DeviceInfo.ProductName}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
@@ -47,12 +44,10 @@
                 BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" 
                 BorderThickness="1" CornerRadius="8" Padding="25"
                 BoxShadow="0 4 10 0 #1A000000">
-          <Grid RowDefinitions="Auto, Auto" HorizontalAlignment="Stretch">
-            <StackPanel Grid.Row="0" Spacing="5" Margin="0,0,0,25">
-              <TextBlock Text="文件信息" FontWeight="Bold" FontSize="15"/>
-            </StackPanel>
+          <StackPanel Spacing="15" HorizontalAlignment="Stretch">
+            <TextBlock Text="文件信息" FontWeight="Bold" FontSize="15"/>
             
-            <Grid Grid.Row="1" ColumnDefinitions="120, *" RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto">
+            <Grid ColumnDefinitions="120, *" RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto">
               <TextBlock Grid.Row="0" Grid.Column="0" Text="文件版本" VerticalAlignment="Center" Margin="0,0,0,15"/>
               <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding FileInfo.FileVersion}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
               
@@ -71,7 +66,7 @@
               <TextBlock Grid.Row="5" Grid.Column="0" Text="文件描述" VerticalAlignment="Top" Margin="0,5,0,0"/>
               <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding FileInfo.Description}" HorizontalAlignment="Stretch" Height="115" AcceptsReturn="True" TextWrapping="Wrap" Classes="clearButton"/>
             </Grid>
-          </Grid>
+          </StackPanel>
         </Border>
 
       </Grid>
@@ -84,10 +79,7 @@
                 BorderThickness="1" CornerRadius="8" Padding="25"
                 BoxShadow="0 4 10 0 #1A000000">
           <StackPanel Spacing="15" HorizontalAlignment="Stretch">
-            <StackPanel Spacing="5">
-              <TextBlock Text="{DynamicResource str_device_info_baudrates}" FontWeight="Bold" FontSize="15"/>
-            </StackPanel>
-            
+            <TextBlock Text="{DynamicResource str_device_info_baudrates}" FontWeight="Bold" FontSize="15"/>
             <UniformGrid Columns="3" Margin="10,0,0,0">
               <CheckBox IsChecked="{Binding DeviceInfo.BaudRate10}" Content="10 kbit/s" Margin="0,0,0,15"/>
               <CheckBox IsChecked="{Binding DeviceInfo.BaudRate20}" Content="20 kbit/s" Margin="0,0,0,15"/>
@@ -108,10 +100,7 @@
                 BorderThickness="1" CornerRadius="8" Padding="25"
                 BoxShadow="0 4 10 0 #1A000000">
           <StackPanel Spacing="15" HorizontalAlignment="Stretch">
-            <StackPanel Spacing="5">
-              <TextBlock Text="高级特性" FontWeight="Bold" FontSize="15"/>
-            </StackPanel>
-            
+            <TextBlock Text="高级特性" FontWeight="Bold" FontSize="15"/>
             <Grid ColumnDefinitions="160, *" RowDefinitions="Auto, Auto, Auto, Auto">
               <TextBlock Grid.Row="0" Grid.Column="0" Text="映射粒度" VerticalAlignment="Center" Margin="0,0,0,15"/>
               <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding DeviceInfo.Granularity}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
