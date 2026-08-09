@@ -1,12 +1,15 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.ComponentModel;
 using System;
+
+using System.ComponentModel.DataAnnotations;
 
 namespace EDSEditorGUI2.ViewModels;
 
-public partial class FileInfo : ObservableObject
+public partial class FileInfo : ObservableValidator
 {
     [ObservableProperty]
-    private string _fileVersion = string.Empty;
+    [Required(ErrorMessage = "文件版本不能为空")]
+    string _fileVersion = string.Empty;
 
     [ObservableProperty]
     private string _description = string.Empty;
@@ -15,11 +18,13 @@ public partial class FileInfo : ObservableObject
     private DateTime _creationTime;
 
     [ObservableProperty]
-    private string _createdBy = string.Empty;
+    [Required(ErrorMessage = "创建者不能为空")]
+    string _createdBy = string.Empty;
 
     [ObservableProperty]
     private DateTime _modificationTime;
 
     [ObservableProperty]
-    private string _modifiedBy = string.Empty;
+    [Required(ErrorMessage = "修改者不能为空")]
+    string _modifiedBy = string.Empty;
 }

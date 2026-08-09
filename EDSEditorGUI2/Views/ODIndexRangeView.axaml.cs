@@ -144,6 +144,21 @@ public partial class ODIndexRangeView : UserControl
                     return;
                 }
 
+                if (string.IsNullOrWhiteSpace(param.Name))
+                {
+                    if (Resources["NewIndexDialog"] is StackPanel pnl)
+                    {
+                        var errorText = pnl.Children.OfType<TextBlock>().FirstOrDefault(x => x.Name == "errorText");
+                        if (errorText != null)
+                        {
+                            errorText.Text = $"名称不能为空！";
+                            errorText.IsVisible = true;
+                        }
+                    }
+                    e.Cancel();
+                    return;
+                }
+
                 if (dc.ContainsKey(param.Index.ToString("X4")))
                 {
                     if (Resources["NewIndexDialog"] is StackPanel pnl)
