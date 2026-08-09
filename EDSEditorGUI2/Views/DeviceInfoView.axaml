@@ -101,37 +101,36 @@
                 BoxShadow="0 4 10 0 #1A000000">
           <StackPanel Spacing="15" HorizontalAlignment="Stretch">
             <TextBlock Text="高级特性" FontWeight="Bold" FontSize="15"/>
-            <Grid ColumnDefinitions="160, *" RowDefinitions="Auto, Auto, Auto, Auto">
-              <TextBlock Grid.Row="0" Grid.Column="0" Text="映射粒度" VerticalAlignment="Center" Margin="0,0,0,15"/>
+            <Grid ColumnDefinitions="Auto, *" RowDefinitions="Auto, Auto, Auto, Auto">
+              <TextBlock Grid.Row="0" Grid.Column="0" Text="映射粒度" VerticalAlignment="Center" Margin="0,0,10,15"/>
               <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding DeviceInfo.Granularity}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
 
-              <TextBlock Grid.Row="1" Grid.Column="0" Text="{DynamicResource str_device_info_rpdo_count}" VerticalAlignment="Center" Margin="0,0,0,15"/>
+              <TextBlock Grid.Row="1" Grid.Column="0" Text="{DynamicResource str_device_info_rpdo_count}" VerticalAlignment="Center" Margin="0,0,10,15"/>
               <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding DeviceInfo.RpdoCount}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
 
-              <TextBlock Grid.Row="2" Grid.Column="0" Text="{DynamicResource str_device_info_tpdo_count}" VerticalAlignment="Center" Margin="0,0,0,15"/>
+              <TextBlock Grid.Row="2" Grid.Column="0" Text="{DynamicResource str_device_info_tpdo_count}" VerticalAlignment="Center" Margin="0,0,10,15"/>
               <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding DeviceInfo.TpdoCount}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
 
-              <TextBlock Grid.Row="3" Grid.Column="0" Text="{DynamicResource str_device_info_monitored_nodes}" VerticalAlignment="Center"/>
+              <TextBlock Grid.Row="3" Grid.Column="0" Text="{DynamicResource str_device_info_monitored_nodes}" VerticalAlignment="Center" Margin="0,0,10,0"/>
               <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding DeviceInfo.NumberOfMonitoredNodes}" HorizontalAlignment="Stretch" Classes="clearButton"/>
             </Grid>
 
-            <Grid ColumnDefinitions="160, Auto, 160, Auto" RowDefinitions="Auto, Auto" Margin="0,15,0,0">
-              <TextBlock Grid.Row="0" Grid.Column="0" Text="{DynamicResource str_device_info_lss_slave}" VerticalAlignment="Center" Margin="0,0,0,15"/>
+            <Grid ColumnDefinitions="Auto, Auto, *, Auto, Auto" RowDefinitions="Auto, Auto" Margin="0,15,0,0">
+              <TextBlock Grid.Row="0" Grid.Column="0" Text="{DynamicResource str_device_info_lss_slave}" VerticalAlignment="Center" Margin="0,0,10,15"/>
               <CheckBox Grid.Row="0" Grid.Column="1" IsChecked="{Binding DeviceInfo.LssSlave}" Margin="0,0,15,15"/>
 
-              <TextBlock Grid.Row="0" Grid.Column="2" Text="{DynamicResource str_device_info_lss_master}" VerticalAlignment="Center" Margin="0,0,0,15"/>
-              <CheckBox Grid.Row="0" Grid.Column="3" IsChecked="{Binding DeviceInfo.LssMaster}" Margin="0,0,0,15"/>
+              <TextBlock Grid.Row="0" Grid.Column="3" Text="{DynamicResource str_device_info_lss_master}" VerticalAlignment="Center" Margin="0,0,10,15"/>
+              <CheckBox Grid.Row="0" Grid.Column="4" IsChecked="{Binding DeviceInfo.LssMaster}" Margin="0,0,0,15"/>
               
-              <TextBlock Grid.Row="1" Grid.Column="0" Text="{DynamicResource str_device_info_node_guarding_slave}" VerticalAlignment="Center"/>
+              <TextBlock Grid.Row="1" Grid.Column="0" Text="{DynamicResource str_device_info_node_guarding_slave}" VerticalAlignment="Center" Margin="0,0,10,0"/>
               <CheckBox Grid.Row="1" Grid.Column="1" IsChecked="{Binding DeviceInfo.NodeGuardingSlave}" Margin="0,0,15,0"/>
 
-              <TextBlock Grid.Row="1" Grid.Column="2" Text="{DynamicResource str_device_info_node_guarding_master}" VerticalAlignment="Center"/>
-              <CheckBox Grid.Row="1" Grid.Column="3" IsChecked="{Binding DeviceInfo.NodeGuardingMaster}"/>
+              <TextBlock Grid.Row="1" Grid.Column="3" Text="{DynamicResource str_device_info_node_guarding_master}" VerticalAlignment="Center" Margin="0,0,10,0"/>
+              <CheckBox Grid.Row="1" Grid.Column="4" IsChecked="{Binding DeviceInfo.NodeGuardingMaster}"/>
             </Grid>
 
             <Expander Header="{DynamicResource str_device_info_advanced_dcf}" HorizontalAlignment="Stretch" Margin="0,10,0,0" Background="Transparent">
-              <Grid ColumnDefinitions="120, 1.5*, 0.5*, 120, 1.5*" RowDefinitions="Auto, Auto, Auto, Auto" Margin="0,15,0,0">
-                <!-- Row 0 -->
+              <Grid ColumnDefinitions="Auto, 1.5*, 0.5*, Auto, 1.5*" RowDefinitions="Auto, Auto, Auto, Auto" Margin="0,15,0,0">
                 <TextBlock Grid.Row="0" Grid.Column="0" Text="节点 ID" VerticalAlignment="Center" Margin="0,0,10,15"/>
                 <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding DeviceCommissioning.NodeId}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,20,15"/>
                 
