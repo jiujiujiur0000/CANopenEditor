@@ -161,7 +161,7 @@
     <sys:String x:Key="str_pdo_mapping">映射</sys:String>
     <sys:String x:Key="str_pdo_btn_add">添加 PDO</sys:String>
     <sys:String x:Key="str_pdo_cob">COB-ID</sys:String>
-    <sys:String x:Key="str_pdo_type">类型 (Type)</sys:String>
+    <sys:String x:Key="str_pdo_type">传输类型</sys:String>
     <sys:String x:Key="str_pdo_btn_delete">删除 PDO</sys:String>
     <sys:String x:Key="str_pdo_inhibit">禁止时间</sys:String>
     <sys:String x:Key="str_pdo_event_timer">事件定时器</sys:String>

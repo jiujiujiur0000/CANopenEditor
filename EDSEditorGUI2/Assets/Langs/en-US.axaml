@@ -159,7 +159,7 @@
     <sys:String x:Key="str_pdo_mapping">Mapping</sys:String>
     <sys:String x:Key="str_pdo_btn_add">Add new PDO</sys:String>
     <sys:String x:Key="str_pdo_cob">COB-ID</sys:String>
-    <sys:String x:Key="str_pdo_type">Type</sys:String>
+    <sys:String x:Key="str_pdo_type">Transmission Type</sys:String>
     <sys:String x:Key="str_pdo_btn_delete">Delete PDO</sys:String>
     <sys:String x:Key="str_pdo_inhibit">Inhibit</sys:String>
     <sys:String x:Key="str_pdo_event_timer">Event Timer</sys:String>
