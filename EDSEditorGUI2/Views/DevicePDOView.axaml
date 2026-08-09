@@ -69,7 +69,7 @@
 
             <TextBlock Text="{DynamicResource str_pdo_mapping}" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,15,15"/>
             <TextBox Grid.Row="2" Grid.Column="1" Margin="0,0,15,15" Text="{Binding SelectedSlot.Mapping, Mode=OneWay, FallbackValue=''}" IsEnabled="{Binding IsSlotSelected}" IsReadOnly="True"/>
-            <Button Grid.Row="2" Grid.Column="3" Grid.RowSpan="2" Classes="accent" VerticalAlignment="Top" Padding="15,10" Height="70" Width="100">
+            <Button Command="{Binding AddPDOCommand}" Grid.Row="2" Grid.Column="3" Grid.RowSpan="2" Classes="accent" VerticalAlignment="Top" Padding="15,10" Height="70" Width="100">
               <StackPanel Spacing="5" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <PathIcon Data="{StaticResource add_regular}" />
                 <TextBlock Text="{DynamicResource str_pdo_btn_add}" TextWrapping="Wrap" TextAlignment="Center" />
@@ -84,7 +84,7 @@
 
             <TextBlock Text="{DynamicResource str_pdo_type}" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,15,15"/>
             <TextBox Grid.Row="4" Grid.Column="1" Margin="0,0,15,15" Text="{Binding SelectedSlot.TransmissionType, FallbackValue=''}" IsEnabled="{Binding IsSlotSelected}"/>
-            <Button Grid.Row="4" Grid.Column="3" Grid.RowSpan="2" VerticalAlignment="Top" Padding="15,10" Height="70" Width="100">
+            <Button Command="{Binding RemovePDOCommand}" IsEnabled="{Binding IsSlotSelected}" Grid.Row="4" Grid.Column="3" Grid.RowSpan="2" VerticalAlignment="Top" Padding="15,10" Height="70" Width="100">
               <StackPanel Spacing="5" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <PathIcon Data="{StaticResource remove_regular}" />
                 <TextBlock Text="{DynamicResource str_pdo_btn_delete}" TextWrapping="Wrap" TextAlignment="Center" />

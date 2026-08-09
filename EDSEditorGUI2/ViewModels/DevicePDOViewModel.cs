@@ -1,4 +1,5 @@
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using libEDSsharp;
 using System;
 using System.Collections.ObjectModel;
@@ -226,6 +227,10 @@ namespace EDSEditorGUI2.ViewModels
             {
                 SelectedSlot = Slots[0];
             }
+            else
+            {
+                SelectedSlot = null!;
+            }
         }
 
         public void UpdateAvailableObjects()
@@ -253,6 +258,32 @@ namespace EDSEditorGUI2.ViewModels
                     }
                 }
             }
+        }
+        [RelayCommand]
+        public void AddPDO()
+        {
+            if (_helper == null) return;
+            var gap = _helper.findPDOslotgap(_isTx);
+            if (gap != 0)
+            {
+                _helper.addPDOslot(gap);
+                _helper.buildmappingsfromlists(false);
+                UpdatePDOList();
+                var addedSlot = Slots.FirstOrDefault(s => s.Slot.ConfigurationIndex == gap);
+                if (addedSlot != null)
+                {
+                    SelectedSlot = addedSlot;
+                }
+            }
+        }
+
+        [RelayCommand]
+        public void RemovePDO()
+        {
+            if (_helper == null || SelectedSlot == null) return;
+            _helper.removePDOslot(SelectedSlot.Slot.ConfigurationIndex);
+            _helper.buildmappingsfromlists(false);
+            UpdatePDOList();
         }
     }
 }
