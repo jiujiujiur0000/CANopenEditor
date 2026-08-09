@@ -64,7 +64,7 @@
               <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding FileInfo.ModificationTime, StringFormat=\{0:yyyy/MM/dd HH:mm:ss\}}" IsEnabled="False" HorizontalAlignment="Stretch" Margin="0,0,0,15"/>
 
               <TextBlock Grid.Row="5" Grid.Column="0" Text="文件描述" VerticalAlignment="Top" Margin="0,5,0,0"/>
-              <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding FileInfo.Description}" HorizontalAlignment="Stretch" Height="115" AcceptsReturn="True" TextWrapping="Wrap" Classes="clearButton"/>
+              <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding FileInfo.Description}" HorizontalAlignment="Stretch" MinHeight="32" AcceptsReturn="True" TextWrapping="Wrap" Classes="clearButton"/>
             </Grid>
           </StackPanel>
         </Border>

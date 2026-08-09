@@ -82,7 +82,7 @@
               <TextBox Text="{Binding SelectedObject.Value.Alias}" Grid.Row="1" Grid.Column="4" Margin="0,0,0,15"/>
 
               <TextBlock Text="{DynamicResource str_od_prop_desc}" Grid.Row="2" Grid.Column="0" VerticalAlignment="Top"/>
-              <TextBox Text="{Binding SelectedObject.Value.Description}" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4" Height="70" TextWrapping="Wrap" AcceptsReturn="True" Margin="0,0,0,0"/>
+              <TextBox Text="{Binding SelectedObject.Value.Description}" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4" MinHeight="32" TextWrapping="Wrap" AcceptsReturn="True" Margin="0,0,0,0"/>
               </Grid>
             </StackPanel>
           </Border>
