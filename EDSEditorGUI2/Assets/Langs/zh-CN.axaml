@@ -156,8 +156,8 @@
     <sys:String x:Key="str_pdo_col_datatype">数据类型</sys:String>
     <sys:String x:Key="str_pdo_col_bits">位数</sys:String>
     
-    <sys:String x:Key="str_pdo_comm_params">通信参数:</sys:String>
-    <sys:String x:Key="str_pdo_map_params">映射参数:</sys:String>
+    <sys:String x:Key="str_pdo_comm_params">通信参数</sys:String>
+    <sys:String x:Key="str_pdo_map_params">映射参数</sys:String>
     <sys:String x:Key="str_pdo_comm">通信设置</sys:String>
     <sys:String x:Key="str_pdo_mapping">映射</sys:String>
     <sys:String x:Key="str_pdo_btn_add">添加 PDO</sys:String>
@@ -169,6 +169,7 @@
     <sys:String x:Key="str_pdo_btn_save">保存</sys:String>
     <sys:String x:Key="str_pdo_sync_start">同步启动</sys:String>
     <sys:String x:Key="str_pdo_chk_invalid">失效</sys:String>
+    <sys:String x:Key="str_pdo_empty">空</sys:String>
     <sys:String x:Key="str_pdo_id">序号</sys:String>
     <sys:String x:Key="str_pdo_zoom">缩放:</sys:String>
     <sys:String x:Key="str_pdo_remove_item">删除项</sys:String>

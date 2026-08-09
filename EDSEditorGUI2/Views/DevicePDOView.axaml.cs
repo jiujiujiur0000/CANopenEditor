@@ -101,6 +101,12 @@ public partial class DevicePDOView : UserControl
     private void UpdateGraphicalMappings()
     {
         if (_vm == null) return;
+
+        string emptyText = "Empty";
+        if (this.TryFindResource("str_pdo_empty", out object? emptyObj))
+        {
+            emptyText = emptyObj?.ToString() ?? "Empty";
+        }
         
         var elementsToRemove = new List<Control>();
         foreach (var child in MappingGrid.Children)
@@ -153,7 +159,7 @@ public partial class DevicePDOView : UserControl
                     if (width > 0 && currentBit + width <= 64)
                     {
                         var isAvailable = !string.IsNullOrEmpty(entry.IndexString);
-                        var bgBrush = isAvailable ? Brushes.Khaki : Brushes.LightGray;
+                        var bgBrush = isAvailable ? Brushes.Khaki : Brushes.WhiteSmoke;
 
                         var border = new Border
                         {
@@ -163,7 +169,7 @@ public partial class DevicePDOView : UserControl
                             IsHitTestVisible = true,
                             Child = new TextBlock 
                             { 
-                                Text = isAvailable ? (entry.IndexString + "/" + entry.SubIndexString + "/" + entry.Name) : "Empty", 
+                                Text = isAvailable ? (entry.IndexString + "/" + entry.SubIndexString + "/" + entry.Name) : emptyText, 
                                 VerticalAlignment = VerticalAlignment.Center,
                                 HorizontalAlignment = HorizontalAlignment.Center,
                                 TextWrapping = TextWrapping.NoWrap,
@@ -171,7 +177,7 @@ public partial class DevicePDOView : UserControl
                             }
                         };
                         
-                        ToolTip.SetTip(border, isAvailable ? (entry.IndexString + "/" + entry.SubIndexString + "/" + entry.Name) : "Empty");
+                        ToolTip.SetTip(border, isAvailable ? (entry.IndexString + "/" + entry.SubIndexString + "/" + entry.Name) : emptyText);
                         
                         if (_vm != null)
                         {
@@ -226,13 +232,13 @@ public partial class DevicePDOView : UserControl
                 int remaining = 64 - currentBit;
                 var border = new Border
                 {
-                    Background = Brushes.LightGray,
+                    Background = Brushes.WhiteSmoke,
                     BorderBrush = Brushes.LightGray,
                     BorderThickness = new Avalonia.Thickness(0, 0, 1, 1),
                     IsHitTestVisible = true,
                     Child = new TextBlock 
                     { 
-                        Text = "Empty", 
+                        Text = emptyText, 
                         VerticalAlignment = VerticalAlignment.Center,
                         HorizontalAlignment = HorizontalAlignment.Center,
                         TextWrapping = TextWrapping.NoWrap,
@@ -240,7 +246,7 @@ public partial class DevicePDOView : UserControl
                     }
                 };
 
-                ToolTip.SetTip(border, "Empty");
+                ToolTip.SetTip(border, emptyText);
 
                 if (_vm != null)
                 {

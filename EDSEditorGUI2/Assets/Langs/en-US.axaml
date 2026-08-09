@@ -154,8 +154,8 @@
     <sys:String x:Key="str_pdo_col_datatype">Datatype</sys:String>
     <sys:String x:Key="str_pdo_col_bits">Bits</sys:String>
     
-    <sys:String x:Key="str_pdo_comm_params">Communication parameters:</sys:String>
-    <sys:String x:Key="str_pdo_map_params">Mapping parameters:</sys:String>
+    <sys:String x:Key="str_pdo_comm_params">Communication parameters</sys:String>
+    <sys:String x:Key="str_pdo_map_params">Mapping parameters</sys:String>
     <sys:String x:Key="str_pdo_comm">Communication</sys:String>
     <sys:String x:Key="str_pdo_mapping">Mapping</sys:String>
     <sys:String x:Key="str_pdo_btn_add">Add new PDO</sys:String>
@@ -165,8 +165,9 @@
     <sys:String x:Key="str_pdo_inhibit">Inhibit</sys:String>
     <sys:String x:Key="str_pdo_event_timer">Event Timer</sys:String>
     <sys:String x:Key="str_pdo_btn_save">Save</sys:String>
-    <sys:String x:Key="str_pdo_sync_start">Sync start</sys:String>
+    <sys:String x:Key="str_pdo_sync_start">Sync Start</sys:String>
     <sys:String x:Key="str_pdo_chk_invalid">Invalid</sys:String>
+    <sys:String x:Key="str_pdo_empty">Empty</sys:String>
     <sys:String x:Key="str_pdo_id">No.</sys:String>
     <sys:String x:Key="str_pdo_zoom">Zoom:</sys:String>
     <sys:String x:Key="str_pdo_remove_item">Remove Item</sys:String>
