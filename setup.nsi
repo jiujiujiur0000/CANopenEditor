@@ -58,7 +58,7 @@ Section "OpenEdsEditor" Secopeneds ;No components page, name is not important
   
   ; Put file there
   File /r EDSEditorGUI2\bin\Release\net8.0\win-x64\publish\*
-  File Index_8287_16x.ico
+  File EDSEditorGUI\Index_8287_16x.ico
   File License-GPLv3.txt
    
   SetShellVarContext all
