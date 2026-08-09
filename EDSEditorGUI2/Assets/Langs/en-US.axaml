@@ -174,20 +174,20 @@
     <sys:String x:Key="str_pdo_insert_item">Insert Padding</sys:String>
 
     <!-- OD Index Range View -->
-    <sys:String x:Key="str_od_menu_clone">Clone...</sys:String>
-    <sys:String x:Key="str_od_menu_delete">Delete...</sys:String>
-    <sys:String x:Key="str_od_menu_toggle">Toggle...</sys:String>
-    <sys:String x:Key="str_od_dlg_index">Index (hex):</sys:String>
-    <sys:String x:Key="str_od_dlg_name">Name:</sys:String>
-    <sys:String x:Key="str_od_dlg_objtype">Object Type:</sys:String>
+    <sys:String x:Key="str_od_menu_clone">Clone</sys:String>
+    <sys:String x:Key="str_od_menu_delete">Delete</sys:String>
+    <sys:String x:Key="str_od_menu_toggle">Toggle</sys:String>
+    <sys:String x:Key="str_od_dlg_index">Index (hex)</sys:String>
+    <sys:String x:Key="str_od_dlg_name">Name</sys:String>
+    <sys:String x:Key="str_od_dlg_objtype">Object Type</sys:String>
     <sys:String x:Key="str_od_btn_create">Create</sys:String>
     <sys:String x:Key="str_menu_options_theme_dark">Dark</sys:String>
 
     <!-- Modules Tab -->
-    <sys:String x:Key="str_module_connected_count">Number of connected modules:</sys:String>
-    <sys:String x:Key="str_module_list">Modules List:</sys:String>
-    <sys:String x:Key="str_module_extended_objects">Extended Objects:</sys:String>
-    <sys:String x:Key="str_module_comments">Module Comments:</sys:String>
+    <sys:String x:Key="str_module_connected_count">Number of connected modules</sys:String>
+    <sys:String x:Key="str_module_list">Modules List</sys:String>
+    <sys:String x:Key="str_module_extended_objects">Extended Objects</sys:String>
+    <sys:String x:Key="str_module_comments">Module Comments</sys:String>
     
     <sys:String x:Key="str_module_col_status">Status</sys:String>
     <sys:String x:Key="str_module_col_index">Index</sys:String>

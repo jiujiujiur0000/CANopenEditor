@@ -179,9 +179,20 @@ public partial class ODIndexRangeView : UserControl
         }
     }
 
-    private async void RemoveIndex(object? sender, RoutedEventArgs e)
+    private void RemoveIndex(object? sender, RoutedEventArgs e)
     {
-        await DialogHost.Show(Resources["NewIndexDialog"]!, "NoAnimationDialogHost");
+        if (DataContext is ViewModels.ObjectDictionary dc && grid.SelectedItem is System.Collections.Generic.KeyValuePair<string, ViewModels.OdObject> selected)
+        {
+            dc.Remove(selected.Key);
+        }
+    }
+
+    private void ToggleIndex(object? sender, RoutedEventArgs e)
+    {
+        if (grid.SelectedItem is System.Collections.Generic.KeyValuePair<string, ViewModels.OdObject> selected)
+        {
+            selected.Value.Disabled = !selected.Value.Disabled;
+        }
     }
 
     private void ContextMenuSubObjectRemoveClick(object? sender, Avalonia.Interactivity.RoutedEventArgs e)

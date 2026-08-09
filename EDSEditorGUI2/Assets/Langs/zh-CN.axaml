@@ -171,24 +171,24 @@
     <sys:String x:Key="str_pdo_chk_invalid">失效</sys:String>
     <sys:String x:Key="str_pdo_empty">空</sys:String>
     <sys:String x:Key="str_pdo_id">序号</sys:String>
-    <sys:String x:Key="str_pdo_zoom">缩放:</sys:String>
+    <sys:String x:Key="str_pdo_zoom">缩放</sys:String>
     <sys:String x:Key="str_pdo_remove_item">删除项</sys:String>
     <sys:String x:Key="str_pdo_insert_item">插入项</sys:String>
 
     <!-- OD Index Range View -->
-    <sys:String x:Key="str_od_menu_clone">克隆...</sys:String>
-    <sys:String x:Key="str_od_menu_delete">删除...</sys:String>
-    <sys:String x:Key="str_od_menu_toggle">切换...</sys:String>
-    <sys:String x:Key="str_od_dlg_index">索引 (hex):</sys:String>
-    <sys:String x:Key="str_od_dlg_name">名称:</sys:String>
-    <sys:String x:Key="str_od_dlg_objtype">对象类型:</sys:String>
+    <sys:String x:Key="str_od_menu_clone">克隆</sys:String>
+    <sys:String x:Key="str_od_menu_delete">删除</sys:String>
+    <sys:String x:Key="str_od_menu_toggle">切换</sys:String>
+    <sys:String x:Key="str_od_dlg_index">索引</sys:String>
+    <sys:String x:Key="str_od_dlg_name">名称</sys:String>
+    <sys:String x:Key="str_od_dlg_objtype">对象类型</sys:String>
     <sys:String x:Key="str_od_btn_create">创建</sys:String>
     <sys:String x:Key="str_od_btn_cancel">取消</sys:String>
 
     <!-- Modules Tab -->
     <sys:String x:Key="str_module_connected_count">已连接模块数量：</sys:String>
-    <sys:String x:Key="str_module_list">模块列表：</sys:String>
-    <sys:String x:Key="str_module_extended_objects">扩展对象：</sys:String>
+    <sys:String x:Key="str_module_list">模块列表</sys:String>
+    <sys:String x:Key="str_module_extended_objects">扩展对象</sys:String>
     <sys:String x:Key="str_module_comments">模块描述：</sys:String>
     
     <sys:String x:Key="str_module_col_status">状态</sys:String>

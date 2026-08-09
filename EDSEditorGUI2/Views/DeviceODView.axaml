@@ -102,6 +102,7 @@
                       BorderThickness="0"
                       Background="Transparent" RowBackground="Transparent"
                       FocusAdorner="{x:Null}"
+                      IsReadOnly="True"
                       PointerPressed="SubObjectDataGrid_PointerPressed">
             <DataGrid.Styles>
               <Style Selector="DataGridColumnHeader">
