@@ -68,21 +68,21 @@
                   BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" BorderThickness="1"
                   BoxShadow="0 2 6 0 #1A000000" Margin="0,0,0,0">
             <StackPanel Spacing="15">
-              <Grid RowDefinitions="Auto,Auto,Auto,Auto" ColumnDefinitions="80,*, 80,*">
+              <Grid RowDefinitions="Auto,Auto,Auto" ColumnDefinitions="80,1.5*, 0.5*, 80,1.5*">
               <TextBlock Text="{DynamicResource str_od_prop_index}" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,15"/>
               <TextBox Text="{Binding SelectedObject.Key}" Grid.Row="0" Grid.Column="1" IsEnabled="False" Margin="0,0,20,15"/>
               
-              <TextBlock Text="{DynamicResource str_od_prop_obj_type}" Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" Margin="0,0,10,15"/>
-              <TextBox Text="{Binding SelectedObjectType}" Grid.Row="0" Grid.Column="3" Margin="0,0,0,15" IsEnabled="False"/>
+              <TextBlock Text="{DynamicResource str_od_prop_obj_type}" Grid.Row="0" Grid.Column="3" VerticalAlignment="Center" Margin="0,0,10,15"/>
+              <TextBox Text="{Binding SelectedObjectType}" Grid.Row="0" Grid.Column="4" Margin="0,0,0,15" IsEnabled="False"/>
               
               <TextBlock Text="{DynamicResource str_od_prop_name}" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,15"/>
-              <TextBox Text="{Binding SelectedObject.Value.Name}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,0,15"/>
+              <TextBox Text="{Binding SelectedObject.Value.Name}" Grid.Row="1" Grid.Column="1" Margin="0,0,20,15"/>
 
-              <TextBlock Text="{DynamicResource str_od_prop_denotation}" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,15"/>
-              <TextBox Text="{Binding SelectedObject.Value.Alias}" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,0,0,15"/>
+              <TextBlock Text="{DynamicResource str_od_prop_denotation}" Grid.Row="1" Grid.Column="3" VerticalAlignment="Center" Margin="0,0,10,15"/>
+              <TextBox Text="{Binding SelectedObject.Value.Alias}" Grid.Row="1" Grid.Column="4" Margin="0,0,0,15"/>
 
-              <TextBlock Text="{DynamicResource str_od_prop_desc}" Grid.Row="3" Grid.Column="0" VerticalAlignment="Top"/>
-              <TextBox Text="{Binding SelectedObject.Value.Description}" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Height="70" TextWrapping="Wrap" AcceptsReturn="True" Margin="0,0,0,0"/>
+              <TextBlock Text="{DynamicResource str_od_prop_desc}" Grid.Row="2" Grid.Column="0" VerticalAlignment="Top"/>
+              <TextBox Text="{Binding SelectedObject.Value.Description}" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4" Height="70" TextWrapping="Wrap" AcceptsReturn="True" Margin="0,0,0,0"/>
               </Grid>
             </StackPanel>
           </Border>
@@ -163,53 +163,53 @@
                   BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" BorderThickness="1"
                   BoxShadow="0 2 6 0 #1A000000">
           <StackPanel Spacing="15">
-            <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" ColumnDefinitions="80,*, 100,*">
+            <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" ColumnDefinitions="80,1.5*, 0.5*, 100,1.5*">
               
               <!-- Row 0: SubIndex & Name -->
               <TextBlock Text="{DynamicResource str_od_prop_subindex}" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,15"/>
               <TextBox Text="{Binding SelectedSubObject.Key}" Grid.Row="0" Grid.Column="1" IsEnabled="False" Margin="0,0,20,15"/>
               
-              <TextBlock Text="{DynamicResource str_od_prop_name}" Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" Margin="0,0,10,15"/>
-              <TextBox Text="{Binding SelectedSubObject.Value.Name}" Grid.Row="0" Grid.Column="3" Margin="0,0,0,15"/>
+              <TextBlock Text="{DynamicResource str_od_prop_name}" Grid.Row="0" Grid.Column="3" VerticalAlignment="Center" Margin="0,0,10,15"/>
+              <TextBox Text="{Binding SelectedSubObject.Value.Name}" Grid.Row="0" Grid.Column="4" Margin="0,0,0,15"/>
 
               <!-- Row 1: DataType & String Length -->
               <TextBlock Text="{DynamicResource str_od_prop_datatype}" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,15"/>
               <ComboBox x:Name="combo_datatype" HorizontalAlignment="Stretch" SelectedIndex="{Binding SelectedSubObject.Value.DataType}" Grid.Row="1" Grid.Column="1" Margin="0,0,20,15"/>
               
-              <TextBlock Text="{DynamicResource str_od_prop_str_len}" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Margin="0,0,10,15"/>
-              <TextBox Text="{Binding SelectedSubObject.Value.StringLengthMin}" Grid.Row="1" Grid.Column="3" Margin="0,0,0,15"/>
+              <TextBlock Text="{DynamicResource str_od_prop_str_len}" Grid.Row="1" Grid.Column="3" VerticalAlignment="Center" Margin="0,0,10,15"/>
+              <TextBox Text="{Binding SelectedSubObject.Value.StringLengthMin}" Grid.Row="1" Grid.Column="4" Margin="0,0,0,15"/>
               <TextBlock Text="{DynamicResource str_od_col_default}" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,15"/>
               <TextBox Text="{Binding SelectedSubObject.Value.DefaultValue}" Grid.Row="2" Grid.Column="1" Margin="0,0,20,15"/>
               
-              <TextBlock Text="{DynamicResource str_od_prop_actual}" Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" Margin="0,0,10,15"/>
-              <TextBox Text="{Binding SelectedSubObject.Value.ActualValue}" Grid.Row="2" Grid.Column="3" Margin="0,0,0,15"/>
+              <TextBlock Text="{DynamicResource str_od_prop_actual}" Grid.Row="2" Grid.Column="3" VerticalAlignment="Center" Margin="0,0,10,15"/>
+              <TextBox Text="{Binding SelectedSubObject.Value.ActualValue}" Grid.Row="2" Grid.Column="4" Margin="0,0,0,15"/>
 
               <TextBlock Text="{DynamicResource str_od_prop_highlimit}" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,15"/>
               <TextBox Text="{Binding SelectedSubObject.Value.HighLimit}" Grid.Row="3" Grid.Column="1" Margin="0,0,20,15"/>
               
-              <TextBlock Text="{DynamicResource str_od_prop_lowlimit}" Grid.Row="3" Grid.Column="2" VerticalAlignment="Center" Margin="0,0,10,15"/>
-              <TextBox Text="{Binding SelectedSubObject.Value.LowLimit}" Grid.Row="3" Grid.Column="3" Margin="0,0,0,15"/>
+              <TextBlock Text="{DynamicResource str_od_prop_lowlimit}" Grid.Row="3" Grid.Column="3" VerticalAlignment="Center" Margin="0,0,10,15"/>
+              <TextBox Text="{Binding SelectedSubObject.Value.LowLimit}" Grid.Row="3" Grid.Column="4" Margin="0,0,0,15"/>
 
               <TextBlock Text="{DynamicResource str_od_prop_acc_sdo}" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,15"/>
               <ComboBox x:Name="combo_sdo" HorizontalAlignment="Stretch" SelectedIndex="{Binding SelectedSubObject.Value.Sdo}" Grid.Row="4" Grid.Column="1" Margin="0,0,20,15"/>
               
-              <TextBlock Text="{DynamicResource str_od_prop_acc_pdo}" Grid.Row="4" Grid.Column="2" VerticalAlignment="Center" Margin="0,0,10,15"/>
-              <ComboBox x:Name="combo_pdo" HorizontalAlignment="Stretch" SelectedIndex="{Binding SelectedSubObject.Value.Pdo}" Grid.Row="4" Grid.Column="3" Margin="0,0,0,15"/>
+              <TextBlock Text="{DynamicResource str_od_prop_acc_pdo}" Grid.Row="4" Grid.Column="3" VerticalAlignment="Center" Margin="0,0,10,15"/>
+              <ComboBox x:Name="combo_pdo" HorizontalAlignment="Stretch" SelectedIndex="{Binding SelectedSubObject.Value.Pdo}" Grid.Row="4" Grid.Column="4" Margin="0,0,0,15"/>
 
               <TextBlock Text="{DynamicResource str_od_prop_acc_srdo}" Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,0"/>
               <ComboBox x:Name="combo_srdo" HorizontalAlignment="Stretch" SelectedIndex="{Binding SelectedSubObject.Value.Srdo}" Grid.Row="5" Grid.Column="1" Margin="0,0,20,0"/>
 
-              <TextBlock Text="{DynamicResource str_od_prop_enabled}" Grid.Row="5" Grid.Column="2" VerticalAlignment="Center" Margin="0,0,10,0"/>
-              <CheckBox IsChecked="{Binding !SelectedObject.Value.Disabled}" Grid.Row="5" Grid.Column="3" Margin="0,0,0,0"/>
+              <TextBlock Text="{DynamicResource str_od_prop_enabled}" Grid.Row="5" Grid.Column="3" VerticalAlignment="Center" Margin="0,0,10,0"/>
+              <CheckBox IsChecked="{Binding !SelectedObject.Value.Disabled}" Grid.Row="5" Grid.Column="4" Margin="0,0,0,0"/>
               </Grid>
               <!-- Advanced CANopenNode Settings (Expander) -->
               <Expander Header="高级扩展配置 (CANopenNode 专属)" HorizontalAlignment="Stretch" Margin="0,10,0,0" Background="Transparent">
-                <Grid RowDefinitions="Auto" ColumnDefinitions="80,*, 100,*">
+                <Grid RowDefinitions="Auto" ColumnDefinitions="80,1.5*, 0.5*, 100,1.5*">
                     <TextBlock Text="{DynamicResource str_od_prop_storage}" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,0"/>
                     <TextBox Text="{Binding SelectedObject.Value.StorageGroup}" Grid.Row="0" Grid.Column="1" Margin="0,0,20,0"/>
 
-                    <TextBlock Text="{DynamicResource str_od_prop_count_label}" Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" Margin="0,0,10,0"/>
-                    <TextBox Text="{Binding SelectedObject.Value.CountLabel}" Grid.Row="0" Grid.Column="3" Margin="0,0,0,0"/>
+                    <TextBlock Text="{DynamicResource str_od_prop_count_label}" Grid.Row="0" Grid.Column="3" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                    <TextBox Text="{Binding SelectedObject.Value.CountLabel}" Grid.Row="0" Grid.Column="4" Margin="0,0,0,0"/>
                 </Grid>
               </Expander>
             </StackPanel>
