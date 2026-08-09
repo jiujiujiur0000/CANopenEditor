@@ -158,7 +158,7 @@ public partial class DevicePDOView : UserControl
                         var border = new Border
                         {
                             Background = bgBrush,
-                            BorderBrush = Brushes.Gray,
+                            BorderBrush = Brushes.LightGray,
                             BorderThickness = new Avalonia.Thickness(0, 0, 1, 1),
                             IsHitTestVisible = true,
                             Child = new TextBlock 
@@ -227,7 +227,7 @@ public partial class DevicePDOView : UserControl
                 var border = new Border
                 {
                     Background = Brushes.LightGray,
-                    BorderBrush = Brushes.Gray,
+                    BorderBrush = Brushes.LightGray,
                     BorderThickness = new Avalonia.Thickness(0, 0, 1, 1),
                     IsHitTestVisible = true,
                     Child = new TextBlock 
