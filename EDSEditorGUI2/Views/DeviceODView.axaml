@@ -133,10 +133,14 @@
               <DataGridTextColumn Header="{DynamicResource str_od_col_sdo}" Width="Auto" Binding="{Binding Value.Sdo}" />
               <DataGridTextColumn Header="{DynamicResource str_od_col_pdo}" Width="Auto" Binding="{Binding Value.Pdo}" />
               <DataGridTextColumn Header="{DynamicResource str_od_col_srdo}" Width="Auto" Binding="{Binding Value.Srdo}" />
-              <DataGridTextColumn Header="{DynamicResource str_od_col_default}" Width="Auto" Binding="{Binding Value.DefaultValue}" />
+              <DataGridTextColumn Header="{DynamicResource str_od_col_default}" Width="2.5*" Binding="{Binding Value.DefaultValue}" />
             </DataGrid.Columns>
             <DataGrid.ContextMenu>
               <ContextMenu>
+                <ContextMenu.Resources>
+                  <Thickness x:Key="MenuFlyoutPresenterThemePadding">0</Thickness>
+                  <Thickness x:Key="MenuFlyoutScrollerMargin">0</Thickness>
+                </ContextMenu.Resources>
                 <MenuItem Header="{DynamicResource str_od_menu_add}" Click="ContextMenuSubObjectAddClick">
                   <MenuItem.Icon>
                     <PathIcon Data="{StaticResource add_regular}" />

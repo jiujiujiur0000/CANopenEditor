@@ -46,6 +46,10 @@
       </DataGrid.Columns>
       <DataGrid.ContextMenu>
         <ContextMenu>
+          <ContextMenu.Resources>
+            <Thickness x:Key="MenuFlyoutPresenterThemePadding">0</Thickness>
+            <Thickness x:Key="MenuFlyoutScrollerMargin">0</Thickness>
+          </ContextMenu.Resources>
           <MenuItem Header="{DynamicResource str_od_menu_clone}" IsVisible="{Binding #grid.SelectedItem, Converter={x:Static ObjectConverters.IsNotNull}}"/>
           <MenuItem Header="{DynamicResource str_od_menu_add}" Click="AddIndex">
             <MenuItem.Icon>
