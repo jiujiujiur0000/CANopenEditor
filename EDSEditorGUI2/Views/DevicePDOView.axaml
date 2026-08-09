@@ -54,14 +54,22 @@
 
             <Grid RowDefinitions="auto,auto,auto,auto,auto,auto,auto,auto,auto" ColumnDefinitions="auto,auto,auto,auto" Margin="0,0,25,0">
             <!-- Header for Properties -->
-            <ComboBox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Margin="0,0,0,15" Width="200" HorizontalAlignment="Left"
-                      ItemsSource="{Binding Slots}" SelectedItem="{Binding SelectedSlot}" SelectedIndex="0">
-              <ComboBox.ItemTemplate>
-                <DataTemplate>
-                  <TextBlock Text="{Binding Name}"/>
-                </DataTemplate>
-              </ComboBox.ItemTemplate>
-            </ComboBox>
+            <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Orientation="Horizontal" Margin="0,0,0,15" Spacing="10">
+              <ComboBox Width="200" HorizontalAlignment="Left"
+                        ItemsSource="{Binding Slots}" SelectedItem="{Binding SelectedSlot}" SelectedIndex="0">
+                <ComboBox.ItemTemplate>
+                  <DataTemplate>
+                    <TextBlock Text="{Binding Name}"/>
+                  </DataTemplate>
+                </ComboBox.ItemTemplate>
+              </ComboBox>
+              <Button Command="{Binding AddPDOCommand}" Classes="accent" ToolTip.Tip="{DynamicResource str_pdo_btn_add}" VerticalAlignment="Center">
+                <PathIcon Data="{StaticResource add_regular}" />
+              </Button>
+              <Button Command="{Binding RemovePDOCommand}" IsEnabled="{Binding IsSlotSelected}" ToolTip.Tip="{DynamicResource str_pdo_btn_delete}" VerticalAlignment="Center">
+                <PathIcon Data="{StaticResource remove_regular}" />
+              </Button>
+            </StackPanel>
 
             <!-- TextBoxes for Selected PDO -->
             <TextBlock Text="{DynamicResource str_pdo_comm}" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,15,15"/>
@@ -69,27 +77,16 @@
 
             <TextBlock Text="{DynamicResource str_pdo_mapping}" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,15,15"/>
             <TextBox Grid.Row="2" Grid.Column="1" Margin="0,0,15,15" Text="{Binding SelectedSlot.Mapping, Mode=OneWay, FallbackValue=''}" IsEnabled="{Binding IsSlotSelected}" IsReadOnly="True"/>
-            <Button Command="{Binding AddPDOCommand}" Grid.Row="2" Grid.Column="3" Grid.RowSpan="2" Classes="accent" VerticalAlignment="Top" Padding="15,10" Height="70" Width="100">
-              <StackPanel Spacing="5" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <PathIcon Data="{StaticResource add_regular}" />
-                <TextBlock Text="{DynamicResource str_pdo_btn_add}" TextWrapping="Wrap" TextAlignment="Center" />
-              </StackPanel>
-            </Button>
 
             <TextBlock Text="{DynamicResource str_pdo_cob}" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,15,15"/>
-            <TextBox Grid.Row="3" Grid.Column="1" Margin="0,0,15,15" Text="{Binding SelectedSlot.COB, FallbackValue=''}" IsEnabled="{Binding IsSlotSelected}"/>
-            
-            <!-- Invalid Checkbox moved next to COB -->
-            <CheckBox Grid.Row="3" Grid.Column="2" Content="{DynamicResource str_pdo_chk_invalid}" IsChecked="{Binding SelectedSlot.Invalid}" IsEnabled="{Binding IsSlotSelected}" Margin="0,0,15,15" VerticalAlignment="Center"/>
+            <TextBox Grid.Row="3" Grid.Column="1" Margin="0,0,15,15" Text="{Binding SelectedSlot.COB, FallbackValue=''}" IsEnabled="{Binding IsSlotSelected}">
+              <TextBox.InnerRightContent>
+                <CheckBox Content="{DynamicResource str_pdo_chk_invalid}" IsChecked="{Binding SelectedSlot.Invalid}" IsEnabled="{Binding IsSlotSelected}" Margin="10,0" VerticalAlignment="Center"/>
+              </TextBox.InnerRightContent>
+            </TextBox>
 
             <TextBlock Text="{DynamicResource str_pdo_type}" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,15,15"/>
             <TextBox Grid.Row="4" Grid.Column="1" Margin="0,0,15,15" Text="{Binding SelectedSlot.TransmissionType, FallbackValue=''}" IsEnabled="{Binding IsSlotSelected}"/>
-            <Button Command="{Binding RemovePDOCommand}" IsEnabled="{Binding IsSlotSelected}" Grid.Row="4" Grid.Column="3" Grid.RowSpan="2" VerticalAlignment="Top" Padding="15,10" Height="70" Width="100">
-              <StackPanel Spacing="5" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <PathIcon Data="{StaticResource remove_regular}" />
-                <TextBlock Text="{DynamicResource str_pdo_btn_delete}" TextWrapping="Wrap" TextAlignment="Center" />
-              </StackPanel>
-            </Button>
 
             <TextBlock Text="{DynamicResource str_pdo_inhibit}" Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,15,15"/>
             <TextBox Grid.Row="5" Grid.Column="1" Margin="0,0,15,15" Text="{Binding SelectedSlot.Inhibit, FallbackValue=''}" IsEnabled="{Binding IsSlotSelected}"/>
