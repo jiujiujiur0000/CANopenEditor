@@ -29,8 +29,9 @@
                 LoadingRow="DataGrid_LoadingRow"
                 PointerPressed="DataGrid_PointerPressed">
           <DataGrid.Styles>
-            <Style Selector="DataGridRow.disabled">
+            <Style Selector="TextBlock.disabled">
               <Setter Property="Foreground" Value="{DynamicResource SystemControlForegroundBaseMediumLowBrush}"/>
+              <Setter Property="TextDecorations" Value="Strikethrough"/>
             </Style>
             <Style Selector="DataGridColumnHeader">
               <Setter Property="Background" Value="Transparent"/>
@@ -41,8 +42,22 @@
             </Style>
           </DataGrid.Styles>
       <DataGrid.Columns>
-        <DataGridTextColumn Header="{DynamicResource str_pdo_col_index}" Width="Auto" Binding="{Binding Key, StringFormat='0x\{0\}'}"/>
-        <DataGridTextColumn Header="{DynamicResource str_od_col_name}" Width="*" Binding="{Binding Value.Name}" />
+        <DataGridTemplateColumn Header="{DynamicResource str_pdo_col_index}" Width="Auto">
+          <DataGridTemplateColumn.CellTemplate>
+            <DataTemplate DataType="vm:OdObject"> <!-- Just dummy to suppress warning, actually it is KeyValuePair -->
+              <TextBlock Text="{Binding Key, StringFormat='0x\{0\}'}" VerticalAlignment="Center" Margin="12,0"
+                         Classes.disabled="{Binding Value.Disabled}"/>
+            </DataTemplate>
+          </DataGridTemplateColumn.CellTemplate>
+        </DataGridTemplateColumn>
+        <DataGridTemplateColumn Header="{DynamicResource str_od_col_name}" Width="*">
+          <DataGridTemplateColumn.CellTemplate>
+            <DataTemplate>
+              <TextBlock Text="{Binding Value.Name}" VerticalAlignment="Center" Margin="12,0"
+                         Classes.disabled="{Binding Value.Disabled}"/>
+            </DataTemplate>
+          </DataGridTemplateColumn.CellTemplate>
+        </DataGridTemplateColumn>
       </DataGrid.Columns>
       <DataGrid.ContextMenu>
         <ContextMenu>
