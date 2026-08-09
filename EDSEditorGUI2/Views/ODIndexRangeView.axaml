@@ -65,7 +65,11 @@
             <Thickness x:Key="MenuFlyoutPresenterThemePadding">0</Thickness>
             <Thickness x:Key="MenuFlyoutScrollerMargin">0</Thickness>
           </ContextMenu.Resources>
-          <MenuItem Header="{DynamicResource str_od_menu_clone}" Click="CloneIndex" IsVisible="{Binding #grid.SelectedItem, Converter={x:Static ObjectConverters.IsNotNull}}"/>
+          <MenuItem Header="{DynamicResource str_od_menu_clone}" Click="CloneIndex" IsVisible="{Binding #grid.SelectedItem, Converter={x:Static ObjectConverters.IsNotNull}}">
+            <MenuItem.Icon>
+              <PathIcon Data="{StaticResource clone_regular}" />
+            </MenuItem.Icon>
+          </MenuItem>
           <MenuItem Header="{DynamicResource str_od_menu_add}" Click="AddIndex">
             <MenuItem.Icon>
               <PathIcon Data="{StaticResource add_regular}" />
@@ -76,7 +80,20 @@
               <PathIcon Data="{StaticResource remove_regular}" />
             </MenuItem.Icon>
           </MenuItem>
-          <MenuItem Header="{DynamicResource str_od_menu_toggle}" Click="ToggleIndex" IsVisible="{Binding #grid.SelectedItem, Converter={x:Static ObjectConverters.IsNotNull}}"/>
+          <MenuItem Click="ToggleIndex" IsVisible="{Binding #grid.SelectedItem, Converter={x:Static ObjectConverters.IsNotNull}}">
+            <MenuItem.Icon>
+              <Panel>
+                <PathIcon Data="{StaticResource eye_regular}" IsVisible="{Binding #grid.SelectedItem.Value.Disabled}"/>
+                <PathIcon Data="{StaticResource eye_hide_regular}" IsVisible="{Binding !#grid.SelectedItem.Value.Disabled}"/>
+              </Panel>
+            </MenuItem.Icon>
+            <MenuItem.Header>
+              <Panel>
+                <TextBlock Text="{DynamicResource str_od_menu_enable}" IsVisible="{Binding #grid.SelectedItem.Value.Disabled}"/>
+                <TextBlock Text="{DynamicResource str_od_menu_disable}" IsVisible="{Binding !#grid.SelectedItem.Value.Disabled}"/>
+              </Panel>
+            </MenuItem.Header>
+          </MenuItem>
         </ContextMenu>
       </DataGrid.ContextMenu>
       </DataGrid>
