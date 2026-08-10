@@ -1,6 +1,6 @@
 <div align="center">
   <p>
-    <a href="README.md">English</a> | <a href="README_zh.md">绠€浣撲腑鏂?/a>
+    <a href="README.md">English</a> | <a href="README_zh.md">简体中文</a>
   </p>
   <h1>CANopenEditor2</h1>
 </div>
