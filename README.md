@@ -106,8 +106,8 @@ If you want to help us out by contributing to this project, first of all thank y
 ## 8. Collaborators
 <!-- readme: collaborators -start -->
 <table>
- <tbody>
-  <tr>
+	<tbody>
+		<tr>
             <td align="center">
                 <a href="https://github.com/jiujiujiur0000">
                     <img src="https://avatars.githubusercontent.com/u/95092734?v=4" width="100;" alt="jiujiujiur0000"/>
@@ -116,15 +116,15 @@ If you want to help us out by contributing to this project, first of all thank y
                 </a>
             </td>
 		</tr>
- <tbody>
+	<tbody>
 </table>
 <!-- readme: collaborators -end -->
 
 ## 9. Contributors
 <!-- readme: contributors -start -->
 <table>
- <tbody>
-  <tr>
+	<tbody>
+		<tr>
             <td align="center">
                 <a href="https://github.com/robincornelius">
                     <img src="https://avatars.githubusercontent.com/u/159000?v=4" width="100;" alt="robincornelius"/>
@@ -168,7 +168,7 @@ If you want to help us out by contributing to this project, first of all thank y
                 </a>
             </td>
 		</tr>
-  <tr>
+		<tr>
             <td align="center">
                 <a href="https://github.com/simon-fuchs-inmach">
                     <img src="https://avatars.githubusercontent.com/u/57712038?v=4" width="100;" alt="simon-fuchs-inmach"/>
@@ -212,7 +212,7 @@ If you want to help us out by contributing to this project, first of all thank y
                 </a>
             </td>
 		</tr>
-  <tr>
+		<tr>
             <td align="center">
                 <a href="https://github.com/gotocoffee1">
                     <img src="https://avatars.githubusercontent.com/u/26260677?v=4" width="100;" alt="gotocoffee1"/>
@@ -256,7 +256,7 @@ If you want to help us out by contributing to this project, first of all thank y
                 </a>
             </td>
 		</tr>
-  <tr>
+		<tr>
             <td align="center">
                 <a href="https://github.com/Sl-Alex">
                     <img src="https://avatars.githubusercontent.com/u/7002691?v=4" width="100;" alt="Sl-Alex"/>
@@ -300,7 +300,7 @@ If you want to help us out by contributing to this project, first of all thank y
                 </a>
             </td>
 		</tr>
-  <tr>
+		<tr>
             <td align="center">
                 <a href="https://github.com/DaMutz">
                     <img src="https://avatars.githubusercontent.com/u/406081?v=4" width="100;" alt="DaMutz"/>
@@ -330,6 +330,6 @@ If you want to help us out by contributing to this project, first of all thank y
                 </a>
             </td>
 		</tr>
- <tbody>
+	<tbody>
 </table>
 <!-- readme: contributors -end -->
