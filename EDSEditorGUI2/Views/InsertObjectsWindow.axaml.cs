@@ -20,8 +20,8 @@ public partial class InsertObjectsWindow : Window
     {
         if (DataContext is MainWindowViewModel dc && null != InsertObjects_Offsets.Text)
         {
-            // look for hex numbers, optionally prefixed with 0x
-            string pattern = @"\b(?:0[xX])?[0-9a-fA-F]+\b";
+            // look for decimal numbers or hex numbers prefixed with 0x
+            string pattern = @"\b(?:0[xX][0-9a-fA-F]+|[0-9]+)\b";
             List<int> offsets = [];
 
             foreach (Match match in Regex.Matches(InsertObjects_Offsets.Text, pattern,

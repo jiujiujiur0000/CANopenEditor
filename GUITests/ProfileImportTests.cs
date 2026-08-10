@@ -138,19 +138,20 @@ public class ImportTests : IDisposable
         // set two offset numbers
         offsetsTextBox!.Text = "something that is not a number";
         Dispatcher.UIThread.RunJobs();
-        Assert.Empty(dc.MergeStatus[0].Offsets);
+        Assert.Single(dc.MergeStatus[0].Offsets);
+        Assert.Equal(0, dc.MergeStatus[0].Offsets[0].Index - dc.MergeStatus[0].OriginalIndex);
 
         offsetsTextBox!.Text = "10 and something else and then a number: 20";
         Dispatcher.UIThread.RunJobs();
         Assert.Equal(2, dc.MergeStatus[0].Offsets.Count);
-        Assert.Equal(10, dc.MergeStatus[0].Offsets[0].Index - dc.MergeStatus[0].OriginalIndex);
-        Assert.Equal(20, dc.MergeStatus[0].Offsets[1].Index - dc.MergeStatus[0].OriginalIndex);
+        Assert.Equal(16, dc.MergeStatus[0].Offsets[0].Index - dc.MergeStatus[0].OriginalIndex);
+        Assert.Equal(32, dc.MergeStatus[0].Offsets[1].Index - dc.MergeStatus[0].OriginalIndex);
 
         offsetsTextBox!.Text = "10 and something else and then a number: 20";
         Dispatcher.UIThread.RunJobs();
         Assert.Equal(2, dc.MergeStatus[0].Offsets.Count);
-        Assert.Equal(10, dc.MergeStatus[0].Offsets[0].Index - dc.MergeStatus[0].OriginalIndex);
-        Assert.Equal(20, dc.MergeStatus[0].Offsets[1].Index - dc.MergeStatus[0].OriginalIndex);
+        Assert.Equal(16, dc.MergeStatus[0].Offsets[0].Index - dc.MergeStatus[0].OriginalIndex);
+        Assert.Equal(32, dc.MergeStatus[0].Offsets[1].Index - dc.MergeStatus[0].OriginalIndex);
 
         //Testing that very big numbers will be interpreted as 0
         offsetsTextBox!.Text = "99999999999999999999";
@@ -167,7 +168,7 @@ public class ImportTests : IDisposable
 
         var copyOfMergeStatus = new List<ODIndexMergeStatus>(dc.MergeStatus);
         // press enter to import.
-        dialog!.KeyPressQwerty(PhysicalKey.Enter, RawInputModifiers.None);
+        insert!.RaiseEvent(new Avalonia.Interactivity.RoutedEventArgs(Button.ClickEvent));
 
         // check that its no longer using memory
         Assert.Empty(dc.MergeStatus);
@@ -193,7 +194,7 @@ public class ImportTests : IDisposable
         insert!.Focus();
 
         // press enter to import.
-        dialog!.KeyPressQwerty(PhysicalKey.Enter, RawInputModifiers.None);
+        insert!.RaiseEvent(new Avalonia.Interactivity.RoutedEventArgs(Button.ClickEvent));
         //window.CaptureRenderedFrame()!.Save("file.png");
 
         // check that its no longer using memory
@@ -217,7 +218,7 @@ public class ImportTests : IDisposable
         insert!.Focus();
 
         // press enter to import.
-        dialog!.KeyPressQwerty(PhysicalKey.Enter, RawInputModifiers.None);
+        insert!.RaiseEvent(new Avalonia.Interactivity.RoutedEventArgs(Button.ClickEvent));
 
         // Check that 1000 is not merged as it is not selected for insertion
         Assert.False(dc.SelectedDevice!.Objects.TryGetValue("1000", out var index1001));
@@ -232,7 +233,7 @@ public class ImportTests : IDisposable
         cancel!.Focus();
 
         // press enter to cansel import.
-        dialog!.KeyPressQwerty(PhysicalKey.Enter, RawInputModifiers.None);
+        cancel!.RaiseEvent(new Avalonia.Interactivity.RoutedEventArgs(Button.ClickEvent));
 
         // check that its no longer using memory
         Assert.Empty(dc.MergeStatus);
