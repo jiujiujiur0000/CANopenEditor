@@ -176,6 +176,11 @@ public partial class ODIndexRangeView : UserControl
                 }
 
                 dc.AddIndex(param.Index, param.Name, param.Type);
+                _collectionView?.Refresh();
+                if ((Avalonia.Application.Current?.ApplicationLifetime as Avalonia.Controls.ApplicationLifetimes.IClassicDesktopStyleApplicationLifetime)?.MainWindow is MainWindow mainWindow)
+                {
+                    mainWindow.TriggerAutoSave();
+                }
             }
         }
     }
@@ -185,6 +190,11 @@ public partial class ODIndexRangeView : UserControl
         if (DataContext is ViewModels.ObjectDictionary dc && grid.SelectedItem is System.Collections.Generic.KeyValuePair<string, ViewModels.OdObject> selected)
         {
             dc.Remove(selected.Key);
+            _collectionView?.Refresh();
+            if ((Avalonia.Application.Current?.ApplicationLifetime as Avalonia.Controls.ApplicationLifetimes.IClassicDesktopStyleApplicationLifetime)?.MainWindow is MainWindow mainWindow)
+            {
+                mainWindow.TriggerAutoSave();
+            }
         }
     }
 
@@ -193,6 +203,11 @@ public partial class ODIndexRangeView : UserControl
         if (grid.SelectedItem is System.Collections.Generic.KeyValuePair<string, ViewModels.OdObject> selected)
         {
             selected.Value.Disabled = !selected.Value.Disabled;
+            _collectionView?.Refresh();
+            if ((Avalonia.Application.Current?.ApplicationLifetime as Avalonia.Controls.ApplicationLifetimes.IClassicDesktopStyleApplicationLifetime)?.MainWindow is MainWindow mainWindow)
+            {
+                mainWindow.TriggerAutoSave();
+            }
         }
     }
 
