@@ -59,8 +59,7 @@ jobs:
       if: matrix.os != 'windows-latest'
       run: |
         cd EDSEditorGUI2/bin/Release/net8.0/${{ matrix.rid }}/publish/
-        tar -czvf ../../../../../../../CANopenEditor-${{ github.ref_name }}-${{ matrix.rid }}${{ matrix.ext }} *
-        cd ../../../../../../../
+        tar -czvf ${{ github.workspace }}/CANopenEditor-${{ github.ref_name }}-${{ matrix.rid }}${{ matrix.ext }} *
 
     - name: Package Linux deb
       if: matrix.os == 'ubuntu-latest'
