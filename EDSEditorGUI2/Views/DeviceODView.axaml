@@ -131,7 +131,7 @@
                       x:Name="subindexGrid"
                       CanUserResizeColumns="True"
                       ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                      GridLinesVisibility="Horizontal"
+                      GridLinesVisibility="None"
                       BorderThickness="0"
                       Background="Transparent" RowBackground="Transparent"
                       FocusAdorner="{x:Null}"
@@ -145,6 +145,13 @@
               </Style>
               <Style Selector="DataGridColumnHeader:nth-last-child(1)">
                 <Setter Property="SeparatorBrush" Value="Transparent"/>
+              </Style>
+              <Style Selector="DataGridRow">
+                <Setter Property="BorderBrush" Value="{DynamicResource SystemControlForegroundBaseLowBrush}"/>
+                <Setter Property="BorderThickness" Value="0,0,0,1"/>
+              </Style>
+              <Style Selector="DataGridRow:nth-last-child(1)">
+                <Setter Property="BorderThickness" Value="0"/>
               </Style>
             </DataGrid.Styles>
             <DataGrid.Columns>
