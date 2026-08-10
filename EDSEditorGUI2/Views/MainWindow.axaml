@@ -126,6 +126,12 @@
                         
                         <ListBox Grid.Row="1" ItemsSource="{Binding Network}" SelectedItem="{Binding SelectedDevice}" 
                                  Background="Transparent" BorderThickness="0,1,0,0" BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" Padding="0,0">
+                            <ListBox.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="{DynamicResource str_menu_new_device}" Click="NewDeviceClick"/>
+                                    <MenuItem Header="{DynamicResource str_menu_import_device}" Click="OpenFileClick"/>
+                                </ContextMenu>
+                            </ListBox.ContextMenu>
                             <ListBox.Styles>
                                 <Style Selector="ListBoxItem">
                                     <Setter Property="HorizontalContentAlignment" Value="Stretch" />
