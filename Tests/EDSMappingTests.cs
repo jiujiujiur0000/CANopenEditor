@@ -561,8 +561,8 @@ namespace Tests
                 Alias = "alias",
             };
 
-            od.SubObjects.Add(subindex.ToString(), sub);
-            d.Objects.Add(index.ToString(), od);
+            od.SubObjects.Add(subindex.ToString("X"), sub);
+            d.Objects.Add(index.ToString("X"), od);
             var tmp = MappingEDS.MapFromProtobuffer(d);
 
             Assert.Equal(sub.ActualValue, tmp.ods[index].subobjects[subindex].actualvalue);
@@ -588,7 +588,7 @@ namespace Tests
                 FlagsPDO = true,
             };
 
-            d.Objects.Add(index.ToString(), od);
+            d.Objects.Add(index.ToString("X"), od);
             var tmp = MappingEDS.MapFromProtobuffer(d);
 
             Assert.Equal(od.Disabled, tmp.ods[index].prop.CO_disabled);
@@ -616,8 +616,8 @@ namespace Tests
                 StringLengthMin = 123,
             };
 
-            od.SubObjects.Add(subindex.ToString(), sub);
-            d.Objects.Add(index.ToString(), od);
+            od.SubObjects.Add(subindex.ToString("X"), sub);
+            d.Objects.Add(index.ToString("X"), od);
             var tmp = MappingEDS.MapFromProtobuffer(d);
 
             Assert.Equal(co_prop, tmp.ods[index].subobjects[subindex].prop.CO_accessSRDO);
