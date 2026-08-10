@@ -81,10 +81,12 @@
                     <MenuItem Header="{DynamicResource str_menu_export_device}" IsEnabled="{Binding SelectedDevice, Converter={x:Static ObjectConverters.IsNotNull}}">
                         <MenuItem Header="{DynamicResource str_menu_export_eds}" Click="ExportCurrentDeviceEdsClick"/>
                         <MenuItem Header="{DynamicResource str_menu_export_source}" Click="ExportCurrentDeviceSourceClick"/>
+                        <MenuItem Header="{DynamicResource str_menu_export_pcanopennode}" Click="ExportCurrentDevicePCanOpenNodeClick"/>
                     </MenuItem>
                     <MenuItem Header="{DynamicResource str_menu_export_all}" IsEnabled="{Binding HasDevice}">
                         <MenuItem Header="{DynamicResource str_menu_export_eds}"/>
                         <MenuItem Header="{DynamicResource str_menu_export_source}"/>
+                        <MenuItem Header="{DynamicResource str_menu_export_networkxml}" Click="ExportNetworkXddClick"/>
                     </MenuItem>
                     <Separator/>
                     <MenuItem Header="{DynamicResource str_menu_quit}" Click="QuitClick"/>
@@ -140,16 +142,17 @@
                                     <Border Background="Transparent" Padding="15,12">
                                         <Border.ContextMenu>
                                             <ContextMenu>
-                                                <MenuItem Header="新建设备" Command="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).AddNewDevice}"/>
-                                                <MenuItem Header="导入设备" Click="OpenFileClick"/>
+                                                <MenuItem Header="{DynamicResource str_menu_new_device}" Command="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).AddNewDevice}"/>
+                                                <MenuItem Header="{DynamicResource str_menu_import_device}" Click="OpenFileClick"/>
                                                 <Separator/>
-                                                <MenuItem Header="移除设备" 
+                                                <MenuItem Header="{DynamicResource str_menu_remove_device}" 
                                                           Command="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).CloseDeviceCommand}" 
                                                           CommandParameter="{Binding}"/>
                                                 <Separator/>
-                                                <MenuItem Header="导出当前设备">
-                                                    <MenuItem Header="EDS / XDD 格式" Click="ExportCurrentDeviceEdsClick"/>
-                                                    <MenuItem Header="CANopenNode 源码" Click="ExportCurrentDeviceSourceClick"/>
+                                                <MenuItem Header="{DynamicResource str_menu_export_device}">
+                                                    <MenuItem Header="{DynamicResource str_menu_export_eds}" Click="ExportCurrentDeviceEdsClick"/>
+                                                    <MenuItem Header="{DynamicResource str_menu_export_source}" Click="ExportCurrentDeviceSourceClick"/>
+                                                    <MenuItem Header="{DynamicResource str_menu_export_pcanopennode}" Click="ExportCurrentDevicePCanOpenNodeClick"/>
                                                 </MenuItem>
                                             </ContextMenu>
                                         </Border.ContextMenu>

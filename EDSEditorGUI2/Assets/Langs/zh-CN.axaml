@@ -30,6 +30,8 @@
     <sys:String x:Key="str_menu_export_device">导出当前设备</sys:String>
     <sys:String x:Key="str_menu_export_eds">XDD / EDS / DCF 格式</sys:String>
     <sys:String x:Key="str_menu_export_source">CANopenNode 源码</sys:String>
+    <sys:String x:Key="str_menu_export_pcanopennode">PCanOpenNode 文件 (.json / .binpb)</sys:String>
+    <sys:String x:Key="str_menu_export_networkxml">Network XML 文件 (.nxdd / .nxdc)</sys:String>
 
     <sys:String x:Key="str_menu_export_all">导出所有设备</sys:String>
     <sys:String x:Key="str_main_device_list">设备</sys:String>

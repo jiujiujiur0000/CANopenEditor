@@ -726,6 +726,95 @@ public partial class MainWindow : Window
         ExportCurrentDeviceSource(args, ConfigurationManager.Settings.CurrentExporter);
     }
 
+    public async void ExportCurrentDevicePCanOpenNodeClick(object? sender, RoutedEventArgs args)
+    {
+        var targetDevice = GetTargetDevice(args);
+        if (targetDevice == null) return;
+
+        var topLevel = TopLevel.GetTopLevel(this) ?? throw new Exception("Internal GUI error");
+        var jsonFilter = new FilePickerFileType("PCanOpenNode JSON (*.json)") { Patterns = ["*.json"] };
+        var binpbFilter = new FilePickerFileType("PCanOpenNode Protobuf (*.binpb)") { Patterns = ["*.binpb"] };
+        
+        var file = await topLevel.StorageProvider.SaveFilePickerAsync(new FilePickerSaveOptions
+        {
+            Title = "Export PCanOpenNode Project",
+            DefaultExtension = ".json",
+            SuggestedFileName = Path.GetFileNameWithoutExtension(targetDevice.ProjectInfo.ProjectFile),
+            FileTypeChoices = [jsonFilter, binpbFilter]
+        });
+
+        if (file != null)
+        {
+            string filePath = file.TryGetLocalPath() ?? file.Path.ToString();
+            string ext = Path.GetExtension(filePath).ToLower();
+            var eds = targetDevice.GetUpdatedEds();
+            
+            try
+            {
+                libEDSsharp.CanOpenXDD_1_1 exporter = new();
+                if (ext == ".json")
+                {
+                    exporter.WriteProtobuf(filePath, eds, true);
+                }
+                else if (ext == ".binpb")
+                {
+                    exporter.WriteProtobuf(filePath, eds, false);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Export PCanOpenNode failed: {ex}");
+            }
+        }
+    }
+
+    public async void ExportNetworkXddClick(object? sender, RoutedEventArgs args)
+    {
+        if (DataContext is MainWindowViewModel dc && dc.Network != null && dc.Network.Count > 0)
+        {
+            var topLevel = TopLevel.GetTopLevel(this) ?? throw new Exception("Internal GUI error");
+            var nxddFilter = new FilePickerFileType("Network XML Device Description (*.nxdd)") { Patterns = ["*.nxdd"] };
+            var nxdcFilter = new FilePickerFileType("Network XML Device Configuration (*.nxdc)") { Patterns = ["*.nxdc"] };
+
+            var file = await topLevel.StorageProvider.SaveFilePickerAsync(new FilePickerSaveOptions
+            {
+                Title = "Export Network XML",
+                DefaultExtension = ".nxdd",
+                SuggestedFileName = "CANopenNetwork",
+                FileTypeChoices = [nxddFilter, nxdcFilter]
+            });
+
+            if (file != null)
+            {
+                string filePath = file.TryGetLocalPath() ?? file.Path.ToString();
+                string ext = Path.GetExtension(filePath).ToLower();
+                
+                var networkFiles = new List<libEDSsharp.EDSsharp>();
+                foreach (var device in dc.Network)
+                {
+                    networkFiles.Add(device.GetUpdatedEds());
+                }
+
+                try
+                {
+                    libEDSsharp.CanOpenXDD_1_1 exporter = new();
+                    if (ext == ".nxdd")
+                    {
+                        exporter.WriteMultiXML(filePath, networkFiles, false);
+                    }
+                    else if (ext == ".nxdc")
+                    {
+                        exporter.WriteMultiXML(filePath, networkFiles, true);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine($"Export Network XML failed: {ex}");
+                }
+            }
+        }
+    }
+
     public async void NewProjectClick(object sender, RoutedEventArgs args)
     {
         var topLevel = TopLevel.GetTopLevel(this) ?? throw new Exception("Internal GUI error");
