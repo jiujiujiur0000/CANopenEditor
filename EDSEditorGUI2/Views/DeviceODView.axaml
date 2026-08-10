@@ -69,7 +69,7 @@
         
         <!-- Top: Index Properties (Row 0) -->
         <Grid Grid.Row="0" RowDefinitions="Auto, *">
-          <TextBlock Grid.Row="0" Text="基本信息" FontWeight="Bold" FontSize="15" Margin="0,0,0,10"/>
+          <TextBlock Grid.Row="0" Text="{DynamicResource str_od_panel_basic_info}" FontWeight="Bold" FontSize="15" Margin="0,0,0,10"/>
           <Border Grid.Row="1" Background="{DynamicResource SystemControlBackgroundAltHighBrush}" CornerRadius="8" Padding="20"
                   BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" BorderThickness="1"
                   BoxShadow="0 2 6 0 #1A000000" Margin="0,0,0,0">
@@ -109,7 +109,7 @@
               </Grid>
               
               <!-- Advanced CANopenNode Settings (Expander) -->
-              <Expander Header="高级扩展配置 (CANopenNode 专属)" HorizontalAlignment="Stretch" Margin="0,0,0,0" Background="Transparent">
+              <Expander Header="{DynamicResource str_od_adv_ext_config}" HorizontalAlignment="Stretch" Margin="0,0,0,0" Background="Transparent">
                 <Grid RowDefinitions="Auto" ColumnDefinitions="80,1.5*, 0.5*, 100,1.5*">
                     <TextBlock Text="{DynamicResource str_od_prop_storage}" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,0"/>
                     <TextBox Text="{Binding SelectedObject.Value.StorageGroup}" Grid.Row="0" Grid.Column="1" Margin="0,0,20,0"/>
@@ -124,7 +124,7 @@
 
         <!-- Middle: SubObjects DataGrid (Row 1) -->
         <Grid RowDefinitions="Auto, *" IsVisible="{Binding SelectedObject.Value.IsRecordOrArray}">
-          <TextBlock Grid.Row="0" Text="子对象列表" FontWeight="Bold" FontSize="15" Margin="0,0,0,10"/>
+          <TextBlock Grid.Row="0" Text="{DynamicResource str_od_panel_subobj_list}" FontWeight="Bold" FontSize="15" Margin="0,0,0,10"/>
           
           <Border Grid.Row="1" Background="{DynamicResource SystemControlBackgroundAltHighBrush}" BorderThickness="1" BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" CornerRadius="8" ClipToBounds="True">
             <DataGrid ItemsSource="{Binding SelectedObject.Value.SubObjects}"
@@ -198,8 +198,8 @@
 
         <!-- Bottom: Sub-Index Properties (Row 3) -->
         <StackPanel Spacing="15" IsVisible="{Binding SelectedObject.Value, Converter={x:Static ObjectConverters.IsNotNull}}">
-          <TextBlock Text="子对象属性" FontWeight="Bold" FontSize="15" IsVisible="{Binding SelectedObject.Value.IsRecordOrArray}"/>
-          <TextBlock Text="详细参数" FontWeight="Bold" FontSize="15" IsVisible="{Binding SelectedObject.Value.IsVar}"/>
+          <TextBlock Text="{DynamicResource str_od_panel_subobj_props}" FontWeight="Bold" FontSize="15" IsVisible="{Binding SelectedObject.Value.IsRecordOrArray}"/>
+          <TextBlock Text="{DynamicResource str_od_panel_var_props}" FontWeight="Bold" FontSize="15" IsVisible="{Binding SelectedObject.Value.IsVar}"/>
           <Border Background="{DynamicResource SystemControlBackgroundAltHighBrush}" CornerRadius="8" Padding="25"
                   BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" BorderThickness="1"
                   BoxShadow="0 2 6 0 #1A000000">

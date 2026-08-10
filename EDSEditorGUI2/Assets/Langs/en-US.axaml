@@ -209,4 +209,9 @@
     <sys:String x:Key="str_collision_overwrite">Overwrite</sys:String>
     <sys:String x:Key="str_collision_skip">Skip</sys:String>
     <sys:String x:Key="str_collision_cancel">Cancel</sys:String>
+    <sys:String x:Key="str_od_panel_basic_info">Basic Information</sys:String>
+    <sys:String x:Key="str_od_panel_subobj_props">Sub-object Parameters</sys:String>
+    <sys:String x:Key="str_od_panel_var_props">Detailed Parameters</sys:String>
+    <sys:String x:Key="str_od_panel_subobj_list">Sub-object List</sys:String>
+    <sys:String x:Key="str_od_adv_ext_config">Advanced Extension Config (CANopenNode Exclusive)</sys:String>
 </ResourceDictionary>

@@ -211,4 +211,9 @@
     <sys:String x:Key="str_collision_overwrite">覆盖</sys:String>
     <sys:String x:Key="str_collision_skip">跳过</sys:String>
     <sys:String x:Key="str_collision_cancel">取消</sys:String>
+    <sys:String x:Key="str_od_panel_basic_info">基本信息</sys:String>
+    <sys:String x:Key="str_od_panel_subobj_props">子对象参数</sys:String>
+    <sys:String x:Key="str_od_panel_var_props">详细参数</sys:String>
+    <sys:String x:Key="str_od_panel_subobj_list">子对象列表</sys:String>
+    <sys:String x:Key="str_od_adv_ext_config">高级扩展配置 (CANopenNode 专属)</sys:String>
 </ResourceDictionary>
