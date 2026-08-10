@@ -8,6 +8,7 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\libEDSsharp\libEDSsharp.csproj" />
+    <ProjectReference Include="..\EDSSharp\EDSSharp.csproj" />
   </ItemGroup>
 
   <ItemGroup>
