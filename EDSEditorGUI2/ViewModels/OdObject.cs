@@ -23,6 +23,15 @@ namespace EDSEditorGUI2.ViewModels
 
         [ObservableProperty]
         LibCanOpen.OdObject.Types.ObjectType _objectType;
+        
+        public bool IsVar => ObjectType == LibCanOpen.OdObject.Types.ObjectType.Var;
+        public bool IsRecordOrArray => ObjectType == LibCanOpen.OdObject.Types.ObjectType.Record || ObjectType == LibCanOpen.OdObject.Types.ObjectType.Array;
+
+        partial void OnObjectTypeChanged(LibCanOpen.OdObject.Types.ObjectType value)
+        {
+            OnPropertyChanged(nameof(IsVar));
+            OnPropertyChanged(nameof(IsRecordOrArray));
+        }
 
         [ObservableProperty]
         string _countLabel = string.Empty;

@@ -57,8 +57,16 @@ public partial class DeviceODView : UserControl
                     if (dg != s)
                     {
                         dg.SelectedItem = null;
-                        subindexGrid.SelectedItem = null;
                     }
+                }
+                
+                if (selected.Value.IsVar && selected.Value.SubObjects.Count > 0)
+                {
+                    subindexGrid.SelectedItem = selected.Value.SubObjects[0];
+                }
+                else
+                {
+                    subindexGrid.SelectedItem = null;
                 }
             }
         }
