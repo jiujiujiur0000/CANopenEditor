@@ -187,6 +187,14 @@ public partial class MainWindow : Window
             {
                 return;
             }
+
+            // 忽略偏好设置(PreferencesView)弹窗里的所有输入修改
+            Avalonia.StyledElement? p = control;
+            while (p != null)
+            {
+                if (p.GetType().Name == "PreferencesView") return;
+                p = p.Parent;
+            }
         }
 
         // 如果是失去焦点事件，只响应来自实际输入控件的事件，忽略点击空白处等无效的焦点转移
