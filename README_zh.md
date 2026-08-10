@@ -106,8 +106,8 @@ CANopenEditor 是一个CANopen对象字典编辑器:
 ## 8. 核心成员 (Collaborators)
 <!-- readme: collaborators -start -->
 <table>
- <tbody>
-  <tr>
+	<tbody>
+		<tr>
             <td align="center">
                 <a href="https://github.com/jiujiujiur0000">
                     <img src="https://avatars.githubusercontent.com/u/95092734?v=4" width="100;" alt="jiujiujiur0000"/>
@@ -115,8 +115,8 @@ CANopenEditor 是一个CANopen对象字典编辑器:
                     <sub><b>jiujiujiur0000</b></sub>
                 </a>
             </td>
-  </tr>
- <tbody>
+		</tr>
+	<tbody>
 </table>
 <!-- readme: collaborators -end -->
 
@@ -124,8 +124,8 @@ CANopenEditor 是一个CANopen对象字典编辑器:
 --------
 <!-- readme: contributors -start -->
 <table>
- <tbody>
-  <tr>
+	<tbody>
+		<tr>
             <td align="center">
                 <a href="https://github.com/robincornelius">
                     <img src="https://avatars.githubusercontent.com/u/159000?v=4" width="100;" alt="robincornelius"/>
@@ -168,8 +168,8 @@ CANopenEditor 是一个CANopen对象字典编辑器:
                     <sub><b>martinwag</b></sub>
                 </a>
             </td>
-  </tr>
-  <tr>
+		</tr>
+		<tr>
             <td align="center">
                 <a href="https://github.com/simon-fuchs-inmach">
                     <img src="https://avatars.githubusercontent.com/u/57712038?v=4" width="100;" alt="simon-fuchs-inmach"/>
@@ -212,8 +212,8 @@ CANopenEditor 是一个CANopen对象字典编辑器:
                     <sub><b>JuPrgn</b></sub>
                 </a>
             </td>
-  </tr>
-  <tr>
+		</tr>
+		<tr>
             <td align="center">
                 <a href="https://github.com/gotocoffee1">
                     <img src="https://avatars.githubusercontent.com/u/26260677?v=4" width="100;" alt="gotocoffee1"/>
@@ -256,8 +256,8 @@ CANopenEditor 是一个CANopen对象字典编辑器:
                     <sub><b>Regelink</b></sub>
                 </a>
             </td>
-  </tr>
-  <tr>
+		</tr>
+		<tr>
             <td align="center">
                 <a href="https://github.com/Sl-Alex">
                     <img src="https://avatars.githubusercontent.com/u/7002691?v=4" width="100;" alt="Sl-Alex"/>
@@ -300,8 +300,8 @@ CANopenEditor 是一个CANopen对象字典编辑器:
                     <sub><b>zhanglongqi</b></sub>
                 </a>
             </td>
-  </tr>
-  <tr>
+		</tr>
+		<tr>
             <td align="center">
                 <a href="https://github.com/DaMutz">
                     <img src="https://avatars.githubusercontent.com/u/406081?v=4" width="100;" alt="DaMutz"/>
@@ -330,7 +330,7 @@ CANopenEditor 是一个CANopen对象字典编辑器:
                     <sub><b>KwonTae-young</b></sub>
                 </a>
             </td>
-  </tr>
- <tbody>
+		</tr>
+	<tbody>
 </table>
 <!-- readme: contributors -end -->
