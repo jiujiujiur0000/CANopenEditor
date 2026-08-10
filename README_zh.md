@@ -2,30 +2,34 @@
   <p>
     <a href="README.md">English</a> | <a href="README_zh.md">简体中文</a>
   </p>
-  <h1>CANopenEditor</h1>
+  <h1>CANopenEditor2</h1>
 </div>
 
 本项目复刻自 [CANopenEditor](https://github.com/CANopenNode/CANopenEditor.git)。
 原始的 CANopenEditor 是 [libedssharp](https://github.com/robincornelius/libedssharp) 的一个分支，原作者为 Robin Cornelius。
 
 CANopen 对象字典编辑器 (Object Dictionary Editor):
- - 导入：支持 EDS 或 XDD 格式的 CANopen 电子数据文档。
- - 导出：支持 EDS 或 XDD 格式的 CANopen 电子数据文档、文档说明、CANopenNode C 源代码文件等。
- - 界面：提供 CANopen 对象字典、设备信息等图形界面(GUI)编辑器。提供用于简单转换的命令行(CLI)客户端。
 
-CANopen 是一种国际标准化 (EN 50325-4) ([CiA301](https://can-cia.org/cia-groups/technical-documents)) 的高级协议，建立在 CAN 总线之上，用于嵌入式控制系统。关于 CANopen 的更多信息，请访问 http://www.can-cia.org/。
+- 导入：支持 EDS 或 XDD 格式的 CANopen 电子数据文档。
+- 导出：支持 EDS 或 XDD 格式的 CANopen 电子数据文档、文档说明、CANopenNode C 源代码文件等。
+- 界面：提供 CANopen 对象字典、设备信息等图形界面(GUI)编辑器。提供用于简单转换的命令行(CLI)客户端。
+
+CANopen 是一种国际标准化 (EN 50325-4) ([CiA301](https://can-cia.org/cia-groups/technical-documents)) 的高级协议，建立在 CAN 总线之上，用于嵌入式控制系统。关于 CANopen 的更多信息，请访问 <http://www.can-cia.org/。>
 
 [CANopenNode](https://github.com/CANopenNode/CANopenNode) 是一个免费且开源的 CANopen 协议栈。
 
 代码库结构
 --------
+
 本代码库包含三个主要项目：
+
 - [LibEDSsharp](libEDSsharp/README.md)，一个用于操作 EDS 文件的 C# 核心库。它已经合并到上游，目前在此代码库中持续维护。
 - [CLI (命令行工具)](EDSSharp/README.md)，用于在所有支持的格式之间进行简单的转换。
 - [GUI (图形界面)](EDSEditorGUI/README.md)，用于全面操作和编辑您的 CANopen 文件。[该界面正在使用 Avalonia 重写以支持跨平台](EDSEditorGUI2/README.md)。
 
 如何使用
 --------
+
 1. [下载最新发布的二进制压缩包(zip)](https://github.com/CANopenNode/CANopenEditor/releases)。**请不要直接下载源码**。
 2. 解压缩文件。
 3. 进入 `net8.0-windows` 目录（或其他对应平台的目录）。
@@ -33,9 +37,11 @@ CANopen 是一种国际标准化 (EN 50325-4) ([CiA301](https://can-cia.org/cia-
 
 支持的格式
 --------
+
 以下是迄今为止该库支持的格式完整列表，按类别排序：<br>
 
-### CAN in Automation 官方格式：
+### CAN in Automation 官方格式
+
 | 描述                                  | 导出器                                                     | 格式   |
 |---------------------------------------|------------------------------------------------------------|--------|
 | 电子数据文档 (CiA 306-1)              | ElectronicDataSheet                                        | .eds   |
@@ -43,20 +49,23 @@ CANopen 是一种国际标准化 (EN 50325-4) ([CiA301](https://can-cia.org/cia-
 | XML 设备描述文件 (CiA 311)            | CanOpenXDDv1.0<br>CanOpenXDDv1.1<br>CanOpenXDDv1.1stripped | .xdd   |
 | XML 设备配置文件 (CiA 311)            | CanOpenXDCv1.1                                             | .xdc   |
 
-### 扩展格式：
+### 扩展格式
+
 | 描述                             | 导出器                                      | 格式   |
 |----------------------------------|---------------------------------------------|--------|
 | 网络 XML 设备描述文件            | CanOpenNetworkv1.0<br>CanOpenNetworkXDDv1.1 | .nxdd  |
 | 网络 XML 设备配置文件            | CanOpenNetworkXDCv1.1                       | .nxdc  |
 | XML Profile 描述文件             | 无 (None)                                   | .xpd   |
 
-### CANopenNode 专用格式：
+### CANopenNode 专用格式
+
 | 描述                                     | 导出器                                                   | 格式            |
 |------------------------------------------|----------------------------------------------------------|-----------------|
 | CanOpenNode 对象字典文件对               | CanOpenNode<br>CanOpenNodeV4                             | .h,.c           |
 | PCanOpenNode 项目文件                    | CanOpenNodeProtobuf(json)<br>CanOpenNodeProtobuf(binary) | .json<br>.binpb |
 
-### 文档格式：
+### 文档格式
+
 | 导出器              | 格式   |
 |---------------------|--------|
 | DocumentationHTML   | .html  |
@@ -65,7 +74,9 @@ CANopen 是一种国际标准化 (EN 50325-4) ([CiA301](https://can-cia.org/cia-
 
 文件结构
 --------
+
 您需要了解的主要文件和目录包括：
+
 - [setup.nsi](setup.nsi) 是 Windows 安装脚本。
 - [Makefile](Makefile) 是 Linux 安装和操作脚本。
 - [EDSEditorGUI](EDSEditorGUI) 目录是旧版 GUI。功能完备但仅支持 Windows。
@@ -78,6 +89,7 @@ CANopen 是一种国际标准化 (EN 50325-4) ([CiA301](https://can-cia.org/cia-
 
 近期修复 (Recent Fixes)
 --------
+
 - 修复了在导出 XDD 时，CANopen `VAR` 对象 (`OdObject`) 丢失 `DataType`、`Access`、`DefaultValue` 和 `ActualValue` 核心属性的严重 Bug。
 - 修复了在加载/保存项目时，`lastModificationTime` 和 `createTime` 等时间戳无法正确解析并格式化为 ISO 8601 标准的问题。
 - 修复了新版 GUI (`EDSEditorGUI2`) 在加载项目时由于 `OdObject` 和 `OdSubObject` 映射配置不严谨而触发 `AutoMapperConfigurationException` 导致崩溃的问题。
@@ -85,12 +97,14 @@ CANopen 是一种国际标准化 (EN 50325-4) ([CiA301](https://can-cia.org/cia-
 
 BUG 反馈
 --------
+
 如果您发现了任何 Bug，请在 GitHub 上提交 bug report，并附上您创建或打开的相关复现文件。我们非常需要您的帮助，主要的维护者们非常活跃并且会尽快回复您。
 
 推荐使用免费的 [EDSchecker](https://www.vector.com/de/de/support-downloads/download-center/#product=%5B%2274771%22%5D&tab=1&pageSize=15&sort=date&order=desc) 工具来检查您的 EDS/XDD 文件是否合规。
 
 参与贡献
 --------
+
 如果您想为这个项目做出贡献，首先向您表示感谢！请阅读我们的 [贡献指南 (CONTRIBUTING.md)](CONTRIBUTING.md)。我们对新手非常友好，即便您没有太多参与开源项目的经验，也请勇敢尝试！
 
 核心成员 (Collaborators)
