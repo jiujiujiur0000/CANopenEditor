@@ -17,7 +17,6 @@
     <Border Grid.Row="1" Background="{DynamicResource SystemControlBackgroundAltHighBrush}" BorderThickness="1" BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" CornerRadius="8" ClipToBounds="True">
       <DataGrid x:Name="grid"
                 CanUserResizeColumns="True"
-                local:DataGridBehavior.LockAutoMinWidth="True"
                 ItemsSource="{Binding FilteredItems, RelativeSource={RelativeSource AncestorType=UserControl}}"
                 x:CompileBindings="False"
                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"

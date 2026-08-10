@@ -20,7 +20,6 @@
           <DataGrid ItemsSource="{Binding AvailableObjects}"
                     x:Name="subindexGrid"
                     CanUserResizeColumns="True"
-                    local:DataGridBehavior.LockAutoMinWidth="True"
                     GridLinesVisibility="Horizontal"
                     BorderThickness="0"
                     Background="Transparent" RowBackground="Transparent"
@@ -35,10 +34,10 @@
               </Style>
             </DataGrid.Styles>
             <DataGrid.Columns>
-              <DataGridTextColumn Header="{DynamicResource str_pdo_col_index}" Width="Auto" Binding="{Binding IndexString}"/>
-              <DataGridTextColumn Header="{DynamicResource str_pdo_col_sub}" Width="Auto" Binding="{Binding SubIndexString}"/>
-              <DataGridTextColumn Header="{DynamicResource str_pdo_col_name}" Width="2*" Binding="{Binding Name}"/>
-              <DataGridTextColumn Header="{DynamicResource str_pdo_col_datatype}" Width="0.9*" Binding="{Binding ObjectTypeString}"/>
+              <DataGridTextColumn Header="{DynamicResource str_pdo_col_index}" Width="Auto" MinWidth="80" Binding="{Binding IndexString}"/>
+              <DataGridTextColumn Header="{DynamicResource str_pdo_col_sub}" Width="Auto" MinWidth="80" Binding="{Binding SubIndexString}"/>
+              <DataGridTextColumn Header="{DynamicResource str_pdo_col_name}" Width="*" Binding="{Binding Name}"/>
+              <DataGridTextColumn Header="{DynamicResource str_pdo_col_datatype}" Width="Auto" Binding="{Binding ObjectTypeString}"/>
               <DataGridTextColumn Header="{DynamicResource str_pdo_col_bits}" Width="Auto" Binding="{Binding TypeSize}"/>
             </DataGrid.Columns>
           </DataGrid>
@@ -108,7 +107,7 @@
 
           <ScrollViewer x:Name="MapScrollViewer" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" AllowAutoHide="False" MaxHeight="250">
             <Border BorderBrush="LightGray" BorderThickness="1,1,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-              <Grid x:Name="MappingGrid" ColumnDefinitions="50,70,110">
+              <Grid x:Name="MappingGrid" ColumnDefinitions="50,80,110">
                 <Border Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" BorderBrush="LightGray" BorderThickness="0,0,1,1" Padding="10,5">
                   <TextBlock Text="{DynamicResource str_pdo_id}" FontWeight="Medium" Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                 </Border>

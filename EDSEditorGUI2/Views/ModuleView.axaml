@@ -23,7 +23,6 @@
                 <DataGrid ItemsSource="{Binding Modules}" SelectedItem="{Binding SelectedModule}"
                           AutoGenerateColumns="False" CanUserReorderColumns="False" 
                           CanUserResizeColumns="True" CanUserSortColumns="True"
-                          local:DataGridBehavior.LockAutoMinWidth="True"
                           HeadersVisibility="Column"
                           GridLinesVisibility="Horizontal" BorderThickness="0" CornerRadius="8"
                           RowBackground="Transparent">
@@ -47,7 +46,7 @@
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
-                        <DataGridTextColumn Header="{DynamicResource str_module_col_index}" Binding="{Binding Index}" IsReadOnly="True" Width="Auto"/>
+                        <DataGridTextColumn Header="{DynamicResource str_module_col_index}" Binding="{Binding Index}" IsReadOnly="True" Width="Auto" MinWidth="80"/>
                         <DataGridTextColumn Header="{DynamicResource str_module_col_product_name}" Binding="{Binding ProductName}" IsReadOnly="True" Width="*"/>
                         <DataGridTextColumn Header="{DynamicResource str_module_col_version}" Binding="{Binding ProductVersion}" IsReadOnly="True" Width="Auto"/>
                         <DataGridTextColumn Header="{DynamicResource str_module_col_revision}" Binding="{Binding ProductRevision}" IsReadOnly="True" Width="Auto"/>
@@ -67,7 +66,6 @@
                 <DataGrid ItemsSource="{Binding SelectedModule.ExtendedObjects}"
                           AutoGenerateColumns="False" CanUserReorderColumns="False" 
                           CanUserResizeColumns="True" CanUserSortColumns="True"
-                          local:DataGridBehavior.LockAutoMinWidth="True"
                           HeadersVisibility="Column"
                           GridLinesVisibility="Horizontal" BorderThickness="0" CornerRadius="8"
                           RowBackground="Transparent">
@@ -81,7 +79,7 @@
                         </Style>
                     </DataGrid.Styles>
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="{DynamicResource str_module_col_index}" Binding="{Binding IndexHex}" IsReadOnly="True" Width="100"/>
+                        <DataGridTextColumn Header="{DynamicResource str_module_col_index}" Binding="{Binding IndexHex}" IsReadOnly="True" Width="Auto" MinWidth="80"/>
                         <DataGridTextColumn Header="{DynamicResource str_module_col_name}" Binding="{Binding Name}" IsReadOnly="True" Width="*"/>
                     </DataGrid.Columns>
                 </DataGrid>
