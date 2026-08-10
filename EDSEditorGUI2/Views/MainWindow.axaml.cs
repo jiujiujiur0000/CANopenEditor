@@ -648,7 +648,7 @@ public partial class MainWindow : Window
         var file = await topLevel.StorageProvider.SaveFilePickerAsync(new FilePickerSaveOptions
         {
             Title = "Export Device File",
-            DefaultExtension = ".eds",
+            DefaultExtension = ".xdd",
             SuggestedFileName = Path.GetFileNameWithoutExtension(targetDevice.ProjectInfo.ProjectFile),
             FileTypeChoices = [xdd11, edsFilter, dcfFilter]
         });
