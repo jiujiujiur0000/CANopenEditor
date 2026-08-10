@@ -1,4 +1,4 @@
-﻿using Avalonia.Controls;
+using Avalonia.Controls;
 using Avalonia.Headless;
 using Avalonia.Headless.XUnit;
 using Avalonia.Input;
@@ -15,6 +15,7 @@ public class ImportTests : IDisposable
     readonly MainWindowViewModel dc;
     readonly MenuItem? profileMenu;
     readonly TextBox? offsetsTextBox;
+    readonly InsertObjectsWindow? dialog;
 
     readonly ComboBox? target;
     readonly Button? insert;
@@ -44,15 +45,19 @@ public class ImportTests : IDisposable
         DS301Menu.Focus();
         window.KeyPressQwerty(PhysicalKey.Enter, RawInputModifiers.None);
 
+        Dispatcher.UIThread.RunJobs();
+        dialog = window.OwnedWindows.OfType<InsertObjectsWindow>().FirstOrDefault();
+        Assert.NotNull(dialog);
+
         // fetch common ctrls
-        offsetsTextBox = window.Find<TextBox>("InsertObjects_Offsets");
+        offsetsTextBox = dialog.Find<TextBox>("InsertObjects_Offsets");
         Assert.NotNull(offsetsTextBox);
 
-        target = window.Find<ComboBox>("InsertObjects_target");
+        target = dialog.Find<ComboBox>("InsertObjects_target");
         Assert.NotNull(target);
-        insert = window.Find<Button>("InsertObjects_Insert");
+        insert = dialog.Find<Button>("InsertObjects_Insert");
         Assert.NotNull(insert);
-        cancel = window.Find<Button>("InsertObjects_Cancel");
+        cancel = dialog.Find<Button>("InsertObjects_Cancel");
         Assert.NotNull(cancel);
     }
 
@@ -162,7 +167,7 @@ public class ImportTests : IDisposable
 
         var copyOfMergeStatus = new List<ODIndexMergeStatus>(dc.MergeStatus);
         // press enter to import.
-        window.KeyPressQwerty(PhysicalKey.Enter, RawInputModifiers.None);
+        dialog!.KeyPressQwerty(PhysicalKey.Enter, RawInputModifiers.None);
 
         // check that its no longer using memory
         Assert.Empty(dc.MergeStatus);
@@ -188,7 +193,7 @@ public class ImportTests : IDisposable
         insert!.Focus();
 
         // press enter to import.
-        window.KeyPressQwerty(PhysicalKey.Enter, RawInputModifiers.None);
+        dialog!.KeyPressQwerty(PhysicalKey.Enter, RawInputModifiers.None);
         //window.CaptureRenderedFrame()!.Save("file.png");
 
         // check that its no longer using memory
@@ -212,7 +217,7 @@ public class ImportTests : IDisposable
         insert!.Focus();
 
         // press enter to import.
-        window.KeyPressQwerty(PhysicalKey.Enter, RawInputModifiers.None);
+        dialog!.KeyPressQwerty(PhysicalKey.Enter, RawInputModifiers.None);
 
         // Check that 1000 is not merged as it is not selected for insertion
         Assert.False(dc.SelectedDevice!.Objects.TryGetValue("1000", out var index1001));
@@ -227,7 +232,7 @@ public class ImportTests : IDisposable
         cancel!.Focus();
 
         // press enter to cansel import.
-        window.KeyPressQwerty(PhysicalKey.Enter, RawInputModifiers.None);
+        dialog!.KeyPressQwerty(PhysicalKey.Enter, RawInputModifiers.None);
 
         // check that its no longer using memory
         Assert.Empty(dc.MergeStatus);
