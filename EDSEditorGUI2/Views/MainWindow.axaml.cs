@@ -663,18 +663,10 @@ public partial class MainWindow : Window
 
     private void RemoveDeviceClick(object? sender, RoutedEventArgs e)
     {
-        if (sender is MenuItem menuItem)
+        if (DataContext is MainWindowViewModel dc && dc.SelectedDevice != null)
         {
-            var device = menuItem.DataContext as ViewModels.Device;
-            if (device == null && menuItem.Parent is ContextMenu cm && cm.PlacementTarget is Avalonia.Controls.Control target)
-            {
-                device = target.DataContext as ViewModels.Device;
-            }
-
-            if (device != null && DataContext is MainWindowViewModel dc)
-            {
-                dc.CloseDevice(device);
-            }
+            dc.CloseDevice(dc.SelectedDevice);
+            TriggerAutoSave();
         }
     }
 

@@ -40,7 +40,7 @@
                     <Separator/>
                     <MenuItem Header="{DynamicResource str_menu_new_device}" Command="{Binding AddNewDevice}" IsEnabled="{Binding IsProjectMode}"/>
                     <MenuItem Header="{DynamicResource str_menu_import_device}" Click="OpenFileClick" IsEnabled="{Binding IsProjectMode}"/>
-                    <MenuItem Header="{DynamicResource str_menu_remove_device}" Command="{Binding CloseDeviceCommand}" CommandParameter="{Binding SelectedDevice}" IsEnabled="{Binding CanRemoveDevice}"/>
+                    <MenuItem Header="{DynamicResource str_menu_remove_device}" Click="RemoveDeviceClick" IsEnabled="{Binding CanRemoveDevice}"/>
                     <Separator/>
                     <MenuItem Header="{DynamicResource str_menu_recent}">
                         <MenuItem.Styles>
