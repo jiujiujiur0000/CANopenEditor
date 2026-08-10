@@ -225,11 +225,16 @@ namespace Tests
                 objecttype = ObjectType.RECORD,
                 Index = 0x2000
             };
+            PDOMappingType pdoType = PDOMappingType.no;
+            if (accessPDOProto == OdSubObject.Types.AccessPDO.T) pdoType = PDOMappingType.TPDO;
+            else if (accessPDOProto == OdSubObject.Types.AccessPDO.R) pdoType = PDOMappingType.RPDO;
+            else if (accessPDOProto == OdSubObject.Types.AccessPDO.Tr) pdoType = PDOMappingType.optional;
+
             var sub = new ODentry
             {
                 parent = od,
                 accesstype = datatypeEDS,
-                PDOtype = PDOMappingType.no,
+                PDOtype = pdoType,
             };
 
             od.subobjects.Add(0x00, sub);
@@ -368,12 +373,12 @@ namespace Tests
 
             var tmp = MappingEDS.MapFromProtobuffer(d);
             Assert.Equal(d.FileInfo.CreatedBy, tmp.fi.CreatedBy);
-            Assert.Equal(d.FileInfo.CreationTime.ToDateTime().ToString("h:mmtt"), tmp.fi.CreationTime);
+            Assert.Equal(d.FileInfo.CreationTime.ToDateTime().ToString("h:mmtt", CultureInfo.InvariantCulture), tmp.fi.CreationTime);
             Assert.Equal(d.FileInfo.CreationTime.ToDateTime().ToString("MM-dd-yyyy"), tmp.fi.CreationDate);
             Assert.Equal(d.FileInfo.Description, tmp.fi.Description);
             Assert.Equal(d.FileInfo.FileVersion, tmp.fi.FileVersion);
             Assert.Equal(d.FileInfo.ModifiedBy, tmp.fi.ModifiedBy);
-            Assert.Equal(d.FileInfo.ModificationTime.ToDateTime().ToString("h:mmtt"), tmp.fi.ModificationTime);
+            Assert.Equal(d.FileInfo.ModificationTime.ToDateTime().ToString("h:mmtt", CultureInfo.InvariantCulture), tmp.fi.ModificationTime);
             Assert.Equal(d.FileInfo.ModificationTime.ToDateTime().ToString("MM-dd-yyyy"), tmp.fi.ModificationDate);
 
             //Assert is called inside the map function
@@ -453,7 +458,7 @@ namespace Tests
                 Name = "Name",
                 Alias = "alias",
             };
-            d.Objects.Add(index.ToString(), od);
+            d.Objects.Add(index.ToString("X"), od);
             var tmp = MappingEDS.MapFromProtobuffer(d);
             Assert.Equal(index, tmp.ods[index].Index);
             Assert.Equal(objTypeEDS, tmp.ods[index].objecttype);
@@ -502,8 +507,8 @@ namespace Tests
                 DataType = datatypeProto,
             };
 
-            od.SubObjects.Add(subindex.ToString(), sub);
-            d.Objects.Add(index.ToString(), od);
+            od.SubObjects.Add(subindex.ToString("X"), sub);
+            d.Objects.Add(index.ToString("X"), od);
 
             var tmp = MappingEDS.MapFromProtobuffer(d);
 
@@ -533,8 +538,8 @@ namespace Tests
                 Pdo = accessPDOProto,
             };
 
-            od.SubObjects.Add(subindex.ToString(), sub);
-            d.Objects.Add(index.ToString(), od);
+            od.SubObjects.Add(subindex.ToString("X"), sub);
+            d.Objects.Add(index.ToString("X"), od);
 
             var tmp = MappingEDS.MapFromProtobuffer(d);
 
