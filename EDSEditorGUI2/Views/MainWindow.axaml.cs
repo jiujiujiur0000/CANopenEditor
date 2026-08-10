@@ -1,4 +1,4 @@
-using Avalonia.Controls;
+﻿using Avalonia.Controls;
 using Avalonia.Controls.Templates;
 using Avalonia.Data;
 using Avalonia.Interactivity;
@@ -27,7 +27,7 @@ public partial class MainWindow : Window
             if (DataContext is MainWindowViewModel dc)
             {
                 dc.IsLoading = true;
-                _isProgrammaticChange = true;
+                IsProgrammaticChange = true;
                 
                 Console.WriteLine($"[Perf] Starting Task.Run at {sw.ElapsedMilliseconds} ms");
                 // Run heavy parsing and mapping in background task to avoid UI freeze
@@ -109,7 +109,7 @@ public partial class MainWindow : Window
                     Avalonia.Threading.Dispatcher.UIThread.Post(() => { 
                         Console.WriteLine($"[Perf] UI Settle Background Task Executed after {sw.ElapsedMilliseconds - captureSw} ms layout delay");
                         dc.IsLoading = false;
-                        _isProgrammaticChange = false; 
+                        IsProgrammaticChange = false; 
                     }, Avalonia.Threading.DispatcherPriority.Background);
                 }
                 else
@@ -175,21 +175,21 @@ public partial class MainWindow : Window
         }, Avalonia.Threading.DispatcherPriority.Background);
     }
 
-    private bool _isProgrammaticChange = false;
+    public bool IsProgrammaticChange { get; set; } = false;
 
     private void OnAnyInteractionTriggerAutoSave(object? sender, RoutedEventArgs e)
     {
-        if (_isProgrammaticChange) return;
+        if (IsProgrammaticChange) return;
 
         if (e.Source is Avalonia.Controls.Control control)
         {
-            // 忽略添加索引弹窗中的输入控件，防止边打字边触发自动保存
+            // 蹇界暐娣诲姞绱㈠紩寮圭獥涓殑杈撳叆鎺т欢锛岄槻姝㈣竟鎵撳瓧杈硅Е鍙戣嚜鍔ㄤ繚瀛?
             if (control.Name == "index" || control.Name == "name" || control.Name == "type")
             {
                 return;
             }
 
-            // 忽略偏好设置(PreferencesView)弹窗里的所有输入修改
+            // 蹇界暐鍋忓ソ璁剧疆(PreferencesView)寮圭獥閲岀殑鎵€鏈夎緭鍏ヤ慨鏀?
             Avalonia.StyledElement? p = control;
             while (p != null)
             {
@@ -200,7 +200,7 @@ public partial class MainWindow : Window
 
 
 
-        // 对于按键抬起事件，只响应来自实际输入控件的事件
+        // 瀵逛簬鎸夐敭鎶捣浜嬩欢锛屽彧鍝嶅簲鏉ヨ嚜瀹為檯杈撳叆鎺т欢鐨勪簨浠?
         if (e.RoutedEvent == Avalonia.Input.InputElement.KeyUpEvent)
         {
             if (e.Source is not Avalonia.Controls.TextBox && 
@@ -210,8 +210,8 @@ public partial class MainWindow : Window
             }
         }
 
-        // 对于点击事件，只响应来自 CheckBox 或 RadioButton 的事件
-        // (注意：ComboBox 下拉框展开时也会触发内部 ToggleButton 的点击，必须排除)
+        // 瀵逛簬鐐瑰嚮浜嬩欢锛屽彧鍝嶅簲鏉ヨ嚜 CheckBox 鎴?RadioButton 鐨勪簨浠?
+        // (娉ㄦ剰锛欳omboBox 涓嬫媺妗嗗睍寮€鏃朵篃浼氳Е鍙戝唴閮?ToggleButton 鐨勭偣鍑伙紝蹇呴』鎺掗櫎)
         if (e.RoutedEvent == Avalonia.Controls.Button.ClickEvent)
         {
             if (e.Source is not Avalonia.Controls.CheckBox && 
@@ -221,7 +221,7 @@ public partial class MainWindow : Window
             }
         }
 
-        // 对于选择变化事件，只响应 ComboBox
+        // 瀵逛簬閫夋嫨鍙樺寲浜嬩欢锛屽彧鍝嶅簲 ComboBox
         if (e.RoutedEvent == Avalonia.Controls.Primitives.SelectingItemsControl.SelectionChangedEvent)
         {
             if (e.Source is not Avalonia.Controls.ComboBox)
@@ -570,7 +570,7 @@ public partial class MainWindow : Window
             if (DataContext is MainWindowViewModel dc)
             {
                 dc.IsLoading = true;
-                _isProgrammaticChange = true;
+                IsProgrammaticChange = true;
                 
                 var loadedDevices = await System.Threading.Tasks.Task.Run(() =>
                 {
@@ -642,7 +642,7 @@ public partial class MainWindow : Window
                 Avalonia.Threading.Dispatcher.UIThread.Post(() => 
                 { 
                     dc.IsLoading = false;
-                    _isProgrammaticChange = false; 
+                    IsProgrammaticChange = false; 
                 }, Avalonia.Threading.DispatcherPriority.Background);
             }
         }
@@ -915,9 +915,9 @@ public partial class MainWindow : Window
                 }
             }
             
-            _isProgrammaticChange = true;
+            IsProgrammaticChange = true;
             dc.CloseAllDevices();
-            _isProgrammaticChange = false;
+            IsProgrammaticChange = false;
         }
     }
 
@@ -1206,4 +1206,4 @@ public partial class MainWindow : Window
                 Debug.WriteLine($"Failed to open URL in browser: {ex}");
             }
         }
-    }
+    }

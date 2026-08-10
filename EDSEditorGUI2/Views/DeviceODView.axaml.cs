@@ -49,25 +49,34 @@ public partial class DeviceODView : UserControl
     {
         if (sender is DataGrid s && DataContext is ViewModels.ObjectDictionary dc)
         {
-            if (s.SelectedItem is KeyValuePair<string, ViewModels.OdObject> selected)
+            MainWindow? mw = TopLevel.GetTopLevel(this) as MainWindow;
+            if (mw != null) mw.IsProgrammaticChange = true;
+            try
             {
-                dc.SelectedObject = selected;
-                foreach (var dg in _odViews)
+                if (s.SelectedItem is KeyValuePair<string, ViewModels.OdObject> selected)
                 {
-                    if (dg != s)
+                    dc.SelectedObject = selected;
+                    foreach (var dg in _odViews)
                     {
-                        dg.SelectedItem = null;
+                        if (dg != s)
+                        {
+                            dg.SelectedItem = null;
+                        }
+                    }
+                    
+                    if (selected.Value.IsVar && selected.Value.SubObjects.Count > 0)
+                    {
+                        subindexGrid.SelectedItem = selected.Value.SubObjects[0];
+                    }
+                    else
+                    {
+                        subindexGrid.SelectedItem = null;
                     }
                 }
-                
-                if (selected.Value.IsVar && selected.Value.SubObjects.Count > 0)
-                {
-                    subindexGrid.SelectedItem = selected.Value.SubObjects[0];
-                }
-                else
-                {
-                    subindexGrid.SelectedItem = null;
-                }
+            }
+            finally
+            {
+                if (mw != null) mw.IsProgrammaticChange = false;
             }
         }
     }
@@ -86,17 +95,26 @@ public partial class DeviceODView : UserControl
     {
         if (sender is DataGrid s && DataContext is ViewModels.ObjectDictionary dc)
         {
-            if (s.SelectedItem is KeyValuePair<string, ViewModels.OdSubObject> selected)
+            MainWindow? mw = TopLevel.GetTopLevel(this) as MainWindow;
+            if (mw != null) mw.IsProgrammaticChange = true;
+            try
             {
-                dc.SelectedSubObject = selected;
-                dc.SelectedSubObjects.Clear();
-                foreach (var row in s.SelectedItems)
+                if (s.SelectedItem is KeyValuePair<string, ViewModels.OdSubObject> selected)
                 {
-                    if (row is KeyValuePair<string, ViewModels.OdSubObject> subObj)
+                    dc.SelectedSubObject = selected;
+                    dc.SelectedSubObjects.Clear();
+                    foreach (var row in s.SelectedItems)
                     {
-                        dc.SelectedSubObjects.Add(subObj);
+                        if (row is KeyValuePair<string, ViewModels.OdSubObject> subObj)
+                        {
+                            dc.SelectedSubObjects.Add(subObj);
+                        }
                     }
                 }
+            }
+            finally
+            {
+                if (mw != null) mw.IsProgrammaticChange = false;
             }
         }
     }
