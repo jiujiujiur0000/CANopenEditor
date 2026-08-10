@@ -8,11 +8,21 @@ jobs:
           contents: write
           pull-requests: write
         steps:
-            - name: Contribute List
+            - name: Contribute List (English)
               uses: akhilmhdh/contributors-readme-action@v2.3.11
               with:
                 use_username: true
+                readme_path: "README.md"
                 commit_message: "[ROOT][DOCS] contrib-readme-action has updated readme"
                 pr_title_on_protected: "[ROOT][DOCS] contributors readme action update"
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            - name: Contribute List (Chinese)
+              uses: akhilmhdh/contributors-readme-action@v2.3.11
+              with:
+                use_username: true
+                readme_path: "README_zh.md"
+                commit_message: "[ROOT][DOCS] contrib-readme-action has updated readme_zh"
+                pr_title_on_protected: "[ROOT][DOCS] contributors readme_zh action update"
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
