@@ -1,0 +1,413 @@
+{
+  "instances": [
+    {
+      "file": "EDSEditorGUI2\\ViewModels\\DeviceCommissioning.cs",
+      "line": 11,
+      "original": "[Range(1, 127, ErrorMessage = \"节点ID必须在1到127之间\")]",
+      "text": "节点ID必须在1到127之间"
+    },
+    {
+      "file": "EDSEditorGUI2\\ViewModels\\DeviceCommissioning.cs",
+      "line": 15,
+      "original": "[Required(ErrorMessage = \"节点名称不能为空\")]",
+      "text": "节点名称不能为空"
+    },
+    {
+      "file": "EDSEditorGUI2\\ViewModels\\DeviceCommissioning.cs",
+      "line": 25,
+      "original": "[Required(ErrorMessage = \"网络名称不能为空\")]",
+      "text": "网络名称不能为空"
+    },
+    {
+      "file": "EDSEditorGUI2\\ViewModels\\DeviceInfo.cs",
+      "line": 10,
+      "original": "[Required(ErrorMessage = \"供应商名称不能为空\")]",
+      "text": "供应商名称不能为空"
+    },
+    {
+      "file": "EDSEditorGUI2\\ViewModels\\DeviceInfo.cs",
+      "line": 14,
+      "original": "[Required(ErrorMessage = \"供应商编号不能为空\")]",
+      "text": "供应商编号不能为空"
+    },
+    {
+      "file": "EDSEditorGUI2\\ViewModels\\DeviceInfo.cs",
+      "line": 15,
+      "original": "[RegularExpression(@\"^(0[xX])?[0-9a-fA-F]+$|^\\d+$\", ErrorMessage = \"必须是有效的数字或十六进制\")]",
+      "text": "必须是有效的数字或十六进制"
+    },
+    {
+      "file": "EDSEditorGUI2\\ViewModels\\DeviceInfo.cs",
+      "line": 19,
+      "original": "[Required(ErrorMessage = \"产品名称不能为空\")]",
+      "text": "产品名称不能为空"
+    },
+    {
+      "file": "EDSEditorGUI2\\ViewModels\\DeviceInfo.cs",
+      "line": 23,
+      "original": "[Required(ErrorMessage = \"产品编号不能为空\")]",
+      "text": "产品编号不能为空"
+    },
+    {
+      "file": "EDSEditorGUI2\\ViewModels\\DeviceInfo.cs",
+      "line": 24,
+      "original": "[RegularExpression(@\"^(0[xX])?[0-9a-fA-F]+$|^\\d+$\", ErrorMessage = \"必须是有效的数字或十六进制\")]",
+      "text": "必须是有效的数字或十六进制"
+    },
+    {
+      "file": "EDSEditorGUI2\\ViewModels\\DeviceInfo.cs",
+      "line": 28,
+      "original": "[Required(ErrorMessage = \"修订版本号不能为空\")]",
+      "text": "修订版本号不能为空"
+    },
+    {
+      "file": "EDSEditorGUI2\\ViewModels\\DeviceInfo.cs",
+      "line": 29,
+      "original": "[RegularExpression(@\"^(0[xX])?[0-9a-fA-F]+$|^\\d+$\", ErrorMessage = \"必须是有效的数字或十六进制\")]",
+      "text": "必须是有效的数字或十六进制"
+    },
+    {
+      "file": "EDSEditorGUI2\\ViewModels\\DeviceInfo.cs",
+      "line": 81,
+      "original": "[Range(0, 127, ErrorMessage = \"监控节点数不能超过127\")]",
+      "text": "监控节点数不能超过127"
+    },
+    {
+      "file": "EDSEditorGUI2\\ViewModels\\FileInfo.cs",
+      "line": 11,
+      "original": "[Required(ErrorMessage = \"文件版本不能为空\")]",
+      "text": "文件版本不能为空"
+    },
+    {
+      "file": "EDSEditorGUI2\\ViewModels\\FileInfo.cs",
+      "line": 21,
+      "original": "[Required(ErrorMessage = \"创建者不能为空\")]",
+      "text": "创建者不能为空"
+    },
+    {
+      "file": "EDSEditorGUI2\\ViewModels\\FileInfo.cs",
+      "line": 28,
+      "original": "[Required(ErrorMessage = \"修改者不能为空\")]",
+      "text": "修改者不能为空"
+    },
+    {
+      "file": "EDSEditorGUI2\\ViewModels\\OdSubObject.cs",
+      "line": 11,
+      "original": "[Required(ErrorMessage = \"子对象名称不能为空\")]",
+      "text": "子对象名称不能为空"
+    },
+    {
+      "file": "EDSEditorGUI2\\ViewModels\\PreferencesViewModel.cs",
+      "line": 44,
+      "original": "new(\"zh-CN\", \"中文\")",
+      "text": "中文"
+    },
+    {
+      "file": "EDSEditorGUI2\\Views\\CollisionDialog.axaml.cs",
+      "line": 52,
+      "original": "MessageText.Text = $\"对象字典中已存在索引 {indexHex}，您希望如何处理？\\n(当前进度: {_currentIndex + 1} / {_tasks.Count})\";",
+      "text": "对象字典中已存在索引 {indexHex}，您希望如何处理？\\n(当前进度: {_currentIndex + 1} / {_tasks.Count})"
+    },
+    {
+      "file": "EDSEditorGUI2\\Views\\DeviceInfoView.axaml",
+      "line": 29,
+      "original": "<TextBlock Text=\"设备信息\" FontWeight=\"Bold\" FontSize=\"15\"/>",
+      "text": "设备信息"
+    },
+    {
+      "file": "EDSEditorGUI2\\Views\\DeviceInfoView.axaml",
+      "line": 31,
+      "original": "<TextBlock Grid.Row=\"0\" Grid.Column=\"0\" Text=\"产品名称\" VerticalAlignment=\"Center\" Margin=\"0,0,0,15\"/>",
+      "text": "产品名称"
+    },
+    {
+      "file": "EDSEditorGUI2\\Views\\DeviceInfoView.axaml",
+      "line": 34,
+      "original": "<TextBlock Grid.Row=\"1\" Grid.Column=\"0\" Text=\"产品 ID\" VerticalAlignment=\"Center\" Margin=\"0,0,0,15\"/>",
+      "text": "产品 ID"
+    },
+    {
+      "file": "EDSEditorGUI2\\Views\\DeviceInfoView.axaml",
+      "line": 37,
+      "original": "<TextBlock Grid.Row=\"2\" Grid.Column=\"0\" Text=\"厂商名称\" VerticalAlignment=\"Center\" Margin=\"0,0,0,15\"/>",
+      "text": "厂商名称"
+    },
+    {
+      "file": "EDSEditorGUI2\\Views\\DeviceInfoView.axaml",
+      "line": 40,
+      "original": "<TextBlock Grid.Row=\"3\" Grid.Column=\"0\" Text=\"厂商 ID\" VerticalAlignment=\"Center\" Margin=\"0,0,0,15\"/>",
+      "text": "厂商 ID"
+    },
+    {
+      "file": "EDSEditorGUI2\\Views\\DeviceInfoView.axaml",
+      "line": 43,
+      "original": "<TextBlock Grid.Row=\"4\" Grid.Column=\"0\" Text=\"修订版本\" VerticalAlignment=\"Center\"/>",
+      "text": "修订版本"
+    },
+    {
+      "file": "EDSEditorGUI2\\Views\\DeviceInfoView.axaml",
+      "line": 55,
+      "original": "<TextBlock Text=\"文件信息\" FontWeight=\"Bold\" FontSize=\"15\"/>",
+      "text": "文件信息"
+    },
+    {
+      "file": "EDSEditorGUI2\\Views\\DeviceInfoView.axaml",
+      "line": 58,
+      "original": "<TextBlock Grid.Row=\"0\" Grid.Column=\"0\" Text=\"文件版本\" VerticalAlignment=\"Center\" Margin=\"0,0,0,15\"/>",
+      "text": "文件版本"
+    },
+    {
+      "file": "EDSEditorGUI2\\Views\\DeviceInfoView.axaml",
+      "line": 61,
+      "original": "<TextBlock Grid.Row=\"1\" Grid.Column=\"0\" Text=\"创建者\" VerticalAlignment=\"Center\" Margin=\"0,0,0,15\"/>",
+      "text": "创建者"
+    },
+    {
+      "file": "EDSEditorGUI2\\Views\\DeviceInfoView.axaml",
+      "line": 64,
+      "original": "<TextBlock Grid.Row=\"2\" Grid.Column=\"0\" Text=\"创建时间\" VerticalAlignment=\"Center\" Margin=\"0,0,0,15\"/>",
+      "text": "创建时间"
+    },
+    {
+      "file": "EDSEditorGUI2\\Views\\DeviceInfoView.axaml",
+      "line": 67,
+      "original": "<TextBlock Grid.Row=\"3\" Grid.Column=\"0\" Text=\"修改者\" VerticalAlignment=\"Center\" Margin=\"0,0,0,15\"/>",
+      "text": "修改者"
+    },
+    {
+      "file": "EDSEditorGUI2\\Views\\DeviceInfoView.axaml",
+      "line": 70,
+      "original": "<TextBlock Grid.Row=\"4\" Grid.Column=\"0\" Text=\"修改时间\" VerticalAlignment=\"Center\" Margin=\"0,0,0,15\"/>",
+      "text": "修改时间"
+    },
+    {
+      "file": "EDSEditorGUI2\\Views\\DeviceInfoView.axaml",
+      "line": 73,
+      "original": "<TextBlock Grid.Row=\"5\" Grid.Column=\"0\" Text=\"文件描述\" VerticalAlignment=\"Center\" Margin=\"0,0,0,0\"/>",
+      "text": "文件描述"
+    },
+    {
+      "file": "EDSEditorGUI2\\Views\\DeviceInfoView.axaml",
+      "line": 81,
+      "original": "<TextBox Text=\"{Binding FileInfo.Description}\" Width=\"{Binding #fileDescButton.Bounds.Width}\" Height=\"200\" TextWrapping=\"Wrap\" AcceptsReturn=\"True\" ScrollViewer.VerticalScrollBarVisibility=\"Auto\" Watermark=\"在此处输入详细的文件描述 (支持多行)...\"/>",
+      "text": "在此处输入详细的文件描述 (支持多行)..."
+    },
+    {
+      "file": "EDSEditorGUI2\\Views\\DeviceInfoView.axaml",
+      "line": 109,
+      "original": "<CheckBox IsChecked=\"{Binding DeviceInfo.BaudRateAuto}\" Content=\"自动检测\" Margin=\"0,0,0,15\"/>",
+      "text": "自动检测"
+    },
+    {
+      "file": "EDSEditorGUI2\\Views\\DeviceInfoView.axaml",
+      "line": 120,
+      "original": "<TextBlock Text=\"高级特性\" FontWeight=\"Bold\" FontSize=\"15\"/>",
+      "text": "高级特性"
+    },
+    {
+      "file": "EDSEditorGUI2\\Views\\DeviceInfoView.axaml",
+      "line": 122,
+      "original": "<TextBlock Grid.Row=\"0\" Grid.Column=\"0\" Text=\"映射粒度\" VerticalAlignment=\"Center\" Margin=\"0,0,10,15\"/>",
+      "text": "映射粒度"
+    },
+    {
+      "file": "EDSEditorGUI2\\Views\\DeviceInfoView.axaml",
+      "line": 151,
+      "original": "<TextBlock Grid.Row=\"0\" Grid.Column=\"0\" Text=\"节点 ID\" VerticalAlignment=\"Center\" Margin=\"0,0,10,15\"/>",
+      "text": "节点 ID"
+    },
+    {
+      "file": "EDSEditorGUI2\\Views\\DeviceInfoView.axaml",
+      "line": 154,
+      "original": "<TextBlock Grid.Row=\"0\" Grid.Column=\"3\" Text=\"节点名称\" VerticalAlignment=\"Center\" Margin=\"0,0,10,15\"/>",
+      "text": "节点名称"
+    },
+    {
+      "file": "EDSEditorGUI2\\Views\\DeviceInfoView.axaml",
+      "line": 158,
+      "original": "<TextBlock Grid.Row=\"1\" Grid.Column=\"0\" Text=\"通信波特率\" VerticalAlignment=\"Center\" Margin=\"0,0,10,15\"/>",
+      "text": "通信波特率"
+    },
+    {
+      "file": "EDSEditorGUI2\\Views\\DeviceODView.axaml",
+      "line": 99,
+      "original": "<TextBox Text=\"{Binding SelectedObject.Value.Description}\" Width=\"{Binding #odDescButton.Bounds.Width}\" Height=\"200\" TextWrapping=\"Wrap\" AcceptsReturn=\"True\" ScrollViewer.VerticalScrollBarVisibility=\"Auto\" Watermark=\"在此处输入详细描述 (支持多行)...\"/>",
+      "text": "在此处输入详细描述 (支持多行)..."
+    },
+    {
+      "file": "EDSEditorGUI2\\Views\\InsertObjectsWindow.axaml",
+      "line": 29,
+      "original": "<TextBox x:Name=\"InsertObjects_Offsets\" Watermark=\"例如：0 100 500\" Text=\"0\" TextChanged=\"OnOffsetTextChanged\" HorizontalAlignment=\"Stretch\" />",
+      "text": "例如：0 100 500"
+    },
+    {
+      "file": "EDSEditorGUI2\\Views\\MainWindow.axaml",
+      "line": 166,
+      "original": "ToolTip.Tip=\"有未保存的修改\"/>",
+      "text": "有未保存的修改"
+    },
+    {
+      "file": "EDSEditorGUI2\\Views\\MainWindow.axaml",
+      "line": 191,
+      "original": "<TextBlock Text=\"未保存的修改\" FontWeight=\"Bold\" FontSize=\"18\"/>",
+      "text": "未保存的修改"
+    },
+    {
+      "file": "EDSEditorGUI2\\Views\\MainWindow.axaml",
+      "line": 192,
+      "original": "<TextBlock Text=\"您有未保存的修改，是否在退出前将它们保存为项目？\" TextWrapping=\"Wrap\"/>",
+      "text": "您有未保存的修改，是否在退出前将它们保存为项目？"
+    },
+    {
+      "file": "EDSEditorGUI2\\Views\\MainWindow.axaml",
+      "line": 194,
+      "original": "<Button Content=\"保存\" Command=\"{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=dialogHost:DialogHost}, Path=CloseDialogCommand}\" CommandParameter=\"Save\" Classes=\"accent\"/>",
+      "text": "保存"
+    },
+    {
+      "file": "EDSEditorGUI2\\Views\\MainWindow.axaml",
+      "line": 195,
+      "original": "<Button Content=\"丢弃\" Command=\"{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=dialogHost:DialogHost}, Path=CloseDialogCommand}\" CommandParameter=\"Discard\"/>",
+      "text": "丢弃"
+    },
+    {
+      "file": "EDSEditorGUI2\\Views\\MainWindow.axaml",
+      "line": 196,
+      "original": "<Button Content=\"取消\" Command=\"{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=dialogHost:DialogHost}, Path=CloseDialogCommand}\" CommandParameter=\"Cancel\"/>",
+      "text": "取消"
+    },
+    {
+      "file": "EDSEditorGUI2\\Views\\MainWindow.axaml",
+      "line": 201,
+      "original": "<TextBlock Text=\"无法打开文件\" FontWeight=\"Bold\" FontSize=\"18\" Foreground=\"Red\"/>",
+      "text": "无法打开文件"
+    },
+    {
+      "file": "EDSEditorGUI2\\Views\\MainWindow.axaml",
+      "line": 202,
+      "original": "<TextBlock Text=\"文件格式可能已损坏，或保存时不完整（缺少设备信息）。\" TextWrapping=\"Wrap\"/>",
+      "text": "文件格式可能已损坏，或保存时不完整（缺少设备信息）。"
+    },
+    {
+      "file": "EDSEditorGUI2\\Views\\MainWindow.axaml",
+      "line": 204,
+      "original": "<Button Content=\"确定\" Command=\"{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=dialogHost:DialogHost}, Path=CloseDialogCommand}\" CommandParameter=\"OK\" Classes=\"accent\"/>",
+      "text": "确定"
+    },
+    {
+      "file": "EDSEditorGUI2\\Views\\MainWindow.axaml",
+      "line": 209,
+      "original": "<TextBlock Text=\"保存失败\" FontWeight=\"Bold\" FontSize=\"18\" Foreground=\"Red\"/>",
+      "text": "保存失败"
+    },
+    {
+      "file": "EDSEditorGUI2\\Views\\MainWindow.axaml",
+      "line": 210,
+      "original": "<TextBlock Text=\"保存项目时遇到错误。可能是工程中存在不兼容的特殊字符或内部数据损坏。请检查终端输出获取详情。\" TextWrapping=\"Wrap\"/>",
+      "text": "保存项目时遇到错误。可能是工程中存在不兼容的特殊字符或内部数据损坏。请检查终端输出获取详情。"
+    },
+    {
+      "file": "EDSEditorGUI2\\Views\\MainWindow.axaml",
+      "line": 212,
+      "original": "<Button Content=\"确定\" Command=\"{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=dialogHost:DialogHost}, Path=CloseDialogCommand}\" CommandParameter=\"OK\" Classes=\"accent\"/>",
+      "text": "确定"
+    },
+    {
+      "file": "EDSEditorGUI2\\Views\\MainWindow.axaml",
+      "line": 220,
+      "original": "<Button Content=\"确定\" Command=\"{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=dialogHost:DialogHost}, Path=CloseDialogCommand}\" CommandParameter=\"OK\" Classes=\"accent\"/>",
+      "text": "确定"
+    },
+    {
+      "file": "EDSEditorGUI2\\Views\\MainWindow.axaml",
+      "line": 221,
+      "original": "<Button Content=\"取消\" Command=\"{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=dialogHost:DialogHost}, Path=CloseDialogCommand}\" CommandParameter=\"Cancel\"/>",
+      "text": "取消"
+    },
+    {
+      "file": "EDSEditorGUI2\\Views\\MainWindow.axaml",
+      "line": 226,
+      "original": "<TextBlock Text=\"文件不存在\" FontWeight=\"Bold\" FontSize=\"18\" Foreground=\"Red\"/>",
+      "text": "文件不存在"
+    },
+    {
+      "file": "EDSEditorGUI2\\Views\\MainWindow.axaml",
+      "line": 229,
+      "original": "<Button Content=\"确定\" Command=\"{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=dialogHost:DialogHost}, Path=CloseDialogCommand}\" CommandParameter=\"OK\" Classes=\"accent\"/>",
+      "text": "确定"
+    },
+    {
+      "file": "EDSEditorGUI2\\Views\\ODIndexRangeView.axaml.cs",
+      "line": 140,
+      "original": "errorText.Text = $\"索引超出范围。有效范围: 0x{min:X4} - 0x{max:X4}。\";",
+      "text": "索引超出范围。有效范围: 0x{min:X4} - 0x{max:X4}。"
+    },
+    {
+      "file": "EDSEditorGUI2\\Views\\ODIndexRangeView.axaml.cs",
+      "line": 155,
+      "original": "errorText.Text = $\"名称不能为空！\";",
+      "text": "名称不能为空！"
+    },
+    {
+      "file": "EDSEditorGUI2\\Views\\ODIndexRangeView.axaml.cs",
+      "line": 170,
+      "original": "errorText.Text = $\"索引 0x{param.Index:X4} 已经存在！\";",
+      "text": "索引 0x{param.Index:X4} 已经存在！"
+    }
+  ],
+  "unique_texts": [
+    "通信波特率",
+    "丢弃",
+    "创建时间",
+    "有未保存的修改",
+    "取消",
+    "产品 ID",
+    "自动检测",
+    "产品名称不能为空",
+    "索引超出范围。有效范围: 0x{min:X4} - 0x{max:X4}。",
+    "在此处输入详细的文件描述 (支持多行)...",
+    "文件不存在",
+    "保存项目时遇到错误。可能是工程中存在不兼容的特殊字符或内部数据损坏。请检查终端输出获取详情。",
+    "供应商编号不能为空",
+    "厂商名称",
+    "创建者",
+    "修改者",
+    "映射粒度",
+    "设备信息",
+    "文件版本不能为空",
+    "中文",
+    "文件格式可能已损坏，或保存时不完整（缺少设备信息）。",
+    "修订版本号不能为空",
+    "必须是有效的数字或十六进制",
+    "修改时间",
+    "确定",
+    "保存失败",
+    "产品编号不能为空",
+    "供应商名称不能为空",
+    "您有未保存的修改，是否在退出前将它们保存为项目？",
+    "创建者不能为空",
+    "高级特性",
+    "子对象名称不能为空",
+    "修改者不能为空",
+    "未保存的修改",
+    "网络名称不能为空",
+    "对象字典中已存在索引 {indexHex}，您希望如何处理？\\n(当前进度: {_currentIndex + 1} / {_tasks.Count})",
+    "产品名称",
+    "厂商 ID",
+    "无法打开文件",
+    "节点 ID",
+    "监控节点数不能超过127",
+    "修订版本",
+    "保存",
+    "节点名称",
+    "在此处输入详细描述 (支持多行)...",
+    "名称不能为空！",
+    "节点名称不能为空",
+    "文件信息",
+    "文件描述",
+    "节点ID必须在1到127之间",
+    "例如：0 100 500",
+    "索引 0x{param.Index:X4} 已经存在！",
+    "文件版本"
+  ]
+}

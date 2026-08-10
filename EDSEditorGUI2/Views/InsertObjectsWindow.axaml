@@ -26,7 +26,7 @@
                 <!-- Offset -->
                 <StackPanel Spacing="8">
                     <TextBlock Text="{DynamicResource str_insert_offset}" FontWeight="Medium" TextWrapping="Wrap"/>
-                    <TextBox x:Name="InsertObjects_Offsets" Watermark="例如：0 100 500" Text="0" TextChanged="OnOffsetTextChanged" HorizontalAlignment="Stretch" />
+                    <TextBox x:Name="InsertObjects_Offsets" Watermark="{DynamicResource str_dyn_051}" Text="0" TextChanged="OnOffsetTextChanged" HorizontalAlignment="Stretch" />
                 </StackPanel>
             </StackPanel>
         </StackPanel>

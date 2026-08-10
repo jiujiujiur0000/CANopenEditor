@@ -49,7 +49,7 @@ public partial class CollisionDialog : UserControl
             }
             else
             {
-                MessageText.Text = $"对象字典中已存在索引 {indexHex}，您希望如何处理？\n(当前进度: {_currentIndex + 1} / {_tasks.Count})";
+                MessageText.Text = string.Format(Avalonia.Application.Current.FindResource("str_dyn_036") as string ?? "", indexHex, _currentIndex + 1, _tasks.Count);
             }
             ApplyToAllCheckBox.IsChecked = false;
         }

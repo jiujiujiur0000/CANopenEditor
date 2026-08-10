@@ -26,21 +26,21 @@
                 BorderThickness="1" CornerRadius="8" Padding="25"
                 BoxShadow="0 4 10 0 #1A000000">
           <StackPanel Spacing="15" HorizontalAlignment="Stretch">
-            <TextBlock Text="设备信息" FontWeight="Bold" FontSize="15"/>
+            <TextBlock Text="{DynamicResource str_dyn_018}" FontWeight="Bold" FontSize="15"/>
             <Grid ColumnDefinitions="120, *" RowDefinitions="Auto, Auto, Auto, Auto, Auto">
-              <TextBlock Grid.Row="0" Grid.Column="0" Text="产品名称" VerticalAlignment="Center" Margin="0,0,0,15"/>
+              <TextBlock Grid.Row="0" Grid.Column="0" Text="{DynamicResource str_dyn_037}" VerticalAlignment="Center" Margin="0,0,0,15"/>
               <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding DeviceInfo.ProductName}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
               
-              <TextBlock Grid.Row="1" Grid.Column="0" Text="产品 ID" VerticalAlignment="Center" Margin="0,0,0,15"/>
+              <TextBlock Grid.Row="1" Grid.Column="0" Text="{DynamicResource str_dyn_006}" VerticalAlignment="Center" Margin="0,0,0,15"/>
               <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding DeviceInfo.ProductNumber}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
               
-              <TextBlock Grid.Row="2" Grid.Column="0" Text="厂商名称" VerticalAlignment="Center" Margin="0,0,0,15"/>
+              <TextBlock Grid.Row="2" Grid.Column="0" Text="{DynamicResource str_dyn_014}" VerticalAlignment="Center" Margin="0,0,0,15"/>
               <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding DeviceInfo.VendorName}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
               
-              <TextBlock Grid.Row="3" Grid.Column="0" Text="厂商 ID" VerticalAlignment="Center" Margin="0,0,0,15"/>
+              <TextBlock Grid.Row="3" Grid.Column="0" Text="{DynamicResource str_dyn_038}" VerticalAlignment="Center" Margin="0,0,0,15"/>
               <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding DeviceInfo.VendorNumber}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
               
-              <TextBlock Grid.Row="4" Grid.Column="0" Text="修订版本" VerticalAlignment="Center"/>
+              <TextBlock Grid.Row="4" Grid.Column="0" Text="{DynamicResource str_dyn_042}" VerticalAlignment="Center"/>
               <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding DeviceInfo.RevisionNumber}" HorizontalAlignment="Stretch" Classes="clearButton"/>
             </Grid>
           </StackPanel>
@@ -52,25 +52,25 @@
                 BorderThickness="1" CornerRadius="8" Padding="25"
                 BoxShadow="0 4 10 0 #1A000000">
           <StackPanel Spacing="15" HorizontalAlignment="Stretch">
-            <TextBlock Text="文件信息" FontWeight="Bold" FontSize="15"/>
+            <TextBlock Text="{DynamicResource str_dyn_048}" FontWeight="Bold" FontSize="15"/>
             
             <Grid ColumnDefinitions="120, *" RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto">
-              <TextBlock Grid.Row="0" Grid.Column="0" Text="文件版本" VerticalAlignment="Center" Margin="0,0,0,15"/>
+              <TextBlock Grid.Row="0" Grid.Column="0" Text="{DynamicResource str_dyn_053}" VerticalAlignment="Center" Margin="0,0,0,15"/>
               <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding FileInfo.FileVersion}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
               
-              <TextBlock Grid.Row="1" Grid.Column="0" Text="创建者" VerticalAlignment="Center" Margin="0,0,0,15"/>
+              <TextBlock Grid.Row="1" Grid.Column="0" Text="{DynamicResource str_dyn_015}" VerticalAlignment="Center" Margin="0,0,0,15"/>
               <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding FileInfo.CreatedBy}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
               
-              <TextBlock Grid.Row="2" Grid.Column="0" Text="创建时间" VerticalAlignment="Center" Margin="0,0,0,15"/>
+              <TextBlock Grid.Row="2" Grid.Column="0" Text="{DynamicResource str_dyn_003}" VerticalAlignment="Center" Margin="0,0,0,15"/>
               <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding FileInfo.CreationTime, StringFormat=\{0:yyyy/MM/dd HH:mm:ss\}}" IsEnabled="False" HorizontalAlignment="Stretch" Margin="0,0,0,15"/>
               
-              <TextBlock Grid.Row="3" Grid.Column="0" Text="修改者" VerticalAlignment="Center" Margin="0,0,0,15"/>
+              <TextBlock Grid.Row="3" Grid.Column="0" Text="{DynamicResource str_dyn_016}" VerticalAlignment="Center" Margin="0,0,0,15"/>
               <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding FileInfo.ModifiedBy}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
 
-              <TextBlock Grid.Row="4" Grid.Column="0" Text="修改时间" VerticalAlignment="Center" Margin="0,0,0,15"/>
+              <TextBlock Grid.Row="4" Grid.Column="0" Text="{DynamicResource str_dyn_024}" VerticalAlignment="Center" Margin="0,0,0,15"/>
               <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding FileInfo.ModificationTime, StringFormat=\{0:yyyy/MM/dd HH:mm:ss\}}" IsEnabled="False" HorizontalAlignment="Stretch" Margin="0,0,0,15"/>
 
-              <TextBlock Grid.Row="5" Grid.Column="0" Text="文件描述" VerticalAlignment="Center" Margin="0,0,0,0"/>
+              <TextBlock Grid.Row="5" Grid.Column="0" Text="{DynamicResource str_dyn_049}" VerticalAlignment="Center" Margin="0,0,0,0"/>
               <Button x:Name="fileDescButton" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" MinHeight="32" 
                       Background="{DynamicResource TextControlBackground}"
                       BorderBrush="{DynamicResource TextControlBorderBrush}"
@@ -78,7 +78,7 @@
                 <TextBlock Text="{Binding FileInfo.Description}" TextTrimming="CharacterEllipsis" MaxLines="1"/>
                 <Button.Flyout>
                   <Flyout Placement="Top" FlyoutPresenterClasses="desc-flyout">
-                    <TextBox Text="{Binding FileInfo.Description}" Width="{Binding #fileDescButton.Bounds.Width}" Height="200" TextWrapping="Wrap" AcceptsReturn="True" ScrollViewer.VerticalScrollBarVisibility="Auto" Watermark="在此处输入详细的文件描述 (支持多行)..."/>
+                    <TextBox Text="{Binding FileInfo.Description}" Width="{Binding #fileDescButton.Bounds.Width}" Height="200" TextWrapping="Wrap" AcceptsReturn="True" ScrollViewer.VerticalScrollBarVisibility="Auto" Watermark="{DynamicResource str_dyn_010}"/>
                   </Flyout>
                 </Button.Flyout>
               </Button>
@@ -106,7 +106,7 @@
               <CheckBox IsChecked="{Binding DeviceInfo.BaudRate500}" Content="500 kbit/s" Margin="0,0,0,15"/>
               <CheckBox IsChecked="{Binding DeviceInfo.BaudRate800}" Content="800 kbit/s" Margin="0,0,0,15"/>
               <CheckBox IsChecked="{Binding DeviceInfo.BaudRate1000}" Content="1000 kbit/s" Margin="0,0,0,15"/>
-              <CheckBox IsChecked="{Binding DeviceInfo.BaudRateAuto}" Content="自动检测" Margin="0,0,0,15"/>
+              <CheckBox IsChecked="{Binding DeviceInfo.BaudRateAuto}" Content="{DynamicResource str_dyn_007}" Margin="0,0,0,15"/>
             </UniformGrid>
           </StackPanel>
         </Border>
@@ -117,9 +117,9 @@
                 BorderThickness="1" CornerRadius="8" Padding="25"
                 BoxShadow="0 4 10 0 #1A000000">
           <StackPanel Spacing="15" HorizontalAlignment="Stretch">
-            <TextBlock Text="高级特性" FontWeight="Bold" FontSize="15"/>
+            <TextBlock Text="{DynamicResource str_dyn_031}" FontWeight="Bold" FontSize="15"/>
             <Grid ColumnDefinitions="Auto, *" RowDefinitions="Auto, Auto, Auto, Auto">
-              <TextBlock Grid.Row="0" Grid.Column="0" Text="映射粒度" VerticalAlignment="Center" Margin="0,0,10,15"/>
+              <TextBlock Grid.Row="0" Grid.Column="0" Text="{DynamicResource str_dyn_017}" VerticalAlignment="Center" Margin="0,0,10,15"/>
               <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding DeviceInfo.Granularity}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
 
               <TextBlock Grid.Row="1" Grid.Column="0" Text="{DynamicResource str_device_info_rpdo_count}" VerticalAlignment="Center" Margin="0,0,10,15"/>
@@ -148,14 +148,14 @@
 
             <Expander Header="{DynamicResource str_device_info_advanced_dcf}" HorizontalAlignment="Stretch" Margin="0,10,0,0" Background="Transparent">
               <Grid ColumnDefinitions="Auto, 1.5*, 0.5*, Auto, 1.5*" RowDefinitions="Auto, Auto, Auto, Auto" Margin="0,15,0,0">
-                <TextBlock Grid.Row="0" Grid.Column="0" Text="节点 ID" VerticalAlignment="Center" Margin="0,0,10,15"/>
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="{DynamicResource str_dyn_040}" VerticalAlignment="Center" Margin="0,0,10,15"/>
                 <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding DeviceCommissioning.NodeId}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,20,15"/>
                 
-                <TextBlock Grid.Row="0" Grid.Column="3" Text="节点名称" VerticalAlignment="Center" Margin="0,0,10,15"/>
+                <TextBlock Grid.Row="0" Grid.Column="3" Text="{DynamicResource str_dyn_044}" VerticalAlignment="Center" Margin="0,0,10,15"/>
                 <TextBox Grid.Row="0" Grid.Column="4" Text="{Binding DeviceCommissioning.NodeName}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
                 
                 <!-- Row 1 -->
-                <TextBlock Grid.Row="1" Grid.Column="0" Text="通信波特率" VerticalAlignment="Center" Margin="0,0,10,15"/>
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="{DynamicResource str_dyn_001}" VerticalAlignment="Center" Margin="0,0,10,15"/>
                 <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding DeviceCommissioning.Baudrate}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,20,15"/>
 
                 <TextBlock Grid.Row="1" Grid.Column="3" Text="{DynamicResource str_device_info_net_number}" VerticalAlignment="Center" Margin="0,0,10,15"/>

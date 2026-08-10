@@ -137,7 +137,7 @@ public partial class ODIndexRangeView : UserControl
                         var errorText = pnl.Children.OfType<TextBlock>().FirstOrDefault(x => x.Name == "errorText");
                         if (errorText != null)
                         {
-                            errorText.Text = $"索引超出范围。有效范围: 0x{min:X4} - 0x{max:X4}。";
+                            errorText.Text = string.Format(Avalonia.Application.Current.FindResource("str_dyn_009") as string ?? "", min, max);
                             errorText.IsVisible = true;
                         }
                     }
@@ -152,7 +152,7 @@ public partial class ODIndexRangeView : UserControl
                         var errorText = pnl.Children.OfType<TextBlock>().FirstOrDefault(x => x.Name == "errorText");
                         if (errorText != null)
                         {
-                            errorText.Text = $"名称不能为空！";
+                            errorText.Text = Avalonia.Application.Current.FindResource("str_dyn_046") as string;
                             errorText.IsVisible = true;
                         }
                     }
@@ -167,7 +167,7 @@ public partial class ODIndexRangeView : UserControl
                         var errorText = pnl.Children.OfType<TextBlock>().FirstOrDefault(x => x.Name == "errorText");
                         if (errorText != null)
                         {
-                            errorText.Text = $"索引 0x{param.Index:X4} 已经存在！";
+                            errorText.Text = string.Format(Avalonia.Application.Current.FindResource("str_dyn_052") as string ?? "", param.Index);
                             errorText.IsVisible = true;
                         }
                     }

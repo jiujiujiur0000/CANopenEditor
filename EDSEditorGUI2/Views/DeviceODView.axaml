@@ -96,7 +96,7 @@
                 <TextBlock Text="{Binding SelectedObject.Value.Description}" TextTrimming="CharacterEllipsis" MaxLines="1"/>
                 <Button.Flyout>
                   <Flyout Placement="Top" FlyoutPresenterClasses="desc-flyout">
-                    <TextBox Text="{Binding SelectedObject.Value.Description}" Width="{Binding #odDescButton.Bounds.Width}" Height="200" TextWrapping="Wrap" AcceptsReturn="True" ScrollViewer.VerticalScrollBarVisibility="Auto" Watermark="在此处输入详细描述 (支持多行)..."/>
+                    <TextBox Text="{Binding SelectedObject.Value.Description}" Width="{Binding #odDescButton.Bounds.Width}" Height="200" TextWrapping="Wrap" AcceptsReturn="True" ScrollViewer.VerticalScrollBarVisibility="Auto" Watermark="{DynamicResource str_dyn_045}"/>
                   </Flyout>
                 </Button.Flyout>
               </Button>
