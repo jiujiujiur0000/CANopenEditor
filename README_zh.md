@@ -25,15 +25,15 @@ CANopen 是一种国际标准化 (EN 50325-4) ([CiA301](https://can-cia.org/cia-
 
 - [LibEDSsharp](libEDSsharp/README.md)，一个用于操作 EDS 文件的 C# 核心库。它已经合并到上游，目前在此代码库中持续维护。
 - [CLI (命令行工具)](EDSSharp/README.md)，用于在所有支持的格式之间进行简单的转换。
-- [GUI (图形界面)](EDSEditorGUI/README.md)，用于全面操作和编辑您的 CANopen 文件。[该界面正在使用 Avalonia 重写以支持跨平台](EDSEditorGUI2/README.md)。
+- [GUI (图形界面)](EDSEditorGUI2/README.md)，用于全面操作和编辑您的 CANopen 文件，提供现代化的跨平台界面。
 
 如何使用
 --------
 
-1. [下载最新发布的二进制压缩包(zip)](https://github.com/CANopenNode/CANopenEditor/releases)。**请不要直接下载源码**。
-2. 解压缩文件。
-3. 进入 `net8.0-windows` 目录（或其他对应平台的目录）。
-4. 运行对应的可执行文件 (如 `.exe`)。
+1. [下载对应您操作系统 (Windows、macOS 或 Linux) 的最新发布版](https://github.com/CANopenNode/CANopenEditor/releases)。**请不要直接下载源码**。
+2. 解压缩下载的文件。
+3. 如果您使用 Windows，请直接运行 `CANopenEditor-Setup.exe` 进行安装，或解压便携版 `.zip` 后直接运行独立 `.exe`。
+4. 如果您使用 macOS/Linux，请解压 `.tar.gz` 压缩包，然后运行对应操作系统的可执行文件。
 
 支持的格式
 --------
@@ -57,12 +57,18 @@ CANopen 是一种国际标准化 (EN 50325-4) ([CiA301](https://can-cia.org/cia-
 | 网络 XML 设备配置文件            | CanOpenNetworkXDCv1.1                       | .nxdc  |
 | XML Profile 描述文件             | 无 (None)                                   | .xpd   |
 
+### CANopenEditor 专用格式
+
+| 描述                                     | 导出器                                                   | 格式            |
+|------------------------------------------|----------------------------------------------------------|-----------------|
+| CANopen 项目文件                         | CanOpenProject                                           | .cpj                 |
+
 ### CANopenNode 专用格式
 
 | 描述                                     | 导出器                                                   | 格式            |
 |------------------------------------------|----------------------------------------------------------|-----------------|
-| CanOpenNode 对象字典文件对               | CanOpenNode<br>CanOpenNodeV4                             | .h,.c           |
-| PCanOpenNode 项目文件                    | CanOpenNodeProtobuf(json)<br>CanOpenNodeProtobuf(binary) | .json<br>.binpb |
+| CanOpenNode 对象字典文件对               | CanOpenNode<br>CanOpenNodeV4                             | .h,.c                |
+| PCanOpenNode 项目文件                    | CanOpenNodeProtobuf(json)<br>CanOpenNodeProtobuf(binary) | .json<br>.binpb      |
 
 ### 文档格式
 
@@ -79,8 +85,8 @@ CANopen 是一种国际标准化 (EN 50325-4) ([CiA301](https://can-cia.org/cia-
 
 - [setup.nsi](setup.nsi) 是 Windows 安装脚本。
 - [Makefile](Makefile) 是 Linux 安装和操作脚本。
-- [EDSEditorGUI](EDSEditorGUI) 目录是旧版 GUI。功能完备但仅支持 Windows。
-- [EDSEditorGUI2](EDSEditorGUI2) 目录是新版跨平台 GUI。尚未完全完工，但原生支持 Windows、Mac 和 Linux 等操作系统。
+- [EDSEditorGUI](EDSEditorGUI) 目录是旧版 GUI。功能完备但仅支持 Windows (已弃用)。
+- [EDSEditorGUI2](EDSEditorGUI2) 目录是新版跨平台 GUI。提供现代化的界面，且原生完美支持 Windows、Mac 和 Linux 等操作系统。
 - [EDSSharp](EDSSharp) 目录是 CLI 命令行工具。目前主要用于简单的格式转换。
 - [GUITests](GUITests) 目录包含所有 GUI 单元测试。
 - [Images](Images) 目录包含文档中使用的所有图片。

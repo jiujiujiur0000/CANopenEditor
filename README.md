@@ -25,15 +25,15 @@ This repository is home to three projects:
 
 - [LibEDSsharp](libEDSsharp/README.md), a C# library for EDS files manipulation which went upstream and is now maintained in this repository.
 - [A CLI](EDSSharp/README.md), used for simple conversions across all supported formats.
-- [A GUI](EDSEditorGUI/README.md) for full manipulation of your CANopen files [which is being rewritten to be more multi platform](EDSEditorGUI2/README.md).
+- [A GUI](EDSEditorGUI2/README.md) for full manipulation of your CANopen files, featuring a modern and cross-platform interface.
 
 How to use
 --------
 
-1. [Download the latest release's binary zip file](https://github.com/CANopenNode/CANopenEditor/releases). DO NOT DOWNLOAD SOURCE CODE.
-2. Unzip it.
-3. Go to net8.0-windows directory.
-4. Execute the .exe .
+1. [Download the latest release for your platform (Windows, macOS, or Linux)](https://github.com/CANopenNode/CANopenEditor/releases). DO NOT DOWNLOAD SOURCE CODE.
+2. Unpack/Unzip the downloaded archive.
+3. For Windows, simply execute the `CANopenEditor-Setup.exe` to install, or run the standalone `.exe` from the portable `.zip` archive.
+4. For macOS/Linux, extract the `.tar.gz` and run the executable corresponding to your OS architecture.
 
 Available formats
 --------
@@ -57,12 +57,18 @@ Exhaustive list of the library's supported formats to date, sorted by category:<
 | Network XML Device Configuration | CanOpenNetworkXDCv1.1                       | .nxdc  |
 | XML Profile Description          | None                                        | .xpd   |
 
+### CANopenEditor specific formats
+
+| Description                              | Exporter                                                 | Format          |
+|------------------------------------------|----------------------------------------------------------|-----------------|
+| CANopen Project file                     | CanOpenProject                                           | .cpj                 |
+
 ### CANopenNode specific formats
 
 | Description                              | Exporter                                                 | Format          |
 |------------------------------------------|----------------------------------------------------------|-----------------|
-| CanOpenNode Object Dictionary file pairs | CanOpenNode<br>CanOpenNodeV4                             | .h,.c           |
-| PCanOpenNode Project file                | CanOpenNodeProtobuf(json)<br>CanOpenNodeProtobuf(binary) | .json<br>.binpb |
+| CanOpenNode Object Dictionary file pairs | CanOpenNode<br>CanOpenNodeV4                             | .h,.c                |
+| PCanOpenNode Project file                | CanOpenNodeProtobuf(json)<br>CanOpenNodeProtobuf(binary) | .json<br>.binpb      |
 
 ### Documentation formats
 
@@ -79,8 +85,8 @@ The main files and directories you'll need to understand are:
 
 - [setup.nsi](setup.nsi) is the Windows installer.
 - [Makefile](Makefile) is the Linux installation and manipulation script.
-- [EDSEditorGUI](EDSEditorGUI) directory is the old GUI. Fully functional but only works on Windows.
-- [EDSEditorGUI2](EDSEditorGUI2) directory is the new GUI. It is not fully finished yet but is meant to work on any Windows, Mac or Linux OS.
+- [EDSEditorGUI](EDSEditorGUI) directory is the old GUI. Fully functional but only works on Windows (Deprecated).
+- [EDSEditorGUI2](EDSEditorGUI2) directory is the new GUI. It is modern, cross-platform and fully functional natively on Windows, Mac and Linux.
 - [EDSSharp](EDSSharp) directory is the CLI. It is only meant for simple conversions for now.
 - [GUITests](GUITests) directory is the directory for all GUI unit tests. More tests, functional tests and tests for GUI2 may come here.
 - [Images](Images) directory is the directory containing any and all of the documentation's images.
