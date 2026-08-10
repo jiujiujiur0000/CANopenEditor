@@ -42,7 +42,7 @@
             </Style>
           </DataGrid.Styles>
       <DataGrid.Columns>
-        <DataGridTemplateColumn Header="{DynamicResource str_pdo_col_index}" Width="Auto">
+        <DataGridTemplateColumn Header="{DynamicResource str_pdo_col_index}" Width="Auto" MinWidth="80">
           <DataGridTemplateColumn.CellTemplate>
             <DataTemplate DataType="vm:OdObject"> <!-- Just dummy to suppress warning, actually it is KeyValuePair -->
               <TextBlock Text="{Binding Key, StringFormat='0x\{0\}'}" VerticalAlignment="Center" Margin="12,0"
