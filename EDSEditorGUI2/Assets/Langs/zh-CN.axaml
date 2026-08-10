@@ -111,9 +111,9 @@
     <sys:String x:Key="str_device_info_advanced_dcf">高级 DCF 配置</sys:String>
 
     <!-- Device Object Dictionary View -->
-    <sys:String x:Key="str_od_comm_params">通信特定参数</sys:String>
-    <sys:String x:Key="str_od_mfg_params">制造商特定参数</sys:String>
-    <sys:String x:Key="str_od_dev_params">设备规范特定参数</sys:String>
+    <sys:String x:Key="str_od_comm_params">通信参数</sys:String>
+    <sys:String x:Key="str_od_mfg_params">制造商参数</sys:String>
+    <sys:String x:Key="str_od_dev_params">设备规范参数</sys:String>
     
     <sys:String x:Key="str_od_col_sub">子索引</sys:String>
     <sys:String x:Key="str_od_col_name">名称</sys:String>

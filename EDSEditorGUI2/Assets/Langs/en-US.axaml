@@ -109,9 +109,9 @@
     <sys:String x:Key="str_device_info_advanced_dcf">Advanced DCF Config</sys:String>
 
     <!-- Device Object Dictionary View -->
-    <sys:String x:Key="str_od_comm_params">Communication Specific Parameters</sys:String>
-    <sys:String x:Key="str_od_mfg_params">Manufacturer Specific Parameters</sys:String>
-    <sys:String x:Key="str_od_dev_params">Device Profile Specific Parameters</sys:String>
+    <sys:String x:Key="str_od_comm_params">Communication Parameters</sys:String>
+    <sys:String x:Key="str_od_mfg_params">Manufacturer-Specific Parameters</sys:String>
+    <sys:String x:Key="str_od_dev_params">Device Profile Parameters</sys:String>
     
     <sys:String x:Key="str_od_col_sub">Sub</sys:String>
     <sys:String x:Key="str_od_col_name">Name</sys:String>
