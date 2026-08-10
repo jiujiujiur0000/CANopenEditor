@@ -8,18 +8,21 @@
 本项目复刻自 [CANopenEditor](https://github.com/CANopenNode/CANopenEditor.git)。
 原始的 CANopenEditor 是 [libedssharp](https://github.com/robincornelius/libedssharp) 的一个分支，原作者为 Robin Cornelius。
 
-CANopen 对象字典编辑器 (Object Dictionary Editor):
+CANopenEditor 是一个CANopen对象字典编辑器:
 
 - 导入：支持 EDS 或 XDD 格式的 CANopen 电子数据文档。
 - 导出：支持 EDS 或 XDD 格式的 CANopen 电子数据文档、文档说明、CANopenNode C 源代码文件等。
 - 界面：提供 CANopen 对象字典、设备信息等图形界面(GUI)编辑器。提供用于简单转换的命令行(CLI)客户端。
 
-CANopen 是一种国际标准化 (EN 50325-4) ([CiA301](https://can-cia.org/cia-groups/technical-documents)) 的高级协议，建立在 CAN 总线之上，用于嵌入式控制系统。关于 CANopen 的更多信息，请访问 <http://www.can-cia.org/。>
+## 1. 版本升级
 
-[CANopenNode](https://github.com/CANopenNode/CANopenNode) 是一个免费且开源的 CANopen 协议栈。
+**CANopenEditor2** 相比于原版进行了全面重构：
 
-代码库结构
---------
+- 采用全新的现代化 UI 设计，大幅提升了界面的清晰度与美观度；
+- 原生完美支持 Windows、macOS 和 Linux 跨平台运行；
+- 同时对整体交互体验进行了深度打磨与升级。
+
+## 2. 代码库结构
 
 本代码库包含三个主要项目：
 
@@ -27,59 +30,56 @@ CANopen 是一种国际标准化 (EN 50325-4) ([CiA301](https://can-cia.org/cia-
 - [CLI (命令行工具)](EDSSharp/README.md)，用于在所有支持的格式之间进行简单的转换。
 - [GUI (图形界面)](EDSEditorGUI2/README.md)，用于全面操作和编辑您的 CANopen 文件，提供现代化的跨平台界面。
 
-如何使用
---------
+## 3. 使用方法
 
 1. [下载对应您操作系统 (Windows、macOS 或 Linux) 的最新发布版](https://github.com/CANopenNode/CANopenEditor/releases)。**请不要直接下载源码**。
 2. 解压缩下载的文件。
 3. 如果您使用 Windows，请直接运行 `CANopenEditor-Setup.exe` 进行安装，或解压便携版 `.zip` 后直接运行独立 `.exe`。
 4. 如果您使用 macOS/Linux，请解压 `.tar.gz` 压缩包，然后运行对应操作系统的可执行文件。
 
-支持的格式
---------
+## 4. 支持的格式
 
 以下是迄今为止该库支持的格式完整列表，按类别排序：<br>
 
-### CANopenEditor 专用格式 (新增)
+- CANopenEditor 专用格式 (新增)
 
-| 描述                                     | 导出器                                                   | 格式            |
-|------------------------------------------|----------------------------------------------------------|-----------------|
-| 多设备 XML 项目描述文件                  | CanOpenProject                                           | .cpj            |
+    | 描述                                     | 导出器                                                   | 格式            |
+    |------------------------------------------|----------------------------------------------------------|-----------------|
+    | 多设备 XML 项目描述文件                  | CanOpenProject                                           | .cpj            |
 
-### CAN in Automation 官方格式
+- CAN in Automation 官方格式
 
-| 描述                                  | 导出器                                                     | 格式   |
-|---------------------------------------|------------------------------------------------------------|--------|
-| 电子数据文档 (CiA 306-1)              | ElectronicDataSheet                                        | .eds   |
-| 设备配置文件 (CiA 306-1)              | DeviceConfigurationFile                                    | .dcf   |
-| XML 设备描述文件 (CiA 311)            | CanOpenXDDv1.0<br>CanOpenXDDv1.1<br>CanOpenXDDv1.1stripped | .xdd   |
-| XML 设备配置文件 (CiA 311)            | CanOpenXDCv1.1                                             | .xdc   |
+    | 描述                                  | 导出器                                                     | 格式   |
+    |---------------------------------------|------------------------------------------------------------|--------|
+    | 电子数据文档 (CiA 306-1)              | ElectronicDataSheet                                        | .eds   |
+    | 设备配置文件 (CiA 306-1)              | DeviceConfigurationFile                                    | .dcf   |
+    | XML 设备描述文件 (CiA 311)            | CanOpenXDDv1.0<br>CanOpenXDDv1.1<br>CanOpenXDDv1.1stripped | .xdd   |
+    | XML 设备配置文件 (CiA 311)            | CanOpenXDCv1.1                                             | .xdc   |
 
-### CiA 官方扩展格式
+- CiA 官方扩展格式
 
-| 描述                             | 导出器                                      | 格式   |
-|----------------------------------|---------------------------------------------|--------|
-| 网络 XML 设备描述文件            | CanOpenNetworkv1.0<br>CanOpenNetworkXDDv1.1 | .nxdd  |
-| 网络 XML 设备配置文件            | CanOpenNetworkXDCv1.1                       | .nxdc  |
-| XML Profile 描述文件             | 无 (None)                                   | .xpd   |
+    | 描述                             | 导出器                                      | 格式   |
+    |----------------------------------|---------------------------------------------|--------|
+    | 网络 XML 设备描述文件            | CanOpenNetworkv1.0<br>CanOpenNetworkXDDv1.1 | .nxdd  |
+    | 网络 XML 设备配置文件            | CanOpenNetworkXDCv1.1                       | .nxdc  |
+    | XML Profile 描述文件             | 无 (None)                                   | .xpd   |
 
-### CANopenNode 专用格式
+- CANopenNode 专用格式
 
-| 描述                                     | 导出器                                                   | 格式            |
-|------------------------------------------|----------------------------------------------------------|-----------------|
-| CanOpenNode 对象字典文件对               | CanOpenNode<br>CanOpenNodeV4                             | .h,.c                |
-| PCanOpenNode 项目文件                    | CanOpenNodeProtobuf(json)<br>CanOpenNodeProtobuf(binary) | .json<br>.binpb      |
+    | 描述                                     | 导出器                                                   | 格式            |
+    |------------------------------------------|----------------------------------------------------------|-----------------|
+    | CanOpenNode 对象字典文件对               | CanOpenNode<br>CanOpenNodeV4                             | .h,.c                |
+    | PCanOpenNode 项目文件                    | CanOpenNodeProtobuf(json)<br>CanOpenNodeProtobuf(binary) | .json<br>.binpb      |
 
-### 文档格式
+- 文档导出格式
 
-| 导出器              | 格式   |
-|---------------------|--------|
-| DocumentationHTML   | .html  |
-| DocumentationMarkup | .md    |
-| NetworkPDOReport    | .md    |
+    | 导出器              | 格式   |
+    |---------------------|--------|
+    | DocumentationHTML   | .html  |
+    | DocumentationMarkup | .md    |
+    | NetworkPDOReport    | .md    |
 
-文件结构
---------
+## 5. 文件结构
 
 您需要了解的主要文件和目录包括：
 
@@ -93,32 +93,21 @@ CANopen 是一种国际标准化 (EN 50325-4) ([CiA301](https://can-cia.org/cia-
 - [Tests](Tests) 目录包含所有库(Lib)相关的核心单元测试。
 - [libEDSsharp](libEDSsharp) 目录包含了由 Robin Cornelius 编写的核心驱动和解析库。
 
-近期修复 (Recent Fixes)
---------
-
-- 修复了在导出 XDD 时，CANopen `VAR` 对象 (`OdObject`) 丢失 `DataType`、`Access`、`DefaultValue` 和 `ActualValue` 核心属性的严重 Bug。
-- 修复了在加载/保存项目时，`lastModificationTime` 和 `createTime` 等时间戳无法正确解析并格式化为 ISO 8601 标准的问题。
-- 修复了新版 GUI (`EDSEditorGUI2`) 在加载项目时由于 `OdObject` 和 `OdSubObject` 映射配置不严谨而触发 `AutoMapperConfigurationException` 导致崩溃的问题。
-- 更新并验证了跨平台 (Linux) 的发布编译能力。
-
-BUG 反馈
---------
+## 6. BUG 反馈
 
 如果您发现了任何 Bug，请在 GitHub 上提交 bug report，并附上您创建或打开的相关复现文件。我们非常需要您的帮助，主要的维护者们非常活跃并且会尽快回复您。
 
 推荐使用免费的 [EDSchecker](https://www.vector.com/de/de/support-downloads/download-center/#product=%5B%2274771%22%5D&tab=1&pageSize=15&sort=date&order=desc) 工具来检查您的 EDS/XDD 文件是否合规。
 
-参与贡献
---------
+## 7. 参与贡献
 
 如果您想为这个项目做出贡献，首先向您表示感谢！请阅读我们的 [贡献指南 (CONTRIBUTING.md)](CONTRIBUTING.md)。我们对新手非常友好，即便您没有太多参与开源项目的经验，也请勇敢尝试！
 
-核心成员 (Collaborators)
---------
+## 8. 核心成员 (Collaborators)
 <!-- readme: collaborators -start -->
 <table>
-	<tbody>
-		<tr>
+ <tbody>
+  <tr>
             <td align="center">
                 <a href="https://github.com/jiujiujiur0000">
                     <img src="https://avatars.githubusercontent.com/u/95092734?v=4" width="100;" alt="jiujiujiur0000"/>
@@ -126,8 +115,8 @@ BUG 反馈
                     <sub><b>jiujiujiur0000</b></sub>
                 </a>
             </td>
-		</tr>
-	<tbody>
+  </tr>
+ <tbody>
 </table>
 <!-- readme: collaborators -end -->
 
@@ -135,8 +124,8 @@ BUG 反馈
 --------
 <!-- readme: contributors -start -->
 <table>
-	<tbody>
-		<tr>
+ <tbody>
+  <tr>
             <td align="center">
                 <a href="https://github.com/robincornelius">
                     <img src="https://avatars.githubusercontent.com/u/159000?v=4" width="100;" alt="robincornelius"/>
@@ -179,8 +168,8 @@ BUG 反馈
                     <sub><b>martinwag</b></sub>
                 </a>
             </td>
-		</tr>
-		<tr>
+  </tr>
+  <tr>
             <td align="center">
                 <a href="https://github.com/simon-fuchs-inmach">
                     <img src="https://avatars.githubusercontent.com/u/57712038?v=4" width="100;" alt="simon-fuchs-inmach"/>
@@ -223,8 +212,8 @@ BUG 反馈
                     <sub><b>JuPrgn</b></sub>
                 </a>
             </td>
-		</tr>
-		<tr>
+  </tr>
+  <tr>
             <td align="center">
                 <a href="https://github.com/gotocoffee1">
                     <img src="https://avatars.githubusercontent.com/u/26260677?v=4" width="100;" alt="gotocoffee1"/>
@@ -267,8 +256,8 @@ BUG 反馈
                     <sub><b>Regelink</b></sub>
                 </a>
             </td>
-		</tr>
-		<tr>
+  </tr>
+  <tr>
             <td align="center">
                 <a href="https://github.com/Sl-Alex">
                     <img src="https://avatars.githubusercontent.com/u/7002691?v=4" width="100;" alt="Sl-Alex"/>
@@ -311,8 +300,8 @@ BUG 反馈
                     <sub><b>zhanglongqi</b></sub>
                 </a>
             </td>
-		</tr>
-		<tr>
+  </tr>
+  <tr>
             <td align="center">
                 <a href="https://github.com/DaMutz">
                     <img src="https://avatars.githubusercontent.com/u/406081?v=4" width="100;" alt="DaMutz"/>
@@ -341,7 +330,7 @@ BUG 反馈
                     <sub><b>KwonTae-young</b></sub>
                 </a>
             </td>
-		</tr>
-	<tbody>
+  </tr>
+ <tbody>
 </table>
 <!-- readme: contributors -end -->

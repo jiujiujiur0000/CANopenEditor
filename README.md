@@ -1,6 +1,6 @@
 <div align="center">
   <p>
-    <a href="README.md">English</a> | <a href="README_zh.md">简体中文</a>
+    <a href="README.md">English</a> | <a href="README_zh.md">绠€浣撲腑鏂?/a>
   </p>
   <h1>CANopenEditor2</h1>
 </div>
@@ -8,18 +8,21 @@
 This project is a fork of [CANopenEditor](https://github.com/CANopenNode/CANopenEditor.git).
 The original CANopenEditor is a fork of [libedssharp, authored by Robin Cornelius](https://github.com/robincornelius/libedssharp).
 
-CANopen Object Dictionary Editor:
+CANopenEditor is a CANopen Object Dictionary Editor:
 
 - Imports: CANopen electronic data sheets in EDS or XDD format.
 - Exports: CANopen electronic data sheets in EDS or XDD format, documentation, CANopenNode C source files and more.
 - Interfaces: GUI editor for CANopen Object Dictionary, Device information, etc. CLI client for simple conversions.
 
-CANopen is the internationally standardized (EN 50325-4) ([CiA301](https://can-cia.org/cia-groups/technical-documents)) higher-layer protocol for embedded control system built on top of CAN. For more information on CANopen see <http://www.can-cia.org/>.
+## 1. Version Upgrades
 
-[CANopenNode](https://github.com/CANopenNode/CANopenNode) is a free and open source CANopen Stack.
+**CANopenEditor2** has been completely overhauled compared to the original version:
 
-Repository structure
---------
+- It features a brand-new, modern UI design that significantly improves visual clarity and aesthetics;
+- It provides native cross-platform support for Windows, macOS, and Linux;
+- It delivers a deeply refined and enhanced interactive user experience.
+
+## 2. Repository structure
 
 This repository is home to three projects:
 
@@ -27,59 +30,56 @@ This repository is home to three projects:
 - [A CLI](EDSSharp/README.md), used for simple conversions across all supported formats.
 - [A GUI](EDSEditorGUI2/README.md) for full manipulation of your CANopen files, featuring a modern and cross-platform interface.
 
-How to use
---------
+## 3. How to use
 
 1. [Download the latest release for your platform (Windows, macOS, or Linux)](https://github.com/CANopenNode/CANopenEditor/releases). DO NOT DOWNLOAD SOURCE CODE.
 2. Unpack/Unzip the downloaded archive.
 3. For Windows, simply execute the `CANopenEditor-Setup.exe` to install, or run the standalone `.exe` from the portable `.zip` archive.
 4. For macOS/Linux, extract the `.tar.gz` and run the executable corresponding to your OS architecture.
 
-Available formats
---------
+## 4. Available formats
 
 Exhaustive list of the library's supported formats to date, sorted by category:<br>
 
-### CANopenEditor specific formats (New)
+- CANopenEditor specific formats (New)
 
-| Description                              | Exporter                                                 | Format          |
-|------------------------------------------|----------------------------------------------------------|-----------------|
-| Multi-Device XML Project Description     | CanOpenProject                                           | .cpj            |
+    | Description                              | Exporter                                                 | Format          |
+    |------------------------------------------|----------------------------------------------------------|-----------------|
+    | Multi-Device XML Project Description     | CanOpenProject                                           | .cpj            |
 
-### CAN in Automation official formats
+- CAN in Automation official formats
 
-| Description                           | Exporter                                                   | Format |
-|---------------------------------------|------------------------------------------------------------|--------|
-| Electronic Data Sheet (CiA 306-1)     | ElectronicDataSheet                                        | .eds   |
-| Device Configuration File (CiA 306-1) | DeviceConfigurationFile                                    | .dcf   |
-| XML Device Description (CiA 311)      | CanOpenXDDv1.0<br>CanOpenXDDv1.1<br>CanOpenXDDv1.1stripped | .xdd   |
-| XML Device Configuration (CiA 311)    | CanOpenXDCv1.1                                             | .xdc   |
+    | Description                           | Exporter                                                   | Format |
+    |---------------------------------------|------------------------------------------------------------|--------|
+    | Electronic Data Sheet (CiA 306-1)     | ElectronicDataSheet                                        | .eds   |
+    | Device Configuration File (CiA 306-1) | DeviceConfigurationFile                                    | .dcf   |
+    | XML Device Description (CiA 311)      | CanOpenXDDv1.0<br>CanOpenXDDv1.1<br>CanOpenXDDv1.1stripped | .xdd   |
+    | XML Device Configuration (CiA 311)    | CanOpenXDCv1.1                                             | .xdc   |
 
-### CiA Official Extended formats
+- CiA Official Extended formats
 
-| Description                      | Exporter                                    | Format |
-|----------------------------------|---------------------------------------------|--------|
-| Network XML Device Description   | CanOpenNetworkv1.0<br>CanOpenNetworkXDDv1.1 | .nxdd  |
-| Network XML Device Configuration | CanOpenNetworkXDCv1.1                       | .nxdc  |
-| XML Profile Description          | None                                        | .xpd   |
+    | Description                      | Exporter                                    | Format |
+    |----------------------------------|---------------------------------------------|--------|
+    | Network XML Device Description   | CanOpenNetworkv1.0<br>CanOpenNetworkXDDv1.1 | .nxdd  |
+    | Network XML Device Configuration | CanOpenNetworkXDCv1.1                       | .nxdc  |
+    | XML Profile Description          | None                                        | .xpd   |
 
-### CANopenNode specific formats
+- CANopenNode specific formats
 
-| Description                              | Exporter                                                 | Format          |
-|------------------------------------------|----------------------------------------------------------|-----------------|
-| CanOpenNode Object Dictionary file pairs | CanOpenNode<br>CanOpenNodeV4                             | .h,.c                |
-| PCanOpenNode Project file                | CanOpenNodeProtobuf(json)<br>CanOpenNodeProtobuf(binary) | .json<br>.binpb      |
+    | Description                              | Exporter                                                 | Format          |
+    |------------------------------------------|----------------------------------------------------------|-----------------|
+    | CanOpenNode Object Dictionary file pairs | CanOpenNode<br>CanOpenNodeV4                             | .h,.c                |
+    | PCanOpenNode Project file                | CanOpenNodeProtobuf(json)<br>CanOpenNodeProtobuf(binary) | .json<br>.binpb      |
 
-### Documentation formats
+- Documentation formats
 
-| Exporter            | Format |
-|---------------------|--------|
-| DocumentationHTML   | .html  |
-| DocumentationMarkup | .md    |
-| NetworkPDOReport    | .md    |
+    | Exporter            | Format |
+    |---------------------|--------|
+    | DocumentationHTML   | .html  |
+    | DocumentationMarkup | .md    |
+    | NetworkPDOReport    | .md    |
 
-File structure
---------
+## 5. File structure
 
 The main files and directories you'll need to understand are:
 
@@ -93,24 +93,21 @@ The main files and directories you'll need to understand are:
 - [Tests](Tests) directory is the directory for all Lib unit tests. More tests, functional tests and tests for CLI may come here.
 - [libEDSsharp](libEDSsharp) directory contains the library from Robin Cornelius making all of this work.
 
-BUGS
---------
+## 6. BUGS
 
 If you find any, please open a bug report on github and attach any files you have created/opened etc... We need any help we can have and the main maintainers are quite active and will answer you fast.
 
 You might want to check your EDS/XDD file with this free [EDSchecker](https://www.vector.com/de/de/support-downloads/download-center/#product=%5B%2274771%22%5D&tab=1&pageSize=15&sort=date&order=desc)
 
-Contributing
---------
+## 7. Contributing
 
 If you want to help us out by contributing to this project, first of all thank you ! And please read our [Contributing Guidelines](CONTRIBUTING.md). We are very beginner friendly so, even if you are not extremely experienced with contributing to open source projects, fear not and try !
 
-Collaborators
---------
+## 8. Collaborators
 <!-- readme: collaborators -start -->
 <table>
-	<tbody>
-		<tr>
+ <tbody>
+  <tr>
             <td align="center">
                 <a href="https://github.com/jiujiujiur0000">
                     <img src="https://avatars.githubusercontent.com/u/95092734?v=4" width="100;" alt="jiujiujiur0000"/>
@@ -119,16 +116,15 @@ Collaborators
                 </a>
             </td>
 		</tr>
-	<tbody>
+ <tbody>
 </table>
 <!-- readme: collaborators -end -->
 
-Contributors
---------
+## 9. Contributors
 <!-- readme: contributors -start -->
 <table>
-	<tbody>
-		<tr>
+ <tbody>
+  <tr>
             <td align="center">
                 <a href="https://github.com/robincornelius">
                     <img src="https://avatars.githubusercontent.com/u/159000?v=4" width="100;" alt="robincornelius"/>
@@ -172,7 +168,7 @@ Contributors
                 </a>
             </td>
 		</tr>
-		<tr>
+  <tr>
             <td align="center">
                 <a href="https://github.com/simon-fuchs-inmach">
                     <img src="https://avatars.githubusercontent.com/u/57712038?v=4" width="100;" alt="simon-fuchs-inmach"/>
@@ -216,7 +212,7 @@ Contributors
                 </a>
             </td>
 		</tr>
-		<tr>
+  <tr>
             <td align="center">
                 <a href="https://github.com/gotocoffee1">
                     <img src="https://avatars.githubusercontent.com/u/26260677?v=4" width="100;" alt="gotocoffee1"/>
@@ -260,7 +256,7 @@ Contributors
                 </a>
             </td>
 		</tr>
-		<tr>
+  <tr>
             <td align="center">
                 <a href="https://github.com/Sl-Alex">
                     <img src="https://avatars.githubusercontent.com/u/7002691?v=4" width="100;" alt="Sl-Alex"/>
@@ -304,7 +300,7 @@ Contributors
                 </a>
             </td>
 		</tr>
-		<tr>
+  <tr>
             <td align="center">
                 <a href="https://github.com/DaMutz">
                     <img src="https://avatars.githubusercontent.com/u/406081?v=4" width="100;" alt="DaMutz"/>
@@ -334,6 +330,6 @@ Contributors
                 </a>
             </td>
 		</tr>
-	<tbody>
+ <tbody>
 </table>
 <!-- readme: contributors -end -->
