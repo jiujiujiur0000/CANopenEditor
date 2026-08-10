@@ -63,8 +63,25 @@
               <TextBlock Grid.Row="4" Grid.Column="0" Text="修改时间" VerticalAlignment="Center" Margin="0,0,0,15"/>
               <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding FileInfo.ModificationTime, StringFormat=\{0:yyyy/MM/dd HH:mm:ss\}}" IsEnabled="False" HorizontalAlignment="Stretch" Margin="0,0,0,15"/>
 
-              <TextBlock Grid.Row="5" Grid.Column="0" Text="文件描述" VerticalAlignment="Top" Margin="0,5,0,0"/>
-              <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding FileInfo.Description}" HorizontalAlignment="Stretch" MinHeight="32" AcceptsReturn="True" TextWrapping="Wrap" Classes="clearButton"/>
+              <TextBlock Grid.Row="5" Grid.Column="0" Text="文件描述" VerticalAlignment="Center" Margin="0,0,0,0"/>
+              <Button x:Name="fileDescButton" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" MinHeight="32" 
+                      Background="{DynamicResource TextControlBackground}"
+                      BorderBrush="{DynamicResource TextControlBorderBrush}"
+                      BorderThickness="{DynamicResource TextControlBorderThemeThickness}">
+                <Button.Styles>
+                  <Style Selector="FlyoutPresenter">
+                    <Setter Property="Padding" Value="0"/>
+                    <Setter Property="MinWidth" Value="0"/>
+                    <Setter Property="Margin" Value="0"/>
+                  </Style>
+                </Button.Styles>
+                <TextBlock Text="{Binding FileInfo.Description}" TextTrimming="CharacterEllipsis" MaxLines="1"/>
+                <Button.Flyout>
+                  <Flyout Placement="TopEdgeAlignedLeft">
+                    <TextBox Text="{Binding FileInfo.Description}" Width="{Binding #fileDescButton.Bounds.Width}" Height="200" TextWrapping="Wrap" AcceptsReturn="True" ScrollViewer.VerticalScrollBarVisibility="Auto" Watermark="在此处输入详细的文件描述 (支持多行)..."/>
+                  </Flyout>
+                </Button.Flyout>
+              </Button>
             </Grid>
           </StackPanel>
         </Border>

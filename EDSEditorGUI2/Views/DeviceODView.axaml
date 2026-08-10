@@ -83,15 +83,22 @@
               <TextBox Text="{Binding SelectedObject.Value.Alias}" Grid.Row="1" Grid.Column="4" Margin="0,0,0,15"/>
 
               <TextBlock Text="{DynamicResource str_od_prop_desc}" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,0"/>
-              <Button Grid.Row="2" Grid.Column="1" Margin="0,0,20,0" 
+              <Button x:Name="odDescButton" Grid.Row="2" Grid.Column="1" Margin="0,0,20,0" 
                       HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" MinHeight="32" 
                       Background="{DynamicResource TextControlBackground}"
                       BorderBrush="{DynamicResource TextControlBorderBrush}"
                       BorderThickness="{DynamicResource TextControlBorderThemeThickness}">
+                <Button.Styles>
+                  <Style Selector="FlyoutPresenter">
+                    <Setter Property="Padding" Value="0"/>
+                    <Setter Property="MinWidth" Value="0"/>
+                    <Setter Property="Margin" Value="0"/>
+                  </Style>
+                </Button.Styles>
                 <TextBlock Text="{Binding SelectedObject.Value.Description}" TextTrimming="CharacterEllipsis" MaxLines="1"/>
                 <Button.Flyout>
                   <Flyout Placement="BottomEdgeAlignedLeft">
-                    <TextBox Text="{Binding SelectedObject.Value.Description}" Width="350" Height="200" TextWrapping="Wrap" AcceptsReturn="True" ScrollViewer.VerticalScrollBarVisibility="Auto" Watermark="在此处输入详细描述 (支持多行)..."/>
+                    <TextBox Text="{Binding SelectedObject.Value.Description}" Width="{Binding #odDescButton.Bounds.Width}" Height="200" TextWrapping="Wrap" AcceptsReturn="True" ScrollViewer.VerticalScrollBarVisibility="Auto" Watermark="在此处输入详细描述 (支持多行)..."/>
                   </Flyout>
                 </Button.Flyout>
               </Button>
