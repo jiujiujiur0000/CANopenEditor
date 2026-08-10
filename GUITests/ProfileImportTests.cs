@@ -164,11 +164,13 @@ public class ImportTests : IDisposable
     {
         Assert.Single(dc.MergeStatus[0].Offsets);
         Dispatcher.UIThread.RunJobs();
+        foreach (var ms in dc.MergeStatus) ms.Insert = true;
         insert!.Focus();
 
         var copyOfMergeStatus = new List<ODIndexMergeStatus>(dc.MergeStatus);
         // press enter to import.
         insert!.RaiseEvent(new Avalonia.Interactivity.RoutedEventArgs(Button.ClickEvent));
+        Dispatcher.UIThread.RunJobs();
 
         // check that its no longer using memory
         Assert.Empty(dc.MergeStatus);
@@ -191,13 +193,36 @@ public class ImportTests : IDisposable
         offsetsTextBox!.Text = "0 2 1";
         Dispatcher.UIThread.RunJobs();
         Assert.Equal(3, dc.MergeStatus[0].Offsets.Count());
+        var obj1000 = dc.MergeStatus.FirstOrDefault(ms => ms.OriginalIndex == 0x1000);
+        if (obj1000 != null) obj1000.Insert = true;
+        
+        var obj1002 = dc.MergeStatus.FirstOrDefault(ms => ms.OriginalIndex == 0x1002);
+        if (obj1002 != null) obj1002.Insert = true;
+
         insert!.Focus();
 
         // press enter to import.
         insert!.RaiseEvent(new Avalonia.Interactivity.RoutedEventArgs(Button.ClickEvent));
+        Dispatcher.UIThread.RunJobs();
+        
+        // Handle collision dialog by clicking Overwrite (and apply to all)
+        var applyToAll = window.GetVisualDescendants().OfType<CheckBox>().FirstOrDefault(c => c.Name == "ApplyToAllCheckBox");
+        Assert.NotNull(applyToAll);
+        applyToAll.IsChecked = true;
+        
+        var overwriteBtn = window.GetVisualDescendants().OfType<Button>().FirstOrDefault(b => b.Tag as string == "Overwrite");
+        Assert.NotNull(overwriteBtn);
+        overwriteBtn.RaiseEvent(new Avalonia.Interactivity.RoutedEventArgs(Button.ClickEvent));
+        Dispatcher.UIThread.RunJobs();
+        
         //window.CaptureRenderedFrame()!.Save("file.png");
 
         // check that its no longer using memory
+        for(int i=0; i<50 && dc.MergeStatus.Count > 0; i++)
+        {
+            System.Threading.Thread.Sleep(10);
+            Dispatcher.UIThread.RunJobs();
+        }
         Assert.Empty(dc.MergeStatus);
 
         //1002 Check that 1002 is merged from the first offsett without collision
@@ -213,12 +238,14 @@ public class ImportTests : IDisposable
     public void NotImportingUnselectedEntries()
     {
         Dispatcher.UIThread.RunJobs();
+        foreach (var ms in dc.MergeStatus) ms.Insert = true;
         dc.MergeStatus[0].Insert = false;
         Dispatcher.UIThread.RunJobs();
         insert!.Focus();
 
         // press enter to import.
         insert!.RaiseEvent(new Avalonia.Interactivity.RoutedEventArgs(Button.ClickEvent));
+        Dispatcher.UIThread.RunJobs();
 
         // Check that 1000 is not merged as it is not selected for insertion
         Assert.False(dc.SelectedDevice!.Objects.TryGetValue("1000", out var index1001));
@@ -228,12 +255,14 @@ public class ImportTests : IDisposable
     public void CancelImport()
     {
         Dispatcher.UIThread.RunJobs();
+        foreach (var ms in dc.MergeStatus) ms.Insert = true;
         dc.MergeStatus[0].Insert = false;
         Dispatcher.UIThread.RunJobs();
         cancel!.Focus();
 
         // press enter to cansel import.
         cancel!.RaiseEvent(new Avalonia.Interactivity.RoutedEventArgs(Button.ClickEvent));
+        Dispatcher.UIThread.RunJobs();
 
         // check that its no longer using memory
         Assert.Empty(dc.MergeStatus);
