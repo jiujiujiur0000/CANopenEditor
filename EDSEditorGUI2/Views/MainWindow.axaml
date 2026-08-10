@@ -163,7 +163,7 @@
                                             
                                             <!-- 未保存提示绿点，靠右对齐 -->
                                             <Ellipse Grid.Column="1" Width="6" Height="6" Fill="#00CC00" VerticalAlignment="Center" Margin="6,0,0,0" HorizontalAlignment="Right"
-                                                     IsVisible="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).IsDirty}" 
+                                                     IsVisible="{Binding IsDirty}" 
                                                      ToolTip.Tip="有未保存的修改"/>
                                         </Grid>
                                     </Border>

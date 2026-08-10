@@ -102,6 +102,7 @@ public partial class MainWindow : Window
                         Console.WriteLine($"[Perf] After Setting SelectedDevice took {sw2.ElapsedMilliseconds} ms");
                     }
                     dc.IsDirty = false;
+                    if (dc.SelectedDevice != null) dc.SelectedDevice.IsDirty = false;
                     dc.AddRecentFile(filePath);
                     
                     var captureSw = sw.ElapsedMilliseconds;
@@ -238,6 +239,7 @@ public partial class MainWindow : Window
             dc.IsDirty = true;
             if (dc.SelectedDevice != null)
             {
+                dc.SelectedDevice.IsDirty = true;
                 dc.SelectedDevice.FileInfo.ModificationTime = DateTime.Now;
             }
             
@@ -632,6 +634,7 @@ public partial class MainWindow : Window
                     dc.Network.Add(deviceView);
                     dc.SelectedDevice = deviceView;
                     dc.IsDirty = false; // Reset dirty flag after loading
+                    if (dc.SelectedDevice != null) dc.SelectedDevice.IsDirty = false;
                     dc.AddRecentFile(deviceView.Eds.projectFilename ?? deviceView.Eds.edsfilename ?? "");
                 }
                 
@@ -1010,6 +1013,7 @@ public partial class MainWindow : Window
                     coxml_1_1.WriteXML(filePath, edss[0], true, false);
                 }
                 dc.IsDirty = false;
+                if (dc.SelectedDevice != null) dc.SelectedDevice.IsDirty = false;
                 dc.AddRecentFile(filePath);
             }
         }

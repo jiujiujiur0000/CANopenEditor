@@ -9,6 +9,9 @@ namespace EDSEditorGUI2.ViewModels
         {
         }
 
+        [ObservableProperty]
+        private bool _isDirty;
+
         public override string ToString()
         {
             if (DeviceInfo == null)
