@@ -180,6 +180,15 @@ public partial class MainWindow : Window
     {
         if (_isProgrammaticChange) return;
 
+        if (e.Source is Avalonia.Controls.Control control)
+        {
+            // 忽略添加索引弹窗中的输入控件，防止边打字边触发自动保存
+            if (control.Name == "index" || control.Name == "name" || control.Name == "type")
+            {
+                return;
+            }
+        }
+
         // 如果是失去焦点事件，只响应来自实际输入控件的事件，忽略点击空白处等无效的焦点转移
         if (e.RoutedEvent == Avalonia.Input.InputElement.LostFocusEvent)
         {
