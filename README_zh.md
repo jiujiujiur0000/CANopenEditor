@@ -40,6 +40,12 @@ CANopen 是一种国际标准化 (EN 50325-4) ([CiA301](https://can-cia.org/cia-
 
 以下是迄今为止该库支持的格式完整列表，按类别排序：<br>
 
+### CANopenEditor 专用格式 (新增)
+
+| 描述                                     | 导出器                                                   | 格式            |
+|------------------------------------------|----------------------------------------------------------|-----------------|
+| 多设备 XML 项目描述文件                  | CanOpenProject                                           | .cpj            |
+
 ### CAN in Automation 官方格式
 
 | 描述                                  | 导出器                                                     | 格式   |
@@ -49,19 +55,13 @@ CANopen 是一种国际标准化 (EN 50325-4) ([CiA301](https://can-cia.org/cia-
 | XML 设备描述文件 (CiA 311)            | CanOpenXDDv1.0<br>CanOpenXDDv1.1<br>CanOpenXDDv1.1stripped | .xdd   |
 | XML 设备配置文件 (CiA 311)            | CanOpenXDCv1.1                                             | .xdc   |
 
-### 扩展格式
+### CiA 官方扩展格式
 
 | 描述                             | 导出器                                      | 格式   |
 |----------------------------------|---------------------------------------------|--------|
 | 网络 XML 设备描述文件            | CanOpenNetworkv1.0<br>CanOpenNetworkXDDv1.1 | .nxdd  |
 | 网络 XML 设备配置文件            | CanOpenNetworkXDCv1.1                       | .nxdc  |
 | XML Profile 描述文件             | 无 (None)                                   | .xpd   |
-
-### CANopenEditor 专用格式
-
-| 描述                                     | 导出器                                                   | 格式            |
-|------------------------------------------|----------------------------------------------------------|-----------------|
-| CANopen 项目文件                         | CanOpenProject                                           | .cpj                 |
 
 ### CANopenNode 专用格式
 

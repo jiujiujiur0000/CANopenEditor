@@ -40,6 +40,12 @@ Available formats
 
 Exhaustive list of the library's supported formats to date, sorted by category:<br>
 
+### CANopenEditor specific formats (New)
+
+| Description                              | Exporter                                                 | Format          |
+|------------------------------------------|----------------------------------------------------------|-----------------|
+| Multi-Device XML Project Description     | CanOpenProject                                           | .cpj            |
+
 ### CAN in Automation official formats
 
 | Description                           | Exporter                                                   | Format |
@@ -49,19 +55,13 @@ Exhaustive list of the library's supported formats to date, sorted by category:<
 | XML Device Description (CiA 311)      | CanOpenXDDv1.0<br>CanOpenXDDv1.1<br>CanOpenXDDv1.1stripped | .xdd   |
 | XML Device Configuration (CiA 311)    | CanOpenXDCv1.1                                             | .xdc   |
 
-### Extended formats
+### CiA Official Extended formats
 
 | Description                      | Exporter                                    | Format |
 |----------------------------------|---------------------------------------------|--------|
 | Network XML Device Description   | CanOpenNetworkv1.0<br>CanOpenNetworkXDDv1.1 | .nxdd  |
 | Network XML Device Configuration | CanOpenNetworkXDCv1.1                       | .nxdc  |
 | XML Profile Description          | None                                        | .xpd   |
-
-### CANopenEditor specific formats
-
-| Description                              | Exporter                                                 | Format          |
-|------------------------------------------|----------------------------------------------------------|-----------------|
-| CANopen Project file                     | CanOpenProject                                           | .cpj                 |
 
 ### CANopenNode specific formats
 
