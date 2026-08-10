@@ -7,7 +7,14 @@
              mc:Ignorable="d" d:DesignWidth="1200" d:DesignHeight="800"
              x:Class="EDSEditorGUI2.Views.DeviceInfoView"
              x:DataType="vm:Device">
-  
+  <UserControl.Styles>
+    <Style Selector="FlyoutPresenter.desc-flyout">
+      <Setter Property="Padding" Value="0"/>
+      <Setter Property="MinWidth" Value="0"/>
+      <Setter Property="Margin" Value="0"/>
+    </Style>
+  </UserControl.Styles>
+
   <ScrollViewer>
     <Grid ColumnDefinitions="*, *" Margin="15,5,15,15" HorizontalAlignment="Stretch" VerticalAlignment="Top" MaxWidth="1200">
       
@@ -68,16 +75,9 @@
                       Background="{DynamicResource TextControlBackground}"
                       BorderBrush="{DynamicResource TextControlBorderBrush}"
                       BorderThickness="{DynamicResource TextControlBorderThemeThickness}">
-                <Button.Styles>
-                  <Style Selector="FlyoutPresenter">
-                    <Setter Property="Padding" Value="0"/>
-                    <Setter Property="MinWidth" Value="0"/>
-                    <Setter Property="Margin" Value="0"/>
-                  </Style>
-                </Button.Styles>
                 <TextBlock Text="{Binding FileInfo.Description}" TextTrimming="CharacterEllipsis" MaxLines="1"/>
                 <Button.Flyout>
-                  <Flyout Placement="TopEdgeAlignedLeft">
+                  <Flyout Placement="Top" FlyoutPresenterClasses="desc-flyout">
                     <TextBox Text="{Binding FileInfo.Description}" Width="{Binding #fileDescButton.Bounds.Width}" Height="200" TextWrapping="Wrap" AcceptsReturn="True" ScrollViewer.VerticalScrollBarVisibility="Auto" Watermark="在此处输入详细的文件描述 (支持多行)..."/>
                   </Flyout>
                 </Button.Flyout>
