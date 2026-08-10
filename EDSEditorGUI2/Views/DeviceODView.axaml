@@ -169,7 +169,7 @@
                   </DataTemplate>
                 </DataGridTemplateColumn.CellTemplate>
               </DataGridTemplateColumn>
-              <DataGridTextColumn Header="{DynamicResource str_od_col_name}" Width="*" Binding="{Binding Value.Name}" />
+              <DataGridTextColumn Header="{DynamicResource str_od_col_name}" Width="1.9*" Binding="{Binding Value.Name}" />
               <DataGridTextColumn Header="{DynamicResource str_od_col_datatype}" Width="Auto" Binding="{Binding Value.DataType}" />
               <DataGridTextColumn Header="{DynamicResource str_od_col_sdo}" Width="Auto" Binding="{Binding Value.Sdo}" />
               <DataGridTextColumn Header="{DynamicResource str_od_col_pdo}" Width="Auto" Binding="{Binding Value.Pdo}" />
