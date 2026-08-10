@@ -28,10 +28,10 @@
     <sys:String x:Key="str_menu_import_device">Import Device</sys:String>
     <sys:String x:Key="str_menu_remove_device">Remove Current Device</sys:String>
     <sys:String x:Key="str_menu_export_device">Export Current Device</sys:String>
-    <sys:String x:Key="str_menu_export_eds">XDD / EDS / DCF Format</sys:String>
-    <sys:String x:Key="str_menu_export_source">CANopenNode Source</sys:String>
+    <sys:String x:Key="str_menu_export_eds">Single Device Config (.xdd / .eds / .dcf)</sys:String>
+    <sys:String x:Key="str_menu_export_source">CANopenNode Source (.c / .h)</sys:String>
     <sys:String x:Key="str_menu_export_pcanopennode">PCanOpenNode File (.json / .binpb)</sys:String>
-    <sys:String x:Key="str_menu_export_networkxml">Network XML File (.nxdd / .nxdc)</sys:String>
+    <sys:String x:Key="str_menu_export_networkxml">Network Config (.nxdd / .nxdc)</sys:String>
 
     <sys:String x:Key="str_menu_export_all">Export All Devices</sys:String>
     <sys:String x:Key="str_main_device_list">Devices</sys:String>
