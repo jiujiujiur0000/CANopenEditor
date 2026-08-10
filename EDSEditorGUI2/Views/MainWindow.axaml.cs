@@ -147,9 +147,9 @@ public partial class MainWindow : Window
         ApplySavedTheme();
         
         // Auto-save feature: trigger on lost focus, toggle changes, or text changes
-        this.AddHandler(Avalonia.Input.InputElement.LostFocusEvent, OnAnyInteractionTriggerAutoSave, RoutingStrategies.Bubble);
         this.AddHandler(Avalonia.Controls.Button.ClickEvent, OnAnyInteractionTriggerAutoSave, RoutingStrategies.Bubble);
         this.AddHandler(Avalonia.Input.InputElement.KeyUpEvent, OnAnyInteractionTriggerAutoSave, RoutingStrategies.Bubble);
+        this.AddHandler(Avalonia.Controls.Primitives.SelectingItemsControl.SelectionChangedEvent, OnAnyInteractionTriggerAutoSave, RoutingStrategies.Bubble);
         LoadProfileList();
         
         // Start background warmup to improve first-time load performance
@@ -198,32 +198,33 @@ public partial class MainWindow : Window
             }
         }
 
-        // 如果是失去焦点事件，只响应来自实际输入控件的事件，忽略点击空白处等无效的焦点转移
-        if (e.RoutedEvent == Avalonia.Input.InputElement.LostFocusEvent)
-        {
-            if (e.Source is not Avalonia.Controls.TextBox && 
-                e.Source is not Avalonia.Controls.NumericUpDown &&
-                e.Source is not Avalonia.Controls.ComboBox)
-            {
-                return;
-            }
-        }
+
 
         // 对于按键抬起事件，只响应来自实际输入控件的事件
         if (e.RoutedEvent == Avalonia.Input.InputElement.KeyUpEvent)
         {
             if (e.Source is not Avalonia.Controls.TextBox && 
-                e.Source is not Avalonia.Controls.NumericUpDown &&
-                e.Source is not Avalonia.Controls.ComboBox)
+                e.Source is not Avalonia.Controls.NumericUpDown)
             {
                 return;
             }
         }
 
-        // 对于点击事件，只响应来自 CheckBox/RadioButton 等 ToggleButton 的事件
+        // 对于点击事件，只响应来自 CheckBox 或 RadioButton 的事件
+        // (注意：ComboBox 下拉框展开时也会触发内部 ToggleButton 的点击，必须排除)
         if (e.RoutedEvent == Avalonia.Controls.Button.ClickEvent)
         {
-            if (e.Source is not Avalonia.Controls.Primitives.ToggleButton)
+            if (e.Source is not Avalonia.Controls.CheckBox && 
+                e.Source is not Avalonia.Controls.RadioButton)
+            {
+                return;
+            }
+        }
+
+        // 对于选择变化事件，只响应 ComboBox
+        if (e.RoutedEvent == Avalonia.Controls.Primitives.SelectingItemsControl.SelectionChangedEvent)
+        {
+            if (e.Source is not Avalonia.Controls.ComboBox)
             {
                 return;
             }
@@ -658,6 +659,31 @@ public partial class MainWindow : Window
             return dc.SelectedDevice;
         }
         return null;
+    }
+
+    private void RemoveDeviceClick(object? sender, RoutedEventArgs e)
+    {
+        if (sender is MenuItem menuItem)
+        {
+            var device = menuItem.DataContext as ViewModels.Device;
+            if (device == null && menuItem.Parent is ContextMenu cm && cm.PlacementTarget is Avalonia.Controls.Control target)
+            {
+                device = target.DataContext as ViewModels.Device;
+            }
+
+            if (device != null && DataContext is MainWindowViewModel dc)
+            {
+                dc.CloseDevice(device);
+            }
+        }
+    }
+
+    private void NewDeviceClick(object? sender, RoutedEventArgs e)
+    {
+        if (DataContext is MainWindowViewModel dc)
+        {
+            dc.AddNewDevice();
+        }
     }
 
     public async void ExportCurrentDeviceEdsClick(object? sender, RoutedEventArgs args)

@@ -142,12 +142,11 @@
                                     <Border Background="Transparent" Padding="15,12">
                                         <Border.ContextMenu>
                                             <ContextMenu>
-                                                <MenuItem Header="{DynamicResource str_menu_new_device}" Command="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).AddNewDevice}"/>
+                                                <MenuItem Header="{DynamicResource str_menu_new_device}" Click="NewDeviceClick"/>
                                                 <MenuItem Header="{DynamicResource str_menu_import_device}" Click="OpenFileClick"/>
                                                 <Separator/>
                                                 <MenuItem Header="{DynamicResource str_menu_remove_device}" 
-                                                          Command="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).CloseDeviceCommand}" 
-                                                          CommandParameter="{Binding}"/>
+                                                          Click="RemoveDeviceClick" />
                                                 <Separator/>
                                                 <MenuItem Header="{DynamicResource str_menu_export_device}">
                                                     <MenuItem Header="{DynamicResource str_menu_export_eds}" Click="ExportCurrentDeviceEdsClick"/>
