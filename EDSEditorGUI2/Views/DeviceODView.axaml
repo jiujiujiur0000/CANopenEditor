@@ -155,16 +155,11 @@
               <DataGridTextColumn Header="{DynamicResource str_od_col_default}" Width="2.5*" Binding="{Binding Value.DefaultValue}" />
             </DataGrid.Columns>
             <DataGrid.ContextMenu>
-              <ContextMenu>
+              <ContextMenu MinHeight="0">
                 <ContextMenu.Resources>
                   <Thickness x:Key="MenuFlyoutPresenterThemePadding">0</Thickness>
                   <Thickness x:Key="MenuFlyoutScrollerMargin">0</Thickness>
                 </ContextMenu.Resources>
-                <MenuItem Header="{DynamicResource str_od_menu_add}" Click="ContextMenuSubObjectAddClick">
-                  <MenuItem.Icon>
-                    <PathIcon Data="{StaticResource add_regular}" />
-                  </MenuItem.Icon>
-                </MenuItem>
                 <MenuItem Header="{DynamicResource str_od_menu_remove_shift}" Click="ContextMenuSubObjectRemoveClick" x:Name="contextMenu_subObject_removeSubItemToolStripMenuItem" IsVisible="{Binding #subindexGrid.SelectedItem, Converter={x:Static ObjectConverters.IsNotNull}}">
                   <MenuItem.Icon>
                     <PathIcon Data="{StaticResource remove_regular}" />
@@ -173,6 +168,11 @@
                 <MenuItem Header="{DynamicResource str_od_menu_remove_gap}" Click="ContextMenuSubObjectRemoveClick" IsVisible="{Binding #subindexGrid.SelectedItem, Converter={x:Static ObjectConverters.IsNotNull}}">
                   <MenuItem.Icon>
                     <PathIcon Data="{StaticResource remove_regular}" />
+                  </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="{DynamicResource str_od_menu_add}" Click="ContextMenuSubObjectAddClick">
+                  <MenuItem.Icon>
+                    <PathIcon Data="{StaticResource add_regular}" />
                   </MenuItem.Icon>
                 </MenuItem>
               </ContextMenu>

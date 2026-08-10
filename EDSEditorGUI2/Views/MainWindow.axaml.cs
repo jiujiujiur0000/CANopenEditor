@@ -332,7 +332,12 @@ public partial class MainWindow : Window
 
         try
         {
-            List<string> profilelist = [.. Directory.GetFiles(Path.Combine(AppContext.BaseDirectory, "Profiles"))];
+            List<string> profilelist = [];
+            string defaultProfilesDir = Path.Combine(AppContext.BaseDirectory, "Profiles");
+            if (Directory.Exists(defaultProfilesDir))
+            {
+                profilelist.AddRange(Directory.GetFiles(defaultProfilesDir));
+            }
             string homepath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), ".edseditor");
             homepath = Path.Combine(homepath, "profiles");
 

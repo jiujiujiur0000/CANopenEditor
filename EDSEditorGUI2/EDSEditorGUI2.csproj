@@ -16,15 +16,18 @@
     <ProjectReference Include="..\libEDSsharp\libEDSsharp.csproj" />
   </ItemGroup>
 
-  <Target Name="CopyProfilesDirectory" AfterTargets="Build">
-    <ItemGroup>
-      <ResourceFiles Include="../EDSEditorGUI/Profiles/**/*.*" />
-      <CssFiles Include="../EDSEditorGUI/style.css" />
-    </ItemGroup>
-
-    <Copy SourceFiles="@(ResourceFiles)" DestinationFolder="$(OutDir)Profiles\%(RecursiveDir)" SkipUnchangedFiles="true" />
-    <Copy SourceFiles="@(CssFiles)" DestinationFolder="$(OutDir)" SkipUnchangedFiles="true" />
-  </Target>
+  <ItemGroup>
+    <Content Include="..\EDSEditorGUI\Profiles\**\*.*">
+      <Link>Profiles\%(RecursiveDir)%(Filename)%(Extension)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="..\EDSEditorGUI\style.css">
+      <Link>style.css</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Avalonia" Version="11.1.5" />
