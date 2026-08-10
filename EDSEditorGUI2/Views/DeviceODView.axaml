@@ -214,11 +214,11 @@
             <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" ColumnDefinitions="80,1.5*, 0.5*, 100,1.5*">
               
               <!-- Row 0: SubIndex & Name -->
-              <TextBlock Text="{DynamicResource str_od_prop_subindex}" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,15"/>
-              <TextBox Text="{Binding SelectedSubObject.Key}" Grid.Row="0" Grid.Column="1" IsEnabled="False" Margin="0,0,20,15"/>
+              <TextBlock Text="{DynamicResource str_od_prop_subindex}" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,15" IsVisible="{Binding SelectedObject.Value.IsRecordOrArray}"/>
+              <TextBox Text="{Binding SelectedSubObject.Key}" Grid.Row="0" Grid.Column="1" IsEnabled="False" Margin="0,0,20,15" IsVisible="{Binding SelectedObject.Value.IsRecordOrArray}"/>
               
-              <TextBlock Text="{DynamicResource str_od_prop_name}" Grid.Row="0" Grid.Column="3" VerticalAlignment="Center" Margin="0,0,10,15"/>
-              <TextBox Text="{Binding SelectedSubObject.Value.Name}" Grid.Row="0" Grid.Column="4" Margin="0,0,0,15"/>
+              <TextBlock Text="{DynamicResource str_od_prop_name}" Grid.Row="0" Grid.Column="3" VerticalAlignment="Center" Margin="0,0,10,15" IsVisible="{Binding SelectedObject.Value.IsRecordOrArray}"/>
+              <TextBox Text="{Binding SelectedSubObject.Value.Name}" Grid.Row="0" Grid.Column="4" Margin="0,0,0,15" IsVisible="{Binding SelectedObject.Value.IsRecordOrArray}"/>
 
               <!-- Row 1: DataType & String Length -->
               <TextBlock Text="{DynamicResource str_od_prop_datatype}" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,15"/>
