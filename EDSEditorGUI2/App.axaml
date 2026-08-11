@@ -14,11 +14,11 @@
             
             <ResourceDictionary.ThemeDictionaries>
                 <ResourceDictionary x:Key="Dark">
-                    <SolidColorBrush x:Key="SystemRegionBrush">#1E1E1E</SolidColorBrush>
-                    <SolidColorBrush x:Key="SystemControlBackgroundAltHighBrush">#252526</SolidColorBrush>
-                    <SolidColorBrush x:Key="SystemControlBackgroundAltMediumHighBrush">#2D2D30</SolidColorBrush>
-                    <SolidColorBrush x:Key="SystemControlBackgroundAltMediumBrush">#3E3E42</SolidColorBrush>
-                    <SolidColorBrush x:Key="SystemControlBackgroundAltLowBrush">#333337</SolidColorBrush>
+                    <Color x:Key="SystemRegionColor">#1E1E1E</Color>
+                    <Color x:Key="SystemAltHighColor">#252526</Color>
+                    <Color x:Key="SystemAltMediumHighColor">#2D2D30</Color>
+                    <Color x:Key="SystemAltMediumColor">#3E3E42</Color>
+                    <Color x:Key="SystemAltLowColor">#333337</Color>
                 </ResourceDictionary>
             </ResourceDictionary.ThemeDictionaries>
             
