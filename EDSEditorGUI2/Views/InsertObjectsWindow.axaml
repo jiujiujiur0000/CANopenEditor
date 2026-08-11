@@ -38,7 +38,7 @@
                       CanUserReorderColumns="False"
                       CanUserResizeColumns="False"
                       CanUserSortColumns="False"
-                      GridLinesVisibility="Horizontal"
+                      GridLinesVisibility="None"
                       HeadersVisibility="Column"
                       BorderThickness="0"
                       ScrollViewer.HorizontalScrollBarVisibility="Auto"
@@ -55,12 +55,19 @@
                     <Style Selector="TextBlock.insert-conflict">
                         <Setter Property="Foreground" Value="{DynamicResource SystemControlErrorTextForegroundBrush}" />
                     </Style>
+                    <Style Selector="DataGridRow">
+                        <Setter Property="BorderBrush" Value="{DynamicResource SystemControlForegroundBaseLowBrush}"/>
+                        <Setter Property="BorderThickness" Value="0,0,0,1"/>
+                    </Style>
+                    <Style Selector="DataGridRow:nth-last-child(1)">
+                        <Setter Property="BorderThickness" Value="0"/>
+                    </Style>
                 </DataGrid.Styles>
                 <DataGrid.Columns>
                     <DataGridTemplateColumn Header="{DynamicResource str_insert_col_insert}" Width="100">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate DataType="vm:ODIndexMergeStatus">
-                                <CheckBox IsChecked="{Binding Insert}" Checked="CheckBox_CheckedChanged" Unchecked="CheckBox_CheckedChanged" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <CheckBox IsChecked="{Binding Insert}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>

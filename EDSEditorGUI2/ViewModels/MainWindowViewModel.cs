@@ -5,6 +5,7 @@ using EDSEditorGUI2.Mapper;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace EDSEditorGUI2.ViewModels;
 
@@ -200,9 +201,34 @@ public partial class MainWindowViewModel : ViewModelBase
                     TextBrush = new SolidColorBrush(Colors.Black),
                 };
 
+                ms.PropertyChanged += MergeStatus_PropertyChanged;
+
                 MergeStatus.Add(ms);
             }
             UpdateMergeStatus(offsets);
+        }
+    }
+
+    private void MergeStatus_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
+    {
+        if (e.PropertyName == nameof(ODIndexMergeStatus.Insert) && sender is ODIndexMergeStatus status)
+        {
+            int index = status.OriginalIndex;
+            int twinIndex = -1;
+            
+            if (index >= 0x1800 && index <= 0x18FF) twinIndex = index + 0x0200;
+            else if (index >= 0x1A00 && index <= 0x1AFF) twinIndex = index - 0x0200;
+            else if (index >= 0x1400 && index <= 0x14FF) twinIndex = index + 0x0200;
+            else if (index >= 0x1600 && index <= 0x16FF) twinIndex = index - 0x0200;
+
+            if (twinIndex != -1)
+            {
+                var twin = MergeStatus.FirstOrDefault(x => x.OriginalIndex == twinIndex);
+                if (twin != null && twin.Insert != status.Insert)
+                {
+                    twin.Insert = status.Insert;
+                }
+            }
         }
     }
 

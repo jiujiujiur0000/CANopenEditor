@@ -17,6 +17,30 @@ public partial class InsertObjectsWindow : Window
         InitializeComponent();
     }
 
+    protected override void OnLoaded(RoutedEventArgs e)
+    {
+        base.OnLoaded(e);
+        
+        // Initial height alignment to avoid partial empty spaces
+        if (grid.Bounds.Height > 0)
+        {
+            double headerHeight = 32;
+            double contentHeight = grid.Bounds.Height - headerHeight;
+            if (contentHeight > 0)
+            {
+                double rowHeight = grid.RowHeight;
+                if (!double.IsNaN(rowHeight) && rowHeight > 0)
+                {
+                    double remainder = contentHeight % rowHeight;
+                    if (remainder > 0 && remainder < rowHeight)
+                    {
+                        this.Height -= remainder;
+                    }
+                }
+            }
+        }
+    }
+
     public void OnOffsetTextChanged(object? sender, TextChangedEventArgs e)
     {
         if (DataContext is MainWindowViewModel dc && null != InsertObjects_Offsets.Text)
@@ -101,31 +125,5 @@ public partial class InsertObjectsWindow : Window
     private void InsertClick(object? sender, RoutedEventArgs e)
     {
         Close("insert");
-    }
-
-    private void CheckBox_CheckedChanged(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
-    {
-        if (sender is Avalonia.Controls.CheckBox cb && cb.DataContext is ViewModels.ODIndexMergeStatus status)
-        {
-            if (DataContext is ViewModels.MainWindowViewModel dc)
-            {
-                int index = status.OriginalIndex;
-                int twinIndex = -1;
-                
-                if (index >= 0x1800 && index <= 0x18FF) twinIndex = index + 0x0200;
-                else if (index >= 0x1A00 && index <= 0x1AFF) twinIndex = index - 0x0200;
-                else if (index >= 0x1400 && index <= 0x14FF) twinIndex = index + 0x0200;
-                else if (index >= 0x1600 && index <= 0x16FF) twinIndex = index - 0x0200;
-
-                if (twinIndex != -1)
-                {
-                    var twin = dc.MergeStatus.FirstOrDefault(x => x.OriginalIndex == twinIndex);
-                    if (twin != null && twin.Insert != (cb.IsChecked ?? false))
-                    {
-                        twin.Insert = cb.IsChecked ?? false;
-                    }
-                }
-            }
-        }
     }
 }

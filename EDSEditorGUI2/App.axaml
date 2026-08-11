@@ -75,11 +75,6 @@
         <FluentTheme />
         <Style Selector="Window, UserControl, ContextMenu, ToolTip, FlyoutPresenter">
             <Setter Property="FontFamily" Value="Microsoft YaHei UI, Microsoft YaHei, Segoe UI, PingFang SC, sans-serif"/>
-            <Setter Property="TextElement.Foreground" Value="{DynamicResource GlobalCustomTextBrush}"/>
-        </Style>
-        
-        <Style Selector="TextBlock, AccessText, Label, TextPresenter">
-            <Setter Property="TextElement.Foreground" Value="{DynamicResource GlobalCustomTextBrush}"/>
         </Style>
         
         <Style Selector="Expander /template/ ToggleButton#ExpanderHeader">
