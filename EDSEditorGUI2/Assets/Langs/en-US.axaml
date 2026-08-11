@@ -219,7 +219,7 @@
     <sys:String x:Key="str_od_panel_var_props">Detailed Parameters</sys:String>
     <sys:String x:Key="str_od_panel_subobj_list">Sub-object List</sys:String>
     <sys:String x:Key="str_od_adv_ext_config">Advanced Extension Config (CANopenNode Exclusive)</sys:String>
-    <sys:String x:Key="str_dyn_001">Configured Baud Rate</sys:String>
+    <sys:String x:Key="str_dyn_001">Baud Rate</sys:String>
     <sys:String x:Key="str_dyn_002">Discard</sys:String>
     <sys:String x:Key="str_dyn_003">Creation Time</sys:String>
     <sys:String x:Key="str_dyn_004">Unsaved modifications</sys:String>
