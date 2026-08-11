@@ -1208,6 +1208,10 @@ public partial class MainWindow : Window
                 UpdateAboutState(dialog, $"获取最新版本成功: {latestVersion}\n当前版本: v{currentVersionString}", false);
             }
         }
+        catch (System.Net.Http.HttpRequestException ex) when (ex.StatusCode == System.Net.HttpStatusCode.Forbidden)
+        {
+            UpdateAboutState(dialog, "检查更新失败：\n请求过于频繁，请稍后再试。\n或者直接点击“GitHub 仓库”查看最新版本。", false);
+        }
         catch (Exception ex)
         {
             UpdateAboutState(dialog, "检查更新失败：\n" + ex.Message, false);
