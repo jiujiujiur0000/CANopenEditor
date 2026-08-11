@@ -38,6 +38,11 @@
                     
                     <SolidColorBrush x:Key="TextControlForeground">#D4D4D4</SolidColorBrush>
                     <SolidColorBrush x:Key="SystemControlForegroundBaseHighBrush">#D4D4D4</SolidColorBrush>
+                    <SolidColorBrush x:Key="TextFillColorPrimaryBrush">#D4D4D4</SolidColorBrush>
+                    
+                    <SolidColorBrush x:Key="ExpanderHeaderBackground">#333337</SolidColorBrush>
+                    <SolidColorBrush x:Key="ExpanderHeaderBackgroundPointerOver">#3E3E42</SolidColorBrush>
+                    <SolidColorBrush x:Key="ExpanderHeaderBackgroundPressed">#1E1E1E</SolidColorBrush>
                 </ResourceDictionary>
             </ResourceDictionary.ThemeDictionaries>
 
