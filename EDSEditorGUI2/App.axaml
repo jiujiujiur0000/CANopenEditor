@@ -18,19 +18,30 @@
                     <SolidColorBrush x:Key="SidePanelBackgroundBrush">#FAFAFA</SolidColorBrush>
                     <SolidColorBrush x:Key="TabUnselectedBackgroundBrush">#E5E7EB</SolidColorBrush>
                     <SolidColorBrush x:Key="CardBackgroundBrush">#FFFFFF</SolidColorBrush>
+                    
+                    <SolidColorBrush x:Key="TextControlBackground">#F5F5F5</SolidColorBrush>
+                    <SolidColorBrush x:Key="TextControlBackgroundPointerOver">#EAEAEA</SolidColorBrush>
+                    <SolidColorBrush x:Key="TextControlBackgroundFocused">#FFFFFF</SolidColorBrush>
                 </ResourceDictionary>
                 <ResourceDictionary x:Key="Dark">
                     <SolidColorBrush x:Key="MainAppBackgroundBrush">#1E1E1E</SolidColorBrush>
                     <SolidColorBrush x:Key="SidePanelBackgroundBrush">#252526</SolidColorBrush>
                     <SolidColorBrush x:Key="TabUnselectedBackgroundBrush">#2D2D30</SolidColorBrush>
                     <SolidColorBrush x:Key="CardBackgroundBrush">#252526</SolidColorBrush>
+                    
+                    <SolidColorBrush x:Key="TextControlBackground">#333337</SolidColorBrush>
+                    <SolidColorBrush x:Key="TextControlBackgroundPointerOver">#3E3E42</SolidColorBrush>
+                    <SolidColorBrush x:Key="TextControlBackgroundFocused">#1E1E1E</SolidColorBrush>
+                    
+                    <SolidColorBrush x:Key="ComboBoxBackground">#333337</SolidColorBrush>
+                    <SolidColorBrush x:Key="ComboBoxBackgroundPointerOver">#3E3E42</SolidColorBrush>
+                    
+                    <SolidColorBrush x:Key="TextControlForeground">#D4D4D4</SolidColorBrush>
+                    <SolidColorBrush x:Key="SystemControlForegroundBaseHighBrush">#D4D4D4</SolidColorBrush>
                 </ResourceDictionary>
             </ResourceDictionary.ThemeDictionaries>
 
             
-            <SolidColorBrush x:Key="TextControlBackground">#F5F5F5</SolidColorBrush>
-            <SolidColorBrush x:Key="TextControlBackgroundPointerOver">#EAEAEA</SolidColorBrush>
-            <SolidColorBrush x:Key="TextControlBackgroundFocused">#FFFFFF</SolidColorBrush>
         </ResourceDictionary>
     </Application.Resources>
 
