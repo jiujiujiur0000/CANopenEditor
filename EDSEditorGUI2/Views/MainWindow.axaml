@@ -135,7 +135,11 @@
                         <ListBox Grid.Row="1" ItemsSource="{Binding Network}" SelectedItem="{Binding SelectedDevice}" 
                                  Background="Transparent" BorderThickness="0,1,0,0" BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" Padding="0,0">
                             <ListBox.ContextMenu>
-                                <ContextMenu>
+                                <ContextMenu MinHeight="0">
+                                    <ContextMenu.Resources>
+                                        <Thickness x:Key="MenuFlyoutPresenterThemePadding">0</Thickness>
+                                        <Thickness x:Key="MenuFlyoutScrollerMargin">0</Thickness>
+                                    </ContextMenu.Resources>
                                     <MenuItem Header="{DynamicResource str_menu_new_device}" Click="NewDeviceClick"/>
                                     <MenuItem Header="{DynamicResource str_menu_import_device}" Click="OpenFileClick"/>
                                 </ContextMenu>
@@ -155,7 +159,11 @@
                                     <!-- 根节点使用 Border，Background 设为 Transparent 以接收整个区域的鼠标右键事件，并使用 Padding 替代 Grid 不能使用的 Padding 属性 -->
                                     <Border Background="Transparent" Padding="15,12">
                                         <Border.ContextMenu>
-                                            <ContextMenu>
+                                            <ContextMenu MinHeight="0">
+                                                <ContextMenu.Resources>
+                                                    <Thickness x:Key="MenuFlyoutPresenterThemePadding">0</Thickness>
+                                                    <Thickness x:Key="MenuFlyoutScrollerMargin">0</Thickness>
+                                                </ContextMenu.Resources>
                                                 <MenuItem Header="{DynamicResource str_menu_new_device}" Click="NewDeviceClick"/>
                                                 <MenuItem Header="{DynamicResource str_menu_import_device}" Click="OpenFileClick"/>
                                                 <Separator/>
