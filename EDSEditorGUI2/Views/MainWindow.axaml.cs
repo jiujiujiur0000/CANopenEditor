@@ -736,7 +736,7 @@ public partial class MainWindow : Window
         var file = await topLevel.StorageProvider.SaveFilePickerAsync(new FilePickerSaveOptions
         {
             Title = "Export CANopenNode Source",
-            SuggestedFileName = version == libEDSsharp.ExporterFactory.Exporter.CANOPENNODE_V4 ? "OD.h" : "CO_OD.c",
+            SuggestedFileName = version == libEDSsharp.ExporterFactory.Exporter.CANOPENNODE_V4 ? "OD" : "CO_OD",
             FileTypeChoices = [cFiles]
         });
 
