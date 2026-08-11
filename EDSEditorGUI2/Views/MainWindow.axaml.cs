@@ -1271,7 +1271,7 @@ public partial class MainWindow : Window
             };
         });
 
-        await System.Threading.Tasks.Task.Delay(3000);
+        await System.Threading.Tasks.Task.Delay(5000);
         
         if (currentToken == _updateMessageToken)
         {
