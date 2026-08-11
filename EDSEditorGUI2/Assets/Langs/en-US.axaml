@@ -49,6 +49,11 @@
     <sys:String x:Key="str_menu_reports">_Reports</sys:String>
     <sys:String x:Key="str_menu_tools">Tools</sys:String>
     <sys:String x:Key="str_menu_preferences">_Settings</sys:String>
+    <sys:String x:Key="str_menu_about">_About</sys:String>
+    
+    <sys:String x:Key="str_about_desc">Based on original work by the open-source community.</sys:String>
+    <sys:String x:Key="str_about_github">GitHub Repository</sys:String>
+    <sys:String x:Key="str_about_check_update">Check for Updates</sys:String>
 
     <!-- Preferences View -->
     <sys:String x:Key="str_pref_title">Preferences</sys:String>

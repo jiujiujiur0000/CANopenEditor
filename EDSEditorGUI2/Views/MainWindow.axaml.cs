@@ -1097,6 +1097,72 @@ public partial class MainWindow : Window
         await DialogHostAvalonia.DialogHost.Show(Resources["PreferencesDialog"]!, "RootDialogHost");
     }
 
+    private async void OpenAbout(object? sender, RoutedEventArgs e)
+    {
+        await DialogHostAvalonia.DialogHost.Show(Resources["AboutDialog"]!, "RootDialogHost");
+    }
+
+    private void OpenGitHubClick(object? sender, RoutedEventArgs e)
+    {
+        try
+        {
+            System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+            {
+                FileName = "https://github.com/jiujiujiur0000/CANopenEditor",
+                UseShellExecute = true
+            });
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine(ex.Message);
+        }
+    }
+
+    private async void CheckUpdateClick(object? sender, RoutedEventArgs e)
+    {
+        DialogHostAvalonia.DialogHost.Close("RootDialogHost");
+        
+        var dialog = (Control)Resources["UpdateResultDialog"]!;
+        dialog.DataContext = "正在连接服务器检查更新..."; // "Checking for updates..."
+        
+        _ = CheckUpdateAsync(dialog);
+        
+        await DialogHostAvalonia.DialogHost.Show(dialog, "RootDialogHost");
+    }
+
+    private async System.Threading.Tasks.Task CheckUpdateAsync(Control dialog)
+    {
+        try
+        {
+            using var client = new System.Net.Http.HttpClient();
+            client.DefaultRequestHeaders.Add("User-Agent", "CANopenEditor");
+            var response = await client.GetStringAsync("https://api.github.com/repos/jiujiujiur0000/CANopenEditor/releases/latest");
+            using var doc = System.Text.Json.JsonDocument.Parse(response);
+            string latestVersion = doc.RootElement.GetProperty("tag_name").GetString() ?? "";
+            
+            string currentVersionString = "2.0.0";
+            if (Version.TryParse(latestVersion.Trim('v', 'V'), out var vLatest) && Version.TryParse(currentVersionString, out var vCurrent))
+            {
+                if (vLatest > vCurrent)
+                {
+                    Avalonia.Threading.Dispatcher.UIThread.Post(() => { dialog.DataContext = $"发现新版本 v{vLatest}！\n请前往 GitHub Releases 页面下载最新版本。"; });
+                }
+                else
+                {
+                    Avalonia.Threading.Dispatcher.UIThread.Post(() => { dialog.DataContext = $"当前已是最新版本 (v{vCurrent})。"; });
+                }
+            }
+            else
+            {
+                Avalonia.Threading.Dispatcher.UIThread.Post(() => { dialog.DataContext = $"获取最新版本成功: {latestVersion}\n当前版本: v{currentVersionString}"; });
+            }
+        }
+        catch (Exception ex)
+        {
+            Avalonia.Threading.Dispatcher.UIThread.Post(() => { dialog.DataContext = "检查更新失败：\n" + ex.Message; });
+        }
+    }
+
 
         private void Window_PointerPressed(object? sender, Avalonia.Input.PointerPressedEventArgs e)
         {

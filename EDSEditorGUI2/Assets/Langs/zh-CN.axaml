@@ -51,6 +51,11 @@
     <sys:String x:Key="str_menu_report_network">网络 PDO 报告</sys:String>
     <sys:String x:Key="str_menu_tools">工具</sys:String>
     <sys:String x:Key="str_menu_preferences">设置(_S)</sys:String>
+    <sys:String x:Key="str_menu_about">关于(_A)</sys:String>
+    
+    <sys:String x:Key="str_about_desc">基于开源社区原始项目构建。</sys:String>
+    <sys:String x:Key="str_about_github">GitHub 仓库</sys:String>
+    <sys:String x:Key="str_about_check_update">检查更新</sys:String>
 
     <!-- Preferences View -->
     <sys:String x:Key="str_pref_title">偏好设置</sys:String>
