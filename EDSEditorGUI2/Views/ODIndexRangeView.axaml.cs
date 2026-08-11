@@ -177,6 +177,15 @@ public partial class ODIndexRangeView : UserControl
 
                 dc.AddIndex(param.Index, param.Name, param.Type);
                 _collectionView?.Refresh();
+
+                var newKey = param.Index.ToString("X4");
+                var newlyAdded = dc.FirstOrDefault(x => x.Key == newKey);
+                if (newlyAdded.Key != null)
+                {
+                    grid.SelectedItem = newlyAdded;
+                    grid.ScrollIntoView(newlyAdded, null);
+                }
+
                 if ((Avalonia.Application.Current?.ApplicationLifetime as Avalonia.Controls.ApplicationLifetimes.IClassicDesktopStyleApplicationLifetime)?.MainWindow is MainWindow mainWindow)
                 {
                     mainWindow.TriggerAutoSave();

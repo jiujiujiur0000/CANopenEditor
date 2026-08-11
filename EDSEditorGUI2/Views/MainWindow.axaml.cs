@@ -1,4 +1,4 @@
-﻿using Avalonia.Controls;
+using Avalonia.Controls;
 using Avalonia.Controls.Templates;
 using Avalonia.Data;
 using Avalonia.Interactivity;
@@ -731,14 +731,13 @@ public partial class MainWindow : Window
         if (targetDevice == null) return;
 
         var topLevel = TopLevel.GetTopLevel(this) ?? throw new Exception("Internal GUI error");
-        var cHeader = new FilePickerFileType("C Header File (*.h)") { Patterns = ["*.h"] };
-        var cSource = new FilePickerFileType("C Source File (*.c)") { Patterns = ["*.c"] };
+        var cFiles = new FilePickerFileType("C Source & Header (*.c, *.h)") { Patterns = ["*.c", "*.h"] };
         
         var file = await topLevel.StorageProvider.SaveFilePickerAsync(new FilePickerSaveOptions
         {
             Title = "Export CANopenNode Source",
             SuggestedFileName = version == libEDSsharp.ExporterFactory.Exporter.CANOPENNODE_V4 ? "OD.h" : "CO_OD.c",
-            FileTypeChoices = version == libEDSsharp.ExporterFactory.Exporter.CANOPENNODE_V4 ? [cHeader, cSource] : [cSource, cHeader]
+            FileTypeChoices = [cFiles]
         });
 
         if (file != null)

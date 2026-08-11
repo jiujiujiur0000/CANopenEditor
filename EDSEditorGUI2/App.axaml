@@ -12,6 +12,16 @@
                 <ResourceInclude Source="avares://EDSEditorGUI2/Assets/Langs/en-US.axaml"/>
             </ResourceDictionary.MergedDictionaries>
             
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key="Dark">
+                    <SolidColorBrush x:Key="SystemRegionBrush">#1E1E1E</SolidColorBrush>
+                    <SolidColorBrush x:Key="SystemControlBackgroundAltHighBrush">#252526</SolidColorBrush>
+                    <SolidColorBrush x:Key="SystemControlBackgroundAltMediumHighBrush">#2D2D30</SolidColorBrush>
+                    <SolidColorBrush x:Key="SystemControlBackgroundAltMediumBrush">#3E3E42</SolidColorBrush>
+                    <SolidColorBrush x:Key="SystemControlBackgroundAltLowBrush">#333337</SolidColorBrush>
+                </ResourceDictionary>
+            </ResourceDictionary.ThemeDictionaries>
+            
             <SolidColorBrush x:Key="TextControlBackground">#F5F5F5</SolidColorBrush>
             <SolidColorBrush x:Key="TextControlBackgroundPointerOver">#EAEAEA</SolidColorBrush>
             <SolidColorBrush x:Key="TextControlBackgroundFocused">#FFFFFF</SolidColorBrush>
