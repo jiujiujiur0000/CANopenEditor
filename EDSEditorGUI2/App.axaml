@@ -13,14 +13,20 @@
             </ResourceDictionary.MergedDictionaries>
             
             <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key="Light">
+                    <SolidColorBrush x:Key="MainAppBackgroundBrush">#F3F4F6</SolidColorBrush>
+                    <SolidColorBrush x:Key="SidePanelBackgroundBrush">#FAFAFA</SolidColorBrush>
+                    <SolidColorBrush x:Key="TabUnselectedBackgroundBrush">#E5E7EB</SolidColorBrush>
+                    <SolidColorBrush x:Key="CardBackgroundBrush">#FFFFFF</SolidColorBrush>
+                </ResourceDictionary>
                 <ResourceDictionary x:Key="Dark">
-                    <Color x:Key="SystemRegionColor">#1E1E1E</Color>
-                    <Color x:Key="SystemAltHighColor">#252526</Color>
-                    <Color x:Key="SystemAltMediumHighColor">#2D2D30</Color>
-                    <Color x:Key="SystemAltMediumColor">#3E3E42</Color>
-                    <Color x:Key="SystemAltLowColor">#333337</Color>
+                    <SolidColorBrush x:Key="MainAppBackgroundBrush">#1E1E1E</SolidColorBrush>
+                    <SolidColorBrush x:Key="SidePanelBackgroundBrush">#252526</SolidColorBrush>
+                    <SolidColorBrush x:Key="TabUnselectedBackgroundBrush">#2D2D30</SolidColorBrush>
+                    <SolidColorBrush x:Key="CardBackgroundBrush">#252526</SolidColorBrush>
                 </ResourceDictionary>
             </ResourceDictionary.ThemeDictionaries>
+
             
             <SolidColorBrush x:Key="TextControlBackground">#F5F5F5</SolidColorBrush>
             <SolidColorBrush x:Key="TextControlBackgroundPointerOver">#EAEAEA</SolidColorBrush>

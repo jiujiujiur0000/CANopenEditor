@@ -1,4 +1,4 @@
-<UserControl xmlns="https://github.com/avaloniaui"
+﻿<UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:dialogHost="clr-namespace:DialogHostAvalonia;assembly=DialogHost.Avalonia"
              xmlns:vm="using:EDSEditorGUI2.ViewModels"
@@ -14,7 +14,7 @@
   <Grid RowDefinitions="Auto, *">
     <TextBlock Grid.Row="0" Text="{Binding Heading, RelativeSource={RelativeSource AncestorType=view:ODIndexRangeView}}" 
                x:Name="HeadingText" FontWeight="Bold" FontSize="15" Margin="0,0,0,10"/>
-    <Border Grid.Row="1" Background="{DynamicResource SystemControlBackgroundAltHighBrush}" BorderThickness="1" BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" CornerRadius="8" ClipToBounds="True">
+    <Border Grid.Row="1" Background="{DynamicResource CardBackgroundBrush}" BorderThickness="1" BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" CornerRadius="8" ClipToBounds="True">
       <DataGrid x:Name="grid"
                 CanUserResizeColumns="True"
                 ItemsSource="{Binding FilteredItems, RelativeSource={RelativeSource AncestorType=UserControl}}"

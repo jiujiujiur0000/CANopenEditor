@@ -182,8 +182,11 @@ public partial class ODIndexRangeView : UserControl
                 var newlyAdded = dc.FirstOrDefault(x => x.Key == newKey);
                 if (newlyAdded.Key != null)
                 {
-                    grid.SelectedItem = newlyAdded;
-                    grid.ScrollIntoView(newlyAdded, null);
+                    Avalonia.Threading.Dispatcher.UIThread.Post(() =>
+                    {
+                        grid.SelectedItem = newlyAdded;
+                        grid.ScrollIntoView(newlyAdded, null);
+                    });
                 }
 
                 if ((Avalonia.Application.Current?.ApplicationLifetime as Avalonia.Controls.ApplicationLifetimes.IClassicDesktopStyleApplicationLifetime)?.MainWindow is MainWindow mainWindow)

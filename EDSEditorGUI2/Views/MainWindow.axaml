@@ -113,14 +113,14 @@
             </Grid>
 
             <!-- 主编辑器区域（有设备时显示），统一底色防止缝隙漏出灰底 -->
-            <Grid IsVisible="{Binding HasDevice}" Background="#F3F4F6">
+            <Grid IsVisible="{Binding HasDevice}" Background="{DynamicResource MainAppBackgroundBrush}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="200" MinWidth="150" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 
                 <!-- 恢复右边框作为视觉上的 1 像素细线，并单独设置极浅灰底色 -->
-                <Border Grid.Column="0" Background="#FAFAFA" BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" BorderThickness="0,0,1,0">
+                <Border Grid.Column="0" Background="{DynamicResource SidePanelBackgroundBrush}" BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" BorderThickness="0,0,1,0">
                     <Grid RowDefinitions="Auto,*">
                         <TextBlock Grid.Row="0" Text="{DynamicResource str_main_device_list}" FontWeight="Bold" Margin="15,15,10,10" Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}" />
                         

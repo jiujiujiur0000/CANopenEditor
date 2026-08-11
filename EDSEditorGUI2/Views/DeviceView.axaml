@@ -51,7 +51,7 @@
         <Setter Property="Margin" Value="0" />
         <Setter Property="Foreground" Value="{DynamicResource SystemControlForegroundBaseMediumBrush}" />
         <!-- 未选中的标签稍微比主背景深一点点，以便区分 -->
-        <Setter Property="Background" Value="#E5E7EB" />
+        <Setter Property="Background" Value="{DynamicResource TabUnselectedBackgroundBrush}" />
         <Setter Property="BorderBrush" Value="{DynamicResource SystemControlForegroundBaseLowBrush}" />
         <!-- 巧妙使用 0,0,1,1 (右侧和下方边框)。
              这样第一个标签没有左边框。
@@ -88,7 +88,7 @@
         <Setter Property="FontWeight" Value="SemiBold" />
         <Setter Property="Foreground" Value="{DynamicResource SystemControlForegroundBaseHighBrush}" />
         <!-- 选中时的背景色应当与下方主编辑区的底板颜色（#F3F4F6）完全一致，从而形成连通感 -->
-        <Setter Property="Background" Value="#F3F4F6" />
+        <Setter Property="Background" Value="{DynamicResource MainAppBackgroundBrush}" />
         <!-- 选中的标签关闭下方边框，保持左右边框（这里设置右边，左边由前一个标签提供） -->
         <Setter Property="BorderThickness" Value="0,0,1,0" />
       </Style>

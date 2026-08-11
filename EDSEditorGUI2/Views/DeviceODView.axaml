@@ -1,4 +1,4 @@
-<UserControl xmlns="https://github.com/avaloniaui"
+﻿<UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:dialogHost="clr-namespace:DialogHostAvalonia;assembly=DialogHost.Avalonia"
              xmlns:vm="using:EDSEditorGUI2.ViewModels"
@@ -70,7 +70,7 @@
         <!-- Top: Index Properties (Row 0) -->
         <Grid Grid.Row="0" RowDefinitions="Auto, *">
           <TextBlock Grid.Row="0" Text="{DynamicResource str_od_panel_basic_info}" FontWeight="Bold" FontSize="15" Margin="0,0,0,10"/>
-          <Border Grid.Row="1" Background="{DynamicResource SystemControlBackgroundAltHighBrush}" CornerRadius="8" Padding="20"
+          <Border Grid.Row="1" Background="{DynamicResource CardBackgroundBrush}" CornerRadius="8" Padding="20"
                   BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" BorderThickness="1"
                   BoxShadow="0 2 6 0 #1A000000" Margin="0,0,0,0">
             <StackPanel Spacing="15">
@@ -126,7 +126,7 @@
         <Grid RowDefinitions="Auto, *" IsVisible="{Binding SelectedObject.Value.IsRecordOrArray}">
           <TextBlock Grid.Row="0" Text="{DynamicResource str_od_panel_subobj_list}" FontWeight="Bold" FontSize="15" Margin="0,0,0,10"/>
           
-          <Border Grid.Row="1" Background="{DynamicResource SystemControlBackgroundAltHighBrush}" BorderThickness="1" BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" CornerRadius="8" ClipToBounds="True">
+          <Border Grid.Row="1" Background="{DynamicResource CardBackgroundBrush}" BorderThickness="1" BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" CornerRadius="8" ClipToBounds="True">
             <DataGrid ItemsSource="{Binding SelectedObject.Value.SubObjects}"
                       x:Name="subindexGrid"
                       CanUserResizeColumns="True"
@@ -207,7 +207,7 @@
         <StackPanel Spacing="15" IsVisible="{Binding SelectedObject.Value, Converter={x:Static ObjectConverters.IsNotNull}}">
           <TextBlock Text="{DynamicResource str_od_panel_subobj_props}" FontWeight="Bold" FontSize="15" IsVisible="{Binding SelectedObject.Value.IsRecordOrArray}"/>
           <TextBlock Text="{DynamicResource str_od_panel_var_props}" FontWeight="Bold" FontSize="15" IsVisible="{Binding SelectedObject.Value.IsVar}"/>
-          <Border Background="{DynamicResource SystemControlBackgroundAltHighBrush}" CornerRadius="8" Padding="25"
+          <Border Background="{DynamicResource CardBackgroundBrush}" CornerRadius="8" Padding="25"
                   BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" BorderThickness="1"
                   BoxShadow="0 2 6 0 #1A000000">
           <StackPanel Spacing="15">

@@ -1,4 +1,4 @@
-<UserControl xmlns="https://github.com/avaloniaui"
+﻿<UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:vm="using:EDSEditorGUI2.ViewModels"
              xmlns:view="using:EDSEditorGUI2.Views"
@@ -21,7 +21,7 @@
       <!-- Left Column -->
       <Grid Grid.Column="0" RowDefinitions="Auto, Auto" Margin="0,0,7.5,0" VerticalAlignment="Top">
         <!-- Card 1: Device Info -->
-        <Border Grid.Row="0" Margin="0,0,0,15" Background="{DynamicResource SystemControlBackgroundAltHighBrush}" 
+        <Border Grid.Row="0" Margin="0,0,0,15" Background="{DynamicResource CardBackgroundBrush}" 
                 BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" 
                 BorderThickness="1" CornerRadius="8" Padding="25"
                 BoxShadow="0 4 10 0 #1A000000">
@@ -47,7 +47,7 @@
         </Border>
 
         <!-- Card 2: File Info -->
-        <Border Grid.Row="1" Background="{DynamicResource SystemControlBackgroundAltHighBrush}" 
+        <Border Grid.Row="1" Background="{DynamicResource CardBackgroundBrush}" 
                 BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" 
                 BorderThickness="1" CornerRadius="8" Padding="25"
                 BoxShadow="0 4 10 0 #1A000000">
@@ -91,7 +91,7 @@
       <!-- Right Column -->
       <StackPanel Grid.Column="1" Spacing="15" Margin="7.5,0,0,0">
         <!-- Card 3: Baudrates Section -->
-        <Border Background="{DynamicResource SystemControlBackgroundAltHighBrush}" 
+        <Border Background="{DynamicResource CardBackgroundBrush}" 
                 BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" 
                 BorderThickness="1" CornerRadius="8" Padding="25"
                 BoxShadow="0 4 10 0 #1A000000">
@@ -112,7 +112,7 @@
         </Border>
 
         <!-- Card 4: Features Section -->
-        <Border Background="{DynamicResource SystemControlBackgroundAltHighBrush}" 
+        <Border Background="{DynamicResource CardBackgroundBrush}" 
                 BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" 
                 BorderThickness="1" CornerRadius="8" Padding="25"
                 BoxShadow="0 4 10 0 #1A000000">

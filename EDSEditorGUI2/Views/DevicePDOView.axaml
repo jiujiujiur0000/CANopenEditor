@@ -1,4 +1,4 @@
-<UserControl xmlns="https://github.com/avaloniaui"
+﻿<UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:vm="using:EDSEditorGUI2.ViewModels"
              xmlns:view="using:EDSEditorGUI2.Views"
@@ -16,7 +16,7 @@
       <!-- Top Area: DataGrid & Properties -->
       <Grid ColumnDefinitions="*, Auto" MinHeight="350">
         <!-- Left: DataGrid -->
-        <Border Grid.Column="0" Margin="0,0,15,0" Height="{Binding #RightPropertiesCard.Bounds.Height}" Background="{DynamicResource SystemControlBackgroundAltHighBrush}" BorderThickness="1" BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" CornerRadius="8" ClipToBounds="True">
+        <Border Grid.Column="0" Margin="0,0,15,0" Height="{Binding #RightPropertiesCard.Bounds.Height}" Background="{DynamicResource CardBackgroundBrush}" BorderThickness="1" BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" CornerRadius="8" ClipToBounds="True">
           <DataGrid ItemsSource="{Binding AvailableObjects}"
                     x:Name="subindexGrid"
                     CanUserResizeColumns="True"
@@ -44,7 +44,7 @@
         </Border>
 
         <!-- Right: Properties Card -->
-        <Border x:Name="RightPropertiesCard" Grid.Column="1" Background="{DynamicResource SystemControlBackgroundAltHighBrush}" CornerRadius="8" Padding="25"
+        <Border x:Name="RightPropertiesCard" Grid.Column="1" Background="{DynamicResource CardBackgroundBrush}" CornerRadius="8" Padding="25"
                 BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" BorderThickness="1"
                 BoxShadow="0 2 6 0 #1A000000" VerticalAlignment="Top">
           <StackPanel Spacing="15">
@@ -99,7 +99,7 @@
       </Grid>
 
       <!-- Bottom Area: Mapping Visualizer -->
-      <Border Background="{DynamicResource SystemControlBackgroundAltHighBrush}" CornerRadius="8" Padding="25"
+      <Border Background="{DynamicResource CardBackgroundBrush}" CornerRadius="8" Padding="25"
               BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" BorderThickness="1"
               BoxShadow="0 2 6 0 #1A000000">
         <StackPanel Spacing="15">

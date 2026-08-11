@@ -143,8 +143,11 @@ public partial class DeviceODView : UserControl
                 var kvpToSelect = selectedObj.SubObjects.FirstOrDefault(x => x.Value == lastAdded);
                 if (kvpToSelect.Value != null)
                 {
-                    subindexGrid.SelectedItem = kvpToSelect;
-                    subindexGrid.ScrollIntoView(kvpToSelect, null);
+                    Avalonia.Threading.Dispatcher.UIThread.Post(() =>
+                    {
+                        subindexGrid.SelectedItem = kvpToSelect;
+                        subindexGrid.ScrollIntoView(kvpToSelect, null);
+                    });
                 }
             }
 
