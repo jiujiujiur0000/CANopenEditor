@@ -1,4 +1,4 @@
-﻿<Window xmlns="https://github.com/avaloniaui"
+<Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -60,7 +60,7 @@
                     <DataGridTemplateColumn Header="{DynamicResource str_insert_col_insert}" Width="100">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate DataType="vm:ODIndexMergeStatus">
-                                <CheckBox IsChecked="{Binding Insert}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <CheckBox IsChecked="{Binding Insert}" Checked="CheckBox_CheckedChanged" Unchecked="CheckBox_CheckedChanged" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>

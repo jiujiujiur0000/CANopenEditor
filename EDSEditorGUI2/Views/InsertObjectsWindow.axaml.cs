@@ -5,6 +5,7 @@ using Avalonia.Data;
 using EDSEditorGUI2.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace EDSEditorGUI2.Views;
@@ -100,5 +101,31 @@ public partial class InsertObjectsWindow : Window
     private void InsertClick(object? sender, RoutedEventArgs e)
     {
         Close("insert");
+    }
+
+    private void CheckBox_CheckedChanged(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    {
+        if (sender is Avalonia.Controls.CheckBox cb && cb.DataContext is ViewModels.ODIndexMergeStatus status)
+        {
+            if (DataContext is ViewModels.MainWindowViewModel dc)
+            {
+                int index = status.OriginalIndex;
+                int twinIndex = -1;
+                
+                if (index >= 0x1800 && index <= 0x18FF) twinIndex = index + 0x0200;
+                else if (index >= 0x1A00 && index <= 0x1AFF) twinIndex = index - 0x0200;
+                else if (index >= 0x1400 && index <= 0x14FF) twinIndex = index + 0x0200;
+                else if (index >= 0x1600 && index <= 0x16FF) twinIndex = index - 0x0200;
+
+                if (twinIndex != -1)
+                {
+                    var twin = dc.MergeStatus.FirstOrDefault(x => x.OriginalIndex == twinIndex);
+                    if (twin != null && twin.Insert != (cb.IsChecked ?? false))
+                    {
+                        twin.Insert = cb.IsChecked ?? false;
+                    }
+                }
+            }
+        }
     }
 }

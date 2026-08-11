@@ -191,7 +191,7 @@ public partial class MainWindowViewModel : ViewModelBase
                 ODIndexMergeStatus ms = new()
                 {
                     Insert = false,
-                    OriginalObject = $"0x{mergeIndex:x} - {obj.Value.Name}",
+                    OriginalObject = $"0x{mergeIndex:X4} - {obj.Value.Name}",
                     Offsets = objectOffset,
                     OriginalIndex = mergeIndex,
 #pragma warning disable MVVMTK0034 // Direct field reference to [ObservableProperty] backing field
