@@ -155,7 +155,7 @@
               </Style>
             </DataGrid.Styles>
             <DataGrid.Columns>
-              <DataGridTemplateColumn Header="{DynamicResource str_od_col_sub}" Width="Auto" MinWidth="80">
+              <DataGridTemplateColumn Header="{DynamicResource str_od_col_sub}" Width="Auto" MinWidth="80" SortMemberPath="Key">
                 <DataGridTemplateColumn.CellTemplate>
                   <DataTemplate>
                     <TextBlock Margin="12,0" VerticalAlignment="Center">

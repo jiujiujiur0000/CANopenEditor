@@ -1,4 +1,4 @@
-﻿<UserControl xmlns="https://github.com/avaloniaui"
+<UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:dialogHost="clr-namespace:DialogHostAvalonia;assembly=DialogHost.Avalonia"
              xmlns:vm="using:EDSEditorGUI2.ViewModels"
@@ -48,7 +48,7 @@
             </Style>
           </DataGrid.Styles>
       <DataGrid.Columns>
-        <DataGridTemplateColumn Header="{DynamicResource str_pdo_col_index}" Width="Auto" MinWidth="80">
+        <DataGridTemplateColumn Header="{DynamicResource str_pdo_col_index}" Width="Auto" MinWidth="80" SortMemberPath="Key">
           <DataGridTemplateColumn.CellTemplate>
             <DataTemplate DataType="vm:OdObject"> <!-- Just dummy to suppress warning, actually it is KeyValuePair -->
               <TextBlock Text="{Binding Key, StringFormat='0x\{0\}'}" VerticalAlignment="Center" Margin="12,0"
@@ -56,7 +56,7 @@
             </DataTemplate>
           </DataGridTemplateColumn.CellTemplate>
         </DataGridTemplateColumn>
-        <DataGridTemplateColumn Header="{DynamicResource str_od_col_name}" Width="*">
+        <DataGridTemplateColumn Header="{DynamicResource str_od_col_name}" Width="*" SortMemberPath="Value.Name">
           <DataGridTemplateColumn.CellTemplate>
             <DataTemplate>
               <TextBlock Text="{Binding Value.Name}" VerticalAlignment="Center" Margin="12,0"
