@@ -237,31 +237,24 @@
         </StackPanel>
     </StackPanel>
 
-    <StackPanel x:Key="AboutDialog" Margin="30" Spacing="20" MinWidth="400" MaxWidth="500">
-        <StackPanel Spacing="5" HorizontalAlignment="Center">
+    <StackPanel x:Key="AboutDialog" x:CompileBindings="False" Margin="0" Spacing="0" MinWidth="400" MaxWidth="450">
+        <StackPanel Spacing="5" Margin="30,30,30,10">
             <TextBlock Text="CANopen Editor 2" FontWeight="Bold" FontSize="26" HorizontalAlignment="Center"/>
-            <TextBlock Text="Version 2.0.0" FontSize="14" Foreground="Gray" HorizontalAlignment="Center"/>
+            <TextBlock Text="{Binding Version}" FontSize="14" Foreground="#888888" HorizontalAlignment="Center"/>
         </StackPanel>
 
-        <TextBlock Text="{DynamicResource str_about_desc}" Foreground="LightGray" TextWrapping="Wrap" HorizontalAlignment="Center" TextAlignment="Center" Margin="0,10,0,10"/>
-
-        <Separator Background="#333333" Height="1" Margin="20,0"/>
-
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="15">
-            <Button Content="{DynamicResource str_about_check_update}" Click="CheckUpdateClick" Classes="accent" Width="140" HorizontalContentAlignment="Center"/>
-        </StackPanel>
-
-        <Separator Background="#333333" Height="1" Margin="20,0"/>
-
-        <StackPanel Spacing="8">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="15">
-                <Button Content="{DynamicResource str_about_github}" Click="OpenGitHubClick" Background="Transparent" Foreground="#4DA8DA" Padding="0" Cursor="Hand" BorderThickness="0"/>
-            </StackPanel>
-            <TextBlock Text="Copyright © 2024 Open Source Community. All rights reserved." FontSize="11" Foreground="DarkGray" HorizontalAlignment="Center"/>
-        </StackPanel>
+        <TextBlock Text="{DynamicResource str_about_desc}" Foreground="#CCCCCC" TextWrapping="Wrap" HorizontalAlignment="Center" TextAlignment="Center" Margin="30,10,30,0"/>
         
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="10" Margin="0,15,0,0">
-            <Button Content="{DynamicResource str_dyn_025}" Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=dialogHost:DialogHost}, Path=CloseDialogCommand}" CommandParameter="OK" Width="80" HorizontalContentAlignment="Center"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="15" Margin="30,15,30,15">
+            <Button Content="{DynamicResource str_about_check_update}" Click="CheckUpdateClick" Background="Transparent" Foreground="#4DA8DA" BorderThickness="0" Cursor="Hand" Padding="0"/>
+            <TextBlock Text="|" Foreground="#555555" VerticalAlignment="Center"/>
+            <Button Content="{DynamicResource str_about_github}" Click="OpenGitHubClick" Background="Transparent" Foreground="#4DA8DA" BorderThickness="0" Cursor="Hand" Padding="0"/>
+        </StackPanel>
+
+        <TextBlock Text="{Binding Copyright}" FontSize="11" Foreground="#666666" HorizontalAlignment="Center" Margin="30,0,30,20"/>
+        
+        <StackPanel Margin="30,0,30,20">
+            <Button Content="{DynamicResource str_dyn_025}" Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=dialogHost:DialogHost}, Path=CloseDialogCommand}" CommandParameter="OK" Classes="accent" Width="90" HorizontalAlignment="Right" HorizontalContentAlignment="Center"/>
         </StackPanel>
     </StackPanel>
 

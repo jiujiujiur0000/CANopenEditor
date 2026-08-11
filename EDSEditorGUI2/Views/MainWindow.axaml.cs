@@ -1099,7 +1099,18 @@ public partial class MainWindow : Window
 
     private async void OpenAbout(object? sender, RoutedEventArgs e)
     {
-        await DialogHostAvalonia.DialogHost.Show(Resources["AboutDialog"]!, "RootDialogHost");
+        var aboutDialog = (Control)Resources["AboutDialog"]!;
+        
+        var version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version?.ToString();
+        if (string.IsNullOrEmpty(version) || version == "1.0.0.0") version = "1.1.0";
+        if (version.EndsWith(".0") && version.Split('.').Length == 4) version = version.Substring(0, version.Length - 2);
+
+        aboutDialog.DataContext = new {
+            Version = "Version " + version,
+            Copyright = $"Copyright © 2024-{DateTime.Now.Year} Open Source Community. All rights reserved."
+        };
+        
+        await DialogHostAvalonia.DialogHost.Show(aboutDialog, "RootDialogHost");
     }
 
     private void OpenGitHubClick(object? sender, RoutedEventArgs e)
@@ -1140,7 +1151,10 @@ public partial class MainWindow : Window
             using var doc = System.Text.Json.JsonDocument.Parse(response);
             string latestVersion = doc.RootElement.GetProperty("tag_name").GetString() ?? "";
             
-            string currentVersionString = "2.0.0";
+            string currentVersionString = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version?.ToString();
+            if (string.IsNullOrEmpty(currentVersionString) || currentVersionString == "1.0.0.0") currentVersionString = "1.1.0";
+            if (currentVersionString.EndsWith(".0") && currentVersionString.Split('.').Length == 4) currentVersionString = currentVersionString.Substring(0, currentVersionString.Length - 2);
+
             if (Version.TryParse(latestVersion.Trim('v', 'V'), out var vLatest) && Version.TryParse(currentVersionString, out var vCurrent))
             {
                 if (vLatest > vCurrent)
