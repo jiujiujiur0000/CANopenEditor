@@ -221,7 +221,12 @@ namespace EDSEditorGUI2.ViewModels
             if (_helper == null) return;
             foreach (var slot in _helper.pdoslots.Where(s => s.isTXPDO() == _isTx))
             {
-                Slots.Add(new PDOSlotViewModel(slot));
+                var vm = new PDOSlotViewModel(slot);
+                vm.PropertyChanged += (sender, args) =>
+                {
+                    _helper.buildmappingsfromlists(false);
+                };
+                Slots.Add(vm);
             }
             if (Slots.Count > 0)
             {
@@ -232,6 +237,14 @@ namespace EDSEditorGUI2.ViewModels
                 SelectedSlot = null!;
             }
         }
+
+        public void RefreshSlots()
+        {
+            if (_helper == null) return;
+            _helper.build_PDOlists();
+            UpdatePDOList();
+        }
+
 
         public void UpdateAvailableObjects()
         {

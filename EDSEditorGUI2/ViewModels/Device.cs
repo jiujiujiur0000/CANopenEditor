@@ -1,5 +1,6 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using libEDSsharp;
+using System.Linq;
 
 namespace EDSEditorGUI2.ViewModels
 {
@@ -96,6 +97,38 @@ namespace EDSEditorGUI2.ViewModels
             {
                 SyncAvailableObjects();
             }
+            else if (value == 1)
+            {
+                SyncODFromEDS();
+            }
+        }
+
+        private void SyncODFromEDS()
+        {
+            if (_eds == null) return;
+            var proto = libEDSsharp.MappingEDS.MapToProtobuffer(_eds);
+            var deviceView = Mapper.ProtobufferViewModelMapper.MapFromProtobuffer(proto);
+            
+            foreach (var kvp in deviceView.Objects)
+            {
+                if (ushort.TryParse(kvp.Key.Replace("0x", ""), System.Globalization.NumberStyles.HexNumber, null, out ushort index))
+                {
+                    if (index >= 0x1400 && index <= 0x1BFF)
+                    {
+                        if (_objects.ContainsKey(kvp.Key))
+                        {
+                            foreach (var sub in kvp.Value.SubObjects)
+                            {
+                                var matchingSub = _objects[kvp.Key].SubObjects.FirstOrDefault(s => s.Key == sub.Key);
+                                if (matchingSub.Value != null)
+                                {
+                                    matchingSub.Value.DefaultValue = sub.Value.DefaultValue;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         private void SyncAvailableObjects()
@@ -131,6 +164,8 @@ namespace EDSEditorGUI2.ViewModels
                 }
             }
 
+            TxPdo?.RefreshSlots();
+            RxPdo?.RefreshSlots();
             TxPdo?.UpdateAvailableObjects();
             RxPdo?.UpdateAvailableObjects();
         }
