@@ -117,7 +117,8 @@ public partial class MainWindowViewModel : ViewModelBase
         {
             DeviceInfo = new()
             {
-                ProductName = "NewDevice" + Counter.ToString()
+                ProductName = "NewDevice" + Counter.ToString(),
+                Granularity = 8
             },
             DeviceCommissioning = new(),
             FileInfo = new()
