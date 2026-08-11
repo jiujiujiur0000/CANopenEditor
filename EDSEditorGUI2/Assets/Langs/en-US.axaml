@@ -93,7 +93,7 @@
     <sys:String x:Key="str_device_info_features">General and Master Features:</sys:String>
     <sys:String x:Key="str_device_info_lss_slave">LSS Slave</sys:String>
     <sys:String x:Key="str_device_info_lss_master">Master</sys:String>
-    <sys:String x:Key="str_device_info_baudrates">Baudrate</sys:String>
+    <sys:String x:Key="str_device_info_baudrates">Supported Baud Rates</sys:String>
     <sys:String x:Key="str_device_info_auto">auto</sys:String>
     <sys:String x:Key="str_device_info_project_title">Project Info</sys:String>
     <sys:String x:Key="str_device_info_project_file">Project file (version)</sys:String>
@@ -219,7 +219,7 @@
     <sys:String x:Key="str_od_panel_var_props">Detailed Parameters</sys:String>
     <sys:String x:Key="str_od_panel_subobj_list">Sub-object List</sys:String>
     <sys:String x:Key="str_od_adv_ext_config">Advanced Extension Config (CANopenNode Exclusive)</sys:String>
-    <sys:String x:Key="str_dyn_001">Baud Rate</sys:String>
+    <sys:String x:Key="str_dyn_001">Configured Baud Rate</sys:String>
     <sys:String x:Key="str_dyn_002">Discard</sys:String>
     <sys:String x:Key="str_dyn_003">Creation Time</sys:String>
     <sys:String x:Key="str_dyn_004">Unsaved modifications</sys:String>

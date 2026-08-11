@@ -95,7 +95,7 @@
     <sys:String x:Key="str_device_info_features">通用及主站特性:</sys:String>
     <sys:String x:Key="str_device_info_lss_slave">LSS 从站</sys:String>
     <sys:String x:Key="str_device_info_lss_master">CANopen 主站</sys:String>
-    <sys:String x:Key="str_device_info_baudrates">波特率</sys:String>
+    <sys:String x:Key="str_device_info_baudrates">支持的波特率</sys:String>
     <sys:String x:Key="str_device_info_auto">自动检测</sys:String>
     <sys:String x:Key="str_device_info_project_title">项目信息</sys:String>
     <sys:String x:Key="str_device_info_project_file">项目文件 (版本)</sys:String>
@@ -221,8 +221,9 @@
     <sys:String x:Key="str_od_panel_var_props">详细参数</sys:String>
     <sys:String x:Key="str_od_panel_subobj_list">子对象列表</sys:String>
     <sys:String x:Key="str_od_adv_ext_config">高级扩展配置 (CANopenNode 专属)</sys:String>
-    <sys:String x:Key="str_dyn_001">通信波特率</sys:String>
-    <sys:String x:Key="str_dyn_002">丢弃</sys:String>
+    <sys:String x:Key="str_dyn_000">CANopen 节点 ID</sys:String>
+    <sys:String x:Key="str_dyn_001">启用的波特率</sys:String>
+    <sys:String x:Key="str_dyn_002">修正标志位 1 (仅支持基于掩码的 PDO)</sys:String>
     <sys:String x:Key="str_dyn_003">创建时间</sys:String>
     <sys:String x:Key="str_dyn_004">有未保存的修改</sys:String>
     <sys:String x:Key="str_dyn_005">取消</sys:String>
