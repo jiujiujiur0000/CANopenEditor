@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -255,7 +255,7 @@ namespace libEDSsharp
         /// </summary>
         public void build_PDOlists()
         {
-            //List<ODentry> odl = new List<ODentry>();
+            pdoslots.Clear();
             build_PDOlist(0x1800,pdoslots);
             build_PDOlist(0x1400,pdoslots);
 

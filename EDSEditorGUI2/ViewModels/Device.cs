@@ -164,6 +164,8 @@ namespace EDSEditorGUI2.ViewModels
                 }
             }
 
+            _eds.dc = updatedEds.dc;
+
             TxPdo?.RefreshSlots();
             RxPdo?.RefreshSlots();
             TxPdo?.UpdateAvailableObjects();
