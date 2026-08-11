@@ -37,7 +37,7 @@ namespace EDSEditorGUI2.ViewModels
         string _countLabel = string.Empty;
 
         [ObservableProperty]
-        string _storageGroup = string.Empty;
+        string _storageGroup = "RAM";
 
         [ObservableProperty]
         bool flagsPDO;

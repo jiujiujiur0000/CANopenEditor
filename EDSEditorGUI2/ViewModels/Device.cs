@@ -161,6 +161,9 @@ namespace EDSEditorGUI2.ViewModels
             updatedEds.di.NrOfNG_MonitoredNodes = (ushort)this.DeviceInfo.NumberOfMonitoredNodes;
 
             if (updatedEds.dc == null) updatedEds.dc = new libEDSsharp.DeviceCommissioning();
+            updatedEds.dc.NodeID = (byte)this.DeviceCommissioning.NodeId;
+            updatedEds.dc.NodeName = this.DeviceCommissioning.NodeName;
+            updatedEds.dc.Baudrate = (ushort)this.DeviceCommissioning.Baudrate;
             updatedEds.dc.NetNumber = this.DeviceCommissioning.NetNumber;
             updatedEds.dc.NetworkName = this.DeviceCommissioning.NetName;
             updatedEds.dc.CANopenManager = this.DeviceCommissioning.CanopenManager;
