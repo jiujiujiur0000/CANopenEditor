@@ -100,7 +100,7 @@
                 <MenuItem Click="OpenAbout" x:Name="MenuAbout">
                     <MenuItem.Header>
                         <StackPanel Orientation="Horizontal" Spacing="6">
-                            <TextBlock Text="{DynamicResource str_menu_about}" VerticalAlignment="Center"/>
+                            <AccessText Text="{DynamicResource str_menu_about}" VerticalAlignment="Center"/>
                             <Ellipse x:Name="MenuAboutRedDot" Width="6" Height="6" Fill="#E53935" IsVisible="False" VerticalAlignment="Top" Margin="0,3,0,0"/>
                         </StackPanel>
                     </MenuItem.Header>
