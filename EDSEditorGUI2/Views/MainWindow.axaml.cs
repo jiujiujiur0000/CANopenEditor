@@ -225,7 +225,11 @@ public partial class MainWindow : Window
         // 瀵逛簬閫夋嫨鍙樺寲浜嬩欢锛屽彧鍝嶅簲 ComboBox
         if (e.RoutedEvent == Avalonia.Controls.Primitives.SelectingItemsControl.SelectionChangedEvent)
         {
-            if (e.Source is not Avalonia.Controls.ComboBox)
+            if (e.Source is not Avalonia.Controls.ComboBox cb)
+            {
+                return;
+            }
+            if (!cb.IsFocused && !cb.IsDropDownOpen)
             {
                 return;
             }
