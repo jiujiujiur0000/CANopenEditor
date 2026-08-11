@@ -86,13 +86,25 @@
             <TextBox Grid.Row="4" Grid.Column="1" Margin="0,0,0,15" Text="{Binding SelectedSlot.TransmissionType, FallbackValue=''}" IsEnabled="{Binding IsSlotSelected}" HorizontalAlignment="Stretch"/>
 
             <TextBlock Text="{DynamicResource str_pdo_inhibit}" Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,15,15"/>
-            <TextBox Grid.Row="5" Grid.Column="1" Margin="0,0,0,15" Text="{Binding SelectedSlot.Inhibit, FallbackValue=''}" IsEnabled="{Binding IsSlotSelected}" HorizontalAlignment="Stretch"/>
+            <TextBox Grid.Row="5" Grid.Column="1" Margin="0,0,0,15" Text="{Binding SelectedSlot.Inhibit, FallbackValue=''}" IsEnabled="{Binding IsSlotSelected}" HorizontalAlignment="Stretch">
+              <TextBox.InnerRightContent>
+                <TextBlock Text="x 0.1 ms" Margin="10,0" VerticalAlignment="Center" Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}" IsVisible="{Binding IsSlotSelected}"/>
+              </TextBox.InnerRightContent>
+            </TextBox>
 
             <TextBlock Text="{DynamicResource str_pdo_event_timer}" Grid.Row="6" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,15,15"/>
-            <TextBox Grid.Row="6" Grid.Column="1" Margin="0,0,0,15" Text="{Binding SelectedSlot.EventTimer, FallbackValue=''}" IsEnabled="{Binding IsSlotSelected}" HorizontalAlignment="Stretch"/>
+            <TextBox Grid.Row="6" Grid.Column="1" Margin="0,0,0,15" Text="{Binding SelectedSlot.EventTimer, FallbackValue=''}" IsEnabled="{Binding IsSlotSelected}" HorizontalAlignment="Stretch">
+              <TextBox.InnerRightContent>
+                <TextBlock Text="ms" Margin="10,0" VerticalAlignment="Center" Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}" IsVisible="{Binding IsSlotSelected}"/>
+              </TextBox.InnerRightContent>
+            </TextBox>
 
             <TextBlock Text="{DynamicResource str_pdo_sync_start}" Grid.Row="7" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,15,15"/>
-            <TextBox Grid.Row="7" Grid.Column="1" Margin="0,0,0,15" Text="{Binding SelectedSlot.SyncStart, FallbackValue=''}" IsEnabled="{Binding IsSlotSelected}" HorizontalAlignment="Stretch"/>
+            <TextBox Grid.Row="7" Grid.Column="1" Margin="0,0,0,15" Text="{Binding SelectedSlot.SyncStart, FallbackValue=''}" IsEnabled="{Binding IsSlotSelected}" HorizontalAlignment="Stretch">
+              <TextBox.InnerRightContent>
+                <TextBlock Text="SYNCs" Margin="10,0" VerticalAlignment="Center" Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}" IsVisible="{Binding IsSlotSelected}"/>
+              </TextBox.InnerRightContent>
+            </TextBox>
           </Grid>
           </StackPanel>
         </Border>
