@@ -1,4 +1,4 @@
-﻿<UserControl xmlns="https://github.com/avaloniaui"
+<UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:dialogHost="clr-namespace:DialogHostAvalonia;assembly=DialogHost.Avalonia"
              xmlns:vm="using:EDSEditorGUI2.ViewModels"
@@ -109,7 +109,7 @@
               </Grid>
               
               <!-- Advanced CANopenNode Settings (Expander) -->
-              <Expander Header="{DynamicResource str_od_adv_ext_config}" HorizontalAlignment="Stretch" Margin="0,0,0,0" Background="Transparent">
+              <Expander Header="{DynamicResource str_od_adv_ext_config}" HorizontalAlignment="Stretch" Margin="0,0,0,0" Background="{DynamicResource GlobalExpanderHeaderBackground}">
                 <Grid RowDefinitions="Auto" ColumnDefinitions="80,1.5*, 0.5*, 100,1.5*">
                     <TextBlock Text="{DynamicResource str_od_prop_storage}" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,0"/>
                     <TextBox Text="{Binding SelectedObject.Value.StorageGroup}" Grid.Row="0" Grid.Column="1" Margin="0,0,20,0"/>

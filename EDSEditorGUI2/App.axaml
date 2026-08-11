@@ -22,6 +22,11 @@
                     <SolidColorBrush x:Key="TextControlBackground">#F5F5F5</SolidColorBrush>
                     <SolidColorBrush x:Key="TextControlBackgroundPointerOver">#EAEAEA</SolidColorBrush>
                     <SolidColorBrush x:Key="TextControlBackgroundFocused">#FFFFFF</SolidColorBrush>
+                    
+                    <Color x:Key="TextFillColorPrimary">#1A1A1A</Color>
+                    <SolidColorBrush x:Key="TextFillColorPrimaryBrush">#1A1A1A</SolidColorBrush>
+                    <SolidColorBrush x:Key="GlobalExpanderHeaderBackground">#F5F5F5</SolidColorBrush>
+                    <SolidColorBrush x:Key="GlobalCustomTextBrush">#1A1A1A</SolidColorBrush>
                 </ResourceDictionary>
                 <ResourceDictionary x:Key="Dark">
                     <SolidColorBrush x:Key="MainAppBackgroundBrush">#1E1E1E</SolidColorBrush>
@@ -43,6 +48,12 @@
                     <SolidColorBrush x:Key="ExpanderHeaderBackground">#333337</SolidColorBrush>
                     <SolidColorBrush x:Key="ExpanderHeaderBackgroundPointerOver">#3E3E42</SolidColorBrush>
                     <SolidColorBrush x:Key="ExpanderHeaderBackgroundPressed">#1E1E1E</SolidColorBrush>
+                    <SolidColorBrush x:Key="GlobalExpanderHeaderBackground">#333337</SolidColorBrush>
+                    
+                    <Color x:Key="TextFillColorPrimary">#D4D4D4</Color>
+                    <Color x:Key="TextFillColorSecondary">#A0A0A0</Color>
+                    <Color x:Key="TextFillColorTertiary">#888888</Color>
+                    <SolidColorBrush x:Key="GlobalCustomTextBrush">#D4D4D4</SolidColorBrush>
                 </ResourceDictionary>
             </ResourceDictionary.ThemeDictionaries>
 
@@ -55,10 +66,19 @@
     </Application.DataTemplates>
   
     <Application.Styles>
+        <FluentTheme />
         <Style Selector="Window, UserControl, ContextMenu, ToolTip, FlyoutPresenter">
             <Setter Property="FontFamily" Value="Microsoft YaHei UI, Microsoft YaHei, Segoe UI, PingFang SC, sans-serif"/>
+            <Setter Property="TextElement.Foreground" Value="{DynamicResource GlobalCustomTextBrush}"/>
         </Style>
-        <FluentTheme />
+        
+        <Style Selector="TextBlock, AccessText, Label, TextPresenter">
+            <Setter Property="TextElement.Foreground" Value="{DynamicResource GlobalCustomTextBrush}"/>
+        </Style>
+        
+        <Style Selector="Expander /template/ ToggleButton#ExpanderHeader">
+            <Setter Property="Background" Value="{DynamicResource GlobalExpanderHeaderBackground}" />
+        </Style>
         <StyleInclude Source="avares://Avalonia.Controls.DataGrid/Themes/Fluent.xaml"/>
         <StyleInclude Source="avares://EDSEditorGUI2/Icons.axaml"/>
         <dialogHostAvalonia:DialogHostStyles />
