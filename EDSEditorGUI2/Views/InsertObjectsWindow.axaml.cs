@@ -20,25 +20,6 @@ public partial class InsertObjectsWindow : Window
     protected override void OnLoaded(RoutedEventArgs e)
     {
         base.OnLoaded(e);
-        
-        // Initial height alignment to avoid partial empty spaces
-        if (grid.Bounds.Height > 0)
-        {
-            double headerHeight = 32;
-            double contentHeight = grid.Bounds.Height - headerHeight;
-            if (contentHeight > 0)
-            {
-                double rowHeight = grid.RowHeight;
-                if (!double.IsNaN(rowHeight) && rowHeight > 0)
-                {
-                    double remainder = contentHeight % rowHeight;
-                    if (remainder > 0 && remainder < rowHeight)
-                    {
-                        this.Height -= remainder;
-                    }
-                }
-            }
-        }
     }
 
     public void OnOffsetTextChanged(object? sender, TextChangedEventArgs e)
@@ -97,7 +78,7 @@ public partial class InsertObjectsWindow : Window
                         CellTemplate = cellTemplate,
                         Header = $"Offset {offset}",
                         IsReadOnly = true,
-                        MinWidth = 95,
+                        MinWidth = 105,
                         Width = new DataGridLength(1, DataGridLengthUnitType.Star)
                     };
                     grid.Columns.Add(colOffset);
@@ -111,7 +92,7 @@ public partial class InsertObjectsWindow : Window
                 {
                     grid.Columns[2 + i].Header = $"Offset {offset}";
                 }
-                grid.Columns[2 + i].MinWidth = 95;
+                grid.Columns[2 + i].MinWidth = 105;
                 grid.Columns[2 + i].Width = new DataGridLength(1, DataGridLengthUnitType.Star);
             }
         }

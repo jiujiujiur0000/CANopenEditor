@@ -67,7 +67,8 @@
                     <DataGridTemplateColumn Header="{DynamicResource str_insert_col_insert}" Width="100">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate DataType="vm:ODIndexMergeStatus">
-                                <CheckBox IsChecked="{Binding Insert}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <CheckBox IsChecked="{Binding Insert}" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                          IsVisible="{Binding Converter={x:Static ObjectConverters.IsNotNull}}"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
