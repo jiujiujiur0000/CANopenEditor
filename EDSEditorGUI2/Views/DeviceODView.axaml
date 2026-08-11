@@ -211,7 +211,7 @@
                   BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" BorderThickness="1"
                   BoxShadow="0 2 6 0 #1A000000">
           <StackPanel Spacing="15">
-            <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" ColumnDefinitions="80,1.5*, 0.5*, 100,1.5*">
+            <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto" ColumnDefinitions="80,1.5*, 0.5*, 100,1.5*">
               
               <!-- Row 0: SubIndex & Name -->
               <TextBlock Text="{DynamicResource str_od_prop_subindex}" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,15" IsVisible="{Binding SelectedObject.Value.IsRecordOrArray}"/>
@@ -228,25 +228,29 @@
               <TextBox Text="{Binding SelectedSubObject.Value.StringLengthMin}" Grid.Row="1" Grid.Column="4" Margin="0,0,0,15"/>
               <TextBlock Text="{DynamicResource str_od_col_default}" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,15"/>
               <TextBox Text="{Binding SelectedSubObject.Value.DefaultValue}" Grid.Row="2" Grid.Column="1" Margin="0,0,20,15"/>
-              
-              <TextBlock Text="{DynamicResource str_od_prop_actual}" Grid.Row="2" Grid.Column="3" VerticalAlignment="Center" Margin="0,0,10,15"/>
-              <TextBox Text="{Binding SelectedSubObject.Value.ActualValue}" Grid.Row="2" Grid.Column="4" Margin="0,0,0,15"/>
 
-              <TextBlock Text="{DynamicResource str_od_prop_highlimit}" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,15"/>
-              <TextBox Text="{Binding SelectedSubObject.Value.HighLimit}" Grid.Row="3" Grid.Column="1" Margin="0,0,20,15"/>
+              <TextBlock Text="{DynamicResource str_od_prop_highlimit}" Grid.Row="2" Grid.Column="3" VerticalAlignment="Center" Margin="0,0,10,15"/>
+              <TextBox Text="{Binding SelectedSubObject.Value.HighLimit}" Grid.Row="2" Grid.Column="4" Margin="0,0,0,15"/>
               
-              <TextBlock Text="{DynamicResource str_od_prop_lowlimit}" Grid.Row="3" Grid.Column="3" VerticalAlignment="Center" Margin="0,0,10,15"/>
-              <TextBox Text="{Binding SelectedSubObject.Value.LowLimit}" Grid.Row="3" Grid.Column="4" Margin="0,0,0,15"/>
+              <TextBlock Text="{DynamicResource str_od_prop_lowlimit}" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,15"/>
+              <TextBox Text="{Binding SelectedSubObject.Value.LowLimit}" Grid.Row="3" Grid.Column="1" Margin="0,0,20,15"/>
 
-              <TextBlock Text="{DynamicResource str_od_prop_acc_sdo}" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,15"/>
-              <ComboBox x:Name="combo_sdo" HorizontalAlignment="Stretch" SelectedIndex="{Binding SelectedSubObject.Value.Sdo}" Grid.Row="4" Grid.Column="1" Margin="0,0,20,15"/>
+              <TextBlock Text="{DynamicResource str_od_prop_acc_sdo}" Grid.Row="3" Grid.Column="3" VerticalAlignment="Center" Margin="0,0,10,15"/>
+              <ComboBox x:Name="combo_sdo" HorizontalAlignment="Stretch" SelectedIndex="{Binding SelectedSubObject.Value.Sdo}" Grid.Row="3" Grid.Column="4" Margin="0,0,0,15"/>
               
-              <TextBlock Text="{DynamicResource str_od_prop_acc_pdo}" Grid.Row="4" Grid.Column="3" VerticalAlignment="Center" Margin="0,0,10,15"/>
-              <ComboBox x:Name="combo_pdo" HorizontalAlignment="Stretch" SelectedIndex="{Binding SelectedSubObject.Value.Pdo}" Grid.Row="4" Grid.Column="4" Margin="0,0,0,15"/>
+              <TextBlock Text="{DynamicResource str_od_prop_acc_pdo}" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,0"/>
+              <ComboBox x:Name="combo_pdo" HorizontalAlignment="Stretch" SelectedIndex="{Binding SelectedSubObject.Value.Pdo}" Grid.Row="4" Grid.Column="1" Margin="0,0,20,0"/>
 
-              <TextBlock Text="{DynamicResource str_od_prop_acc_srdo}" Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,0"/>
-              <ComboBox x:Name="combo_srdo" HorizontalAlignment="Stretch" SelectedIndex="{Binding SelectedSubObject.Value.Srdo}" Grid.Row="5" Grid.Column="1" Margin="0,0,20,0"/>
+              <TextBlock Text="{DynamicResource str_od_prop_acc_srdo}" Grid.Row="4" Grid.Column="3" VerticalAlignment="Center" Margin="0,0,10,0"/>
+              <ComboBox x:Name="combo_srdo" HorizontalAlignment="Stretch" SelectedIndex="{Binding SelectedSubObject.Value.Srdo}" Grid.Row="4" Grid.Column="4" Margin="0,0,0,0"/>
               </Grid>
+
+              <Expander Header="{DynamicResource str_device_info_advanced_dcf}" HorizontalAlignment="Stretch" Margin="0,15,0,0" Background="{DynamicResource GlobalExpanderHeaderBackground}">
+                <Grid ColumnDefinitions="80,1.5*, 0.5*, 100,1.5*" RowDefinitions="Auto">
+                  <TextBlock Text="{DynamicResource str_od_prop_actual}" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                  <TextBox Text="{Binding SelectedSubObject.Value.ActualValue}" Grid.Row="0" Grid.Column="1" Margin="0,0,20,0"/>
+                </Grid>
+              </Expander>
             </StackPanel>
           </Border>
         </StackPanel>

@@ -113,7 +113,7 @@
     <sys:String x:Key="str_device_info_net_name">网络名称</sys:String>
     <sys:String x:Key="str_device_info_canopen_manager">CANopen 管理器</sys:String>
     <sys:String x:Key="str_device_info_lss_serial">LSS 序列号</sys:String>
-    <sys:String x:Key="str_device_info_advanced_dcf">高级 DCF 配置</sys:String>
+    <sys:String x:Key="str_device_info_advanced_dcf">DCF 专属配置</sys:String>
 
     <!-- Device Object Dictionary View -->
     <sys:String x:Key="str_od_comm_params">通信参数</sys:String>

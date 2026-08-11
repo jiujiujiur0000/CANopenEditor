@@ -111,7 +111,7 @@
     <sys:String x:Key="str_device_info_net_name">Net name</sys:String>
     <sys:String x:Key="str_device_info_canopen_manager">CANopen Manager</sys:String>
     <sys:String x:Key="str_device_info_lss_serial">LSS Serial No.</sys:String>
-    <sys:String x:Key="str_device_info_advanced_dcf">Advanced DCF Config</sys:String>
+    <sys:String x:Key="str_device_info_advanced_dcf">DCF Specific Config</sys:String>
 
     <!-- Device Object Dictionary View -->
     <sys:String x:Key="str_od_comm_params">Communication Parameters</sys:String>
