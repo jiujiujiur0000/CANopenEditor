@@ -151,6 +151,7 @@ public partial class MainWindow : Window
         this.AddHandler(Avalonia.Input.InputElement.KeyUpEvent, OnAnyInteractionTriggerAutoSave, RoutingStrategies.Bubble);
         this.AddHandler(Avalonia.Controls.Primitives.SelectingItemsControl.SelectionChangedEvent, OnAnyInteractionTriggerAutoSave, RoutingStrategies.Bubble);
         LoadProfileList();
+        this.Loaded += MainWindow_Loaded;
         
         // Start background warmup to improve first-time load performance
         _ = System.Threading.Tasks.Task.Run(() =>
@@ -1099,6 +1100,9 @@ public partial class MainWindow : Window
 
     private string _aboutVersion = "";
     private string _aboutCopyright = "";
+    private string _defaultCheckUpdateText = "检查更新";
+    private bool _hasUpdateAvailable = false;
+    private int _updateMessageToken = 0;
     
     private async void OpenAbout(object? sender, RoutedEventArgs e)
     {
@@ -1110,11 +1114,17 @@ public partial class MainWindow : Window
 
         _aboutVersion = "Version " + version;
         _aboutCopyright = $"Copyright © 2024-{DateTime.Now.Year} Open Source Community. All rights reserved.";
+        _defaultCheckUpdateText = Avalonia.Application.Current?.FindResource("str_about_check_update")?.ToString() ?? "检查更新";
+
+        // Hide red dot when opening About
+        var redDot = this.FindControl<Avalonia.Controls.Shapes.Ellipse>("MenuAboutRedDot");
+        if (redDot != null) redDot.IsVisible = false;
 
         aboutDialog.DataContext = new {
             Version = _aboutVersion,
             Copyright = _aboutCopyright,
-            UpdateMessage = ""
+            UpdateMessage = _hasUpdateAvailable ? "发现新版本！请点击立即更新。" : "",
+            CheckUpdateBtnText = _hasUpdateAvailable ? "立即更新" : _defaultCheckUpdateText
         };
         
         await DialogHostAvalonia.DialogHost.Show(aboutDialog, "RootDialogHost");
@@ -1138,12 +1148,31 @@ public partial class MainWindow : Window
 
     private async void CheckUpdateClick(object? sender, RoutedEventArgs e)
     {
+        if (_hasUpdateAvailable)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+                {
+                    FileName = "https://github.com/jiujiujiur0000/CANopenEditor/releases/latest",
+                    UseShellExecute = true
+                });
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+            return;
+        }
+
+        int currentToken = System.Threading.Interlocked.Increment(ref _updateMessageToken);
         var aboutDialog = (Control)Resources["AboutDialog"]!;
         
         aboutDialog.DataContext = new {
             Version = _aboutVersion,
             Copyright = _aboutCopyright,
-            UpdateMessage = "正在检查更新..."
+            UpdateMessage = "正在检查更新...",
+            CheckUpdateBtnText = _defaultCheckUpdateText
         };
         
         await CheckUpdateAsync(aboutDialog);
@@ -1167,33 +1196,90 @@ public partial class MainWindow : Window
             {
                 if (vLatest > vCurrent)
                 {
-                    UpdateAboutState(dialog, $"发现新版本 v{vLatest}！\n请前往 GitHub Releases 下载。");
+                    UpdateAboutState(dialog, $"发现新版本 v{vLatest}！", true);
                 }
                 else
                 {
-                    UpdateAboutState(dialog, $"当前已是最新版本 (v{vCurrent})。");
+                    UpdateAboutState(dialog, $"当前已是最新版本 (v{vCurrent})。", false);
                 }
             }
             else
             {
-                UpdateAboutState(dialog, $"获取最新版本成功: {latestVersion}\n当前版本: v{currentVersionString}");
+                UpdateAboutState(dialog, $"获取最新版本成功: {latestVersion}\n当前版本: v{currentVersionString}", false);
             }
         }
         catch (Exception ex)
         {
-            UpdateAboutState(dialog, "检查更新失败：\n" + ex.Message);
+            UpdateAboutState(dialog, "检查更新失败：\n" + ex.Message, false);
         }
     }
 
-    private void UpdateAboutState(Control dialog, string message)
+    private async void MainWindow_Loaded(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
     {
+        await System.Threading.Tasks.Task.Delay(5000);
+        await CheckUpdateSilentlyAsync();
+    }
+
+    private async System.Threading.Tasks.Task CheckUpdateSilentlyAsync()
+    {
+        try
+        {
+            using var client = new System.Net.Http.HttpClient();
+            client.DefaultRequestHeaders.Add("User-Agent", "CANopenEditor");
+            var response = await client.GetStringAsync("https://api.github.com/repos/jiujiujiur0000/CANopenEditor/releases/latest");
+            using var doc = System.Text.Json.JsonDocument.Parse(response);
+            string latestVersion = doc.RootElement.GetProperty("tag_name").GetString() ?? "";
+            
+            string currentVersionString = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version?.ToString();
+            if (string.IsNullOrEmpty(currentVersionString) || currentVersionString == "1.0.0.0") currentVersionString = "1.1.0";
+            if (currentVersionString.EndsWith(".0") && currentVersionString.Split('.').Length == 4) currentVersionString = currentVersionString.Substring(0, currentVersionString.Length - 2);
+
+            if (Version.TryParse(latestVersion.Trim('v', 'V'), out var vLatest) && Version.TryParse(currentVersionString, out var vCurrent))
+            {
+                if (vLatest > vCurrent)
+                {
+                    _hasUpdateAvailable = true;
+                    Avalonia.Threading.Dispatcher.UIThread.Post(() => {
+                        var redDot = this.FindControl<Avalonia.Controls.Shapes.Ellipse>("MenuAboutRedDot");
+                        if (redDot != null) redDot.IsVisible = true;
+                    });
+                }
+            }
+        }
+        catch
+        {
+            // Ignore errors for silent check
+        }
+    }
+
+    private async void UpdateAboutState(Control dialog, string message, bool hasUpdate)
+    {
+        _hasUpdateAvailable = hasUpdate;
+        string btnText = hasUpdate ? "立即更新" : _defaultCheckUpdateText;
+        int currentToken = System.Threading.Interlocked.Increment(ref _updateMessageToken);
+
         Avalonia.Threading.Dispatcher.UIThread.Post(() => { 
             dialog.DataContext = new {
                 Version = _aboutVersion,
                 Copyright = _aboutCopyright,
-                UpdateMessage = message
+                UpdateMessage = message,
+                CheckUpdateBtnText = btnText
             };
         });
+
+        await System.Threading.Tasks.Task.Delay(3000);
+        
+        if (currentToken == _updateMessageToken)
+        {
+            Avalonia.Threading.Dispatcher.UIThread.Post(() => { 
+                dialog.DataContext = new {
+                    Version = _aboutVersion,
+                    Copyright = _aboutCopyright,
+                    UpdateMessage = "",
+                    CheckUpdateBtnText = btnText
+                };
+            });
+        }
     }
 
 

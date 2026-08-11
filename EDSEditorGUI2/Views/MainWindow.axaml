@@ -97,7 +97,14 @@
                     <MenuItem Header="{DynamicResource str_menu_report_network}" Click="ReportNetworkPDOClick" IsEnabled="{Binding HasDevice}" HotKey="Ctrl+Shift+P" InputGesture="Ctrl+Shift+P"/>
                 </MenuItem>
                 <MenuItem Header="{DynamicResource str_menu_preferences}" Click="OpenPreferences"/>
-                <MenuItem Header="{DynamicResource str_menu_about}" Click="OpenAbout"/>
+                <MenuItem Click="OpenAbout" x:Name="MenuAbout">
+                    <MenuItem.Header>
+                        <StackPanel Orientation="Horizontal" Spacing="6">
+                            <TextBlock Text="{DynamicResource str_menu_about}" VerticalAlignment="Center"/>
+                            <Ellipse x:Name="MenuAboutRedDot" Width="6" Height="6" Fill="#E53935" IsVisible="False" VerticalAlignment="Top" Margin="0,3,0,0"/>
+                        </StackPanel>
+                    </MenuItem.Header>
+                </MenuItem>
             </Menu>
             </Grid>
         </Border>
@@ -244,7 +251,7 @@
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="15" Margin="30,5,30,15">
-            <Button Content="{DynamicResource str_about_check_update}" Click="CheckUpdateClick" Background="Transparent" Foreground="#4DA8DA" BorderThickness="0" Cursor="Hand" Padding="0"/>
+            <Button Content="{Binding CheckUpdateBtnText}" Click="CheckUpdateClick" Background="Transparent" Foreground="#4DA8DA" BorderThickness="0" Cursor="Hand" Padding="0"/>
             <TextBlock Text="|" Foreground="#555555" VerticalAlignment="Center"/>
             <Button Content="{DynamicResource str_about_github}" Click="OpenGitHubClick" Background="Transparent" Foreground="#4DA8DA" BorderThickness="0" Cursor="Hand" Padding="0"/>
         </StackPanel>
