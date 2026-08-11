@@ -1,4 +1,4 @@
-﻿<UserControl xmlns="https://github.com/avaloniaui"
+<UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:vm="using:EDSEditorGUI2.ViewModels"
              xmlns:view="using:EDSEditorGUI2.Views"
@@ -106,15 +106,15 @@
           <TextBlock Text="{DynamicResource str_pdo_map_params}" FontWeight="Bold" FontSize="15"/>
 
           <ScrollViewer x:Name="MapScrollViewer" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" AllowAutoHide="False" MaxHeight="250">
-            <Border BorderBrush="LightGray" BorderThickness="1,1,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Border BorderBrush="{DynamicResource TableBorderBrush}" BorderThickness="1,1,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
               <Grid x:Name="MappingGrid" ColumnDefinitions="50,80,110">
-                <Border Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" BorderBrush="LightGray" BorderThickness="0,0,1,1" Padding="10,5">
+                <Border Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" BorderBrush="{DynamicResource TableBorderBrush}" BorderThickness="0,0,1,1" Padding="10,5">
                   <TextBlock Text="{DynamicResource str_pdo_id}" FontWeight="Medium" Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                 </Border>
-                <Border Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" BorderBrush="LightGray" BorderThickness="0,0,1,1" Padding="10,5">
+                <Border Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" BorderBrush="{DynamicResource TableBorderBrush}" BorderThickness="0,0,1,1" Padding="10,5">
                   <TextBlock Text="{DynamicResource str_pdo_col_index}" FontWeight="Medium" Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                 </Border>
-                <Border Grid.Row="0" Grid.Column="2" Grid.RowSpan="2" BorderBrush="LightGray" BorderThickness="0,0,1,1" Padding="10,5">
+                <Border Grid.Row="0" Grid.Column="2" Grid.RowSpan="2" BorderBrush="{DynamicResource TableBorderBrush}" BorderThickness="0,0,1,1" Padding="10,5">
                   <TextBlock Text="{DynamicResource str_pdo_cob}" FontWeight="Medium" Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                 </Border>
               </Grid>

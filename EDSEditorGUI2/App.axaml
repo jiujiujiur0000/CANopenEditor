@@ -27,6 +27,9 @@
                     <SolidColorBrush x:Key="TextFillColorPrimaryBrush">#1A1A1A</SolidColorBrush>
                     <SolidColorBrush x:Key="GlobalExpanderHeaderBackground">#F5F5F5</SolidColorBrush>
                     <SolidColorBrush x:Key="GlobalCustomTextBrush">#1A1A1A</SolidColorBrush>
+                    <SolidColorBrush x:Key="TableBorderBrush">#D3D3D3</SolidColorBrush>
+                    <SolidColorBrush x:Key="TableEmptyBgBrush">#F5F5F5</SolidColorBrush>
+                    <SolidColorBrush x:Key="TableFilledBgBrush">#F0E68C</SolidColorBrush>
                 </ResourceDictionary>
                 <ResourceDictionary x:Key="Dark">
                     <SolidColorBrush x:Key="MainAppBackgroundBrush">#1E1E1E</SolidColorBrush>
@@ -54,6 +57,9 @@
                     <Color x:Key="TextFillColorSecondary">#A0A0A0</Color>
                     <Color x:Key="TextFillColorTertiary">#888888</Color>
                     <SolidColorBrush x:Key="GlobalCustomTextBrush">#D4D4D4</SolidColorBrush>
+                    <SolidColorBrush x:Key="TableBorderBrush">#404040</SolidColorBrush>
+                    <SolidColorBrush x:Key="TableEmptyBgBrush">#202020</SolidColorBrush>
+                    <SolidColorBrush x:Key="TableFilledBgBrush">#4A4A20</SolidColorBrush>
                 </ResourceDictionary>
             </ResourceDictionary.ThemeDictionaries>
 
