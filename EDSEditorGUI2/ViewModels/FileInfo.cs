@@ -9,7 +9,7 @@ public partial class FileInfo : ObservableValidator
 {
     [ObservableProperty]
     [Required(ErrorMessage = "文件版本不能为空")]
-    string _fileVersion = string.Empty;
+    string _fileVersion = "1.0";
 
     [ObservableProperty]
     private string _description = string.Empty;

@@ -17,7 +17,7 @@ namespace EDSEditorGUI2.Mapper
             {
                 cfg.CreateMap<Timestamp, DateTime>().ConvertUsing(ts => ts == null ? default : ts.ToDateTime().ToLocalTime());
                 cfg.CreateMap<CanOpen_FileInfo, ViewModels.FileInfo>()
-                .ForMember(dest => dest.FileVersion, opt => opt.MapFrom(src => src.FileVersion))
+                .ForMember(dest => dest.FileVersion, opt => opt.MapFrom(src => string.IsNullOrEmpty(src.FileVersion) ? "1.0" : src.FileVersion))
                 .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Description))
                 .ForMember(dest => dest.CreationTime, opt => opt.MapFrom(src => src.CreationTime))
                 .ForMember(dest => dest.CreatedBy, opt => opt.MapFrom(src => src.CreatedBy))
@@ -37,7 +37,7 @@ namespace EDSEditorGUI2.Mapper
                 .ForPath(dest => dest.ModuleInfo.NrSupportedModules, opt => opt.MapFrom(src => src.NrSupportedModules))
                 .ForPath(dest => dest.ModuleInfo.Modules, opt => opt.MapFrom(src => src.Modules));
                 cfg.CreateMap<CanOpen_DeviceInfo, ViewModels.DeviceInfo>(MemberList.None)
-                    .ForMember(dest => dest.RevisionNumber, opt => opt.MapFrom(src => src.RevisionNumber.ToString()));
+                    .ForMember(dest => dest.RevisionNumber, opt => opt.MapFrom(src => src.RevisionNumber == 0 ? "1" : src.RevisionNumber.ToString()));
                 cfg.CreateMap<CanOpen_DeviceCommissioning, ViewModels.DeviceCommissioning>(MemberList.None)
                     .ForMember(dest => dest.NodeId, opt => opt.MapFrom(src => src.NodeId == 0 ? (uint?)null : src.NodeId))
                     .ForMember(dest => dest.Baudrate, opt => opt.MapFrom(src => src.Baudrate == 0 ? (uint?)null : src.Baudrate));

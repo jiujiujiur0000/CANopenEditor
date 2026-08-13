@@ -27,7 +27,7 @@ public partial class DeviceInfo : ObservableValidator
     [ObservableProperty]
     [Required(ErrorMessage = "修订版本号不能为空")]
     [RegularExpression(@"^(0[xX])?[0-9a-fA-F]+$|^\d+$", ErrorMessage = "必须是有效的数字或十六进制")]
-    string _revisionNumber = string.Empty;
+    string _revisionNumber = "1";
 
     [ObservableProperty]
     uint _granularity = 8;
