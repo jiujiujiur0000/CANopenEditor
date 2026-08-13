@@ -34,6 +34,7 @@
         <!-- DataGrid -->
         <Border Grid.Row="1" Margin="0,16,0,16" BorderThickness="1" BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" CornerRadius="6" ClipToBounds="True" Background="{DynamicResource CardBackgroundBrush}">
             <DataGrid ItemsSource="{Binding MergeStatus}"
+                      Margin="0,0,0,-1"
                       AutoGenerateColumns="False"
                       CanUserReorderColumns="False"
                       CanUserResizeColumns="False"
