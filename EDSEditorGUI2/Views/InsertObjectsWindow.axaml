@@ -45,8 +45,7 @@
                       ScrollViewer.VerticalScrollBarVisibility="Auto"
                       Background="Transparent" 
                       RowBackground="Transparent"
-                      x:Name="grid"
-                      RowHeight="40">
+                      x:Name="grid">
                 <DataGrid.Styles>
                     <Style Selector="DataGridColumnHeader">
                         <Setter Property="Background" Value="Transparent"/>
@@ -58,10 +57,9 @@
                     <Style Selector="DataGridRow">
                         <Setter Property="BorderBrush" Value="{DynamicResource SystemControlForegroundBaseLowBrush}"/>
                         <Setter Property="BorderThickness" Value="0,0,0,1"/>
+                        <Setter Property="MinHeight" Value="40"/>
                     </Style>
-                    <Style Selector="DataGridRow:nth-last-child(1)">
-                        <Setter Property="BorderThickness" Value="0"/>
-                    </Style>
+
                 </DataGrid.Styles>
                 <DataGrid.Columns>
                     <DataGridTemplateColumn Header="{DynamicResource str_insert_col_insert}" Width="100">
