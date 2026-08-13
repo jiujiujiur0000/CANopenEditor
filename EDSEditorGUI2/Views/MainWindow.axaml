@@ -26,11 +26,8 @@
     <DockPanel Background="Transparent">
         <Border DockPanel.Dock="Top" BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" BorderThickness="0,0,0,1">
             <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-            <Menu Grid.Column="0" x:Name="menu">
+                <TextBlock Text="{Binding CurrentProjectName}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}" FontWeight="SemiBold" IsHitTestVisible="False"/>
+                <Menu HorizontalAlignment="Left" x:Name="menu">
                 <MenuItem Header="{DynamicResource str_menu_file}" x:Name="fileMenu" >
                     <MenuItem Header="{DynamicResource str_menu_new_project}" Click="NewProjectClick" HotKey="Ctrl+N" InputGesture="Ctrl+N"/>
                     <MenuItem Header="{DynamicResource str_menu_open_project}" Click="OpenProjectClick" HotKey="Ctrl+O" InputGesture="Ctrl+O"/>

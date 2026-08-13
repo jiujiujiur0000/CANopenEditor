@@ -70,8 +70,18 @@ public partial class MainWindowViewModel : ViewModelBase
     [ObservableProperty]
     private string? _currentProjectPath;
 
+    public string? CurrentProjectName
+    {
+        get
+        {
+            if (string.IsNullOrEmpty(CurrentProjectPath)) return null;
+            return System.IO.Path.GetFileNameWithoutExtension(CurrentProjectPath);
+        }
+    }
+
     partial void OnCurrentProjectPathChanged(string? value)
     {
+        OnPropertyChanged(nameof(CurrentProjectName));
         OnPropertyChanged(nameof(IsProjectMode));
         OnPropertyChanged(nameof(CanRemoveDevice));
     }

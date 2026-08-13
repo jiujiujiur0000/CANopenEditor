@@ -697,7 +697,7 @@ public partial class MainWindow : Window
         {
             Title = "Export Device File",
             DefaultExtension = ".xdd",
-            SuggestedFileName = Path.GetFileNameWithoutExtension(targetDevice.ProjectInfo.ProjectFile),
+            SuggestedFileName = string.IsNullOrWhiteSpace(targetDevice.DeviceInfo.ProductName) ? "Device" : targetDevice.DeviceInfo.ProductName,
             FileTypeChoices = [xdd11, edsFilter, dcfFilter]
         });
 
@@ -786,7 +786,7 @@ public partial class MainWindow : Window
         {
             Title = "Export PCanOpenNode Project",
             DefaultExtension = ".json",
-            SuggestedFileName = Path.GetFileNameWithoutExtension(targetDevice.ProjectInfo.ProjectFile),
+            SuggestedFileName = string.IsNullOrWhiteSpace(targetDevice.DeviceInfo.ProductName) ? "Device" : targetDevice.DeviceInfo.ProductName,
             FileTypeChoices = [jsonFilter, binpbFilter]
         });
 
