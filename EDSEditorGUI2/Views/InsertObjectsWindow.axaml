@@ -85,9 +85,12 @@
         </Border>
 
         <!-- Buttons -->
-        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Spacing="12">
-            <Button x:Name="InsertObjects_Cancel" IsCancel="True" Click="CancelClick" Content="{DynamicResource str_btn_cancel}" Padding="24,8" MinWidth="100" HorizontalContentAlignment="Center"/>
-            <Button x:Name="InsertObjects_Insert" IsDefault="True" Click="InsertClick" Content="{DynamicResource str_insert_btn_insert}" Classes="accent" Padding="24,8" MinWidth="100" HorizontalContentAlignment="Center"/>
-        </StackPanel>
+        <Grid Grid.Row="2" ColumnDefinitions="Auto, *, Auto">
+            <Button Grid.Column="0" x:Name="InsertObjects_SelectToggle" Click="SelectToggleClick" Content="{DynamicResource str_insert_btn_deselect_all}" Padding="24,8" MinWidth="100" HorizontalContentAlignment="Center"/>
+            <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="12">
+                <Button x:Name="InsertObjects_Cancel" IsCancel="True" Click="CancelClick" Content="{DynamicResource str_btn_cancel}" Padding="24,8" MinWidth="100" HorizontalContentAlignment="Center"/>
+                <Button x:Name="InsertObjects_Insert" IsDefault="True" Click="InsertClick" Content="{DynamicResource str_insert_btn_insert}" Classes="accent" Padding="24,8" MinWidth="100" HorizontalContentAlignment="Center"/>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Window>

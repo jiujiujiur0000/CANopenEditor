@@ -98,6 +98,26 @@ public partial class InsertObjectsWindow : Window
         }
     }
 
+    private void SelectToggleClick(object? sender, RoutedEventArgs e)
+    {
+        if (DataContext is MainWindowViewModel dc)
+        {
+            bool anySelected = dc.MergeStatus.Any(x => x.Insert);
+            bool targetState = !anySelected;
+            foreach (var item in dc.MergeStatus)
+            {
+                item.Insert = targetState;
+            }
+            if (sender is Button btn)
+            {
+                if (targetState)
+                    btn[!Button.ContentProperty] = new Avalonia.Markup.Xaml.MarkupExtensions.DynamicResourceExtension("str_insert_btn_deselect_all");
+                else
+                    btn[!Button.ContentProperty] = new Avalonia.Markup.Xaml.MarkupExtensions.DynamicResourceExtension("str_insert_btn_select_all");
+            }
+        }
+    }
+
     private void CancelClick(object? sender, RoutedEventArgs e)
     {
         Close("cancel");

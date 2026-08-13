@@ -78,6 +78,8 @@
     <sys:String x:Key="str_insert_col_insert">Insert</sys:String>
     <sys:String x:Key="str_insert_col_original">Original Object</sys:String>
     <sys:String x:Key="str_insert_btn_insert">Insert</sys:String>
+    <sys:String x:Key="str_insert_btn_deselect_all">Deselect All</sys:String>
+    <sys:String x:Key="str_insert_btn_select_all">Select All</sys:String>
 
     <!-- Device View Tabs -->
     <sys:String x:Key="str_tab_device_info">Device Info</sys:String>

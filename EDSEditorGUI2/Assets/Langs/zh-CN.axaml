@@ -80,6 +80,8 @@
     <sys:String x:Key="str_insert_col_insert">是否插入</sys:String>
     <sys:String x:Key="str_insert_col_original">原始对象字典</sys:String>
     <sys:String x:Key="str_insert_btn_insert">插入</sys:String>
+    <sys:String x:Key="str_insert_btn_deselect_all">取消全选</sys:String>
+    <sys:String x:Key="str_insert_btn_select_all">全选</sys:String>
 
     <!-- Device View Tabs -->
     <sys:String x:Key="str_tab_device_info">设备信息</sys:String>
