@@ -64,7 +64,7 @@ public partial class DeviceODView : UserControl
                         }
                     }
                     
-                    if (selected.Value.IsVar && selected.Value.SubObjects.Count > 0)
+                    if (selected.Value.SubObjects.Count > 0)
                     {
                         subindexGrid.SelectedItem = selected.Value.SubObjects[0];
                     }
