@@ -222,7 +222,7 @@
     <sys:String x:Key="str_od_panel_subobj_list">子对象列表</sys:String>
     <sys:String x:Key="str_od_adv_ext_config">CANopenNode 专属配置</sys:String>
     <sys:String x:Key="str_dyn_000">CANopen 节点 ID</sys:String>
-    <sys:String x:Key="str_dyn_001">波特率</sys:String>
+    <sys:String x:Key="str_dyn_001">波特率 (kbps)</sys:String>
     <sys:String x:Key="str_dyn_002">修正标志位 1 (仅支持基于掩码的 PDO)</sys:String>
     <sys:String x:Key="str_dyn_003">创建时间</sys:String>
     <sys:String x:Key="str_dyn_004">有未保存的修改</sys:String>
