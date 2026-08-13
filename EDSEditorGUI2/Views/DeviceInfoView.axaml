@@ -27,20 +27,20 @@
                 BoxShadow="0 4 10 0 #1A000000">
           <StackPanel Spacing="15" HorizontalAlignment="Stretch">
             <TextBlock Text="{DynamicResource str_dyn_018}" FontWeight="Bold" FontSize="15"/>
-            <Grid ColumnDefinitions="120, *" RowDefinitions="Auto, Auto, Auto, Auto, Auto">
-              <TextBlock Grid.Row="0" Grid.Column="0" Text="{DynamicResource str_dyn_037}" VerticalAlignment="Center" Margin="0,0,0,15"/>
+            <Grid ColumnDefinitions="Auto, *" RowDefinitions="Auto, Auto, Auto, Auto, Auto">
+              <TextBlock Grid.Row="0" Grid.Column="0" Text="{DynamicResource str_dyn_037}" VerticalAlignment="Center" Margin="0,0,10,15"/>
               <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding DeviceInfo.ProductName}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
               
-              <TextBlock Grid.Row="1" Grid.Column="0" Text="{DynamicResource str_dyn_006}" VerticalAlignment="Center" Margin="0,0,0,15"/>
+              <TextBlock Grid.Row="1" Grid.Column="0" Text="{DynamicResource str_dyn_006}" VerticalAlignment="Center" Margin="0,0,10,15"/>
               <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding DeviceInfo.ProductNumber}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
               
-              <TextBlock Grid.Row="2" Grid.Column="0" Text="{DynamicResource str_dyn_014}" VerticalAlignment="Center" Margin="0,0,0,15"/>
+              <TextBlock Grid.Row="2" Grid.Column="0" Text="{DynamicResource str_dyn_014}" VerticalAlignment="Center" Margin="0,0,10,15"/>
               <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding DeviceInfo.VendorName}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
               
-              <TextBlock Grid.Row="3" Grid.Column="0" Text="{DynamicResource str_dyn_038}" VerticalAlignment="Center" Margin="0,0,0,15"/>
+              <TextBlock Grid.Row="3" Grid.Column="0" Text="{DynamicResource str_dyn_038}" VerticalAlignment="Center" Margin="0,0,10,15"/>
               <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding DeviceInfo.VendorNumber}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
               
-              <TextBlock Grid.Row="4" Grid.Column="0" Text="{DynamicResource str_dyn_042}" VerticalAlignment="Center"/>
+              <TextBlock Grid.Row="4" Grid.Column="0" Text="{DynamicResource str_dyn_042}" VerticalAlignment="Center" Margin="0,0,10,0"/>
               <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding DeviceInfo.RevisionNumber}" HorizontalAlignment="Stretch" Classes="clearButton"/>
             </Grid>
           </StackPanel>
@@ -54,23 +54,23 @@
           <StackPanel Spacing="15" HorizontalAlignment="Stretch">
             <TextBlock Text="{DynamicResource str_dyn_048}" FontWeight="Bold" FontSize="15"/>
             
-            <Grid ColumnDefinitions="120, *" RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto">
-              <TextBlock Grid.Row="0" Grid.Column="0" Text="{DynamicResource str_dyn_053}" VerticalAlignment="Center" Margin="0,0,0,15"/>
+            <Grid ColumnDefinitions="Auto, *" RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto">
+              <TextBlock Grid.Row="0" Grid.Column="0" Text="{DynamicResource str_dyn_053}" VerticalAlignment="Center" Margin="0,0,10,15"/>
               <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding FileInfo.FileVersion}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
               
-              <TextBlock Grid.Row="1" Grid.Column="0" Text="{DynamicResource str_dyn_015}" VerticalAlignment="Center" Margin="0,0,0,15"/>
+              <TextBlock Grid.Row="1" Grid.Column="0" Text="{DynamicResource str_dyn_015}" VerticalAlignment="Center" Margin="0,0,10,15"/>
               <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding FileInfo.CreatedBy}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
               
-              <TextBlock Grid.Row="2" Grid.Column="0" Text="{DynamicResource str_dyn_003}" VerticalAlignment="Center" Margin="0,0,0,15"/>
+              <TextBlock Grid.Row="2" Grid.Column="0" Text="{DynamicResource str_dyn_003}" VerticalAlignment="Center" Margin="0,0,10,15"/>
               <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding FileInfo.CreationTime, StringFormat=\{0:yyyy/MM/dd HH:mm:ss\}}" IsEnabled="False" HorizontalAlignment="Stretch" Margin="0,0,0,15"/>
               
-              <TextBlock Grid.Row="3" Grid.Column="0" Text="{DynamicResource str_dyn_016}" VerticalAlignment="Center" Margin="0,0,0,15"/>
+              <TextBlock Grid.Row="3" Grid.Column="0" Text="{DynamicResource str_dyn_016}" VerticalAlignment="Center" Margin="0,0,10,15"/>
               <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding FileInfo.ModifiedBy}" HorizontalAlignment="Stretch" Classes="clearButton" Margin="0,0,0,15"/>
 
-              <TextBlock Grid.Row="4" Grid.Column="0" Text="{DynamicResource str_dyn_024}" VerticalAlignment="Center" Margin="0,0,0,15"/>
+              <TextBlock Grid.Row="4" Grid.Column="0" Text="{DynamicResource str_dyn_024}" VerticalAlignment="Center" Margin="0,0,10,15"/>
               <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding FileInfo.ModificationTime, StringFormat=\{0:yyyy/MM/dd HH:mm:ss\}}" IsEnabled="False" HorizontalAlignment="Stretch" Margin="0,0,0,15"/>
 
-              <TextBlock Grid.Row="5" Grid.Column="0" Text="{DynamicResource str_dyn_049}" VerticalAlignment="Center" Margin="0,0,0,0"/>
+              <TextBlock Grid.Row="5" Grid.Column="0" Text="{DynamicResource str_dyn_049}" VerticalAlignment="Center" Margin="0,0,10,0"/>
               <Button x:Name="fileDescButton" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" MinHeight="32" 
                       Background="{DynamicResource TextControlBackground}"
                       BorderBrush="{DynamicResource TextControlBorderBrush}"
