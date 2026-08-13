@@ -10,46 +10,33 @@ jobs:
   build:
     strategy:
       matrix:
-        dotnet: [net481, net8]
-        configuration: [Debug, Release]
+        configuration: [Release]
 
     runs-on: windows-latest
-#    runs-on: ubuntu-latest # Error: setup-msbuild can only be run on Windows runners
     steps:
     - name: Checkout
-      uses: actions/checkout@v7
+      uses: actions/checkout@v4
       with:
         fetch-depth: 0
+        
     - name: Setup .NET
-      uses: microsoft/setup-msbuild@v3
-    - name: C# problem matcher
-      run: |
-        Invoke-WebRequest "https://raw.githubusercontent.com/actions/setup-dotnet/main/.github/csc.json" -OutFile "csc.json"
-        echo "::add-matcher::csc.json"
-#      uses: actions/setup-dotnet@v2
-#      with:
-#        dotnet-version: 5.0.x
-#    - name: Restore dependencies
-#      run: dotnet restore
-    - name: Add Packages
-      run: |
-        dotnet restore
-    - name: Build
-#      run: make all # builds the Debug configuration
-      run: |
-        msbuild -p:Build${{ matrix.dotnet }}=true /property:Configuration=${{ matrix.configuration }}
-#      run: dotnet build --no-restore
-    - name: Test
-      run: |
-          dotnet test --no-build --verbosity normal Tests\bin\${{ matrix.configuration }}\${{ matrix.dotnet }}*\tests.dll
-    - name: GUITest
-      if: matrix.dotnet == 'net8'
-      run: |
-          dotnet test --no-build --verbosity normal GUITests\bin\${{ matrix.configuration }}\${{ matrix.dotnet }}*\GUITests.dll
-    - name: Upload Artifact
-      uses: actions/upload-artifact@v7
+      uses: actions/setup-dotnet@v4
       with:
-        name: EDSEditor_${{ matrix.dotnet }}
+        dotnet-version: 8.0.x
+        
+    - name: Restore dependencies
+      run: dotnet restore EDSEditor.sln
+      
+    - name: Build
+      run: dotnet build EDSEditor.sln --configuration ${{ matrix.configuration }} --no-restore
+      
+    - name: Test
+      run: dotnet test EDSEditor.sln --configuration ${{ matrix.configuration }} --no-build --verbosity normal
+      
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: CANopenEditor_net8.0_${{ matrix.configuration }}
         path: |
-          EDSEditorGUI\bin\Release\
-          EDSSharp\bin\Release\
+          EDSEditorGUI2\bin\${{ matrix.configuration }}\net8.0\
+          libEDSsharp\bin\${{ matrix.configuration }}\net8.0\
