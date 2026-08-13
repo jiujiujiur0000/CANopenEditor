@@ -193,6 +193,7 @@ public class ImportTests : IDisposable
         offsetsTextBox!.Text = "0 2 1";
         Dispatcher.UIThread.RunJobs();
         Assert.Equal(3, dc.MergeStatus[0].Offsets.Count());
+        foreach (var ms in dc.MergeStatus) ms.Insert = false;
         var obj1000 = dc.MergeStatus.FirstOrDefault(ms => ms.OriginalIndex == 0x1000);
         if (obj1000 != null) obj1000.Insert = true;
         
