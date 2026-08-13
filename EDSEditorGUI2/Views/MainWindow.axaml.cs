@@ -864,6 +864,23 @@ public partial class MainWindow : Window
 
     public async void NewProjectClick(object sender, RoutedEventArgs args)
     {
+        if (DataContext is MainWindowViewModel dc)
+        {
+            if (dc.IsDirty)
+            {
+                var result = await ShowSaveConfirmDialog();
+                if (result == "Save")
+                {
+                    bool saved = await SaveProjectAsync();
+                    if (!saved) return;
+                }
+                else if (result == "Cancel")
+                {
+                    return;
+                }
+            }
+        }
+
         var topLevel = TopLevel.GetTopLevel(this) ?? throw new Exception("Internal GUI error");
         var cpj = new FilePickerFileType("CANopen Project (*.cpj)") { Patterns = ["*.cpj"] };
         var xdd = new FilePickerFileType("XML Device Description (*.xdd)") { Patterns = ["*.xdd"] };
@@ -885,10 +902,10 @@ public partial class MainWindow : Window
         if (file != null)
         {
             string filePath = file.TryGetLocalPath() ?? file.Path.ToString();
-            if (DataContext is MainWindowViewModel dc)
+            if (DataContext is MainWindowViewModel currentDc)
             {
-                dc.NewProject();
-                dc.CurrentProjectPath = filePath;
+                currentDc.NewProject();
+                currentDc.CurrentProjectPath = filePath;
                 DoSaveProject(filePath);
             }
         }
@@ -900,22 +917,15 @@ public partial class MainWindow : Window
         {
             if (dc.IsDirty)
             {
-                if (!string.IsNullOrEmpty(dc.CurrentProjectPath))
+                var result = await ShowSaveConfirmDialog();
+                if (result == "Save")
                 {
-                    DoSaveProject(dc.CurrentProjectPath);
+                    bool saved = await SaveProjectAsync();
+                    if (!saved) return;
                 }
-                else
+                else if (result == "Cancel")
                 {
-                    var result = await ShowSaveConfirmDialog();
-                    if (result == "Save")
-                    {
-                        SaveProjectAsClick(null, null);
-                        return; // Let them save, don't close yet
-                    }
-                    else if (result == "Cancel")
-                    {
-                        return;
-                    }
+                    return;
                 }
             }
             
@@ -953,8 +963,8 @@ public partial class MainWindow : Window
                     var result = await ShowSaveConfirmDialog();
                     if (result == "Save")
                     {
-                        SaveProjectAsClick(null, null);
-                        return;
+                        bool saved = await SaveProjectAsync();
+                        if (!saved) return;
                     }
                     else if (result == "Cancel")
                     {
@@ -972,7 +982,7 @@ public partial class MainWindow : Window
         Close();
     }
 
-    public async void SaveProjectAsClick(object? sender, RoutedEventArgs? args)
+    public async System.Threading.Tasks.Task<bool> SaveProjectAsAsync()
     {
         var topLevel = TopLevel.GetTopLevel(this) ?? throw new Exception("Internal GUI error");
         var cpj = new FilePickerFileType("CANopen Project (Multi-Device) (*.cpj)") { Patterns = ["*.cpj"] };
@@ -998,19 +1008,32 @@ public partial class MainWindow : Window
                 dc.CurrentProjectPath = filePath;
             }
             DoSaveProject(filePath);
+            return true;
         }
+        return false;
     }
 
-    public void SaveProjectClick(object? sender, RoutedEventArgs? args)
+    public async System.Threading.Tasks.Task<bool> SaveProjectAsync()
     {
         if (DataContext is MainWindowViewModel dc && !string.IsNullOrEmpty(dc.CurrentProjectPath))
         {
             DoSaveProject(dc.CurrentProjectPath);
+            return true;
         }
         else
         {
-            SaveProjectAsClick(sender, args);
+            return await SaveProjectAsAsync();
         }
+    }
+
+    public async void SaveProjectAsClick(object? sender, RoutedEventArgs? args)
+    {
+        await SaveProjectAsAsync();
+    }
+
+    public async void SaveProjectClick(object? sender, RoutedEventArgs? args)
+    {
+        await SaveProjectAsync();
     }
 
     private void DoSaveProject(string filePath)
