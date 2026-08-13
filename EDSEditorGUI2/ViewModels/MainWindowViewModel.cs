@@ -202,7 +202,7 @@ public partial class MainWindowViewModel : ViewModelBase
 
                 ODIndexMergeStatus ms = new()
                 {
-                    Insert = true,
+                    Insert = false,
                     OriginalObject = $"0x{mergeIndex:X4} - {obj.Value.Name}",
                     Offsets = objectOffset,
                     OriginalIndex = mergeIndex,
