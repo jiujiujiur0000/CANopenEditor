@@ -126,7 +126,7 @@
         <Grid RowDefinitions="Auto, *" IsVisible="{Binding SelectedObject.Value.IsRecordOrArray}">
           <TextBlock Grid.Row="0" Text="{DynamicResource str_od_panel_subobj_list}" FontWeight="Bold" FontSize="15" Margin="0,0,0,10"/>
           
-          <Border Grid.Row="1" Background="{DynamicResource CardBackgroundBrush}" BorderThickness="1" BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" CornerRadius="8" ClipToBounds="True">
+          <Border Grid.Row="1" Background="{DynamicResource CardBackgroundBrush}" BorderThickness="1" BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" CornerRadius="8" ClipToBounds="True" MaxHeight="350">
             <DataGrid ItemsSource="{Binding SelectedObject.Value.SubObjects}"
                       x:Name="subindexGrid"
                       CanUserResizeColumns="True"
