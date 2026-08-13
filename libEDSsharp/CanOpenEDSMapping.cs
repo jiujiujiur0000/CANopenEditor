@@ -202,7 +202,7 @@ namespace libEDSsharp
                 .ForPath(dest => dest.prop.CO_accessSRDO, opt => opt.MapFrom(src => src.Srdo))
                 .ForPath(dest => dest.prop.CO_stringLengthMin, opt => opt.MapFrom(src => src.StringLengthMin))
                 .ForMember(dest => dest.uniqueID, opt => opt.Ignore())
-                .ForMember(dest => dest.objecttype, opt => opt.Ignore())
+                .ForMember(dest => dest.objecttype, opt => opt.MapFrom(src => ObjectType.VAR))
                 .ForMember(dest => dest.Description, opt => opt.Ignore())
                 .ForMember(dest => dest.subobjects, opt => opt.Ignore());
             }, LoggerFactory.Create(builder => { builder.AddDebug(); }));
