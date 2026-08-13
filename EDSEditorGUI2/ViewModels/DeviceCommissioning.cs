@@ -9,17 +9,17 @@ public partial class DeviceCommissioning : ObservableValidator
 {
     [ObservableProperty]
     [Range(1, 127, ErrorMessage = "节点ID必须在1到127之间")]
-    private UInt32 _nodeId;
+    private UInt32? _nodeId;
 
     [ObservableProperty]
     [Required(ErrorMessage = "节点名称不能为空")]
     private string _nodeName = string.Empty;
 
     [ObservableProperty]
-    private UInt32 _baudrate;
+    private UInt32? _baudrate;
 
     [ObservableProperty]
-    private UInt32 _netNumber;
+    private UInt32? _netNumber;
 
     [ObservableProperty]
     [Required(ErrorMessage = "网络名称不能为空")]
@@ -29,5 +29,5 @@ public partial class DeviceCommissioning : ObservableValidator
     private bool _canopenManager;
 
     [ObservableProperty]
-    private UInt32 _lssSerialNo;
+    private UInt32? _lssSerialNo;
 }

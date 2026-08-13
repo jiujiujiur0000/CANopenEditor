@@ -58,10 +58,10 @@ namespace EDSEditorGUI2.ViewModels
                     DeviceInfo.NodeGuardingMaster = _eds.di.NG_Master;
                     DeviceInfo.NumberOfMonitoredNodes = _eds.di.NrOfNG_MonitoredNodes;
                     
-                    DeviceCommissioning.NetNumber = _eds.dc.NetNumber;
+                    DeviceCommissioning.NetNumber = _eds.dc.NetNumber == 0 ? null : _eds.dc.NetNumber;
                     DeviceCommissioning.NetName = _eds.dc.NetworkName;
                     DeviceCommissioning.CanopenManager = _eds.dc.CANopenManager;
-                    DeviceCommissioning.LssSerialNo = _eds.dc.LSS_SerialNumber;
+                    DeviceCommissioning.LssSerialNo = _eds.dc.LSS_SerialNumber == 0 ? null : _eds.dc.LSS_SerialNumber;
                 }
             }
         }
@@ -198,13 +198,13 @@ namespace EDSEditorGUI2.ViewModels
             updatedEds.di.NrOfNG_MonitoredNodes = (ushort)this.DeviceInfo.NumberOfMonitoredNodes;
 
             if (updatedEds.dc == null) updatedEds.dc = new libEDSsharp.DeviceCommissioning();
-            updatedEds.dc.NodeID = (byte)this.DeviceCommissioning.NodeId;
+            updatedEds.dc.NodeID = (byte)(this.DeviceCommissioning.NodeId ?? 0);
             updatedEds.dc.NodeName = this.DeviceCommissioning.NodeName;
-            updatedEds.dc.Baudrate = (ushort)this.DeviceCommissioning.Baudrate;
-            updatedEds.dc.NetNumber = this.DeviceCommissioning.NetNumber;
+            updatedEds.dc.Baudrate = (ushort)(this.DeviceCommissioning.Baudrate ?? 0);
+            updatedEds.dc.NetNumber = this.DeviceCommissioning.NetNumber ?? 0;
             updatedEds.dc.NetworkName = this.DeviceCommissioning.NetName;
             updatedEds.dc.CANopenManager = this.DeviceCommissioning.CanopenManager;
-            updatedEds.dc.LSS_SerialNumber = this.DeviceCommissioning.LssSerialNo;
+            updatedEds.dc.LSS_SerialNumber = this.DeviceCommissioning.LssSerialNo ?? 0;
 
             if (_eds != null && _eds.ods != null)
             {

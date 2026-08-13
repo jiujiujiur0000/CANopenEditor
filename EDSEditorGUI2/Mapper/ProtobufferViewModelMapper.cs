@@ -38,7 +38,9 @@ namespace EDSEditorGUI2.Mapper
                 .ForPath(dest => dest.ModuleInfo.Modules, opt => opt.MapFrom(src => src.Modules));
                 cfg.CreateMap<CanOpen_DeviceInfo, ViewModels.DeviceInfo>(MemberList.None)
                     .ForMember(dest => dest.RevisionNumber, opt => opt.MapFrom(src => src.RevisionNumber.ToString()));
-                cfg.CreateMap<CanOpen_DeviceCommissioning, ViewModels.DeviceCommissioning>(MemberList.None);
+                cfg.CreateMap<CanOpen_DeviceCommissioning, ViewModels.DeviceCommissioning>(MemberList.None)
+                    .ForMember(dest => dest.NodeId, opt => opt.MapFrom(src => src.NodeId == 0 ? (uint?)null : src.NodeId))
+                    .ForMember(dest => dest.Baudrate, opt => opt.MapFrom(src => src.Baudrate == 0 ? (uint?)null : src.Baudrate));
             }, LoggerFactory.Create(builder => { builder.AddDebug(); }));
             fromProtoConfig.AssertConfigurationIsValid();
             _fromProtoMapper = fromProtoConfig.CreateMapper();
