@@ -277,4 +277,10 @@
     <sys:String x:Key="str_dyn_051">例如：0 100 500</sys:String>
     <sys:String x:Key="str_dyn_052">索引 0x{0:X4} 已经存在！</sys:String>
     <sys:String x:Key="str_dyn_053">文件版本</sys:String>
+
+    <sys:String x:Key="str_mutex_conflict_title">冲突提示</sys:String>
+    <sys:String x:Key="str_mutex_lss_nodeid">【LSS 从站】与【节点ID】互斥。是否启用 LSS 从站并清空当前的节点 ID？</sys:String>
+    <sys:String x:Key="str_mutex_nodeid_lss">【LSS 从站】与【节点ID】互斥。是否设置节点 ID 并取消 LSS 从站功能？</sys:String>
+    <sys:String x:Key="str_mutex_ngs_1017">【节点守护从站】与【0x1017 心跳报文】互斥。是否启用节点守护并删除 0x1017 对象？</sys:String>
+    <sys:String x:Key="str_mutex_1017_ngs">【节点守护从站】与【0x1017 心跳报文】互斥。是否添加 0x1017 对象并禁用节点守护从站？</sys:String>
 </ResourceDictionary>

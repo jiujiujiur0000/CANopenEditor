@@ -1,6 +1,12 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using libEDSsharp;
 using System.Linq;
+using Avalonia.Threading;
+using System.ComponentModel;
+using Avalonia.Controls.ApplicationLifetimes;
+using System.Collections.Specialized;
+using System.Collections.Generic;
+using Avalonia.Controls;
 
 namespace EDSEditorGUI2.ViewModels
 {
@@ -8,6 +14,134 @@ namespace EDSEditorGUI2.ViewModels
     {
         public Device()
         {
+            SetupListeners();
+        }
+
+        private void SetupListeners()
+        {
+            if (DeviceInfo != null)
+                DeviceInfo.PropertyChanged += DeviceInfo_PropertyChanged;
+            if (DeviceCommissioning != null)
+                DeviceCommissioning.PropertyChanged += DeviceCommissioning_PropertyChanged;
+            if (Objects != null)
+                Objects.CollectionChanged += Objects_CollectionChanged;
+        }
+
+        partial void OnDeviceInfoChanged(DeviceInfo? oldValue, DeviceInfo newValue)
+        {
+            if (oldValue != null) oldValue.PropertyChanged -= DeviceInfo_PropertyChanged;
+            if (newValue != null) newValue.PropertyChanged += DeviceInfo_PropertyChanged;
+        }
+
+        partial void OnDeviceCommissioningChanged(DeviceCommissioning? oldValue, DeviceCommissioning newValue)
+        {
+            if (oldValue != null) oldValue.PropertyChanged -= DeviceCommissioning_PropertyChanged;
+            if (newValue != null) newValue.PropertyChanged += DeviceCommissioning_PropertyChanged;
+        }
+
+        partial void OnObjectsChanged(ObjectDictionary? oldValue, ObjectDictionary newValue)
+        {
+            if (oldValue != null) oldValue.CollectionChanged -= Objects_CollectionChanged;
+            if (newValue != null) newValue.CollectionChanged += Objects_CollectionChanged;
+        }
+
+        private bool _isHandlingMutex = false;
+
+        private void DeviceInfo_PropertyChanged(object? sender, PropertyChangedEventArgs e)
+        {
+            if (_isHandlingMutex) return;
+
+            if (e.PropertyName == nameof(DeviceInfo.LssSlave))
+            {
+                if (DeviceInfo.LssSlave && DeviceCommissioning.NodeId.HasValue)
+                {
+                    CheckMutexAndPromptAsync("str_mutex_lss_nodeid",
+                        onConfirm: () => { DeviceCommissioning.NodeId = null; },
+                        onCancel: () => { DeviceInfo.LssSlave = false; }
+                    );
+                }
+            }
+            else if (e.PropertyName == nameof(DeviceInfo.NodeGuardingSlave))
+            {
+                if (DeviceInfo.NodeGuardingSlave && Objects.ContainsKey("1017"))
+                {
+                    CheckMutexAndPromptAsync("str_mutex_ngs_1017",
+                        onConfirm: () => { Objects.Remove("1017"); },
+                        onCancel: () => { DeviceInfo.NodeGuardingSlave = false; }
+                    );
+                }
+            }
+        }
+
+        private void DeviceCommissioning_PropertyChanged(object? sender, PropertyChangedEventArgs e)
+        {
+            if (_isHandlingMutex) return;
+
+            if (e.PropertyName == nameof(DeviceCommissioning.NodeId))
+            {
+                if (DeviceCommissioning.NodeId.HasValue && DeviceInfo.LssSlave)
+                {
+                    CheckMutexAndPromptAsync("str_mutex_nodeid_lss",
+                        onConfirm: () => { DeviceInfo.LssSlave = false; },
+                        onCancel: () => { DeviceCommissioning.NodeId = null; }
+                    );
+                }
+            }
+        }
+
+        private void Objects_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (_isHandlingMutex) return;
+
+            if (e.Action == NotifyCollectionChangedAction.Add && e.NewItems != null)
+            {
+                foreach (KeyValuePair<string, OdObject> kvp in e.NewItems)
+                {
+                    if (kvp.Key == "1017" && DeviceInfo.NodeGuardingSlave)
+                    {
+                        CheckMutexAndPromptAsync("str_mutex_1017_ngs",
+                            onConfirm: () => { DeviceInfo.NodeGuardingSlave = false; },
+                            onCancel: () => { Objects.Remove("1017"); }
+                        );
+                        break;
+                    }
+                }
+            }
+        }
+
+        private void CheckMutexAndPromptAsync(string resourceKey, System.Action onConfirm, System.Action onCancel)
+        {
+            Dispatcher.UIThread.Post(async () =>
+            {
+                _isHandlingMutex = true;
+                try
+                {
+                    var app = Avalonia.Application.Current;
+                    var mainWindow = (app?.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)?.MainWindow;
+                    if (mainWindow != null && mainWindow.FindResource("MutexConfirmDialog") is Avalonia.Controls.Control dialog)
+                    {
+                        var msg = app?.FindResource(resourceKey)?.ToString();
+                        dialog.DataContext = msg;
+                        var result = await DialogHostAvalonia.DialogHost.Show(dialog, "RootDialogHost");
+                        if (result as string == "OK")
+                        {
+                            onConfirm?.Invoke();
+                        }
+                        else
+                        {
+                            onCancel?.Invoke();
+                        }
+                    }
+                    else
+                    {
+                        onCancel?.Invoke();
+                    }
+                }
+                finally
+                {
+                    _isHandlingMutex = false;
+                }
+            });
         }
 
         [ObservableProperty]

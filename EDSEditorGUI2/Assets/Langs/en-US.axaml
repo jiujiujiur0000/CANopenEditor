@@ -274,4 +274,10 @@
     <sys:String x:Key="str_dyn_051">e.g., 0 100 500</sys:String>
     <sys:String x:Key="str_dyn_052">Index 0x{0:X4} already exists!</sys:String>
     <sys:String x:Key="str_dyn_053">File Version</sys:String>
+
+    <sys:String x:Key="str_mutex_conflict_title">Conflict Warning</sys:String>
+    <sys:String x:Key="str_mutex_lss_nodeid">[LSS Slave] and [Node ID] are mutually exclusive. Do you want to enable LSS Slave and clear the current Node ID?</sys:String>
+    <sys:String x:Key="str_mutex_nodeid_lss">[LSS Slave] and [Node ID] are mutually exclusive. Do you want to set the Node ID and disable the LSS Slave feature?</sys:String>
+    <sys:String x:Key="str_mutex_ngs_1017">[Node Guarding Slave] and [0x1017 Producer Heartbeat Time] are mutually exclusive. Do you want to enable Node Guarding and delete the 0x1017 object?</sys:String>
+    <sys:String x:Key="str_mutex_1017_ngs">[Node Guarding Slave] and [0x1017 Producer Heartbeat Time] are mutually exclusive. Do you want to add the 0x1017 object and disable Node Guarding Slave?</sys:String>
 </ResourceDictionary>
