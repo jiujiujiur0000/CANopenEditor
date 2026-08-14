@@ -549,20 +549,26 @@ namespace libEDSsharp
         /// <returns>result </returns>
         public EDSsharp.AccessType Convert(OdSubObject source, EDSsharp.AccessType destination, ResolutionContext context)
         {
-            if (source.Pdo == OdSubObject.Types.AccessPDO.Tr && source.Sdo == OdSubObject.Types.AccessSDO.Rw)
+            if (source.Sdo == OdSubObject.Types.AccessSDO.Rw)
+            {
+                if (source.Pdo == OdSubObject.Types.AccessPDO.T)
+                    return EDSsharp.AccessType.rwr;
+                if (source.Pdo == OdSubObject.Types.AccessPDO.R)
+                    return EDSsharp.AccessType.rww;
                 return EDSsharp.AccessType.rw;
-            else if (source.Pdo == OdSubObject.Types.AccessPDO.No && source.Sdo == OdSubObject.Types.AccessSDO.Ro)
+            }
+            else if (source.Sdo == OdSubObject.Types.AccessSDO.Ro)
+            {
+                if (source.Pdo == OdSubObject.Types.AccessPDO.R)
+                    return EDSsharp.AccessType.@const;
                 return EDSsharp.AccessType.ro;
-            else if (source.Pdo == OdSubObject.Types.AccessPDO.No && source.Sdo == OdSubObject.Types.AccessSDO.Wo)
+            }
+            else if (source.Sdo == OdSubObject.Types.AccessSDO.Wo)
+            {
                 return EDSsharp.AccessType.wo;
-            else if (source.Pdo == OdSubObject.Types.AccessPDO.T && source.Sdo == OdSubObject.Types.AccessSDO.Rw)
-                return EDSsharp.AccessType.rwr;
-            else if (source.Pdo == OdSubObject.Types.AccessPDO.R && source.Sdo == OdSubObject.Types.AccessSDO.Rw)
-                return EDSsharp.AccessType.rww;
-            else if (source.Pdo == OdSubObject.Types.AccessPDO.R && source.Sdo == OdSubObject.Types.AccessSDO.Ro)
-                return EDSsharp.AccessType.@const;
-            else
-                return EDSsharp.AccessType.UNKNOWN;
+            }
+            
+            return EDSsharp.AccessType.UNKNOWN;
         }
     }
 
