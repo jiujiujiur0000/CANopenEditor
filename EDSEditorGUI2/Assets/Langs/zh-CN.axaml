@@ -12,8 +12,10 @@
     <sys:String x:Key="str_menu_recent">最近打开(R)</sys:String>
     <sys:String x:Key="str_menu_recent_empty">(暂无记录)</sys:String>
     <sys:String x:Key="str_menu_clear_recent">清除最近打开的</sys:String>
+    <sys:String x:Key="str_btn_open_folder">打开文件夹</sys:String>
     <sys:String x:Key="str_msg_file_not_found">文件路径已失效或被移动：</sys:String>
     <sys:String x:Key="str_msg_confirm_clear">确定要清除所有最近打开的记录吗？</sys:String>
+    <sys:String x:Key="str_msg_export_success">文件导出成功！</sys:String>
     <sys:String x:Key="str_menu_export">导出(_E)</sys:String>
     <sys:String x:Key="str_menu_export_canopennode">导出CanOpenNode代码(_C)...</sys:String>
     <sys:String x:Key="str_menu_save_all">全部保存(_A)</sys:String>

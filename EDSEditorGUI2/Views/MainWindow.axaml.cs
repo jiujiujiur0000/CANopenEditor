@@ -416,6 +416,35 @@ public partial class MainWindow : Window
         return "Cancel";
     }
 
+    private async System.Threading.Tasks.Task ShowSuccessDialog(string message)
+    {
+        if (Resources["SuccessDialog"] is Avalonia.Controls.Control dialog)
+        {
+            dialog.DataContext = message;
+            var result = await DialogHostAvalonia.DialogHost.Show(dialog, "RootDialogHost");
+            if (result as string == "OpenFolder")
+            {
+                try
+                {
+                    var dir = System.IO.Path.GetDirectoryName(message);
+                    if (!string.IsNullOrEmpty(dir) && System.IO.Directory.Exists(dir))
+                    {
+                        System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+                        {
+                            FileName = dir,
+                            UseShellExecute = true,
+                            Verb = "open"
+                        });
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine($"Failed to open folder: {ex.Message}");
+                }
+            }
+        }
+    }
+
     private void ApplySavedTheme()
     {
         var app = Avalonia.Application.Current;
@@ -797,9 +826,9 @@ public partial class MainWindow : Window
             
             try
             {
-                if (ext == ".xdd")
+                libEDSsharp.CanOpenXDD_1_1 coxml = new();
+                if (ext == ".xdd" || ext == ".xpd")
                 {
-                    libEDSsharp.CanOpenXDD_1_1 coxml = new();
                     coxml.WriteXML(filePath, eds, true, false);
                 }
                 else if (ext == ".eds")
@@ -810,6 +839,8 @@ public partial class MainWindow : Window
                 {
                     eds.Savefile(filePath, libEDSsharp.InfoSection.Filetype.File_DCF);
                 }
+                
+                await ShowSuccessDialog(filePath);
             }
             catch (Exception ex)
             {
@@ -848,6 +879,8 @@ public partial class MainWindow : Window
             {
                 var exporter = libEDSsharp.ExporterFactory.getExporter(version);
                 exporter.export(filePath, eds);
+                
+                await ShowSuccessDialog(filePath);
             }
             catch (Exception ex)
             {
@@ -895,6 +928,8 @@ public partial class MainWindow : Window
                 {
                     exporter.WriteProtobuf(filePath, eds, false);
                 }
+                
+                await ShowSuccessDialog(filePath);
             }
             catch (Exception ex)
             {
@@ -911,11 +946,21 @@ public partial class MainWindow : Window
             var nxddFilter = new FilePickerFileType("Network XML Device Description (*.nxdd)") { Patterns = ["*.nxdd"] };
             var nxdcFilter = new FilePickerFileType("Network XML Device Configuration (*.nxdc)") { Patterns = ["*.nxdc"] };
 
+            string defaultName = "CANopenNetwork";
+            if (!string.IsNullOrEmpty(dc.CurrentProjectPath))
+            {
+                var projName = System.IO.Path.GetFileNameWithoutExtension(dc.CurrentProjectPath);
+                if (!string.IsNullOrWhiteSpace(projName))
+                {
+                    defaultName = projName;
+                }
+            }
+
             var file = await topLevel.StorageProvider.SaveFilePickerAsync(new FilePickerSaveOptions
             {
                 Title = "Export Network XML",
                 DefaultExtension = ".nxdd",
-                SuggestedFileName = "CANopenNetwork",
+                SuggestedFileName = defaultName,
                 FileTypeChoices = [nxddFilter, nxdcFilter]
             });
 
@@ -941,6 +986,8 @@ public partial class MainWindow : Window
                     {
                         exporter.WriteMultiXML(filePath, networkFiles, true);
                     }
+                    
+                    await ShowSuccessDialog(filePath);
                 }
                 catch (Exception ex)
                 {

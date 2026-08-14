@@ -216,6 +216,18 @@
         </StackPanel>
     </StackPanel>
 
+    <StackPanel x:Key="SuccessDialog" Margin="20" Spacing="15" MinWidth="300" MaxWidth="500">
+        <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
+            <!-- Icon could go here -->
+            <TextBlock Text="{DynamicResource str_msg_export_success}" FontWeight="Bold" FontSize="18" Foreground="{DynamicResource SystemControlForegroundBaseHighBrush}" VerticalAlignment="Center"/>
+        </StackPanel>
+        <TextBlock Text="{Binding}" FontSize="14" Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}" TextWrapping="Wrap" Margin="0,5,0,0"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="10" Margin="0,10,0,0">
+            <Button Content="{DynamicResource str_btn_open_folder}" Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=dialogHost:DialogHost}, Path=CloseDialogCommand}" CommandParameter="OpenFolder"/>
+            <Button Content="{DynamicResource str_dyn_025}" Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=dialogHost:DialogHost}, Path=CloseDialogCommand}" CommandParameter="OK" Classes="accent"/>
+        </StackPanel>
+    </StackPanel>
+
     <StackPanel x:Key="ErrorDialog" Margin="20" Spacing="15" MinWidth="300">
         <TextBlock Text="{DynamicResource str_dyn_039}" FontWeight="Bold" FontSize="18" Foreground="{DynamicResource SystemControlErrorTextForegroundBrush}"/>
         <TextBlock Text="{DynamicResource str_dyn_021}" TextWrapping="Wrap"/>

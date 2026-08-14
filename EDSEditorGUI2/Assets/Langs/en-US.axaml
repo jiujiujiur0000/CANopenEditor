@@ -13,6 +13,8 @@
     <sys:String x:Key="str_menu_recent_empty">(Empty)</sys:String>
     <sys:String x:Key="str_menu_clear_recent">Clear Recent</sys:String>
     <sys:String x:Key="str_msg_file_not_found">File path is invalid or moved: </sys:String>
+    <sys:String x:Key="str_msg_export_success">File exported successfully!</sys:String>
+    <sys:String x:Key="str_btn_open_folder">Open Folder</sys:String>
     <sys:String x:Key="str_msg_confirm_clear">Are you sure you want to clear all recent records?</sys:String>
     <sys:String x:Key="str_menu_export">_Export</sys:String>
     <sys:String x:Key="str_menu_export_canopennode">_Export CanOpenNode...</sys:String>
