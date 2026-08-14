@@ -3,6 +3,7 @@ using Avalonia.Controls.Templates;
 using Avalonia.Data;
 using Avalonia.Interactivity;
 using Avalonia.Platform.Storage;
+using Avalonia.VisualTree;
 using DialogHostAvalonia;
 using EDSEditorGUI2.Mapper;
 using EDSEditorGUI2.ViewModels;
@@ -150,6 +151,7 @@ public partial class MainWindow : Window
         this.AddHandler(Avalonia.Input.InputElement.LostFocusEvent, OnGlobalInput, RoutingStrategies.Bubble);
         this.AddHandler(Avalonia.Controls.Primitives.ToggleButton.IsCheckedChangedEvent, OnGlobalInput, RoutingStrategies.Bubble);
         this.AddHandler(Avalonia.Controls.Primitives.SelectingItemsControl.SelectionChangedEvent, OnGlobalInput, RoutingStrategies.Bubble);
+        this.AddHandler(Avalonia.Controls.TextBox.TextChangedEvent, OnGlobalTextChanged, RoutingStrategies.Bubble);
         LoadProfileList();
         this.Loaded += MainWindow_Loaded;
         this.DataContextChanged += MainWindow_DataContextChanged;
@@ -194,11 +196,43 @@ public partial class MainWindow : Window
     {
         if (e.Source is Avalonia.Controls.TextBox || e.Source is Avalonia.Controls.Primitives.ToggleButton || e.Source is Avalonia.Controls.Primitives.SelectingItemsControl)
         {
+            if (DataContext is MainWindowViewModel dc && dc.SelectedDevice != null)
+            {
+                dc.SelectedDevice.IsDirty = true;
+            }
             TriggerAutoSave();
         }
     }
 
+    private void OnGlobalTextChanged(object? sender, Avalonia.Controls.TextChangedEventArgs e)
+    {
+        if (e.Source is Avalonia.Controls.TextBox)
+        {
+            if (DataContext is MainWindowViewModel dc && dc.SelectedDevice != null)
+            {
+                dc.SelectedDevice.IsDirty = true;
+            }
+        }
+    }
+
     public bool IsProgrammaticChange { get; set; } = false;
+
+    private bool HasVisualValidationErrors(Avalonia.Visual root)
+    {
+        if (root is Avalonia.Controls.Control control && Avalonia.Controls.DataValidationErrors.GetHasErrors(control))
+        {
+            return true;
+        }
+
+        foreach (var child in root.GetVisualChildren())
+        {
+            if (HasVisualValidationErrors(child))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 
     public void TriggerAutoSave()
     {
@@ -218,15 +252,20 @@ public partial class MainWindow : Window
                 _autoSaveTimer.Stop();
                 if (DataContext is MainWindowViewModel dc && !string.IsNullOrEmpty(dc.CurrentProjectPath))
                 {
-                    bool hasErrors = false;
-                    foreach (var d in dc.Network)
+                    bool hasErrors = HasVisualValidationErrors(this);
+                    
+                    if (!hasErrors)
                     {
-                        if (d.DeviceInfo.HasErrors || d.DeviceCommissioning.HasErrors || d.FileInfo.HasErrors || d.ProjectInfo.HasErrors)
+                        foreach (var d in dc.Network)
                         {
-                            hasErrors = true;
-                            break;
+                            if (d.DeviceInfo.HasErrors || d.DeviceCommissioning.HasErrors || d.FileInfo.HasErrors || d.ProjectInfo.HasErrors)
+                            {
+                                hasErrors = true;
+                                break;
+                            }
                         }
                     }
+                    
                     if (!hasErrors)
                     {
                         DoSaveProject(dc.CurrentProjectPath);

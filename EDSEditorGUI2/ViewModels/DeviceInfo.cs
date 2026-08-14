@@ -30,7 +30,10 @@ public partial class DeviceInfo : ObservableValidator
     string _revisionNumber = "1";
 
     [ObservableProperty]
-    uint _granularity = 8;
+    [NotifyDataErrorInfo]
+    [Required(ErrorMessage = "请输入有效的数字")]
+    [RegularExpression(@"^\d+$", ErrorMessage = "请输入有效的数字")]
+    string _granularity = "8";
 
     [ObservableProperty]
     bool _baudRate10;
@@ -66,10 +69,16 @@ public partial class DeviceInfo : ObservableValidator
     bool _lssMaster;
 
     [ObservableProperty]
-    uint _rpdoCount;
+    [NotifyDataErrorInfo]
+    [Required(ErrorMessage = "请输入有效的数字")]
+    [RegularExpression(@"^\d+$", ErrorMessage = "请输入有效的数字")]
+    string _rpdoCount = "0";
 
     [ObservableProperty]
-    uint _tpdoCount;
+    [NotifyDataErrorInfo]
+    [Required(ErrorMessage = "请输入有效的数字")]
+    [RegularExpression(@"^\d+$", ErrorMessage = "请输入有效的数字")]
+    string _tpdoCount = "0";
 
     [ObservableProperty]
     bool _nodeGuardingSlave;
@@ -78,6 +87,8 @@ public partial class DeviceInfo : ObservableValidator
     bool _nodeGuardingMaster;
 
     [ObservableProperty]
-    [Range(0, 127, ErrorMessage = "监控节点数不能超过127")]
-    uint _numberOfMonitoredNodes;
+    [NotifyDataErrorInfo]
+    [Required(ErrorMessage = "请输入有效的数字")]
+    [RegularExpression(@"^(?:[0-9]|[1-9][0-9]|1[0-1][0-9]|12[0-7])$", ErrorMessage = "监控节点数必须在0到127之间")]
+    string _numberOfMonitoredNodes = "0";
 }

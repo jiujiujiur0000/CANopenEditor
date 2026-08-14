@@ -216,11 +216,11 @@ namespace EDSEditorGUI2.ViewModels
                     ProjectInfo.CanopenNodeFileVersion = _eds.ODfileVersion;
                     ProjectInfo.DocumentationFile = System.IO.Path.GetFileName(_eds.mdfilename);
                     
-                    DeviceInfo.RpdoCount = _eds.di.NrOfRXPDO;
-                    DeviceInfo.TpdoCount = _eds.di.NrOfTXPDO;
+                    DeviceInfo.RpdoCount = _eds.di.NrOfRXPDO.ToString();
+                    DeviceInfo.TpdoCount = _eds.di.NrOfTXPDO.ToString();
                     DeviceInfo.NodeGuardingSlave = _eds.di.NG_Slave;
                     DeviceInfo.NodeGuardingMaster = _eds.di.NG_Master;
-                    DeviceInfo.NumberOfMonitoredNodes = _eds.di.NrOfNG_MonitoredNodes;
+                    DeviceInfo.NumberOfMonitoredNodes = _eds.di.NrOfNG_MonitoredNodes.ToString();
                     
                     DeviceCommissioning.NetNumber = _eds.dc.NetNumber == 0 ? null : _eds.dc.NetNumber;
                     DeviceCommissioning.NetName = _eds.dc.NetworkName;
@@ -355,11 +355,11 @@ namespace EDSEditorGUI2.ViewModels
             updatedEds.mdfilename = this.ProjectInfo.DocumentationFile;
 
             if (updatedEds.di == null) updatedEds.di = new libEDSsharp.DeviceInfo();
-            updatedEds.di.NrOfRXPDO = (ushort)this.DeviceInfo.RpdoCount;
-            updatedEds.di.NrOfTXPDO = (ushort)this.DeviceInfo.TpdoCount;
+            updatedEds.di.NrOfRXPDO = ushort.TryParse(this.DeviceInfo.RpdoCount, out var r) ? r : (ushort)0;
+            updatedEds.di.NrOfTXPDO = ushort.TryParse(this.DeviceInfo.TpdoCount, out var t) ? t : (ushort)0;
             updatedEds.di.NG_Slave = this.DeviceInfo.NodeGuardingSlave;
             updatedEds.di.NG_Master = this.DeviceInfo.NodeGuardingMaster;
-            updatedEds.di.NrOfNG_MonitoredNodes = (ushort)this.DeviceInfo.NumberOfMonitoredNodes;
+            updatedEds.di.NrOfNG_MonitoredNodes = ushort.TryParse(this.DeviceInfo.NumberOfMonitoredNodes, out var n) ? n : (ushort)0;
 
             if (updatedEds.dc == null) updatedEds.dc = new libEDSsharp.DeviceCommissioning();
             updatedEds.dc.NodeID = (byte)(this.DeviceCommissioning.NodeId ?? 0);
