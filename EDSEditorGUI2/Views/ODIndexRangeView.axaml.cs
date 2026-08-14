@@ -18,7 +18,41 @@ public partial class ODIndexRangeView : UserControl
         type.ItemsSource = values;
         type.SelectedIndex = 0;
 
-        // Grid loading row is no longer needed, using DataGridCollectionView instead
+        index.TextChanged += Index_TextChanged;
+    }
+
+    private void Index_TextChanged(object? sender, TextChangedEventArgs e)
+    {
+        ValidateIndex();
+    }
+
+    private bool ValidateIndex()
+    {
+        if (string.IsNullOrWhiteSpace(index.Text))
+        {
+            errorText.IsVisible = false;
+            return false;
+        }
+
+        int min = Convert.ToInt32(MinIndex, 16);
+        int max = Convert.ToInt32(MaxIndex, 16);
+
+        if (!int.TryParse(index.Text, System.Globalization.NumberStyles.HexNumber, null, out int parsedIndex))
+        {
+            errorText.Text = "必须输入十六进制数字";
+            errorText.IsVisible = true;
+            return false;
+        }
+
+        if (parsedIndex < min || parsedIndex > max)
+        {
+            errorText.Text = string.Format(Avalonia.Application.Current.FindResource("str_dyn_009") as string ?? "", min, max);
+            errorText.IsVisible = true;
+            return false;
+        }
+
+        errorText.IsVisible = false;
+        return true;
     }
 
     private Avalonia.Collections.DataGridCollectionView? _collectionView;
@@ -113,11 +147,7 @@ public partial class ODIndexRangeView : UserControl
 
     private async void AddIndex(object? sender, RoutedEventArgs e)
     {
-        if (Resources["NewIndexDialog"] is StackPanel dialog)
-        {
-            var errorText = dialog.Children.OfType<TextBlock>().FirstOrDefault(x => x.Name == "errorText");
-            if (errorText != null) errorText.IsVisible = false;
-        }
+        errorText.IsVisible = false;
         await DialogHost.Show(Resources["NewIndexDialog"]!, "NoAnimationDialogHost", OnDialogClosing);
     }
 
@@ -127,50 +157,24 @@ public partial class ODIndexRangeView : UserControl
         {
             if (DataContext is ViewModels.ObjectDictionary dc && e.Parameter is NewIndexRequest param)
             {
-                int min = Convert.ToInt32(MinIndex, 16);
-                int max = Convert.ToInt32(MaxIndex, 16);
-
-                if (param.Index < min || param.Index > max)
+                if (!ValidateIndex())
                 {
-                    if (Resources["NewIndexDialog"] is StackPanel pnl)
-                    {
-                        var errorText = pnl.Children.OfType<TextBlock>().FirstOrDefault(x => x.Name == "errorText");
-                        if (errorText != null)
-                        {
-                            errorText.Text = string.Format(Avalonia.Application.Current.FindResource("str_dyn_009") as string ?? "", min, max);
-                            errorText.IsVisible = true;
-                        }
-                    }
                     e.Cancel();
                     return;
                 }
 
                 if (string.IsNullOrWhiteSpace(param.Name))
                 {
-                    if (Resources["NewIndexDialog"] is StackPanel pnl)
-                    {
-                        var errorText = pnl.Children.OfType<TextBlock>().FirstOrDefault(x => x.Name == "errorText");
-                        if (errorText != null)
-                        {
-                            errorText.Text = Avalonia.Application.Current.FindResource("str_dyn_046") as string;
-                            errorText.IsVisible = true;
-                        }
-                    }
+                    errorText.Text = Avalonia.Application.Current.FindResource("str_dyn_046") as string;
+                    errorText.IsVisible = true;
                     e.Cancel();
                     return;
                 }
 
                 if (dc.ContainsKey(param.Index.ToString("X4")))
                 {
-                    if (Resources["NewIndexDialog"] is StackPanel pnl)
-                    {
-                        var errorText = pnl.Children.OfType<TextBlock>().FirstOrDefault(x => x.Name == "errorText");
-                        if (errorText != null)
-                        {
-                            errorText.Text = string.Format(Avalonia.Application.Current.FindResource("str_dyn_052") as string ?? "", param.Index);
-                            errorText.IsVisible = true;
-                        }
-                    }
+                    errorText.Text = string.Format(Avalonia.Application.Current.FindResource("str_dyn_052") as string ?? "", param.Index);
+                    errorText.IsVisible = true;
                     e.Cancel();
                     return;
                 }
