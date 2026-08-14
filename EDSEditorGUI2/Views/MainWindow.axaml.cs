@@ -194,7 +194,12 @@ public partial class MainWindow : Window
 
     private void OnGlobalInput(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
     {
-        if (e.Source is Avalonia.Controls.TextBox || e.Source is Avalonia.Controls.Primitives.ToggleButton || e.Source is Avalonia.Controls.Primitives.SelectingItemsControl)
+        if (e.Source is Avalonia.Controls.Primitives.ToggleButton tb && tb.TemplatedParent is Avalonia.Controls.Expander)
+        {
+            return; // Ignore clicks on the expand/collapse arrow of an Expander
+        }
+
+        if (e.Source is Avalonia.Controls.TextBox || e.Source is Avalonia.Controls.Primitives.ToggleButton || e.Source is Avalonia.Controls.ComboBox)
         {
             if (DataContext is MainWindowViewModel dc && dc.SelectedDevice != null)
             {
@@ -328,30 +333,30 @@ public partial class MainWindow : Window
                 return;
             }
 
-            // If AutoSave is ON and we have a path, we can save silently
-            if (!string.IsNullOrEmpty(dc.CurrentProjectPath))
+            // We have unsaved changes, prompt the user
+            e.Cancel = true;
+            var saveResult = await ShowSaveConfirmDialog();
+            if (saveResult == "Save")
             {
-                DoSaveProject(dc.CurrentProjectPath);
-            }
-            else
-            {
-                // We have unsaved changes and cannot silently save.
-                e.Cancel = true;
-                var result = await ShowSaveConfirmDialog();
-                if (result == "Save")
-                {
-                    SaveProjectAsClick(null, null);
-                    // Do not close immediately, let them save first.
-                    // If they successfully save, IsDirty will become false.
-                }
-                else if (result == "Discard")
+                bool saved = await SaveProjectAsync();
+                if (saved)
                 {
                     _isForceClosing = true;
                     Close();
                 }
-                // If Cancel, do nothing
-                return;
+                else
+                {
+                    // Save failed or cancelled, do not close
+                    return;
+                }
             }
+            else if (saveResult == "Discard")
+            {
+                _isForceClosing = true;
+                Close();
+            }
+            // If Cancel, just return (window close is already cancelled)
+            return;
         }
 
         if (_autoSaveTimer != null && _autoSaveTimer.IsEnabled)
