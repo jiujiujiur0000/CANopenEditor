@@ -44,19 +44,20 @@
                     <SolidColorBrush x:Key="ComboBoxBackground">#333337</SolidColorBrush>
                     <SolidColorBrush x:Key="ComboBoxBackgroundPointerOver">#3E3E42</SolidColorBrush>
                     
-                    <SolidColorBrush x:Key="TextControlForeground">#D4D4D4</SolidColorBrush>
-                    <SolidColorBrush x:Key="SystemControlForegroundBaseHighBrush">#D4D4D4</SolidColorBrush>
-                    <SolidColorBrush x:Key="TextFillColorPrimaryBrush">#D4D4D4</SolidColorBrush>
+                    <SolidColorBrush x:Key="TextControlForeground">#DCDCDC</SolidColorBrush>
+                    <SolidColorBrush x:Key="SystemControlForegroundBaseHighBrush">#DCDCDC</SolidColorBrush>
+                    <SolidColorBrush x:Key="SystemControlForegroundBaseMediumBrush">#DCDCDC</SolidColorBrush>
+                    <SolidColorBrush x:Key="TextFillColorPrimaryBrush">#DCDCDC</SolidColorBrush>
                     
                     <SolidColorBrush x:Key="ExpanderHeaderBackground">#333337</SolidColorBrush>
                     <SolidColorBrush x:Key="ExpanderHeaderBackgroundPointerOver">#3E3E42</SolidColorBrush>
                     <SolidColorBrush x:Key="ExpanderHeaderBackgroundPressed">#1E1E1E</SolidColorBrush>
                     <SolidColorBrush x:Key="GlobalExpanderHeaderBackground">#333337</SolidColorBrush>
                     
-                    <Color x:Key="TextFillColorPrimary">#D4D4D4</Color>
+                    <Color x:Key="TextFillColorPrimary">#DCDCDC</Color>
                     <Color x:Key="TextFillColorSecondary">#A0A0A0</Color>
                     <Color x:Key="TextFillColorTertiary">#888888</Color>
-                    <SolidColorBrush x:Key="GlobalCustomTextBrush">#D4D4D4</SolidColorBrush>
+                    <SolidColorBrush x:Key="GlobalCustomTextBrush">#DCDCDC</SolidColorBrush>
                     <SolidColorBrush x:Key="TableBorderBrush">#404040</SolidColorBrush>
                     <SolidColorBrush x:Key="TableEmptyBgBrush">#202020</SolidColorBrush>
                     <SolidColorBrush x:Key="TableFilledBgBrush">#4A4A20</SolidColorBrush>
@@ -73,8 +74,9 @@
   
     <Application.Styles>
         <FluentTheme />
-        <Style Selector="Window, UserControl, ContextMenu, ToolTip, FlyoutPresenter">
+        <Style Selector="Window, UserControl, ContextMenu, ToolTip, FlyoutPresenter, MenuItem, CheckBox">
             <Setter Property="FontFamily" Value="Microsoft YaHei UI, Microsoft YaHei, Segoe UI, PingFang SC, sans-serif"/>
+            <Setter Property="Foreground" Value="{DynamicResource TextFillColorPrimaryBrush}"/>
         </Style>
         
         <Style Selector="Expander /template/ ToggleButton#ExpanderHeader">

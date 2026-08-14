@@ -73,8 +73,8 @@
               <TextBlock Grid.Row="5" Grid.Column="0" Text="{DynamicResource str_dyn_049}" VerticalAlignment="Center" Margin="0,0,10,0"/>
               <Button x:Name="fileDescButton" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" MinHeight="32" 
                       Background="{DynamicResource TextControlBackground}"
-                      BorderBrush="{DynamicResource TextControlBorderBrush}"
-                      BorderThickness="{DynamicResource TextControlBorderThemeThickness}">
+                      BorderBrush="{DynamicResource SystemControlForegroundBaseMediumLowBrush}"
+                      BorderThickness="1">
                 <TextBlock Text="{Binding FileInfo.Description}" TextTrimming="CharacterEllipsis" MaxLines="1"/>
                 <Button.Flyout>
                   <Flyout Placement="Top" FlyoutPresenterClasses="desc-flyout">
