@@ -75,7 +75,8 @@ public partial class MainWindowViewModel : ViewModelBase
         get
         {
             if (string.IsNullOrEmpty(CurrentProjectPath)) return null;
-            return System.IO.Path.GetFileNameWithoutExtension(CurrentProjectPath);
+            var name = System.IO.Path.GetFileNameWithoutExtension(CurrentProjectPath);
+            return IsDirty ? name + " *" : name;
         }
     }
 
@@ -102,6 +103,7 @@ public partial class MainWindowViewModel : ViewModelBase
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(WindowTitle))]
+    [NotifyPropertyChangedFor(nameof(CurrentProjectName))]
     private bool _isDirty;
 
     public string WindowTitle => IsDirty ? "CANopen Editor 2 *" : "CANopen Editor 2";
