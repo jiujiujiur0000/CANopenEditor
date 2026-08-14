@@ -121,6 +121,8 @@ namespace EDSEditorGUI2.ViewModels
 
         private void Objects_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
         {
+            CheckAndRequestAutoSave();
+            
             if (_isHandlingMutex) return;
 
             if (e.Action == NotifyCollectionChangedAction.Add && e.NewItems != null)

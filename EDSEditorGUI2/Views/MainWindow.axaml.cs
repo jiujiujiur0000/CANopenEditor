@@ -203,6 +203,11 @@ public partial class MainWindow : Window
 
         if (e.Source is Avalonia.Controls.TextBox || e.Source is Avalonia.Controls.Primitives.ToggleButton || e.Source is Avalonia.Controls.ComboBox)
         {
+            if (e.Source is Avalonia.Controls.Control sourceCtrl && sourceCtrl.Tag?.ToString() == "IgnoreDirty")
+            {
+                return; // Ignore controls specifically marked to not trigger dirty state (like dialogs)
+            }
+
             if (DataContext is MainWindowViewModel dc && dc.SelectedDevice != null)
             {
                 if (dc.SelectedDevice.IsSyncing) return;
@@ -224,6 +229,11 @@ public partial class MainWindow : Window
     {
         if (e.Source is Avalonia.Controls.TextBox tb)
         {
+            if (tb.Tag?.ToString() == "IgnoreDirty")
+            {
+                return; // Ignore controls specifically marked to not trigger dirty state
+            }
+
             if (DataContext is MainWindowViewModel dc && dc.SelectedDevice != null)
             {
                 if (dc.SelectedDevice.IsSyncing) return;

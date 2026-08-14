@@ -1,4 +1,4 @@
-﻿<UserControl xmlns="https://github.com/avaloniaui"
+<UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:dialogHost="clr-namespace:DialogHostAvalonia;assembly=DialogHost.Avalonia"
              xmlns:vm="using:EDSEditorGUI2.ViewModels"
@@ -112,17 +112,17 @@
       <StackPanel Spacing="5">
         <TextBlock Text="{DynamicResource str_od_dlg_index}" FontWeight="Medium"/>
         <!-- Need to be fixed to accept only hex -->
-        <TextBox Watermark="1000" x:Name="index" Classes="clearButton" />
+        <TextBox Watermark="1000" x:Name="index" Classes="clearButton" Tag="IgnoreDirty" />
       </StackPanel>
 
       <StackPanel Spacing="5">
         <TextBlock Text="{DynamicResource str_od_dlg_name}" FontWeight="Medium" />
-        <TextBox Text="" x:Name="name" Classes="clearButton" />
+        <TextBox Text="" x:Name="name" Classes="clearButton" Tag="IgnoreDirty" />
       </StackPanel>
 
       <StackPanel Spacing="5">
         <TextBlock Text="{DynamicResource str_od_dlg_objtype}" FontWeight="Medium" />
-        <ComboBox x:Name="type" SelectedIndex="0" HorizontalAlignment="Stretch" />
+        <ComboBox x:Name="type" SelectedIndex="0" HorizontalAlignment="Stretch" Tag="IgnoreDirty" />
       </StackPanel>
 
       <TextBlock x:Name="errorText" Foreground="{DynamicResource SystemControlErrorTextForegroundBrush}" IsVisible="False" TextWrapping="Wrap"/>
