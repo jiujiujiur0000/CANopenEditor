@@ -5,7 +5,49 @@ using Avalonia.Markup.Xaml;
 using EDSEditorGUI2.ViewModels;
 using EDSEditorGUI2.Views;
 
+using System;
+using System.Globalization;
+using System.Linq;
+using System.Collections.Generic;
+using Avalonia.Data.Converters;
+
 namespace EDSEditorGUI2;
+
+public class ValidationErrorConverter : IValueConverter
+{
+    public static readonly ValidationErrorConverter Instance = new();
+
+    public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
+    {
+        if (value is Exception ex)
+        {
+            if (ex is InvalidCastException || ex is FormatException)
+            {
+                return "输入格式不正确，请输入有效的数字";
+            }
+            return ex.Message;
+        }
+        if (value is System.ComponentModel.DataAnnotations.ValidationResult vr)
+        {
+            return vr.ErrorMessage ?? "验证失败";
+        }
+        if (value != null)
+        {
+            var str = value.ToString();
+            if (str != null && str.Contains("Could not convert"))
+            {
+                return "输入格式不正确，请输入有效的数字";
+            }
+            return str;
+        }
+        return value;
+    }
+
+    public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
+    {
+        throw new NotImplementedException();
+    }
+}
 
 public partial class App : Application
 {

@@ -27,6 +27,23 @@ namespace EDSEditorGUI2.ViewModels
                 Objects.CollectionChanged += Objects_CollectionChanged;
         }
 
+        partial void OnProjectInfoChanged(ProjectInfo? oldValue, ProjectInfo newValue)
+        {
+            if (oldValue != null) oldValue.PropertyChanged -= SubObject_PropertyChanged;
+            if (newValue != null) newValue.PropertyChanged += SubObject_PropertyChanged;
+        }
+
+        partial void OnFileInfoChanged(FileInfo? oldValue, FileInfo newValue)
+        {
+            if (oldValue != null) oldValue.PropertyChanged -= SubObject_PropertyChanged;
+            if (newValue != null) newValue.PropertyChanged += SubObject_PropertyChanged;
+        }
+
+        private void SubObject_PropertyChanged(object? sender, PropertyChangedEventArgs e)
+        {
+            CheckAndRequestAutoSave();
+        }
+
         partial void OnDeviceInfoChanged(DeviceInfo? oldValue, DeviceInfo newValue)
         {
             if (oldValue != null) oldValue.PropertyChanged -= DeviceInfo_PropertyChanged;
@@ -47,8 +64,20 @@ namespace EDSEditorGUI2.ViewModels
 
         private bool _isHandlingMutex = false;
 
+        public event System.EventHandler? AutoSaveRequested;
+
+        private void CheckAndRequestAutoSave()
+        {
+            this.IsDirty = true;
+            if (!DeviceInfo.HasErrors && !DeviceCommissioning.HasErrors)
+            {
+                AutoSaveRequested?.Invoke(this, System.EventArgs.Empty);
+            }
+        }
+
         private void DeviceInfo_PropertyChanged(object? sender, PropertyChangedEventArgs e)
         {
+            CheckAndRequestAutoSave();
             if (_isHandlingMutex) return;
 
             if (e.PropertyName == nameof(DeviceInfo.LssSlave))
@@ -75,6 +104,7 @@ namespace EDSEditorGUI2.ViewModels
 
         private void DeviceCommissioning_PropertyChanged(object? sender, PropertyChangedEventArgs e)
         {
+            CheckAndRequestAutoSave();
             if (_isHandlingMutex) return;
 
             if (e.PropertyName == nameof(DeviceCommissioning.NodeId))

@@ -140,18 +140,19 @@ public partial class MainWindow : Window
     };
 
     private Avalonia.Threading.DispatcherTimer? _autoSaveTimer;
-
     public MainWindow()
     {
         InitializeComponent();
         ApplySavedTheme();
         
-        // Auto-save feature: trigger on lost focus, toggle changes, or text changes
-        this.AddHandler(Avalonia.Controls.Button.ClickEvent, OnAnyInteractionTriggerAutoSave, RoutingStrategies.Bubble);
-        this.AddHandler(Avalonia.Input.InputElement.KeyUpEvent, OnAnyInteractionTriggerAutoSave, RoutingStrategies.Bubble);
-        this.AddHandler(Avalonia.Controls.Primitives.SelectingItemsControl.SelectionChangedEvent, OnAnyInteractionTriggerAutoSave, RoutingStrategies.Bubble);
+        // Auto-save is now triggered on lost focus or explicit control interactions
+        this.AddHandler(Avalonia.Input.InputElement.KeyDownEvent, OnGlobalKeyDown, RoutingStrategies.Bubble);
+        this.AddHandler(Avalonia.Input.InputElement.LostFocusEvent, OnGlobalInput, RoutingStrategies.Bubble);
+        this.AddHandler(Avalonia.Controls.Primitives.ToggleButton.IsCheckedChangedEvent, OnGlobalInput, RoutingStrategies.Bubble);
+        this.AddHandler(Avalonia.Controls.Primitives.SelectingItemsControl.SelectionChangedEvent, OnGlobalInput, RoutingStrategies.Bubble);
         LoadProfileList();
         this.Loaded += MainWindow_Loaded;
+        this.DataContextChanged += MainWindow_DataContextChanged;
         
         // Start background warmup to improve first-time load performance
         _ = System.Threading.Tasks.Task.Run(() =>
@@ -176,79 +177,33 @@ public partial class MainWindow : Window
         }, Avalonia.Threading.DispatcherPriority.Background);
     }
 
-    public bool IsProgrammaticChange { get; set; } = false;
-
-    private void OnAnyInteractionTriggerAutoSave(object? sender, RoutedEventArgs e)
+    private void MainWindow_DataContextChanged(object? sender, EventArgs e)
     {
-        if (IsProgrammaticChange) return;
-
-        if (e.Source is Avalonia.Controls.Control control)
+        if (DataContext is MainWindowViewModel dc)
         {
-            // 蹇界暐娣诲姞绱㈠紩寮圭獥涓殑杈撳叆鎺т欢锛岄槻姝㈣竟鎵撳瓧杈硅Е鍙戣嚜鍔ㄤ繚瀛?
-            if (control.Name == "index" || control.Name == "name" || control.Name == "type")
-            {
-                return;
-            }
-
-            // 蹇界暐鍋忓ソ璁剧疆(PreferencesView)寮圭獥閲岀殑鎵€鏈夎緭鍏ヤ慨鏀?
-            Avalonia.StyledElement? p = control;
-            while (p != null)
-            {
-                if (p.GetType().Name == "PreferencesView") return;
-                p = p.Parent;
-            }
+            dc.Network.CollectionChanged -= Network_CollectionChanged;
+            dc.Network.CollectionChanged += Network_CollectionChanged;
         }
-
-
-
-        // 瀵逛簬鎸夐敭鎶捣浜嬩欢锛屽彧鍝嶅簲鏉ヨ嚜瀹為檯杈撳叆鎺т欢鐨勪簨浠?
-        if (e.RoutedEvent == Avalonia.Input.InputElement.KeyUpEvent)
-        {
-            if (e.Source is not Avalonia.Controls.TextBox && 
-                e.Source is not Avalonia.Controls.NumericUpDown)
-            {
-                return;
-            }
-        }
-
-        // 瀵逛簬鐐瑰嚮浜嬩欢锛屽彧鍝嶅簲鏉ヨ嚜 CheckBox 鎴?RadioButton 鐨勪簨浠?
-        // (娉ㄦ剰锛欳omboBox 涓嬫媺妗嗗睍寮€鏃朵篃浼氳Е鍙戝唴閮?ToggleButton 鐨勭偣鍑伙紝蹇呴』鎺掗櫎)
-        if (e.RoutedEvent == Avalonia.Controls.Button.ClickEvent)
-        {
-            if (e.Source is not Avalonia.Controls.CheckBox && 
-                e.Source is not Avalonia.Controls.RadioButton)
-            {
-                return;
-            }
-        }
-
-        // 瀵逛簬閫夋嫨鍙樺寲浜嬩欢锛屽彧鍝嶅簲 ComboBox
-        if (e.RoutedEvent == Avalonia.Controls.Primitives.SelectingItemsControl.SelectionChangedEvent)
-        {
-            if (e.Source is not Avalonia.Controls.ComboBox cb)
-            {
-                return;
-            }
-            if (!cb.IsFocused && !cb.IsDropDownOpen)
-            {
-                return;
-            }
-        }
-
-        TriggerAutoSave();
     }
+
+    private void Network_CollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+    {
+    }
+
+    private void OnGlobalInput(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    {
+        if (e.Source is Avalonia.Controls.TextBox || e.Source is Avalonia.Controls.Primitives.ToggleButton || e.Source is Avalonia.Controls.Primitives.SelectingItemsControl)
+        {
+            TriggerAutoSave();
+        }
+    }
+
+    public bool IsProgrammaticChange { get; set; } = false;
 
     public void TriggerAutoSave()
     {
         if (DataContext is MainWindowViewModel dc)
         {
-            dc.IsDirty = true;
-            if (dc.SelectedDevice != null)
-            {
-                dc.SelectedDevice.IsDirty = true;
-                dc.SelectedDevice.FileInfo.ModificationTime = DateTime.Now;
-            }
-            
             if (string.IsNullOrEmpty(dc.CurrentProjectPath))
             {
                 return; // Don't auto-save if there's no project path
@@ -263,13 +218,35 @@ public partial class MainWindow : Window
                 _autoSaveTimer.Stop();
                 if (DataContext is MainWindowViewModel dc && !string.IsNullOrEmpty(dc.CurrentProjectPath))
                 {
-                    DoSaveProject(dc.CurrentProjectPath);
+                    bool hasErrors = false;
+                    foreach (var d in dc.Network)
+                    {
+                        if (d.DeviceInfo.HasErrors || d.DeviceCommissioning.HasErrors || d.FileInfo.HasErrors || d.ProjectInfo.HasErrors)
+                        {
+                            hasErrors = true;
+                            break;
+                        }
+                    }
+                    if (!hasErrors)
+                    {
+                        DoSaveProject(dc.CurrentProjectPath);
+                    }
                 }
             };
         }
         
         _autoSaveTimer.Stop();
         _autoSaveTimer.Start();
+    }
+
+    private void OnGlobalKeyDown(object? sender, Avalonia.Input.KeyEventArgs e)
+    {
+        if (e.Key == Avalonia.Input.Key.Escape && e.Source is Avalonia.Controls.TextBox tb)
+        {
+            var topLevel = Avalonia.Controls.TopLevel.GetTopLevel(this);
+            topLevel?.FocusManager?.ClearFocus();
+            e.Handled = true;
+        }
     }
 
     private bool _isForceClosing = false;
@@ -284,6 +261,34 @@ public partial class MainWindow : Window
 
         if (DataContext is MainWindowViewModel dc && dc.IsDirty)
         {
+            var errorDevices = new List<ViewModels.Device>();
+            foreach (var d in dc.Network)
+            {
+                if (d.IsDirty && (d.DeviceInfo.HasErrors || d.DeviceCommissioning.HasErrors || d.FileInfo.HasErrors || d.ProjectInfo.HasErrors))
+                {
+                    errorDevices.Add(d);
+                }
+            }
+
+            if (errorDevices.Count > 0)
+            {
+                e.Cancel = true;
+                string errorMsg = "以下设备存在未保存的内容或数据验证错误：\n";
+                foreach(var d in errorDevices)
+                {
+                    errorMsg += $"- {d.DeviceInfo.ProductName} (验证不通过)\n";
+                }
+                errorMsg += "\n由于数据不合规，无法自动保存。您想放弃修改并强行关闭吗？";
+                
+                var result = await ShowErrorConfirmDialog(errorMsg);
+                if (result == "Discard")
+                {
+                    _isForceClosing = true;
+                    Close();
+                }
+                return;
+            }
+
             // If AutoSave is ON and we have a path, we can save silently
             if (!string.IsNullOrEmpty(dc.CurrentProjectPath))
             {
@@ -318,6 +323,17 @@ public partial class MainWindow : Window
         base.OnClosing(e);
     }
     
+    private async System.Threading.Tasks.Task<string> ShowErrorConfirmDialog(string message)
+    {
+        if (Resources["ErrorConfirmDialog"] is Avalonia.Controls.Control dialog)
+        {
+            dialog.DataContext = message;
+            var result = await DialogHostAvalonia.DialogHost.Show(dialog, "RootDialogHost");
+            return result?.ToString() ?? "Cancel";
+        }
+        return "Cancel";
+    }
+
     private async System.Threading.Tasks.Task<string> ShowSaveConfirmDialog()
     {
         if (Resources["SaveConfirmDialog"] is Avalonia.Controls.Control dialog)

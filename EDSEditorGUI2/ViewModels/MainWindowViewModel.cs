@@ -101,7 +101,10 @@ public partial class MainWindowViewModel : ViewModelBase
 
 
     [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(WindowTitle))]
     private bool _isDirty;
+
+    public string WindowTitle => IsDirty ? "CANopen Editor 2 *" : "CANopen Editor 2";
 
     [ObservableProperty]
     private bool _isLoading;
@@ -116,7 +119,33 @@ public partial class MainWindowViewModel : ViewModelBase
             OnPropertyChanged(nameof(HasDevice));
             OnPropertyChanged(nameof(IsProjectMode));
             OnPropertyChanged(nameof(CanRemoveDevice));
+
+            if (e.NewItems != null)
+            {
+                foreach (Device device in e.NewItems)
+                {
+                    device.PropertyChanged += Device_PropertyChanged;
+                }
+            }
+            if (e.OldItems != null)
+            {
+                foreach (Device device in e.OldItems)
+                {
+                    device.PropertyChanged -= Device_PropertyChanged;
+                }
+            }
         };
+    }
+
+    private void Device_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
+    {
+        if (e.PropertyName == nameof(Device.IsDirty))
+        {
+            if (sender is Device device && device.IsDirty)
+            {
+                this.IsDirty = true;
+            }
+        }
     }
 
     public bool HasDevice => Network.Count > 0;

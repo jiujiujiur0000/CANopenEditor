@@ -2,7 +2,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace EDSEditorGUI2.ViewModels;
 
-public partial class ProjectInfo : ObservableObject
+public partial class ProjectInfo : ObservableValidator
 {
     [ObservableProperty]
     private string _projectFile = string.Empty;
