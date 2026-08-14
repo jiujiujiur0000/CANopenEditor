@@ -102,13 +102,6 @@ public partial class DevicePDOView : UserControl
     {
         if (_vm == null) return;
         
-        bool isDark = Avalonia.Application.Current?.ActualThemeVariant == Avalonia.Styling.ThemeVariant.Dark;
-        
-        var tableBorderBrush = isDark ? (Avalonia.Media.IBrush)new Avalonia.Media.SolidColorBrush(Avalonia.Media.Color.Parse("#404040")) : Avalonia.Media.Brushes.LightGray;
-        var tableEmptyBgBrush = isDark ? (Avalonia.Media.IBrush)new Avalonia.Media.SolidColorBrush(Avalonia.Media.Color.Parse("#252526")) : Avalonia.Media.Brushes.WhiteSmoke;
-        var tableFilledBgBrush = isDark ? (Avalonia.Media.IBrush)new Avalonia.Media.SolidColorBrush(Avalonia.Media.Color.Parse("#4A4A20")) : Avalonia.Media.Brushes.Khaki;
-        var hoverOverlayBrush = isDark ? (Avalonia.Media.IBrush)new Avalonia.Media.SolidColorBrush(Avalonia.Media.Color.FromArgb(20, 255, 255, 255)) : (Avalonia.Media.IBrush)new Avalonia.Media.SolidColorBrush(Avalonia.Media.Color.FromArgb(20, 0, 0, 0));
-
         string emptyText = "Empty";
         if (this.TryFindResource("str_pdo_empty", out object? emptyObj))
         {
@@ -142,17 +135,20 @@ public partial class DevicePDOView : UserControl
         {
             MappingGrid.RowDefinitions.Add(new RowDefinition(GridLength.Auto));
 
-            var idBorder = new Border { BorderBrush = tableBorderBrush, BorderThickness = new Avalonia.Thickness(0, 0, 1, 1), Padding = new Avalonia.Thickness(10, 0, 10, 0), IsHitTestVisible = false };
+            var idBorder = new Border { BorderThickness = new Avalonia.Thickness(0, 0, 1, 1), Padding = new Avalonia.Thickness(10, 0, 10, 0), IsHitTestVisible = false };
+            idBorder.Bind(Border.BorderBrushProperty, this.GetResourceObservable("TableBorderBrush"));
             idBorder.Child = new TextBlock { Text = mappingIndex.ToString(), VerticalAlignment = VerticalAlignment.Center };
             AddToMappingGrid(idBorder, row, 0);
 
-            var indexBorder = new Border { BorderBrush = tableBorderBrush, BorderThickness = new Avalonia.Thickness(0, 0, 1, 1), Padding = new Avalonia.Thickness(10, 0, 10, 0), IsHitTestVisible = false };
+            var indexBorder = new Border { BorderThickness = new Avalonia.Thickness(0, 0, 1, 1), Padding = new Avalonia.Thickness(10, 0, 10, 0), IsHitTestVisible = false };
+            indexBorder.Bind(Border.BorderBrushProperty, this.GetResourceObservable("TableBorderBrush"));
             var indexTextBlock = new TextBlock { VerticalAlignment = VerticalAlignment.Center };
             indexTextBlock.Bind(TextBlock.TextProperty, new Avalonia.Data.Binding("Communication") { Source = slot });
             indexBorder.Child = indexTextBlock;
             AddToMappingGrid(indexBorder, row, 1);
 
-            var cobBorder = new Border { BorderBrush = tableBorderBrush, BorderThickness = new Avalonia.Thickness(0, 0, 1, 1), Padding = new Avalonia.Thickness(10, 0, 10, 0), IsHitTestVisible = false };
+            var cobBorder = new Border { BorderThickness = new Avalonia.Thickness(0, 0, 1, 1), Padding = new Avalonia.Thickness(10, 0, 10, 0), IsHitTestVisible = false };
+            cobBorder.Bind(Border.BorderBrushProperty, this.GetResourceObservable("TableBorderBrush"));
             var cobTextBlock = new TextBlock { VerticalAlignment = VerticalAlignment.Center };
             cobTextBlock.Bind(TextBlock.TextProperty, new Avalonia.Data.Binding("COB") { Source = slot });
             cobBorder.Child = cobTextBlock;
@@ -169,12 +165,10 @@ public partial class DevicePDOView : UserControl
                     if (width > 0 && currentBit + width <= 64)
                     {
                         var isAvailable = !string.IsNullOrEmpty(entry.IndexString);
-                        var bgBrush = isAvailable ? tableFilledBgBrush : tableEmptyBgBrush;
+                        var bgBrushName = isAvailable ? "TableFilledBgBrush" : "TableEmptyBgBrush";
 
                         var border = new Border
                         {
-                            Background = bgBrush,
-                            BorderBrush = tableBorderBrush,
                             BorderThickness = new Avalonia.Thickness(0, 0, 1, 1),
                             IsHitTestVisible = true,
                             Child = new TextBlock 
@@ -186,6 +180,8 @@ public partial class DevicePDOView : UserControl
                                 ClipToBounds = true
                             }
                         };
+                        border.Bind(Border.BackgroundProperty, this.GetResourceObservable(bgBrushName));
+                        border.Bind(Border.BorderBrushProperty, this.GetResourceObservable("TableBorderBrush"));
                         
                         ToolTip.SetTip(border, isAvailable ? (entry.IndexString + "/" + entry.SubIndexString + "/" + entry.Name) : emptyText);
                         
@@ -242,8 +238,6 @@ public partial class DevicePDOView : UserControl
                 int remaining = 64 - currentBit;
                 var border = new Border
                 {
-                    Background = tableEmptyBgBrush,
-                    BorderBrush = tableBorderBrush,
                     BorderThickness = new Avalonia.Thickness(0, 0, 1, 1),
                     IsHitTestVisible = true,
                     Child = new TextBlock 
@@ -255,6 +249,8 @@ public partial class DevicePDOView : UserControl
                         ClipToBounds = true
                     }
                 };
+                border.Bind(Border.BackgroundProperty, this.GetResourceObservable("TableEmptyBgBrush"));
+                border.Bind(Border.BorderBrushProperty, this.GetResourceObservable("TableBorderBrush"));
 
                 ToolTip.SetTip(border, emptyText);
 
@@ -293,7 +289,11 @@ public partial class DevicePDOView : UserControl
             // Hover effect
             rowOverlay.PointerEntered += (s, e) => 
             {
-                if (!isSelected) rowOverlay.Background = hoverOverlayBrush;
+                if (!isSelected)
+                {
+                    bool isDarkHover = Avalonia.Application.Current?.ActualThemeVariant == Avalonia.Styling.ThemeVariant.Dark;
+                    rowOverlay.Background = isDarkHover ? new Avalonia.Media.SolidColorBrush(Avalonia.Media.Color.FromArgb(20, 255, 255, 255)) : new Avalonia.Media.SolidColorBrush(Avalonia.Media.Color.FromArgb(20, 0, 0, 0));
+                }
             };
             rowOverlay.PointerExited += (s, e) => 
             {
@@ -352,14 +352,12 @@ public partial class DevicePDOView : UserControl
 
     void CreateMappingBitsAndBytesIndication()
     {
-        bool isDark = Avalonia.Application.Current?.ActualThemeVariant == Avalonia.Styling.ThemeVariant.Dark;
-        var tableBorderBrush = isDark ? (Avalonia.Media.IBrush)new Avalonia.Media.SolidColorBrush(Avalonia.Media.Color.Parse("#404040")) : Avalonia.Media.Brushes.LightGray;
-        var headerBgBrush = isDark ? (Avalonia.Media.IBrush)new Avalonia.Media.SolidColorBrush(Avalonia.Media.Color.Parse("#333337")) : Avalonia.Media.Brushes.WhiteSmoke;
-
         //Bits
         for (int i = 0; i < 64; i++)
         {
-            var border = new Border { Background = headerBgBrush, BorderBrush = tableBorderBrush, BorderThickness = new Avalonia.Thickness(0, 0, 1, 1) };
+            var border = new Border { BorderThickness = new Avalonia.Thickness(0, 0, 1, 1) };
+            border.Bind(Border.BackgroundProperty, this.GetResourceObservable("GlobalExpanderHeaderBackground"));
+            border.Bind(Border.BorderBrushProperty, this.GetResourceObservable("TableBorderBrush"));
             var indication = new TextBlock
             {
                 Text = i.ToString(),
@@ -382,7 +380,9 @@ public partial class DevicePDOView : UserControl
         //Bytes
         for (int i = 0; i < 8; i++)
         {
-            var border = new Border { Background = headerBgBrush, BorderBrush = tableBorderBrush, BorderThickness = new Avalonia.Thickness(0, 0, 1, 1) };
+            var border = new Border { BorderThickness = new Avalonia.Thickness(0, 0, 1, 1) };
+            border.Bind(Border.BackgroundProperty, this.GetResourceObservable("GlobalExpanderHeaderBackground"));
+            border.Bind(Border.BorderBrushProperty, this.GetResourceObservable("TableBorderBrush"));
             var indication = new TextBlock
             {
                 Text = $"Byte {i}",
