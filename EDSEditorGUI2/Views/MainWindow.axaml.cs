@@ -140,9 +140,18 @@ public partial class MainWindow : Window
     };
 
     private Avalonia.Threading.DispatcherTimer? _autoSaveTimer;
+    public string DialogHostIdentifier { get; } = "RootDialogHost_" + Guid.NewGuid().ToString();
+
     public MainWindow()
     {
         InitializeComponent();
+        
+        var dialogHost = this.FindControl<DialogHostAvalonia.DialogHost>("RootDialogHostControl");
+        if (dialogHost != null)
+        {
+            dialogHost.Identifier = DialogHostIdentifier;
+        }
+
         ApplySavedTheme();
         
         // Auto-save is now triggered on lost focus or explicit control interactions
@@ -399,7 +408,7 @@ public partial class MainWindow : Window
         if (Resources["ErrorConfirmDialog"] is Avalonia.Controls.Control dialog)
         {
             dialog.DataContext = message;
-            var result = await DialogHostAvalonia.DialogHost.Show(dialog, "RootDialogHost");
+            var result = await DialogHostAvalonia.DialogHost.Show(dialog, DialogHostIdentifier);
             return result?.ToString() ?? "Cancel";
         }
         return "Cancel";
@@ -409,7 +418,7 @@ public partial class MainWindow : Window
     {
         if (Resources["SaveConfirmDialog"] is Avalonia.Controls.Control dialog)
         {
-            var result = await DialogHostAvalonia.DialogHost.Show(dialog, "RootDialogHost");
+            var result = await DialogHostAvalonia.DialogHost.Show(dialog, DialogHostIdentifier);
             return result?.ToString() ?? "Cancel";
         }
         return "Cancel";
@@ -420,7 +429,7 @@ public partial class MainWindow : Window
         if (Resources["SuccessDialog"] is Avalonia.Controls.Control dialog)
         {
             dialog.DataContext = message;
-            var result = await DialogHostAvalonia.DialogHost.Show(dialog, "RootDialogHost");
+            var result = await DialogHostAvalonia.DialogHost.Show(dialog, DialogHostIdentifier);
             if (result as string == "OpenFolder")
             {
                 try
@@ -626,7 +635,7 @@ public partial class MainWindow : Window
                 if (tasks.Count > 0)
                 {
                     var collisionDialog = new CollisionDialog(tasks);
-                    var dialogResult = await DialogHostAvalonia.DialogHost.Show(collisionDialog, "RootDialogHost");
+                    var dialogResult = await DialogHostAvalonia.DialogHost.Show(collisionDialog, DialogHostIdentifier);
                     if (dialogResult as string == "Cancel")
                     {
                         goto EndInsertion;
@@ -1197,7 +1206,7 @@ public partial class MainWindow : Window
         catch (Exception ex)
         {
             Debug.WriteLine($"Failed to save project {filePath}: {ex.Message}");
-            DialogHostAvalonia.DialogHost.Show(Resources["SaveErrorDialog"]!, "RootDialogHost");
+            DialogHostAvalonia.DialogHost.Show(Resources["SaveErrorDialog"]!, DialogHostIdentifier);
         }
     }
 
@@ -1234,7 +1243,7 @@ public partial class MainWindow : Window
                 }
                 var dialog = (Control)Resources["FileNotFoundDialog"]!;
                 dialog.DataContext = Avalonia.Application.Current?.FindResource("str_msg_file_not_found")?.ToString() + filePath;
-                _ = DialogHostAvalonia.DialogHost.Show(dialog, "RootDialogHost");
+                _ = DialogHostAvalonia.DialogHost.Show(dialog, DialogHostIdentifier);
             }
         }
     }
@@ -1242,7 +1251,7 @@ public partial class MainWindow : Window
     private async void ClearRecentFilesClick(object? sender, RoutedEventArgs e)
     {
         var dialog = (Control)Resources["ClearRecentConfirmDialog"]!;
-        var result = await DialogHostAvalonia.DialogHost.Show(dialog, "RootDialogHost");
+        var result = await DialogHostAvalonia.DialogHost.Show(dialog, DialogHostIdentifier);
         if (result?.ToString() == "OK")
         {
             if (DataContext is MainWindowViewModel dc)
@@ -1254,7 +1263,7 @@ public partial class MainWindow : Window
 
     private async void OpenPreferences(object? sender, RoutedEventArgs e)
     {
-        await DialogHostAvalonia.DialogHost.Show(Resources["PreferencesDialog"]!, "RootDialogHost");
+        await DialogHostAvalonia.DialogHost.Show(Resources["PreferencesDialog"]!, DialogHostIdentifier);
     }
 
     private string _aboutVersion = "";
@@ -1286,7 +1295,7 @@ public partial class MainWindow : Window
             CheckUpdateBtnText = _hasUpdateAvailable ? "立即更新" : _defaultCheckUpdateText
         };
         
-        await DialogHostAvalonia.DialogHost.Show(aboutDialog, "RootDialogHost");
+        await DialogHostAvalonia.DialogHost.Show(aboutDialog, DialogHostIdentifier);
     }
 
     private void OpenGitHubClick(object? sender, RoutedEventArgs e)

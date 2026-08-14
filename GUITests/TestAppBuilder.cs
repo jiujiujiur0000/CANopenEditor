@@ -1,8 +1,11 @@
-﻿using Avalonia;
+using Avalonia;
 using Avalonia.Headless;
 using EDSEditorGUI2;
 
+using Xunit;
+
 [assembly: AvaloniaTestApplication(typeof(TestAppBuilder))]
+[assembly: CollectionBehavior(DisableTestParallelization = true)]
 
 public class TestAppBuilder
 {
