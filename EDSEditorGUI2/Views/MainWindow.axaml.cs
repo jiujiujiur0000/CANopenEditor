@@ -199,11 +199,22 @@ public partial class MainWindow : Window
             return; // Ignore clicks on the expand/collapse arrow of an Expander
         }
 
+        bool isFocusLoss = (e.RoutedEvent == Avalonia.Input.InputElement.LostFocusEvent);
+
         if (e.Source is Avalonia.Controls.TextBox || e.Source is Avalonia.Controls.Primitives.ToggleButton || e.Source is Avalonia.Controls.ComboBox)
         {
             if (DataContext is MainWindowViewModel dc && dc.SelectedDevice != null)
             {
-                dc.SelectedDevice.IsDirty = true;
+                if (dc.SelectedDevice.IsSyncing) return;
+
+                if (!isFocusLoss)
+                {
+                    if (e.Source is Avalonia.Controls.Control ctrl && !ctrl.IsPointerOver && !ctrl.IsKeyboardFocusWithin)
+                    {
+                        return; // Ignore background binding initialization
+                    }
+                    dc.SelectedDevice.IsDirty = true;
+                }
             }
             TriggerAutoSave();
         }
@@ -211,10 +222,17 @@ public partial class MainWindow : Window
 
     private void OnGlobalTextChanged(object? sender, Avalonia.Controls.TextChangedEventArgs e)
     {
-        if (e.Source is Avalonia.Controls.TextBox)
+        if (e.Source is Avalonia.Controls.TextBox tb)
         {
             if (DataContext is MainWindowViewModel dc && dc.SelectedDevice != null)
             {
+                if (dc.SelectedDevice.IsSyncing) return;
+
+                if (!tb.IsPointerOver && !tb.IsKeyboardFocusWithin)
+                {
+                    return; // Ignore background binding initialization
+                }
+
                 dc.SelectedDevice.IsDirty = true;
             }
         }

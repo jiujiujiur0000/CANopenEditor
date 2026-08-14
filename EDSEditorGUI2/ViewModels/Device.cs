@@ -252,6 +252,9 @@ namespace EDSEditorGUI2.ViewModels
         private ObjectDictionary _objects = new();
 
         [ObservableProperty]
+        private bool _isSyncing;
+
+        [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(IsObjectDictionaryTabSelected))]
         private int _selectedTabIndex = 0;
 
@@ -270,68 +273,85 @@ namespace EDSEditorGUI2.ViewModels
         private void SyncODFromEDS()
         {
             if (_eds == null) return;
-            var proto = libEDSsharp.MappingEDS.MapToProtobuffer(_eds);
-            var deviceView = Mapper.ProtobufferViewModelMapper.MapFromProtobuffer(proto);
-            
-            foreach (var kvp in deviceView.Objects)
+            IsSyncing = true;
+            try
             {
-                if (ushort.TryParse(kvp.Key.Replace("0x", ""), System.Globalization.NumberStyles.HexNumber, null, out ushort index))
+                var proto = libEDSsharp.MappingEDS.MapToProtobuffer(_eds);
+                var deviceView = Mapper.ProtobufferViewModelMapper.MapFromProtobuffer(proto);
+                
+                foreach (var kvp in deviceView.Objects)
                 {
-                    if (index >= 0x1400 && index <= 0x1BFF)
+                    if (ushort.TryParse(kvp.Key.Replace("0x", ""), System.Globalization.NumberStyles.HexNumber, null, out ushort index))
                     {
-                        if (_objects.ContainsKey(kvp.Key))
+                        if (index >= 0x1400 && index <= 0x1BFF)
                         {
-                            foreach (var sub in kvp.Value.SubObjects)
+                            if (_objects.ContainsKey(kvp.Key))
                             {
-                                var matchingSub = _objects[kvp.Key].SubObjects.FirstOrDefault(s => s.Key == sub.Key);
-                                if (matchingSub.Value != null)
+                                foreach (var sub in kvp.Value.SubObjects)
                                 {
-                                    matchingSub.Value.DefaultValue = sub.Value.DefaultValue;
+                                    var matchingSub = _objects[kvp.Key].SubObjects.FirstOrDefault(s => s.Key == sub.Key);
+                                    if (matchingSub.Value != null)
+                                    {
+                                        matchingSub.Value.DefaultValue = sub.Value.DefaultValue;
+                                    }
                                 }
                             }
                         }
                     }
                 }
             }
+            finally
+            {
+                IsSyncing = false;
+            }
         }
 
         private void SyncAvailableObjects()
         {
             if (_eds == null) return;
-            var updatedEds = GetUpdatedEds();
-            
-            var keysToRemove = new System.Collections.Generic.List<ushort>();
-            foreach(var k in _eds.ods.Keys)
+            IsSyncing = true;
+            try
             {
-                if ((k < 0x1400 || k > 0x1BFF) && !updatedEds.ods.ContainsKey(k))
+                var updatedEds = GetUpdatedEds();
+                
+                var keysToRemove = new System.Collections.Generic.List<ushort>();
+                foreach(var k in _eds.ods.Keys)
                 {
-                    keysToRemove.Add(k);
-                }
-            }
-            foreach (var k in keysToRemove)
-            {
-                _eds.ods.Remove(k);
-            }
-
-            foreach (var kvp in updatedEds.ods)
-            {
-                if (kvp.Key >= 0x1400 && kvp.Key <= 0x1BFF)
-                {
-                    if (!_eds.ods.ContainsKey(kvp.Key))
+                    if ((k < 0x1400 || k > 0x1BFF) && !updatedEds.ods.ContainsKey(k))
                     {
-                        _eds.ods.Add(kvp.Key, kvp.Value);
+                        keysToRemove.Add(k);
                     }
                 }
-                else
+                foreach (var k in keysToRemove)
                 {
-                    _eds.ods[kvp.Key] = kvp.Value;
+                    _eds.ods.Remove(k);
                 }
+
+                foreach (var kvp in updatedEds.ods)
+                {
+                    if (kvp.Key >= 0x1400 && kvp.Key <= 0x1BFF)
+                    {
+                        if (!_eds.ods.ContainsKey(kvp.Key))
+                        {
+                            _eds.ods.Add(kvp.Key, kvp.Value);
+                        }
+                    }
+                    else
+                    {
+                        _eds.ods[kvp.Key] = kvp.Value;
+                    }
+                }
+
+                _eds.dc = updatedEds.dc;
+
+                TxPdo?.RefreshSlots();
+                RxPdo?.RefreshSlots();
+            }
+            finally
+            {
+                IsSyncing = false;
             }
 
-            _eds.dc = updatedEds.dc;
-
-            TxPdo?.RefreshSlots();
-            RxPdo?.RefreshSlots();
             TxPdo?.UpdateAvailableObjects();
             RxPdo?.UpdateAvailableObjects();
         }
