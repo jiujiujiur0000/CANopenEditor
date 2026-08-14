@@ -26,6 +26,49 @@ public partial class DeviceView : UserControl
     {
         base.OnDataContextChanged(e);
         UpdateTabContent();
+
+        if (DataContext is EDSEditorGUI2.ViewModels.Device device)
+        {
+            Avalonia.Threading.Dispatcher.UIThread.InvokeAsync(() => PreloadTabs(device), Avalonia.Threading.DispatcherPriority.Background);
+        }
+    }
+
+    private void PreloadTabs(EDSEditorGUI2.ViewModels.Device device)
+    {
+        var tabControl = this.FindControl<TabControl>("MainTabControl");
+        if (tabControl == null) return;
+
+        if (_deviceODView == null)
+        {
+            _deviceODView = new DeviceODView();
+            var tab = this.FindControl<TabItem>("TabOD");
+            if (tab != null) tab.Content = _deviceODView;
+        }
+        _deviceODView.DataContext = device.Objects;
+
+        if (_txPdoView == null)
+        {
+            _txPdoView = new DevicePDOView();
+            var tab = this.FindControl<TabItem>("TabTxPdo");
+            if (tab != null) tab.Content = _txPdoView;
+        }
+        _txPdoView.DataContext = device.TxPdo;
+
+        if (_rxPdoView == null)
+        {
+            _rxPdoView = new DevicePDOView();
+            var tab = this.FindControl<TabItem>("TabRxPdo");
+            if (tab != null) tab.Content = _rxPdoView;
+        }
+        _rxPdoView.DataContext = device.RxPdo;
+
+        if (_moduleView == null)
+        {
+            _moduleView = new ModuleView();
+            var tab = this.FindControl<TabItem>("TabModule");
+            if (tab != null) tab.Content = _moduleView;
+        }
+        _moduleView.DataContext = device.ModuleInfo;
     }
 
     private void TabControl_SelectionChanged(object? sender, SelectionChangedEventArgs e)
