@@ -125,7 +125,6 @@ public partial class MainWindow : Window
         }
     }
 
-    private static int _projectCounter = 1;
 
     readonly FilePickerFileType xpd = new("CANopen XPD 1.1")
     {
@@ -1028,11 +1027,9 @@ public partial class MainWindow : Window
             Title = "Create New CANopen Project",
             DefaultExtension = "cpj",
             FileTypeChoices = [cpj, xdd, xpd],
-            SuggestedFileName = "NewProject" + _projectCounter.ToString(),
+            SuggestedFileName = "NewProject",
             SuggestedStartLocation = docsFolder
         });
-
-        _projectCounter++;
 
         if (file != null)
         {
