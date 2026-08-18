@@ -91,7 +91,7 @@ namespace EDSEditorGUI2.ViewModels
                         onCancel: () => { DeviceInfo.LssSlave = false; }
                     );
                 }
-                if (DeviceInfo.LssSlave && !DeviceCommissioning.LssSerialNo.HasValue)
+                if (DeviceInfo.LssSlave && string.IsNullOrWhiteSpace(DeviceCommissioning.LssSerialNo))
                 {
                     SyncFrom1018ToDevice();
                 }
@@ -257,12 +257,9 @@ namespace EDSEditorGUI2.ViewModels
                     }
                     else if (rawKey == "4") // Serial Number
                     {
-                        if (TryParseUInt32(sub.Value.DefaultValue, out uint serialVal))
+                        if (DeviceCommissioning.LssSerialNo != sub.Value.DefaultValue)
                         {
-                            if (DeviceCommissioning.LssSerialNo != serialVal)
-                            {
-                                DeviceCommissioning.LssSerialNo = serialVal;
-                            }
+                            DeviceCommissioning.LssSerialNo = sub.Value.DefaultValue;
                         }
                     }
                 }
@@ -310,13 +307,9 @@ namespace EDSEditorGUI2.ViewModels
                     }
                     else if (rawKey == "4")
                     {
-                        if (DeviceCommissioning.LssSerialNo.HasValue)
+                        if (sub.Value.DefaultValue != DeviceCommissioning.LssSerialNo)
                         {
-                            string formatted = $"0x{DeviceCommissioning.LssSerialNo.Value:X8}";
-                            if (sub.Value.DefaultValue != formatted)
-                            {
-                                sub.Value.DefaultValue = formatted;
-                            }
+                            sub.Value.DefaultValue = DeviceCommissioning.LssSerialNo;
                         }
                     }
                 }
@@ -425,7 +418,7 @@ namespace EDSEditorGUI2.ViewModels
                     DeviceCommissioning.NetNumber = _eds.dc.NetNumber == 0 ? null : _eds.dc.NetNumber;
                     DeviceCommissioning.NetName = _eds.dc.NetworkName;
                     DeviceCommissioning.CanopenManager = _eds.dc.CANopenManager;
-                    DeviceCommissioning.LssSerialNo = _eds.dc.LSS_SerialNumber == 0 ? null : _eds.dc.LSS_SerialNumber;
+                    DeviceCommissioning.LssSerialNo = _eds.dc.LSS_SerialNumber == 0 ? string.Empty : $"0x{_eds.dc.LSS_SerialNumber:X8}";
                     Attach1018Listeners();
                     SyncFrom1018ToDevice();
                 }
@@ -590,7 +583,7 @@ namespace EDSEditorGUI2.ViewModels
             updatedEds.dc.NetNumber = this.DeviceCommissioning.NetNumber ?? 0;
             updatedEds.dc.NetworkName = this.DeviceCommissioning.NetName;
             updatedEds.dc.CANopenManager = this.DeviceCommissioning.CanopenManager;
-            updatedEds.dc.LSS_SerialNumber = this.DeviceCommissioning.LssSerialNo ?? 0;
+            updatedEds.dc.LSS_SerialNumber = TryParseUInt32(this.DeviceCommissioning.LssSerialNo, out var lssVal) ? lssVal : 0;
 
             if (_eds != null && _eds.ods != null)
             {

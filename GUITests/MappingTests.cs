@@ -36,7 +36,7 @@ namespace GUITests
             Assert.Equal("0x00000000", dev.DeviceInfo.VendorNumber);
             Assert.Equal("0x00000000", dev.DeviceInfo.ProductNumber);
             Assert.Equal("0x00000000", dev.DeviceInfo.RevisionNumber);
-            Assert.Equal(0u, dev.DeviceCommissioning.LssSerialNo);
+            Assert.Equal("0x00000000", dev.DeviceCommissioning.LssSerialNo);
         }
     }
 }

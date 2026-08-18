@@ -29,5 +29,6 @@ public partial class DeviceCommissioning : ObservableValidator
     private bool _canopenManager;
 
     [ObservableProperty]
-    private UInt32? _lssSerialNo;
+    [RegularExpression(@"^(0[xX])?[0-9a-fA-F]+$|^\d+$", ErrorMessage = "必须是有效的数字或十六进制")]
+    private string _lssSerialNo = string.Empty;
 }
