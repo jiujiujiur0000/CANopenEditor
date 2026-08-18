@@ -676,6 +676,11 @@ public partial class MainWindow : Window
                 EndInsertion:;
             }
             dc.MergeStatus.Clear();
+            if (dc.SelectedDevice != null)
+            {
+                dc.SelectedDevice.Attach1018Listeners();
+                dc.SelectedDevice.SyncFrom1018ToDevice();
+            }
             TriggerAutoSave();
         }
     }

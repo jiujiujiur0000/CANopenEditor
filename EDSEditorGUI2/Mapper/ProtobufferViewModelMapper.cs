@@ -90,7 +90,20 @@ namespace EDSEditorGUI2.Mapper
             {
                 var toVmConfig = new MapperConfiguration(cfg =>
                 {
-                    cfg.CreateMap<OdObject, ViewModels.OdObject>(MemberList.None);
+                    cfg.CreateMap<OdObject, ViewModels.OdObject>(MemberList.None)
+                        .ForMember(dest => dest.SubObjects, opt => opt.Ignore())
+                        .AfterMap((src, dest, ctx) => 
+                        {
+                            dest.SubObjects.Clear();
+                            if (src.SubObjects != null)
+                            {
+                                foreach (var subItem in src.SubObjects)
+                                {
+                                    var mappedSub = ctx.Mapper.Map<ViewModels.OdSubObject>(subItem.Value);
+                                    dest.SubObjects.Add(new System.Collections.Generic.KeyValuePair<string, ViewModels.OdSubObject>(subItem.Key, mappedSub));
+                                }
+                            }
+                        });
                     cfg.CreateMap<OdSubObject, ViewModels.OdSubObject>(MemberList.None);
                 }, LoggerFactory.Create(builder => { builder.AddDebug(); }));
                 toVmConfig.AssertConfigurationIsValid();

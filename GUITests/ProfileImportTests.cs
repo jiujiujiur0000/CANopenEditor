@@ -277,11 +277,6 @@ public class ImportTests : IDisposable
         Dispatcher.UIThread.RunJobs();
 
         // check that its no longer using memory
-        for (int i = 0; i < 50 && dc.MergeStatus.Count > 0; i++)
-        {
-            System.Threading.Thread.Sleep(10);
-            Dispatcher.UIThread.RunJobs();
-        }
         Assert.Empty(dc.MergeStatus);
     }
 

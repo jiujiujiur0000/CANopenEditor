@@ -204,7 +204,11 @@ namespace libEDSsharp
                 .ForMember(dest => dest.uniqueID, opt => opt.Ignore())
                 .ForMember(dest => dest.objecttype, opt => opt.MapFrom(src => ObjectType.VAR))
                 .ForMember(dest => dest.Description, opt => opt.Ignore())
-                .ForMember(dest => dest.subobjects, opt => opt.Ignore());
+                .ForMember(dest => dest.subobjects, opt => opt.Ignore())
+                .ForMember(dest => dest.defaultvalue, opt => opt.MapFrom(src => src.DefaultValue))
+                .ForMember(dest => dest.actualvalue, opt => opt.MapFrom(src => src.ActualValue))
+                .ForMember(dest => dest.LowLimit, opt => opt.MapFrom(src => src.LowLimit))
+                .ForMember(dest => dest.HighLimit, opt => opt.MapFrom(src => src.HighLimit));
             }, LoggerFactory.Create(builder => { builder.AddDebug(); }));
             fromProtoConfig.AssertConfigurationIsValid();
             _fromProtoMapper = fromProtoConfig.CreateMapper();
@@ -298,7 +302,11 @@ namespace libEDSsharp
                 .ForMember(dest => dest.Sdo, opt => opt.MapFrom(src => src.accesstype))
                 .ForMember(dest => dest.Pdo, opt => opt.MapFrom(src => GetPdo(src)))
                 .ForMember(dest => dest.Srdo, opt => opt.MapFrom(src => src.prop.CO_accessSRDO))
-                .ForMember(dest => dest.StringLengthMin, opt => opt.MapFrom(src => src.prop.CO_stringLengthMin));
+                .ForMember(dest => dest.StringLengthMin, opt => opt.MapFrom(src => src.prop.CO_stringLengthMin))
+                .ForMember(dest => dest.DefaultValue, opt => opt.MapFrom(src => src.defaultvalue))
+                .ForMember(dest => dest.ActualValue, opt => opt.MapFrom(src => src.actualvalue))
+                .ForMember(dest => dest.LowLimit, opt => opt.MapFrom(src => src.LowLimit))
+                .ForMember(dest => dest.HighLimit, opt => opt.MapFrom(src => src.HighLimit));
             }, LoggerFactory.Create(builder => { builder.AddDebug(); }));
 
             _toProtoMapper = toProtoConfig.CreateMapper();

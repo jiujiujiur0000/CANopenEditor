@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -350,9 +350,27 @@ ProDucTNumbeR=test4
                 KeyValuePair<string, Dictionary<string, string>> kvp = section.Single();
                 this.ParseEDSentry(kvp);
             }
-
-
         }
 
+        [Fact]
+        public void Test_ProfileDS301_Mapping()
+        {
+            string xpdPath = @"C:\Users\14588\workspace\CANopenEditor\EDSEditorGUI\Profiles\DS301_profile.xpd";
+            if (!System.IO.File.Exists(xpdPath)) return;
+
+            CanOpenXDD_1_1 coxml_1_1 = new CanOpenXDD_1_1();
+            var eds = coxml_1_1.ReadXML(xpdPath);
+            Assert.NotNull(eds);
+            Assert.True(eds.ods.ContainsKey(0x1018));
+            var od1018 = eds.ods[0x1018];
+            Assert.True(od1018.subobjects.Count >= 4);
+
+            var proto = MappingEDS.MapToProtobuffer(eds);
+            Assert.NotNull(proto);
+            Assert.True(proto.Objects.ContainsKey("1018"));
+            var proto1018 = proto.Objects["1018"];
+            Assert.True(proto1018.SubObjects.Count >= 4);
+            Assert.Equal("0x00000000", proto1018.SubObjects["01"].DefaultValue);
+        }
     }
 }
