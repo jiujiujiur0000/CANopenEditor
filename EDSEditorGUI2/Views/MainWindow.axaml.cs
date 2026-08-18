@@ -676,6 +676,7 @@ public partial class MainWindow : Window
                 EndInsertion:;
             }
             dc.MergeStatus.Clear();
+            TriggerAutoSave();
         }
     }
 
@@ -805,6 +806,7 @@ public partial class MainWindow : Window
         if (DataContext is MainWindowViewModel dc)
         {
             dc.AddNewDevice();
+            TriggerAutoSave();
         }
     }
 

@@ -60,9 +60,11 @@ namespace EDSEditorGUI2.ViewModels
         {
             if (oldValue != null) oldValue.CollectionChanged -= Objects_CollectionChanged;
             if (newValue != null) newValue.CollectionChanged += Objects_CollectionChanged;
+            Attach1018Listeners();
         }
 
         private bool _isHandlingMutex = false;
+        private bool _isSyncingIdentity = false;
 
         public event System.EventHandler? AutoSaveRequested;
 
@@ -78,7 +80,7 @@ namespace EDSEditorGUI2.ViewModels
         private void DeviceInfo_PropertyChanged(object? sender, PropertyChangedEventArgs e)
         {
             CheckAndRequestAutoSave();
-            if (_isHandlingMutex) return;
+            if (_isHandlingMutex || _isSyncingIdentity) return;
 
             if (e.PropertyName == nameof(DeviceInfo.LssSlave))
             {
@@ -88,6 +90,10 @@ namespace EDSEditorGUI2.ViewModels
                         onConfirm: () => { DeviceCommissioning.NodeId = null; },
                         onCancel: () => { DeviceInfo.LssSlave = false; }
                     );
+                }
+                if (DeviceInfo.LssSlave && !DeviceCommissioning.LssSerialNo.HasValue)
+                {
+                    SyncFrom1018ToDevice();
                 }
             }
             else if (e.PropertyName == nameof(DeviceInfo.NodeGuardingSlave))
@@ -100,12 +106,18 @@ namespace EDSEditorGUI2.ViewModels
                     );
                 }
             }
+            else if (e.PropertyName == nameof(DeviceInfo.VendorNumber) ||
+                     e.PropertyName == nameof(DeviceInfo.ProductNumber) ||
+                     e.PropertyName == nameof(DeviceInfo.RevisionNumber))
+            {
+                SyncFromDeviceTo1018();
+            }
         }
 
         private void DeviceCommissioning_PropertyChanged(object? sender, PropertyChangedEventArgs e)
         {
             CheckAndRequestAutoSave();
-            if (_isHandlingMutex) return;
+            if (_isHandlingMutex || _isSyncingIdentity) return;
 
             if (e.PropertyName == nameof(DeviceCommissioning.NodeId))
             {
@@ -116,6 +128,10 @@ namespace EDSEditorGUI2.ViewModels
                         onCancel: () => { DeviceCommissioning.NodeId = null; }
                     );
                 }
+            }
+            else if (e.PropertyName == nameof(DeviceCommissioning.LssSerialNo))
+            {
+                SyncFromDeviceTo1018();
             }
         }
 
@@ -137,8 +153,189 @@ namespace EDSEditorGUI2.ViewModels
                         );
                         break;
                     }
+                    else if (kvp.Key == "1018" || kvp.Key == "0x1018")
+                    {
+                        Attach1018Listeners();
+                        if (DeviceCommissioning.LssSerialNo.HasValue || !string.IsNullOrWhiteSpace(DeviceInfo.VendorNumber))
+                        {
+                            SyncFromDeviceTo1018();
+                        }
+                        else
+                        {
+                            SyncFrom1018ToDevice();
+                        }
+                    }
                 }
             }
+        }
+
+        public void Attach1018Listeners()
+        {
+            if (Objects == null) return;
+
+            if (TryGet1018Object(out var obj1018))
+            {
+                obj1018.SubObjects.CollectionChanged -= SubObjects1018_CollectionChanged;
+                obj1018.SubObjects.CollectionChanged += SubObjects1018_CollectionChanged;
+
+                foreach (var kvp in obj1018.SubObjects)
+                {
+                    if (kvp.Value != null)
+                    {
+                        kvp.Value.PropertyChanged -= SubObject1018_PropertyChanged;
+                        kvp.Value.PropertyChanged += SubObject1018_PropertyChanged;
+                    }
+                }
+            }
+        }
+
+        private bool TryGet1018Object(out OdObject obj1018)
+        {
+            obj1018 = null!;
+            if (Objects == null) return false;
+            return Objects.TryGetValue("1018", out obj1018!) || Objects.TryGetValue("0x1018", out obj1018!);
+        }
+
+        private void SubObjects1018_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+            {
+                foreach (KeyValuePair<string, OdSubObject> kvp in e.NewItems)
+                {
+                    if (kvp.Value != null)
+                    {
+                        kvp.Value.PropertyChanged -= SubObject1018_PropertyChanged;
+                        kvp.Value.PropertyChanged += SubObject1018_PropertyChanged;
+                    }
+                }
+            }
+            SyncFrom1018ToDevice();
+        }
+
+        private void SubObject1018_PropertyChanged(object? sender, PropertyChangedEventArgs e)
+        {
+            if (_isSyncingIdentity) return;
+            if (e.PropertyName == nameof(OdSubObject.DefaultValue))
+            {
+                SyncFrom1018ToDevice();
+            }
+        }
+
+        private void SyncFrom1018ToDevice()
+        {
+            if (_isSyncingIdentity) return;
+            if (!TryGet1018Object(out var obj1018)) return;
+
+            _isSyncingIdentity = true;
+            try
+            {
+                foreach (var sub in obj1018.SubObjects)
+                {
+                    string subKey = sub.Key.TrimStart('0');
+                    if (string.IsNullOrEmpty(subKey)) subKey = "0";
+
+                    if (subKey == "1") // Vendor-ID
+                    {
+                        if (!string.IsNullOrWhiteSpace(sub.Value.DefaultValue) && DeviceInfo.VendorNumber != sub.Value.DefaultValue)
+                        {
+                            DeviceInfo.VendorNumber = sub.Value.DefaultValue;
+                        }
+                    }
+                    else if (subKey == "2") // Product Code
+                    {
+                        if (!string.IsNullOrWhiteSpace(sub.Value.DefaultValue) && DeviceInfo.ProductNumber != sub.Value.DefaultValue)
+                        {
+                            DeviceInfo.ProductNumber = sub.Value.DefaultValue;
+                        }
+                    }
+                    else if (subKey == "3") // Revision Number
+                    {
+                        if (!string.IsNullOrWhiteSpace(sub.Value.DefaultValue) && DeviceInfo.RevisionNumber != sub.Value.DefaultValue)
+                        {
+                            DeviceInfo.RevisionNumber = sub.Value.DefaultValue;
+                        }
+                    }
+                    else if (subKey == "4") // Serial Number
+                    {
+                        if (TryParseUInt32(sub.Value.DefaultValue, out uint serialVal))
+                        {
+                            if (DeviceCommissioning.LssSerialNo != serialVal)
+                            {
+                                DeviceCommissioning.LssSerialNo = serialVal;
+                            }
+                        }
+                    }
+                }
+            }
+            finally
+            {
+                _isSyncingIdentity = false;
+            }
+        }
+
+        private void SyncFromDeviceTo1018()
+        {
+            if (_isSyncingIdentity) return;
+            if (!TryGet1018Object(out var obj1018)) return;
+
+            _isSyncingIdentity = true;
+            try
+            {
+                foreach (var sub in obj1018.SubObjects)
+                {
+                    string subKey = sub.Key.TrimStart('0');
+                    if (string.IsNullOrEmpty(subKey)) subKey = "0";
+
+                    if (subKey == "1")
+                    {
+                        if (!string.IsNullOrWhiteSpace(DeviceInfo.VendorNumber) && sub.Value.DefaultValue != DeviceInfo.VendorNumber)
+                        {
+                            sub.Value.DefaultValue = DeviceInfo.VendorNumber;
+                        }
+                    }
+                    else if (subKey == "2")
+                    {
+                        if (!string.IsNullOrWhiteSpace(DeviceInfo.ProductNumber) && sub.Value.DefaultValue != DeviceInfo.ProductNumber)
+                        {
+                            sub.Value.DefaultValue = DeviceInfo.ProductNumber;
+                        }
+                    }
+                    else if (subKey == "3")
+                    {
+                        if (!string.IsNullOrWhiteSpace(DeviceInfo.RevisionNumber) && sub.Value.DefaultValue != DeviceInfo.RevisionNumber)
+                        {
+                            sub.Value.DefaultValue = DeviceInfo.RevisionNumber;
+                        }
+                    }
+                    else if (subKey == "4")
+                    {
+                        if (DeviceCommissioning.LssSerialNo.HasValue)
+                        {
+                            string formatted = $"0x{DeviceCommissioning.LssSerialNo.Value:X8}";
+                            if (sub.Value.DefaultValue != formatted)
+                            {
+                                sub.Value.DefaultValue = formatted;
+                            }
+                        }
+                    }
+                }
+            }
+            finally
+            {
+                _isSyncingIdentity = false;
+            }
+        }
+
+        private static bool TryParseUInt32(string? input, out uint result)
+        {
+            result = 0;
+            if (string.IsNullOrWhiteSpace(input)) return false;
+            input = input.Trim();
+            if (input.StartsWith("0x", System.StringComparison.OrdinalIgnoreCase))
+            {
+                return uint.TryParse(input.Substring(2), System.Globalization.NumberStyles.HexNumber, System.Globalization.CultureInfo.InvariantCulture, out result);
+            }
+            return uint.TryParse(input, System.Globalization.NumberStyles.Integer, System.Globalization.CultureInfo.InvariantCulture, out result);
         }
 
         private void CheckMutexAndPromptAsync(string resourceKey, System.Action onConfirm, System.Action onCancel)
@@ -227,7 +424,9 @@ namespace EDSEditorGUI2.ViewModels
                     DeviceCommissioning.NetNumber = _eds.dc.NetNumber == 0 ? null : _eds.dc.NetNumber;
                     DeviceCommissioning.NetName = _eds.dc.NetworkName;
                     DeviceCommissioning.CanopenManager = _eds.dc.CANopenManager;
-                    DeviceCommissioning.LssSerialNo = _eds.dc.LSS_SerialNumber == 0 ? null : _eds.dc.LSS_SerialNumber;
+                    DeviceCommissioning.LssSerialNo = _eds.dc.LSS_SerialNumber;
+                    Attach1018Listeners();
+                    SyncFrom1018ToDevice();
                 }
             }
         }
