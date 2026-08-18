@@ -216,11 +216,11 @@ namespace EDSEditorGUI2.ViewModels
             if (_isSyncingIdentity) return;
             if (e.PropertyName == nameof(OdSubObject.DefaultValue))
             {
-                SyncFrom1018ToDevice();
+                SyncFrom1018ToDevice(smartMerge: false);
             }
         }
 
-        public void SyncFrom1018ToDevice()
+        public void SyncFrom1018ToDevice(bool smartMerge = true)
         {
             if (_isSyncingIdentity) return;
             if (!TryGet1018Object(out var obj1018)) return;
@@ -236,28 +236,44 @@ namespace EDSEditorGUI2.ViewModels
 
                     if (rawKey == "1") // Vendor-ID
                     {
-                        if (DeviceInfo.VendorNumber != sub.Value.DefaultValue)
+                        if (smartMerge && !string.IsNullOrWhiteSpace(DeviceInfo.VendorNumber) && DeviceInfo.VendorNumber != sub.Value.DefaultValue)
+                        {
+                            sub.Value.DefaultValue = DeviceInfo.VendorNumber;
+                        }
+                        else if (DeviceInfo.VendorNumber != sub.Value.DefaultValue)
                         {
                             DeviceInfo.VendorNumber = sub.Value.DefaultValue;
                         }
                     }
                     else if (rawKey == "2") // Product Code
                     {
-                        if (DeviceInfo.ProductNumber != sub.Value.DefaultValue)
+                        if (smartMerge && !string.IsNullOrWhiteSpace(DeviceInfo.ProductNumber) && DeviceInfo.ProductNumber != sub.Value.DefaultValue)
+                        {
+                            sub.Value.DefaultValue = DeviceInfo.ProductNumber;
+                        }
+                        else if (DeviceInfo.ProductNumber != sub.Value.DefaultValue)
                         {
                             DeviceInfo.ProductNumber = sub.Value.DefaultValue;
                         }
                     }
                     else if (rawKey == "3") // Revision Number
                     {
-                        if (DeviceInfo.RevisionNumber != sub.Value.DefaultValue)
+                        if (smartMerge && !string.IsNullOrWhiteSpace(DeviceInfo.RevisionNumber) && DeviceInfo.RevisionNumber != "1" && DeviceInfo.RevisionNumber != sub.Value.DefaultValue)
+                        {
+                            sub.Value.DefaultValue = DeviceInfo.RevisionNumber;
+                        }
+                        else if (DeviceInfo.RevisionNumber != sub.Value.DefaultValue)
                         {
                             DeviceInfo.RevisionNumber = sub.Value.DefaultValue;
                         }
                     }
                     else if (rawKey == "4") // Serial Number
                     {
-                        if (DeviceCommissioning.LssSerialNo != sub.Value.DefaultValue)
+                        if (smartMerge && !string.IsNullOrWhiteSpace(DeviceCommissioning.LssSerialNo) && DeviceCommissioning.LssSerialNo != sub.Value.DefaultValue)
+                        {
+                            sub.Value.DefaultValue = DeviceCommissioning.LssSerialNo;
+                        }
+                        else if (DeviceCommissioning.LssSerialNo != sub.Value.DefaultValue)
                         {
                             DeviceCommissioning.LssSerialNo = sub.Value.DefaultValue;
                         }
