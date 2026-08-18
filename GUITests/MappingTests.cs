@@ -13,10 +13,27 @@ namespace GUITests
             ProtobufferViewModelMapper.MapFromProtobuffer(sut);
         }
 
+        private static string GetProfilePath(string fileName)
+        {
+            string p1 = Path.Combine(AppContext.BaseDirectory, "Profiles", fileName);
+            if (File.Exists(p1)) return p1;
+
+            DirectoryInfo? cur = new DirectoryInfo(AppContext.BaseDirectory);
+            while (cur != null)
+            {
+                string candidate = Path.Combine(cur.FullName, "EDSEditorGUI", "Profiles", fileName);
+                if (File.Exists(candidate)) return candidate;
+                candidate = Path.Combine(cur.FullName, "Profiles", fileName);
+                if (File.Exists(candidate)) return candidate;
+                cur = cur.Parent;
+            }
+            return p1;
+        }
+
         [Fact]
         public void Test1018MappingAndSync()
         {
-            string xpdPath = @"C:\Users\14588\workspace\CANopenEditor\EDSEditorGUI\Profiles\DS301_profile.xpd";
+            string xpdPath = GetProfilePath("DS301_profile.xpd");
             libEDSsharp.CanOpenXDD_1_1 coxml_1_1 = new libEDSsharp.CanOpenXDD_1_1();
             var eds = coxml_1_1.ReadXML(xpdPath);
             var proto = libEDSsharp.MappingEDS.MapToProtobuffer(eds);
@@ -42,7 +59,7 @@ namespace GUITests
         [Fact]
         public void Test1018SmartMergePreservesCustomInput()
         {
-            string xpdPath = @"C:\Users\14588\workspace\CANopenEditor\EDSEditorGUI\Profiles\DS301_profile.xpd";
+            string xpdPath = GetProfilePath("DS301_profile.xpd");
             libEDSsharp.CanOpenXDD_1_1 coxml_1_1 = new libEDSsharp.CanOpenXDD_1_1();
             var eds = coxml_1_1.ReadXML(xpdPath);
             var proto = libEDSsharp.MappingEDS.MapToProtobuffer(eds);

@@ -355,7 +355,17 @@ ProDucTNumbeR=test4
         [Fact]
         public void Test_ProfileDS301_Mapping()
         {
-            string xpdPath = @"C:\Users\14588\workspace\CANopenEditor\EDSEditorGUI\Profiles\DS301_profile.xpd";
+            string xpdPath = System.IO.Path.Combine(AppContext.BaseDirectory, "Profiles", "DS301_profile.xpd");
+            if (!System.IO.File.Exists(xpdPath))
+            {
+                System.IO.DirectoryInfo cur = new System.IO.DirectoryInfo(AppContext.BaseDirectory);
+                while (cur != null)
+                {
+                    string candidate = System.IO.Path.Combine(cur.FullName, "EDSEditorGUI", "Profiles", "DS301_profile.xpd");
+                    if (System.IO.File.Exists(candidate)) { xpdPath = candidate; break; }
+                    cur = cur.Parent;
+                }
+            }
             if (!System.IO.File.Exists(xpdPath)) return;
 
             CanOpenXDD_1_1 coxml_1_1 = new CanOpenXDD_1_1();
