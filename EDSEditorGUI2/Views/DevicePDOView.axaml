@@ -1,4 +1,4 @@
-﻿<UserControl xmlns="https://github.com/avaloniaui"
+<UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:vm="using:EDSEditorGUI2.ViewModels"
              xmlns:view="using:EDSEditorGUI2.Views"
@@ -38,8 +38,8 @@
               <DataGridTextColumn Header="{DynamicResource str_pdo_col_index}" Width="Auto" MinWidth="80" Binding="{Binding IndexString}"/>
               <DataGridTextColumn Header="{DynamicResource str_pdo_col_sub}" Width="Auto" MinWidth="80" Binding="{Binding SubIndexString}"/>
               <DataGridTextColumn Header="{DynamicResource str_pdo_col_name}" Width="*" Binding="{Binding Name}"/>
-              <DataGridTextColumn Header="{DynamicResource str_pdo_col_datatype}" Width="Auto" Binding="{Binding ObjectTypeString}"/>
-              <DataGridTextColumn Header="{DynamicResource str_pdo_col_bits}" Width="Auto" Binding="{Binding TypeSize}"/>
+              <DataGridTextColumn Header="{DynamicResource str_pdo_col_datatype}" Width="Auto" MinWidth="100" Binding="{Binding ObjectTypeString}"/>
+              <DataGridTextColumn Header="{DynamicResource str_pdo_col_bits}" Width="Auto" MinWidth="75" Binding="{Binding TypeSize}"/>
             </DataGrid.Columns>
           </DataGrid>
         </Border>
