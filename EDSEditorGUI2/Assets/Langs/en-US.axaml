@@ -177,7 +177,7 @@
     <sys:String x:Key="str_pdo_inhibit">Inhibit</sys:String>
     <sys:String x:Key="str_pdo_event_timer">Event Timer</sys:String>
     <sys:String x:Key="str_pdo_btn_save">Save</sys:String>
-    <sys:String x:Key="str_pdo_sync_start">Sync Start</sys:String>
+    <sys:String x:Key="str_pdo_sync_start">SYNCs Count</sys:String>
     <sys:String x:Key="str_pdo_chk_invalid">Invalid</sys:String>
     <sys:String x:Key="str_pdo_empty">Empty</sys:String>
     <sys:String x:Key="str_pdo_id">No.</sys:String>
