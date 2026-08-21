@@ -76,8 +76,10 @@ namespace EDSEditorGUI2.ViewModels
             public string TransmissionType
             {
                 get => Slot.transmissiontype.ToString();
-                set { if (byte.TryParse(value, out byte val)) { Slot.transmissiontype = val; OnPropertyChanged(); } }
+                set { if (byte.TryParse(value, out byte val)) { Slot.transmissiontype = val; OnPropertyChanged(); OnPropertyChanged(nameof(IsSyncStartEnabled)); } }
             }
+
+            public bool IsSyncStartEnabled => Slot.transmissiontype != 254 && Slot.transmissiontype != 255;
             
             public string Inhibit
             {

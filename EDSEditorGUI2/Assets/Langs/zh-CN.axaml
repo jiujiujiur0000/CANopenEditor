@@ -179,7 +179,7 @@
     <sys:String x:Key="str_pdo_inhibit">禁止时间</sys:String>
     <sys:String x:Key="str_pdo_event_timer">事件定时器</sys:String>
     <sys:String x:Key="str_pdo_btn_save">保存</sys:String>
-    <sys:String x:Key="str_pdo_sync_start">同步启动</sys:String>
+    <sys:String x:Key="str_pdo_sync_start">SYNCs 数</sys:String>
     <sys:String x:Key="str_pdo_chk_invalid">失效</sys:String>
     <sys:String x:Key="str_pdo_empty">空</sys:String>
     <sys:String x:Key="str_pdo_id">序号</sys:String>
